@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blackpink.infra.codegroup.CodeGroupDao">
+
+	<resultMap id="resultMapObj" type="com.blackpink.infra.codegroup.CodeGroupDto"></resultMap>
+
+    <select id="selectList" resultMap="resultMapObj">
+        SELECT
+            a.seq
+            ,a.codeType
+            ,(select count(aa.seq) from code aa where 1=1 and aa.codeGroup_seq = a.seq) as xseqCount
+            ,a.deleteNy
+            ,a.registration
+            ,a.correction
+         FROM codeGroup a
+        WHERE 1=1
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.seq
+            ,a.codeType
+            ,a.deleteNy
+            ,a.registration
+            ,a.correction
+        FROM codeGroup a
+        WHERE 1=1 
+        	AND a.seq = #{seq}
+    </select>
+    
+    <insert id="insert">
+    	INSERT INTO codeGroup (
+    		codeType
+    		,deleteNy
+    	)VALUES(
+    		#{codeType}
+    		,#{deleteNy}
+    	)
+    </insert>
+    
+    <update id="update">
+    	UPDATE codeGroup 
+    	SET
+    		codeType = #{codeType}
+    	WHERE 1=1
+    		AND seq = #{seq}
+    </update>
+    
+    <update id="updateDeleteNy">
+    	UPDATE codeGroup 
+    	SET
+    		deleteNy = 1
+    	WHERE 1=1
+    		AND seq = #{seq}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM codeGroup
+    	WHERE 1=1
+    		AND seq = #{seq}
+    </delete>
+    
+    
+	  
+</mapper>

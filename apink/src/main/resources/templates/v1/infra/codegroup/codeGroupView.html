@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>codeGroupXdmList</title>
+</head>
+<body>
+	
+	<p th:text="${oneList.seq}"></p>
+	<p th:text="${oneList.codeType}"></p> 
+	<br>
+	<a href="/codeGroupXdmList">codeGroupXdmList 이동</a>
+	<a th:href="@{/codeGroupCorrection(seq=${oneList.seq})}">수정</a>
+	
+</body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blackpink.infra.code.CodeDao">
+
+	<resultMap id="resultMapObj" type="com.blackpink.infra.code.CodeDto"></resultMap>
+
+    <select id="selectList" resultMap="resultMapObj">
+      	SELECT
+      		a.seq as groupseq
+      		,a.codeType
+            ,b.seq
+            ,b.codeName
+            ,b.deleteNy
+            ,b.registration
+            ,b.correction
+            ,b.codeGroup_seq
+         FROM
+         	codeGroup a
+         LEFT JOIN code b 
+         on b.codeGroup_seq = a.seq
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+      	SELECT
+      		a.seq as groupseq
+      		,a.codeType
+            ,b.seq
+            ,b.codeName
+            ,b.deleteNy
+            ,b.registration
+            ,b.correction
+            ,b.codeGroup_seq
+         FROM code b ,codeGroup a
+        WHERE 1=1
+        	and a.seq = b.codeGroup_seq
+        	and b.seq = #{seq}
+    </select>
+	  
+	<insert id="insert">
+	 INSERT INTO code (
+	 	codeName
+	 	,deleteNy
+	 	,codeGroup_seq
+	 )VALUES(
+	 	#{codeName}
+	 	,#{deleteNy}
+	 	,#{codeGroup_seq}
+	 )
+	</insert>
+	
+	<update id="update">
+		UPDATE code
+		SET
+			codeName = #{codeName}
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<update id="deleteNyUpdate">
+		UPDATE code
+		SET
+			deleteNy = 1
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<delete id="codeDelete">
+		DELETE FROM code
+		WHERE 1=1
+			AND seq = #{seq}
+	</delete>
+	
+</mapper>

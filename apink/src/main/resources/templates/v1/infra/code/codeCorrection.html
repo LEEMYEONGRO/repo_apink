@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>codeCorrection</title>
+</head>
+<body>
+	<form method="post" action="codeUpdate">
+		<a>codeUpdate</a>
+		<br>
+		<input type="text" name="seq" th:value=${oneList.seq}>
+		<br>
+	  	<input type="text" name="codeName" th:value=${oneList.codeName}>
+	  	<br>
+	  	<button>수정</button>
+	</form>
+	
+	<form method="post" action="deleteNyUpdate">
+		<a>deleteNy</a>
+		<br>
+		<input type="text" name="seq" th:value=${oneList.seq}>
+		<br>
+	  	<button>변경</button>
+	</form>
+	
+	<form method="post" action="codeDelete">
+		<a>delete</a>
+		<br>
+		<input type="text" name="seq" th:value=${oneList.seq}>
+		<br>
+	  	<button>삭제</button>
+	</form>
+</body>
+</html>
