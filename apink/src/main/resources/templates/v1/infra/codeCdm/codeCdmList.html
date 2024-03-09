@@ -562,11 +562,11 @@
 											<table class="table m-0">
 												<thead>
 													<tr>
-														<th>
-														<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-														</th>
+														<th><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></th>
+														<th>코드그룹번호</th>
+														<th>코드그룹이름</th>
 														<th>코드번호</th>
-														<th>이름</th>
+														<th>코드이름</th>
 														<th>등록일</th>
 														<th>삭제여부</th>
 													</tr>
@@ -574,13 +574,14 @@
 												<tbody>
 													<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
 														<td><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
+														<td th:text="${list.groupseq}"></td>
+														<td th:text="${list.codeType}"></td>
 											 			<td th:text="${list.seq}"></td>
-														<td th:if="${list.deleteNy eq 0}">N</td>
-														<td th:unless="${list.deleteNy eq 0}">Y</td>	
-											 			<td> <a th:href="@{/codeGroupCdmCorrection(seq=${list.seq},codeType=${list.codeType})}" th:text="${list.codeType}"></a></td>
+											 			<td> <a th:href="@{/codeCdmCorrection(seq=${list.seq},codeName=${list.codeName})}" th:text="${list.codeName}"></a></td>
 											 			<th th:text="${#dates.format(list.registration, 'yyyy/MM/dd HH:mm:ss')}"></th>
+														<td th:if="${list.deleteNy eq 0}">N</td>
+														<td th:unless="${list.deleteNy eq 0}">Y</td> 			
 											 		</tr>
-													
 												</tbody>
 											</table>				
 										</div>
@@ -625,7 +626,7 @@
 													</button>
 												</div>
 												<div class="col d-md-flex justify-content-md-end">
-													<a th:href="@{/codeGroupCdmAddition}">
+													<a th:href="@{/codeCdmAddition}">
 														<button type="button" class="btn btn-info">
 																<i class="bi bi-plus-circle-fill"></i>
 														</button>

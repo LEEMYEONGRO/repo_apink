@@ -128,7 +128,7 @@ public class CodeController {
 	@RequestMapping("codeCdmDeleteNy")
 	public String codeCdmDeleteNy(CodeDto dto) {
 		
-		service.update(dto);
+		service.deleteNyUpdate(dto);
 		
 		return "redirect:/codeCdmList";
 		

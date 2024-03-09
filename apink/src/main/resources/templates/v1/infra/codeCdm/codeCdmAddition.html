@@ -464,21 +464,24 @@
 								<!-- Card start -->
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">코드그룹관리</div>
+										<div class="card-title">코드관리</div>
 									</div>
 									<div class="card-body">
-											<form class="row" method="post" action="codeGroupCdmInsert">
-												<div class="col-6">
-														<input type="text" class="form-control" name="codeType" placeholder="codeType을 입력하시오.">
+											<form class="row" method="post" action="codeCdmInsert">
+												<div class="col-4">
+														<input type="text" class="form-control" name="codeGroup_seq" placeholder="코드그룹번호를 입력하시오.">
 												</div>
-												<div class="col-6">
-														<select class="form-select" name="deleteNy">
-															<option value="0">N</option>
-															<option value="1">Y</option>
-														</select>
-													</div>
+												<div class="col-4">
+														<input type="text" class="form-control" name="codeName" placeholder="코드이름을 입력하시오.">
+												</div>
+												<div class="col-4">
+													<select class="form-select" name="deleteNy">
+														<option value="0">N</option>
+														<option value="1">Y</option>
+													</select>
+												</div>
 												<div class="col-6 g-3">
-													<button type="submit" class="btn btn-success" href="codeGroupCdmList">돌아가기</button>
+													<a th:href="@{/codeCdmList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
 												</div>
 													<div class="col-6 g-3 d-md-flex justify-content-md-end">
 														<button class="btn btn-info" type="submit">추가</button>
