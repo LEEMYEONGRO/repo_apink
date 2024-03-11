@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blackpink.infra.codegroup.CodeGroupDto;
+import com.blackpink.infra.codegroup.CodeGroupVo;
 
 @Controller
 public class CodeController {
@@ -14,13 +15,13 @@ public class CodeController {
 	@Autowired
 	CodeService service;
 	
-	@RequestMapping("codeXdmList")
-	public String codeXdmList(Model model) {
-		
-		model.addAttribute("list", service.selectList());
-		
-		return "/v1/infra/code/codeXdmList";
-	}
+//	@RequestMapping("codeXdmList")
+//	public String codeXdmList(Model model) {
+//		
+//		model.addAttribute("list", service.selectList());
+//		
+//		return "/v1/infra/code/codeXdmList";
+//	}
 	
 	@RequestMapping("codeView")
 	public String codeView(CodeDto dto ,Model model) {
@@ -83,9 +84,11 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/codeCdmList")
-	public String codeCdmList(Model model) {
+	public String codeCdmList(CodeVo vo, Model model) {
 		
-		model.addAttribute("list", service.selectList());
+		model.addAttribute("list", service.selectList(vo));
+		
+		model.addAttribute("vo", vo);
 		
 		return "/v1/infra/codeCdm/codeCdmList";
 	}

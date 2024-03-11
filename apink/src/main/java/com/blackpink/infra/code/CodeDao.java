@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CodeDao {
 
-	public List<CodeDto> selectList();
+	public List<CodeDto> selectList(CodeVo vo);
 	
 	public CodeDto selectOne(CodeDto dto);
 	
@@ -15,4 +15,6 @@ public interface CodeDao {
 	public int deleteNyUpdate(CodeDto dto);
 	
 	public int codeDelete(CodeDto dto);
+	
+	 
 }

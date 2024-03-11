@@ -13,8 +13,8 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupService service;
 	
-	@RequestMapping("codeGroupXdmList")
-	public String codeGroupXdmList(Model model) {
+	//@RequestMapping("codeGroupXdmList")
+	//public String codeGroupXdmList(Model model) {
 		
 //		List<CodeGroupDto> codeGroupDtos = service.selectList();
 //		
@@ -22,12 +22,12 @@ public class CodeGroupController {
 //			System.out.println(a.getCodeType());
 //		}
 //		
-		model.addAttribute("list", service.selectList());
+		//model.addAttribute("list", service.selectList());
 				
 				
-		return "/v1/infra/codegroup/codeGroupXdmList";
+		//return "/v1/infra/codegroup/codeGroupXdmList";
 		
-	}
+	//}
 	
 //	@RequestMapping("codeGroupView")
 //	public String codeGroupView(CodeGroupDto dto) {
@@ -112,9 +112,11 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "/codeGroupCdmList")
-	public String codeGroupCdmList(Model model) {
+	public String codeGroupCdmList(CodeGroupVo vo, Model model) {
 		
-		model.addAttribute("list", service.selectList());
+		model.addAttribute("list", service.selectList(vo));
+
+		model.addAttribute("vo", vo);
 		
 		return "/v1/infra/codeGroupCdm/codeGroupCdmList";
 	}

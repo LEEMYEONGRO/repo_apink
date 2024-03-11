@@ -13,8 +13,18 @@
             ,a.deleteNy
             ,a.registration
             ,a.correction
-         FROM codeGroup a
-        WHERE 1=1
+                FROM codeGroup a
+		        WHERE 1=1
+		        <if test="shDelNy != null and !shDelNy.equals('')">AND a.deleteNy = #{shDelNy}</if>
+		       <!--
+						<choose>
+							<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+							<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+						</choose> -->
+		        <choose>
+		            <when test="shOption == 1">AND a.seq = #{shValue}</when>
+		            <when test="shOption == 2">AND a.codeType LIKE CONCAT('%',#{shValue},'%')</when>
+		        </choose>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">

@@ -15,5 +15,7 @@ public interface CodeGroupDao {
 	public int updateDeleteNy(CodeGroupDto dto);
 	
 	public int delete(CodeGroupDto dto);
+	
+	public List<CodeGroupDto> selectList(CodeGroupVo vo);
 
 }
