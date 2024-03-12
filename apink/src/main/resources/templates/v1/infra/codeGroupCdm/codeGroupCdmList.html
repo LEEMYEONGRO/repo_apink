@@ -357,20 +357,16 @@
 											</select>
 										</div>
 									</div>
-									<div
-										class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 										<div class="mb-3">
-											<input type="text" id="shDateStart" name="shDateStart"
-												placeholder="시작일" class="form-control" autocomplete="off"
-												readonly>
+											<input type="text" id="shDateStart" name="shDateStart" placeholder="시작일" class="form-control" 
+											autocomplete="off" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" readonly>
 										</div>
 									</div>
-									<div
-										class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 										<div class="mb-3">
-											<input type="text" id="shDateEnd" name="shDateEnd"
-												placeholder="종료일" class="form-control" autocomplete="off"
-												readonly>
+											<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" class="form-control"
+											autocomplete="off" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" readonly>
 										</div>
 									</div>
 									<div
@@ -614,6 +610,9 @@
 			$("#shDateStart, #shDateEnd").datetimepicker({
 				timepicker : false,
 				format : 'Y-m-d'
+				
+				
+				
 			});
 			
 			document.getElementById("btnSearch").onclick = function() {
@@ -638,10 +637,6 @@
 	</script>
 
 	<script>
-		
-
-			
-			
 			/* document.getElementById("btnForm").onclick = function() {
 				goForm(0);
 			} 
@@ -651,7 +646,7 @@
 				form.action = goUrlXdmForm;
 				form.submit();
 			} */
-		</script>
+	</script>
 		
 		
 </body>
