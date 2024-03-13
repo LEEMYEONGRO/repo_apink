@@ -467,21 +467,21 @@
 										<div class="card-title">코드그룹관리</div>
 									</div>
 									<div class="card-body">
-											<form class="row" method="post" action="codeGroupCdmInsert">
+											<form class="row" method="post" name= "formName">
 												<div class="col-6">
-														<input type="text" class="form-control" name="codeType" placeholder="코드그룹이름을 입력하시오.">
+														<input type="text" class="form-control" name="codeType" id="codeType" placeholder="코드그룹이름을 입력하시오.">
 												</div>
 												<div class="col-6">
-														<select class="form-select" name="deleteNy">
+														<select class="form-select" name="deleteNy" id="deleteNy">
 															<option value="0">N</option>
 															<option value="1">Y</option>
 														</select>
 													</div>
 												<div class="col-6 g-3">
-													<button type="submit" class="btn btn-success" href="codeGroupCdmList">돌아가기</button>
+													<button type="submit" class="btn btn-success" href="codeGroupCdmList" id ="back" >돌아가기</button>
 												</div>
 													<div class="col-6 g-3 d-md-flex justify-content-md-end">
-														<button class="btn btn-info" type="submit">추가</button>
+														<button class="btn btn-info" type="button" id = "additional">추가</button>
 													</div>
 												</form>
 										</div>
@@ -556,7 +556,54 @@
 		    })
 		})()
 		</script>
+		<script>
 		
+		/* document.getElementById("additional").onclick = function() {
+			validation();
+		}
+		function validation(){
+			alert("validation");
+			alert(document.getElementById("codeType").value);
+			alert(document.getElementById("deleteNy").value);
+		} */
+		
+		let form = document.querySelector("form[name=formName]")
+		
+		document.getElementById("additional").onclick = function() {
+			if(validation() == false){
+				alert("값을 입력하시오.");				
+			}else {
+				form.action = "codeGroupCdmInsert";
+				form.submit();
+			}
+		}
+		
+		function validation() {
+			if(!nullToEmpty(document.getElementById("codeType").value)){
+				
+				return false;
+			}
+		}
+		
+		nullToEmpty = function(value) {
+			if(value == null || value == "null" || value.length == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		
+		document.getElementById("back").onclick = function() {
+			goback();
+		}
+		function goback(){
+			alert("돌아가기");
+		}
+		
+		
+		
+		</script>
 	</body>
 
 </html>
