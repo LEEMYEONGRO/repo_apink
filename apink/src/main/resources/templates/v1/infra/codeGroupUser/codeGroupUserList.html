@@ -374,19 +374,15 @@
 										<div class="mb-3">
 											<select class="form-select" id="shOption" name="shOption">
 												<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-												<option value="1" th:selected="${vo.shOption == 1}">코드그룹
-													코드</option>
-												<option value="2" th:selected="${vo.shOption == 2}">코드그룹
-													이름</option>
+												<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
+												<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
 											</select>
 										</div>
 									</div>
 									<div
 										class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 										<div class="mb-3">
-											<input type="text" id="shValue" name="shValue"
-												th:value="${vo.shValue}" onkeyup="enterkey()"
-												placeholder="검색어" class="form-control form-control-sm">
+											<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
 											<div class="invalid-feedback" id="shValueFeedback"></div>
 										</div>
 									</div>
@@ -451,10 +447,10 @@
 														id="inlineCheckbox1" value="option1"></td>
 													<td th:text="${list.seq}"></td>
 													<td><a
-														th:href="@{/codeGroupCdmCorrection(seq=${list.seq},codeType=${list.codeType})}"
-														th:text="${list.codeType}"></a></td>
+														th:href="@{/codeGroupUserCorrection(seq=${list.seq},codeGroupName=${list.codeGroupName})}"
+														th:text="${list.codeGroupName}"></a></td>
 													<th
-														th:text="${#dates.format(list.registration, 'yyyy/MM/dd HH:mm:ss')}"></th>
+														th:text="${#dates.format(list.creationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 													<td th:if="${list.deleteNy eq 0}">N</td>
 													<td th:unless="${list.deleteNy eq 0}">Y</td>
 												</tr>
@@ -508,7 +504,7 @@
 											</button>
 										</div>
 										<div class="col d-md-flex justify-content-md-end">
-											<a th:href="@{/codeGroupCdmAddition}">
+											<a th:href="@{/codeGroupUserAddition}">
 												<button type="button" class="btn btn-info">
 													<i class="bi bi-plus-circle-fill"></i>
 												</button>
@@ -575,12 +571,9 @@
 		<script src="xdmin/v1/js/modernizr.js"></script>
 		<script src="xdmin/v1/js/moment.js"></script>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen"
-			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 		<!-- *************
 			************ Vendor Js Files *************
 		************* -->
@@ -596,7 +589,14 @@
 		<!--  -->
 
 	<script type="text/javascript">
-			let codeGroupCdmList = "/codeGroupCdmList"; /* ### */
+			window.addEventListener('load', function() {
+				$("#shDateStart, #shDateEnd").datetimepicker({
+					timepicker : false,
+					format : 'Y-m-d'
+					
+				});
+	
+			let codeGroupUserList = "/codeGroupUserList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
@@ -606,29 +606,22 @@
 			
 			let form = document.querySelector("form[name=formList]");
 	
-		window.addEventListener('load', function() {
-			$("#shDateStart, #shDateEnd").datetimepicker({
-				timepicker : false,
-				format : 'Y-m-d'
-				
-				
-				
-			});
+		
 			
 			document.getElementById("btnSearch").onclick = function() {
-				form.action = codeGroupCdmList;
+				form.action = codeGroupUserList;
 				form.submit();
 			};
 			
 			document.getElementById("btnReset").onclick = function() {
-				location.href = codeGroupCdmList;
+				location.href = codeGroupUserList;
 			}
 			
 			
 		});
 		function enterkey() {
 			if (window.event.keyCode == 13) {
-			    form.action = codeGroupCdmList;
+			    form.action = codeGroupUserList;
 			    form.submit();
 		    }
 		}

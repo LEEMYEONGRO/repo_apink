@@ -2,6 +2,8 @@ package com.blackpink.infra.code;
 
 import java.util.List;
 
+import com.blackpink.infra.codegroup.CodeGroupVo;
+
 public interface CodeDao {
 
 	public List<CodeDto> selectList(CodeVo vo);
@@ -16,5 +18,5 @@ public interface CodeDao {
 	
 	public int codeDelete(CodeDto dto);
 	
-	 
+	public List<CodeDto> selectListCachedCodeArrayList();
 }

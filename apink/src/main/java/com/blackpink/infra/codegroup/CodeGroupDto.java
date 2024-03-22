@@ -5,13 +5,15 @@ import java.util.Date;
 public class CodeGroupDto {
 
 	private String seq;
-	private String codeType;
+	private String codeGroupName;
 	private Integer deleteNy;
-	private Date registration;
-	private Date correction;
+	private Date creationDate;
+	private Date modificationDate;
 	
 	private Integer xseqCount;
 
+	
+	
 	
 	
 	public String getSeq() {
@@ -22,12 +24,12 @@ public class CodeGroupDto {
 		this.seq = seq;
 	}
 
-	public String getCodeType() {
-		return codeType;
+	public String getCodeGroupName() {
+		return codeGroupName;
 	}
 
-	public void setCodeType(String codeType) {
-		this.codeType = codeType;
+	public void setCodeGroupName(String codeGroupName) {
+		this.codeGroupName = codeGroupName;
 	}
 
 	public Integer getDeleteNy() {
@@ -38,20 +40,20 @@ public class CodeGroupDto {
 		this.deleteNy = deleteNy;
 	}
 
-	public Date getRegistration() {
-		return registration;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setRegistration(Date registration) {
-		this.registration = registration;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
-	public Date getCorrection() {
-		return correction;
+	public Date getModificationDate() {
+		return modificationDate;
 	}
 
-	public void setCorrection(Date correction) {
-		this.correction = correction;
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
 	public Integer getXseqCount() {
@@ -61,6 +63,8 @@ public class CodeGroupDto {
 	public void setXseqCount(Integer xseqCount) {
 		this.xseqCount = xseqCount;
 	}
+
+	
 	
 	
 	

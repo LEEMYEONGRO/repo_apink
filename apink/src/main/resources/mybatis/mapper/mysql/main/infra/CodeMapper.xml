@@ -8,24 +8,26 @@
     <select id="selectList" resultMap="resultMapObj">
       	SELECT
       		a.seq as groupseq
-      		,a.codeType
+      		,a.codeGroupName
             ,b.seq
             ,b.codeName
             ,b.deleteNy
-            ,b.registration
-            ,b.correction
+            ,b.creationDate
+            ,b.modificationDate
             ,b.codeGroup_seq
          FROM
          	codeGroup a
          LEFT JOIN code b 
          on b.codeGroup_seq = a.seq
          WHERE 1=1
+         
 		        <if test="shDelNy != null and !shDelNy.equals('')">AND b.deleteNy = #{shDelNy}</if>
-		       <!--
-						<choose>
-							<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-							<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-						</choose> -->
+		       
+				<choose>
+					<when test="shOptionDate == 1">AND b.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND b.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+				 
 		        <choose>
 		            <when test="shOption == 1">AND b.seq = #{shValue}</when>
 		            <when test="shOption == 2">AND b.codeName LIKE CONCAT('%',#{shValue},'%')</when>
@@ -35,12 +37,12 @@
     <select id="selectOne" resultMap="resultMapObj">
       	SELECT
       		a.seq as groupseq
-      		,a.codeType
+      		,a.codeGroupName
             ,b.seq
             ,b.codeName
             ,b.deleteNy
-            ,b.registration
-            ,b.correction
+            ,b.creationDate
+            ,b.modificationDate
             ,b.codeGroup_seq
          FROM code b ,codeGroup a
         WHERE 1=1
@@ -52,10 +54,12 @@
 	 INSERT INTO code (
 	 	codeName
 	 	,deleteNy
+	 	,modificationDate
 	 	,codeGroup_seq
 	 )VALUES(
 	 	#{codeName}
 	 	,#{deleteNy}
+	 	,now()
 	 	,#{codeGroup_seq}
 	 )
 	</insert>
@@ -81,5 +85,16 @@
 		WHERE 1=1
 			AND seq = #{seq}
 	</delete>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,codeName
+			,codeGroup_seq
+		FROM
+			code
+		WHERE 1=1
+			AND deleteNy = 0
+    </select>
 	
 </mapper>

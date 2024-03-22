@@ -473,15 +473,15 @@
 													<input type="text" class="form-control" name="seq" th:value=${oneList.seq}>
 												</div>
 												<div class="col-6">
-													<input type="text" class="form-control" name="codeType" th:value=${oneList.codeType}>
+													<input type="text" class="form-control" name="codeGroupName" th:value=${oneList.codeGroupName}>
 												</div>
 												<div class="col-6 g-3">
-													<a th:href="@{/codeGroupCdmList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
+													<a th:href="@{/codeGroupUserList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
 												</div>
 												<div class="col-6 g-3 gap-2 d-md-flex justify-content-md-end">
-													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupCdmUpdate';">저장</button>
-													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupCdmDeleteNy';">Ny변경</button>
-												  	<!-- <button type="submit" class="btn btn-danger" onclick="javascript: form.action='codeGroupCdmDelete';">삭제</button> -->
+													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserUpdate';">저장</button>
+													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserDeleteNy';">Ny변경</button>
+												  	<!-- <button type="submit" class="btn btn-danger" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button> -->
 												  	
 												  	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDark">식제</button>
 											  	</div>
@@ -495,7 +495,7 @@
 																	삭제한 데이터는 복구할 수 없습니다.
 																</div>
 																<div class="modal-footer">
-																	<button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="javascript: form.action='codeGroupCdmDelete';">삭제</button>
+																	<button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button>
 																	<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
 																</div>
 															</div>

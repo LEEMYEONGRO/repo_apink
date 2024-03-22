@@ -1,14 +1,15 @@
-package com.blackpink.infra.code;
+package com.blackpink.infra.member;
 
-public class CodeVo {
+public class MemberVo {
 
-	private Integer shDelNy = 0; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
-	private Integer shOptionDate = 1;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shDelNy = 0; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOptionDate = 1; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shDateStart;
 	private String shDateEnd;
-	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOption; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String ShValue;
-	
+	private Integer shGender;
+
 	/* private String seq; */
 
 	public Integer getShDelNy() {
@@ -58,6 +59,14 @@ public class CodeVo {
 	public void setShValue(String shValue) {
 		ShValue = shValue;
 	}
+	
+	public Integer getShGender() {
+		return shGender;
+	}
+	
+	public void setShGender(Integer shGender) {
+		this.shGender = shGender;
+	}
 
 	/*
 	 * public String getSeq() { return seq; }
@@ -65,8 +74,4 @@ public class CodeVo {
 	 * public void setSeq(String seq) { this.seq = seq; }
 	 */
 
-	
-	
-	
-	
 }

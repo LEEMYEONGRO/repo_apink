@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.blackpink.infra.codegroup.CodeGroupDao">
+<mapper namespace="com.blackpink.infra.member.MemberDao">
 
-	<resultMap id="resultMapObj" type="com.blackpink.infra.codegroup.CodeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.blackpink.infra.member.MemberDto"></resultMap>
 
     <select id="selectList" resultMap="resultMapObj">
         SELECT
             a.seq
-            ,a.codeGroupName
-            ,(select count(aa.seq) from code aa where 1=1 and aa.codeGroup_seq = a.seq) as xseqCount
+            ,a.name
+            ,a.dateBirth
+            ,a.gender
+            ,a.email
+            ,a.password
+            ,a.phoneNumber
             ,a.deleteNy
             ,a.creationDate
             ,a.modificationDate
-                FROM codeGroup a
+                FROM member a
 		        WHERE 1=1
 	        <if test="shDelNy != null and !shDelNy.equals('')">AND a.deleteNy = #{shDelNy}</if>
-	      
+	      	<if test="shGender != null and !shGender.equals('')">AND a.gender = #{shGender}</if>
+	      	
 			<choose>
 				<when test="shOptionDate == 1">AND a.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				<when test="shOptionDate == 2">AND a.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -24,42 +29,42 @@
 			
 	        <choose>
 	            <when test="shOption == 1">AND a.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
 	        </choose>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
             a.seq
-            ,a.codeGroupName
+            ,a.name
             ,a.deleteNy
             ,a.creationDate
             ,a.modificationDate
-        FROM codeGroup a
+        FROM member a
         WHERE 1=1 
         	AND a.seq = #{seq}
     </select>
     
     <insert id="insert">
-    	INSERT INTO codeGroup (
-    		codeGroupName
+    	INSERT INTO member (
+    		name
     		,deleteNy
     	)VALUES(
-    		#{codeGroupName}
+    		#{name}
     		,#{deleteNy}
     	)
     </insert>
     
     <update id="update">
-    	UPDATE codeGroup 
+    	UPDATE member 
     	SET
-    		codeGroupName = #{codeGroupName}
+    		name = #{name}
     	WHERE 1=1
     		AND seq = #{seq}
     </update>
     
     <update id="updateDeleteNy">
-    	UPDATE codeGroup 
+    	UPDATE member 
     	SET
     		deleteNy = 1
     	WHERE 1=1
@@ -67,10 +72,11 @@
     </update>
     
     <delete id="delete">
-    	DELETE FROM codeGroup
+    	DELETE FROM member
     	WHERE 1=1
     		AND seq = #{seq}
     </delete>
+    
     
     
 	  

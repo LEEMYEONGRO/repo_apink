@@ -43,80 +43,80 @@ public class CodeGroupController {
 //		return "codeGroupView";
 //	}
 	
-	@RequestMapping("codeGroupView")
-	public String codeGroupView(CodeGroupDto dto, Model model) {
-		
-		model.addAttribute("oneList", service.selectOne(dto));
-		
-		return "/v1/infra/codegroup/codeGroupView";
-		
-		
-	}
-	
-	@RequestMapping("codeGroupCorrection")
-	public String codeGroupCorrection(CodeGroupDto dto, Model model) {
-		
-		model.addAttribute("oneList", service.selectOne(dto));
-		
-		return "/v1/infra/codegroup/codeGroupCorrection";
-		
-		
-	}
-	
-	@RequestMapping("codeGroupRegistration")
-	public String codeGroupRegistration(CodeGroupDto dto, Model model) {
-		
-		model.addAttribute("oneList", service.selectOne(dto));
-		
-		return "/v1/infra/codegroup/codeGroupRegistration";
-		
-		
-	}
-	
-	@RequestMapping("codeGroupInsert")
-	public String codeGroupInsert(CodeGroupDto dto) {
-		
-		service.insert(dto);
-		
-		return "redirect:/codeGroupXdmList";
-		
-	}
-	
-	@RequestMapping("codeGroupUpdate")
-	public String codeGroupUpdate(CodeGroupDto dto) {
-		
-		service.update(dto);
-		
-		return "redirect:/codeGroupXdmList";
-		
-	}
-	
-	@RequestMapping("updateDeleteNy")
-	public String updateDeleteNy(CodeGroupDto dto) {
-		
-		service.updateDeleteNy(dto);
-		
-		return "redirect:/codeGroupXdmList";
-		
-	}
-	
-	@RequestMapping("delete")
-	public String delete(CodeGroupDto dto) {
-		
-		service.delete(dto);
-		
-		return "redirect:/codeGroupXdmList";
-		
-	}
+//	@RequestMapping("codeGroupView")
+//	public String codeGroupView(CodeGroupDto dto, Model model) {
+//		
+//		model.addAttribute("oneList", service.selectOne(dto));
+//		
+//		return "/v1/infra/codegroup/codeGroupView";
+//		
+//		
+//	}
+//	
+//	@RequestMapping("codeGroupCorrection")
+//	public String codeGroupCorrection(CodeGroupDto dto, Model model) {
+//		
+//		model.addAttribute("oneList", service.selectOne(dto));
+//		
+//		return "/v1/infra/codegroup/codeGroupCorrection";
+//		
+//		
+//	}
+//	
+//	@RequestMapping("codeGroupRegistration")
+//	public String codeGroupRegistration(CodeGroupDto dto, Model model) {
+//		
+//		model.addAttribute("oneList", service.selectOne(dto));
+//		
+//		return "/v1/infra/codegroup/codeGroupRegistration";
+//		
+//		
+//	}
+//	
+//	@RequestMapping("codeGroupInsert")
+//	public String codeGroupInsert(CodeGroupDto dto) {
+//		
+//		service.insert(dto);
+//		
+//		return "redirect:/codeGroupXdmList";
+//		
+//	}
+//	
+//	@RequestMapping("codeGroupUpdate")
+//	public String codeGroupUpdate(CodeGroupDto dto) {
+//		
+//		service.update(dto);
+//		
+//		return "redirect:/codeGroupXdmList";
+//		
+//	}
+//	
+//	@RequestMapping("updateDeleteNy")
+//	public String updateDeleteNy(CodeGroupDto dto) {
+//		
+//		service.updateDeleteNy(dto);
+//		
+//		return "redirect:/codeGroupXdmList";
+//		
+//	}
+//	
+//	@RequestMapping("delete")
+//	public String delete(CodeGroupDto dto) {
+//		
+//		service.delete(dto);
+//		
+//		return "redirect:/codeGroupXdmList";
+//		
+//	}
 	
 	@RequestMapping(value = "/index")
 	public String index() {
 		
-		return "/v1/infra/codeGroupCdm/index";
+		return "/v1/infra/codeGroupUser/index";
 	}
 	
-	@RequestMapping(value = "/codeGroupCdmList")
-	public String codeGroupCdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+	@RequestMapping(value = "/codeGroupUserList")
+	public String codeGroupUserList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		setSearch(vo);
 		
@@ -127,59 +127,60 @@ public class CodeGroupController {
 		
 //		 model.addAttribute("vo", vo);
 		
-		return "/v1/infra/codeGroupCdm/codeGroupCdmList";
+		return "/v1/infra/codeGroupUser/codeGroupUserList";
 	}
 	
-	@RequestMapping(value = "/codeGroupCdmAddition")
-	public String codeGroupCdmAddition(CodeGroupDto dto, Model model ) {
+	
+	@RequestMapping(value = "/codeGroupUserAddition")
+	public String codeGroupUserAddition(CodeGroupDto dto, Model model ) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeGroupCdm/codeGroupCdmAddition";
+		return "/v1/infra/codeGroupUser/codeGroupUserAddition";
 	}
 	
 	
-	@RequestMapping("codeGroupCdmInsert")
-	public String codeGroupCdmInsert(CodeGroupDto dto) {
+	@RequestMapping("codeGroupUserInsert")
+	public String codeGroupUserInsert(CodeGroupDto dto) {
 		
 		service.insert(dto);
 		
-		return "redirect:/codeGroupCdmList";
+		return "redirect:/codeGroupUserList";
 	}
 	
-	@RequestMapping("codeGroupCdmCorrection")
-	public String codeGroupCdmCorrection(CodeGroupDto dto, Model model) {
+	@RequestMapping("codeGroupUserCorrection")
+	public String codeGroupUserCorrection(CodeGroupDto dto, Model model) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeGroupCdm/codeGroupCdmCorrection";
+		return "/v1/infra/codeGroupUser/codeGroupUserCorrection";
 		
 	}
 		
-	@RequestMapping("codeGroupCdmUpdate")
-	public String codeGroupCdmUpdate(CodeGroupDto dto) {
+	@RequestMapping("codeGroupUserUpdate")
+	public String codeGroupUserUpdate(CodeGroupDto dto) {
 		
 		service.update(dto);
 		
-		return "redirect:/codeGroupCdmList";
+		return "redirect:/codeGroupUserList";
 		
 	}
 	
-	@RequestMapping("codeGroupCdmDeleteNy")
-	public String codeGroupCdmDeleteNy(CodeGroupDto dto) {
+	@RequestMapping("codeGroupUserDeleteNy")
+	public String codeGroupUserDeleteNy(CodeGroupDto dto) {
 		
 		service.updateDeleteNy(dto);
 		
-		return "redirect:/codeGroupCdmList";
+		return "redirect:/codeGroupUserList";
 		
 	}
 	
-	@RequestMapping("codeGroupCdmDelete")
-	public String codeGroupCdmDelete(CodeGroupDto dto) {
+	@RequestMapping("codeGroupUserDelete")
+	public String codeGroupUserDelete(CodeGroupDto dto) {
 		
 		service.delete(dto);
 		
-		return "redirect:/codeGroupCdmList";
+		return "redirect:/codeGroupUserList";
 		
 	}
 	
