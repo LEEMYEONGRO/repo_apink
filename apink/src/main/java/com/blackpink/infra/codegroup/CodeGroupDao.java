@@ -17,5 +17,8 @@ public interface CodeGroupDao {
 	public int delete(CodeGroupDto dto);
 	
 	public List<CodeGroupDto> selectList(CodeGroupVo vo);
+	
+	public List<CodeGroupDto> selectListWithoutPaging();
+	
 
 }

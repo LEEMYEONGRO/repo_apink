@@ -72,6 +72,15 @@
     		AND seq = #{seq}
     </delete>
     
+    <select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			, a.codeGroupName
+		FROM codeGroup a
+		WHERE 1=1
+			AND deleteNy = 0
+		<!-- ORDER BY a.seq DESC -->
+	</select>
     
 	  
 </mapper>

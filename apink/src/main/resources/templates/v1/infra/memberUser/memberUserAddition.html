@@ -464,26 +464,53 @@
 								<!-- Card start -->
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">코드그룹관리</div>
+										<div class="card-title">회원관리</div>
 									</div>
 									<div class="card-body">
-											<form class="row" method="post" name= "formName">
-												<div class="col-6">
-														<input type="text" class="form-control" name="name" id="name" placeholder="코드그룹이름을 입력하시오.">
+										<form class="row" method="post" name="formName">
+											<div class="col-3 mb-3">
+												<input type="text" class="form-control" name="name" id="name" placeholder="회원이름을 입력하시오.">
+												<div class="invalid-feedback" name="name" id="nameFeedback"></div>
+											</div>
+											<div class="col-3">
+												<div class="mb-3">
+													<input type="text" id="dateBirth" name="dateBirth" placeholder="생년월일" class="form-control" autocomplete="off" readonly>
 												</div>
-												<div class="col-6">
-														<select class="form-select" name="deleteNy" id="deleteNy">
-															<option value="0">N</option>
-															<option value="1">Y</option>
-														</select>
-													</div>
-												<div class="col-6 g-3">
-													<a th:href="@{/memberUserList}"><button type="button" class="btn btn-success" id = "back">돌아가기</button></a>
-												</div>
-													<div class="col-6 g-3 d-md-flex justify-content-md-end">
-														<button class="btn btn-info" type="button" id = "additional">추가</button>
-													</div>
-												</form>
+											</div>
+											<div class="col-3">
+												<select class="form-select" name="gender" id="gender">
+													<option value="4">남자</option>
+													<option value="5">여자</option>
+													<option value="6">기타</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<input type="text" class="form-control" name="email" id="email" placeholder="이메일을 입력하시오.">
+												<div class="invalid-feedback" name="email" id="emailFeedback"></div>
+											</div>
+											<div class="col-3">
+												<input type="text" class="form-control" name="password" id="password" placeholder="비밀번호를 입력하시오.">
+												<div class="invalid-feedback" name="password" id="passwordFeedback"></div>
+											</div>
+											<div class="col-3">
+												<input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="전화번호를 입력하시오.">
+												<div class="invalid-feedback" name="phoneNumber" id="phoneNumberFeedback"></div>
+											</div>
+											<div class="col-3">
+												<select class="form-select" name="deleteNy" id="deleteNy">
+													<option value="0">N</option>
+													<option value="1">Y</option>
+												</select>
+											</div>
+											<div class="col-6 g-3">
+												<a th:href="@{/memberUserList}">
+													<button type="button" class="btn btn-success" id = "back">돌아가기</button>
+												</a>
+											</div>
+											<div class="col-6 g-3 d-md-flex justify-content-md-end">
+												<button class="btn btn-info" type="button" id ="additional">추가</button>
+											</div>
+										</form>
 										</div>
 										<!-- Form actions footer end -->
 									</div>
@@ -517,11 +544,14 @@
 			************ Required JavaScript Files *************
 		************* -->
 		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<script src="xdmin/v1/js/jquery.min.js"></script>
 		<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
 		<script src="xdmin/v1/js/modernizr.js"></script>
 		<script src="xdmin/v1/js/moment.js"></script>
 
+		<!-- datetimepicker  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 		<!-- *************
 			************ Vendor Js Files *************
 		************* -->
@@ -530,11 +560,19 @@
 		<script src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
 		<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
 
+
 		<!-- Main Js Required -->
 		<script src="xdmin/v1/js/main.js"></script>
 		
 		<!-- validations  -->
+		
+		<script src="xdmin\v1\js\validationXdm.js"></script>
+		
 		<script>
+			
+		</script>
+		
+		<!-- <script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(function () {
 		  'use strict'
@@ -550,41 +588,40 @@
 		          event.preventDefault()
 		          event.stopPropagation()
 		        }
-
 		        form.classList.add('was-validated')
 		      }, false)
 		    })
 		})()
+		</script> -->
+		<script>
+				window.addEventListener('load', function() {
+					$("#dateBirth").datetimepicker({
+						timepicker : false,
+			 			format: 'Y-m-d'
+					});
+				});
+				
+				let memberUserList = "/memberUserList"; /* ### */
+				let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 		</script>
 		<script>
-		
-		/* document.getElementById("additional").onclick = function() {
+		/* 
+		 document.getElementById("additional").onclick = function() {
 			validation();
-		}
-		function validation(){
-			alert("validation");
-			alert(document.getElementById("name").value);
-			alert(document.getElementById("deleteNy").value);
-		} */
-		
-		let form = document.querySelector("form[name=formName]")
-		
-		document.getElementById("additional").onclick = function() {
-			if(validation() == false){
-				alert("값을 입력하시오.");				
-			}else {
-				form.action = "memberUserInsert";
-				form.submit();
+			validationUpdt();
+		}*/
+		 
+		 let form = document.querySelector("form[name=formName]")
+		 
+		 document.getElementById("additional").onclick = function() {
+				if(validationUpdt() == false){
+					return false;				
+				}else {
+					form.action = "memberUserInsert";
+					form.submit();
+				}
 			}
-		}
-		
-		function validation() {
-			if(!nullToEmpty(document.getElementById("name").value)){
-				
-				return false;
-			}
-		}
-		
+		 
 		nullToEmpty = function(value) {
 			if(value == null || value == "null" || value.length == 0) {
 				return false;
@@ -593,17 +630,47 @@
 			}
 		}
 		
+		 function validationUpdt() {
+				if(!checkOnlyKoreanEnglish('name', 2, 0, "회원이름은 한글, 영문대소문자만 입력 가능합니다.")) return false;
+				if(!checkEmail('email', 2, 0, "이메일은 영대소문자, 숫자만 입력 가능합니다.")) return false;
+				if(!checkPassword('password', 2, 0, "비밀번호는 특수문자(!,@,#,$,%,^,&,*) 영대소문자, 숫자가 포함되어야 입력이 가능합니다.")) return false;
+				if(!checkOnlyKoreanNumber('phoneNumber', 2, 0, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+				/* if(!checkOnlyEnglishNumber('ifcdReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+				if(!checkOnlyEnglishNumber('ifcdReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;		
+				if(!checkOnlyNumber('ifcdReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+				if(!checkOnlyNumber('ifcdReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+				if(!checkOnlyNumber('ifcdReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+				if(!checkOnlyNumber('ifcdReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false; */
+			}
+		 
+		/* function validation(){
+			alert("validation");
+			alert(document.getElementById("name").value);
+			alert(document.getElementById("deleteNy").value);
+		} */
+		
+		
+		
+		/*
+		function validation() {
+			if(!nullToEmpty(document.getElementById("name").value)){
+				
+				return false;
+			}
+		}
+		
+		
 		
 		document.getElementById("back").onclick = function() {
 			goback();
 		}
 		function goback(){
 			alert("돌아가기");
-		}
-		
-		
+		} */
 		
 		</script>
+		
+		
 	</body>
 
 </html>

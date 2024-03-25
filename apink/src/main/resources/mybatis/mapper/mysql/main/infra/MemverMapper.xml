@@ -48,9 +48,19 @@
     <insert id="insert">
     	INSERT INTO member (
     		name
+    		,dateBirth
+            ,gender
+            ,email
+            ,password
+            ,phoneNumber
     		,deleteNy
     	)VALUES(
     		#{name}
+    		,#{dateBirth}
+            ,#{gender}
+            ,#{email}
+            ,#{password}
+            ,#{phoneNumber}
     		,#{deleteNy}
     	)
     </insert>
@@ -59,6 +69,11 @@
     	UPDATE member 
     	SET
     		name = #{name}
+    		,dateBirth = #{dateBirth}
+            ,gender = #{gender}
+            ,email = #{email}
+            ,password = #{password}
+            ,phoneNumber = #{phoneNumber}
     	WHERE 1=1
     		AND seq = #{seq}
     </update>

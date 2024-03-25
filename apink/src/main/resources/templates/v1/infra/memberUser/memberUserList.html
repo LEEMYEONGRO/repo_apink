@@ -4,18 +4,15 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Meta -->
 <meta name="description" content="Best Bootstrap Admin Dashboards">
 <meta name="author" content="Bootstrap Gallery" />
 <link rel="canonical" href="https://www.bootstrap.gallery/">
 <meta property="og:url" content="https://www.bootstrap.gallery">
-<meta property="og:title"
-	content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-<meta property="og:description"
-	content="Marketplace for Bootstrap Admin Dashboards">
+<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 <meta property="og:type" content="Website">
 <meta property="og:site_name" content="Bootstrap Gallery">
 <link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
@@ -32,8 +29,7 @@
 <link rel="stylesheet" href="xdmin/v1/css/animate.css">
 
 <!-- Bootstrap font icons css -->
-<link rel="stylesheet"
-	href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
+<link rel="stylesheet" href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
 
 <!-- Main css -->
 <link rel="stylesheet" href="xdmin/v1/css/main.min.css">
@@ -44,8 +40,7 @@
 		************ -->
 
 <!-- Scrollbar CSS -->
-<link rel="stylesheet"
-	href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
+<link rel="stylesheet" href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
 
 
 </head>
@@ -466,8 +461,9 @@
 													<th th:text="${#dates.format(list.dateBirth, 'yyyy/MM/dd')}"></th>
 													
 													<td th:if="${list.gender != null}" 
-													th:text="${@codeService.selectOneCachedCode(list.gender)}" 
-													class="ifmmGenderCd align-middle"></td>
+														th:text="${@codeService.selectOneCachedCode(list.gender)}" 
+														class="ifmmGenderCd align-middle">
+													</td>
 													<td th:unless="${list.gender != null}" class="ifmmGenderCd align-middle"></td>
 													
 													
@@ -595,6 +591,7 @@
 		<script src="xdmin/v1/js/modernizr.js"></script>
 		<script src="xdmin/v1/js/moment.js"></script>
 
+		<!-- datetimepicker  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
@@ -603,8 +600,7 @@
 		************* -->
 
 		<!-- Overlay Scroll JS -->
-		<script
-			src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+		<script src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
 		<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
 
 
@@ -616,7 +612,7 @@
 			window.addEventListener('load', function() {
 				$("#shDateStart, #shDateEnd").datetimepicker({
 					timepicker : false,
-					format : 'Y-m-d'
+					format : 'Y/m/d'
 					
 				});
 	

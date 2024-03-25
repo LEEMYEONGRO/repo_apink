@@ -54,12 +54,10 @@
 	 INSERT INTO code (
 	 	codeName
 	 	,deleteNy
-	 	,modificationDate
 	 	,codeGroup_seq
 	 )VALUES(
 	 	#{codeName}
 	 	,#{deleteNy}
-	 	,now()
 	 	,#{codeGroup_seq}
 	 )
 	</insert>

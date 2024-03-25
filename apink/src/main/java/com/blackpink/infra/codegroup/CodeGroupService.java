@@ -44,5 +44,7 @@ public class CodeGroupService {
 		return dao.delete(dto);
 	}
 	
-
+	public List<CodeGroupDto> selectListWithoutPaging() {
+		return dao.selectListWithoutPaging();
+	}
 }

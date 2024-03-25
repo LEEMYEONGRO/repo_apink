@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import com.blackpink.infra.codegroup.CodeGroupService;
 
 @Controller
 public class CodeController {
 
 	@Autowired
 	CodeService service;
+	
+	@Autowired
+	CodeGroupService codeGroupService;
 	
 //	@RequestMapping("codeXdmList")
 //	public String codeXdmList(Model model) {
@@ -99,6 +103,8 @@ public class CodeController {
 	@RequestMapping(value = "/codeUserAddition")
 	public String codeUserAddition(CodeDto dto, Model model ) {
 		
+		model.addAttribute("listCodeGroup", codeGroupService.selectListWithoutPaging());
+		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
 		return "/v1/infra/codeUser/codeUserAddition";
@@ -147,6 +153,8 @@ public class CodeController {
 	
 		return "redirect:/codeUserList";
 	}
+	
+	
 		
 		
 		public void setSearch(CodeVo vo) throws Exception {
