@@ -19,4 +19,9 @@ public interface CodeDao {
 	public int codeDelete(CodeDto dto);
 	
 	public List<CodeDto> selectListCachedCodeArrayList();
+	
+//	페이징 테스트중 수정필요.
+	
+//	페이징 테스트중 수정필요.
+	
 }

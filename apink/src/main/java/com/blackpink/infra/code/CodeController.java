@@ -92,10 +92,13 @@ public class CodeController {
 		
 		setSearch(vo);
 		
+		
 		model.addAttribute("list", service.selectList(vo));
 		
-		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
-		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
+		
+//		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
+//		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
+		
 		return "/v1/infra/codeUser/codeUserList";
 	}
 	

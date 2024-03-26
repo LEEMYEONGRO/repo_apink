@@ -47,4 +47,8 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectListWithoutPaging() {
 		return dao.selectListWithoutPaging();
 	}
+	
+	public int selectOneCount(CodeGroupVo vo) {
+		return dao.selectOneCount(vo);
+	}
 }

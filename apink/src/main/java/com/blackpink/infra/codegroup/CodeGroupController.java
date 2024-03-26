@@ -1,7 +1,5 @@
 package com.blackpink.infra.codegroup;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,10 +118,12 @@ public class CodeGroupController {
 		
 		setSearch(vo);
 		
+		int rowcount = service.selectOneCount(vo);
+		model.addAttribute("list", rowcount);
+		
+		System.out.println(rowcount);
+		
 		model.addAttribute("list", service.selectList(vo));
-
-		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
-		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
 		
 //		 model.addAttribute("vo", vo);
 		

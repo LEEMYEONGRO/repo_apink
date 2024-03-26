@@ -5,6 +5,22 @@
 
 	<resultMap id="resultMapObj" type="com.blackpink.infra.codegroup.CodeGroupDto"></resultMap>
 
+	 <sql id ="selectCommon">
+		FROM codeGroup a
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND deleteNy = #{shDelNy}</if>
+        
+			<choose>
+				<when test="shOptionDate == 1">AND a.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+   
+			<choose>
+				<when test="shOption == 1">AND a.seq = #{shValue}</when>
+				<when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	
     <select id="selectList" resultMap="resultMapObj">
         SELECT
             a.seq
@@ -13,19 +29,8 @@
             ,a.deleteNy
             ,a.creationDate
             ,a.modificationDate
-                FROM codeGroup a
-		        WHERE 1=1
-	        <if test="shDelNy != null and !shDelNy.equals('')">AND a.deleteNy = #{shDelNy}</if>
-	      
-			<choose>
-				<when test="shOptionDate == 1">AND a.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			</choose>
-			
-	        <choose>
-	            <when test="shOption == 1">AND a.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
-	        </choose>
+		   <include refid="selectCommon" />
+			ORDER BY a.seq desc
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
@@ -79,8 +84,12 @@
 		FROM codeGroup a
 		WHERE 1=1
 			AND deleteNy = 0
-		<!-- ORDER BY a.seq DESC -->
 	</select>
-    
-	  
+	
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select> 
+	
 </mapper>

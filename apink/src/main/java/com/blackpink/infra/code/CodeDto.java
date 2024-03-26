@@ -19,7 +19,6 @@ public class CodeDto {
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();	
 	
 	
-	
 	public String getGroupseq() {
 		return groupseq;
 	}
