@@ -20,8 +20,6 @@ public interface CodeDao {
 	
 	public List<CodeDto> selectListCachedCodeArrayList();
 	
-//	페이징 테스트중 수정필요.
-	
-//	페이징 테스트중 수정필요.
+	public int selectOneCount(CodeVo vo);
 	
 }

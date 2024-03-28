@@ -1,48 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-		<!-- Meta -->
-		<meta name="description" content="Best Bootstrap Admin Dashboards">
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="canonical" href="https://www.bootstrap.gallery/">
-		<meta property="og:url" content="https://www.bootstrap.gallery">
-		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-		<meta property="og:type" content="Website">
-		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
-
-		<!-- Title -->
-		<title>Bootstrap Admin Dashboards</title>
-
-
-		<!-- *************
-			************ Common Css Files *************
-		************ -->
-
-		<!-- Animated css -->
-		<link rel="stylesheet" href="xdmin/v1/css/animate.css">
-
-		<!-- Bootstrap font icons css -->
-		<link rel="stylesheet" href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
-
-		<!-- Main css -->
-		<link rel="stylesheet" href="xdmin/v1/css/main.min.css">
-
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-	</head>
+	<head th:replace="~{v1/infra/blockDeclaration/head :: head}"></head>
 
 	<body>
 
@@ -467,24 +426,24 @@
 										<div class="card-title">코드그룹관리</div>
 									</div>
 									<div class="card-body">
-											<form class="row" method="post" name= "formName">
-												<div class="col-6">
-														<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="코드그룹이름을 입력하시오.">
+										<form class="row" method="post" name= "formName">
+											<div class="col-6">
+													<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="코드그룹이름을 입력하시오.">
+											</div>
+											<div class="col-6">
+													<select class="form-select" name="deleteNy" id="deleteNy">
+														<option value="0">N</option>
+														<option value="1">Y</option>
+													</select>
 												</div>
-												<div class="col-6">
-														<select class="form-select" name="deleteNy" id="deleteNy">
-															<option value="0">N</option>
-															<option value="1">Y</option>
-														</select>
-													</div>
-												<div class="col-6 g-3">
-													<a th:href="@{/codeGroupUserList}"><button type="button" class="btn btn-success" id = "back">돌아가기</button></a>
-												</div>
-													<div class="col-6 g-3 d-md-flex justify-content-md-end">
-														<button class="btn btn-info" type="button" id = "additional">추가</button>
-													</div>
-												</form>
-										</div>
+											<div class="col-6 g-3">
+												<a th:href="@{/codeGroupUserList}"><button type="button" class="btn btn-success" id = "back">돌아가기</button></a>
+											</div>
+											<div class="col-6 g-3 d-md-flex justify-content-md-end">
+												<button class="btn btn-info" type="button" id = "additional">추가</button>
+											</div>
+										</form>
+									</div>
 										<!-- Form actions footer end -->
 									</div>
 									</div>

@@ -1,19 +1,25 @@
 package com.blackpink.infra.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	MemberService service;
+	private String password;
 	
 	@RequestMapping(value = "/memberUserList")
 	public String memberUserList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
@@ -42,6 +48,10 @@ public class MemberController {
 	
 	@RequestMapping("memberUserInsert")
 	public String memberUserInsert(MemberDto dto) {
+		
+		dto.setPassword(encodeBcrypt(dto.getPassword(), 10));
+		
+//		System.out.println("dto.getIfmmId()encoded : " + dto.getPassword());
 		
 		service.insert(dto);
 		
@@ -107,5 +117,30 @@ public class MemberController {
 		
 		
 	}
+	
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "signinXdmProc")
+	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		String password = dto.getPassword();
+		dto.setPassword(encodeBcrypt(dto.getPassword(),10));
 		
+		if(matchesBcrypt(password, dto.getPasswordCheck(), 10)) {
+			returnMap.put("rt", "success");
+		} else {
+			System.out.println("false");
+		}
+		return returnMap;
+	}
 }

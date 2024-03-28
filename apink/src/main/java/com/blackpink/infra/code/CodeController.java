@@ -92,8 +92,11 @@ public class CodeController {
 		
 		setSearch(vo);
 		
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		model.addAttribute("list", service.selectList(vo));
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
 		
 		
 //		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());

@@ -1,54 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Meta -->
-<meta name="description" content="Best Bootstrap Admin Dashboards">
-<meta name="author" content="Bootstrap Gallery" />
-<link rel="canonical" href="https://www.bootstrap.gallery/">
-<meta property="og:url" content="https://www.bootstrap.gallery">
-<meta property="og:title"
-	content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-<meta property="og:description"
-	content="Marketplace for Bootstrap Admin Dashboards">
-<meta property="og:type" content="Website">
-<meta property="og:site_name" content="Bootstrap Gallery">
-<link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
-
-<!-- Title -->
-<title>Bootstrap Admin Dashboards</title>
-
-
-<!-- *************
-			************ Common Css Files *************
-		************ -->
-
-<!-- Animated css -->
-<link rel="stylesheet" href="xdmin/v1/css/animate.css">
-
-<!-- Bootstrap font icons css -->
-<link rel="stylesheet"
-	href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
-
-<!-- Main css -->
-<link rel="stylesheet" href="xdmin/v1/css/main.min.css">
-
-
-<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-<!-- Scrollbar CSS -->
-<link rel="stylesheet"
-	href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-
-</head>
+<head th:replace="~{v1/infra/blockDeclaration/head :: head}"></head>
 
 <body>
 
@@ -322,17 +275,18 @@
 
 			</div>
 			<!-- Page header ends -->
-
+			
+			
 			<!-- Content wrapper scroll start -->
 			<div class="content-wrapper-scroll">
-
+				<!-- formStart -->	
+				<form name="formList" id="formList" method="post" autocomplete="off">
+					<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+					<!-- <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/> -->
 				<!-- Content wrapper start -->
 				<div class="content-wrapper">
-
-					<!-- search s -->
-					<div class="card">
-						<!-- 수정필요 -->
-						<form name="formList" id="formList" method="post" autocomplete="off">
+						<!-- search s -->
+							<div class="card">
 							<div class="card-header">
 								<div class="card-title">코드그룹관리</div>
 							</div>
@@ -398,10 +352,8 @@
 										</div>
 									</div>
 								</div>
-								<!-- Form actions footer end -->
-
 							</div>
-						</form>
+						
 					</div>
 
 					<!-- search e -->
@@ -411,23 +363,7 @@
 
 							<div class="card">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<label>total: </label>
-										</div>
-										<div class="col-sm-12 col-md-6  d-flex justify-content-end">
-											<div class="col-md-1 col-sm-1">
-												<select name="apiCallbacks_length"
-													aria-controls="apiCallbacks"
-													class="form-select form-select-sm">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="25">25</option>
-													<option value="50">50</option>
-												</select>
-											</div>
-										</div>
-									</div>
+									<div th:replace= "~{v1/infra/blockDeclaration/body :: pageCount}"></div>
 									<div class="table-responsive">
 										<table class="table m-0">
 											<thead>
@@ -454,48 +390,12 @@
 													<td th:if="${list.deleteNy eq 0}">N</td>
 													<td th:unless="${list.deleteNy eq 0}">Y</td>
 												</tr>
-
 											</tbody>
 										</table>
 									</div>
 									<div class="row mt-3">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="basicExample_paginate">
-
-											<ul class="pagination justify-content-center">
-												<li class="paginate_button page-item previous disabled"
-													id="basicExample_previous"><a href="#"
-													aria-controls="basicExample" data-dt-idx="0" tabindex="0"
-													class="page-link">이전</a></li>
-												<li class="paginate_button page-item active"><a
-													href="#" aria-controls="basicExample" data-dt-idx="1"
-													tabindex="0" class="page-link">1</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="2" tabindex="0"
-													class="page-link">2</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="3" tabindex="0"
-													class="page-link">3</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="4" tabindex="0"
-													class="page-link">4</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="5" tabindex="0"
-													class="page-link">5</a></li>
-												<li class="paginate_button page-item disabled"
-													id="basicExample_ellipsis"><a href="#"
-													aria-controls="basicExample" data-dt-idx="6" tabindex="0"
-													class="page-link">…</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="7" tabindex="0"
-													class="page-link">12</a></li>
-												<li class="paginate_button page-item next"
-													id="basicExample_next"><a href="#"
-													aria-controls="basicExample" data-dt-idx="8" tabindex="0"
-													class="page-link">다음</a></li>
-											</ul>
-										</div>
-									</div>
+									<!-- 페이징 -->
+										<div th:replace= "~{v1/infra/blockDeclaration/body :: pageButton}"></div>
 									<div class="row mt-3">
 										<div class="col d-grid gap-2 d-md-flex justify-content-md">
 											<button type="button" class="btn btn-danger"
@@ -543,6 +443,8 @@
 							</div>
 						</div>
 					</div>
+					</form>
+					<!-- formEnd -->
 					<!-- Content wrapper end -->
 
 					<!-- App Footer start -->
@@ -589,6 +491,15 @@
 		<!--  -->
 
 	<script type="text/javascript">
+	let codeGroupUserList = "/codeGroupUserList"; /* ### */
+	let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
+	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
+	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
+	let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView"; /* ### */
+
+	let seq = document.querySelector("input[name=seq]"); /* ### */
+	
+	let form = document.querySelector("form[name=formList]");
 			window.addEventListener('load', function() {
 				$("#shDateStart, #shDateEnd").datetimepicker({
 					timepicker : false,
@@ -596,18 +507,12 @@
 					
 				});
 	
-			let codeGroupUserList = "/codeGroupUserList"; /* ### */
-			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
-			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
-			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
-			let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView"; /* ### */
-
-			let seq = document.querySelector("input[name=seq]"); /* ### */
-			
-			let form = document.querySelector("form[name=formList]");
-	
-		
-			
+		goList = function (thisPage) {
+		    document.querySelector("input[name=thisPage]").value = thisPage;
+		    form.action = codeGroupUserList;
+		    form.submit();
+		}
+		page-link
 			document.getElementById("btnSearch").onclick = function() {
 				form.action = codeGroupUserList;
 				form.submit();
@@ -640,7 +545,6 @@
 				form.submit();
 			} */
 	</script>
-		
 		
 </body>
 

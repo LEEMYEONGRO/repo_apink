@@ -1,48 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-		<!-- Meta -->
-		<meta name="description" content="Best Bootstrap Admin Dashboards">
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="canonical" href="https://www.bootstrap.gallery/">
-		<meta property="og:url" content="https://www.bootstrap.gallery">
-		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-		<meta property="og:type" content="Website">
-		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
-
-		<!-- Title -->
-		<title>Bootstrap Admin Dashboards</title>
-
-
-		<!-- *************
-			************ Common Css Files *************
-		************ -->
-
-		<!-- Animated css -->
-		<link rel="stylesheet" href="xdmin/v1/css/animate.css">
-
-		<!-- Bootstrap font icons css -->
-		<link rel="stylesheet" href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
-
-		<!-- Main css -->
-		<link rel="stylesheet" href="xdmin/v1/css/main.min.css">
-
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-	</head>
+	<head th:replace="~{v1/infra/blockDeclaration/head :: head}"></head>
 
 	<body>
 
@@ -468,42 +427,40 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<form class="row" method="post">
-												<div class="col-6">
-													<input type="text" class="form-control" name="seq" th:value=${oneList.seq}>
-												</div>
-												<div class="col-6">
-													<input type="text" class="form-control" name="codeGroupName" th:value=${oneList.codeGroupName}>
-												</div>
-												<div class="col-6 g-3">
-													<a th:href="@{/codeGroupUserList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
-												</div>
-												<div class="col-6 g-3 gap-2 d-md-flex justify-content-md-end">
-													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserUpdate';">저장</button>
-													<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserDeleteNy';">Ny변경</button>
-												  	<!-- <button type="submit" class="btn btn-danger" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button> -->
-												  	
-												  	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDark">식제</button>
-											  	</div>
-											  		<div class="modal fade" id="modalDark" tabindex="-1" aria-labelledby="modalDarkLabel" aria-hidden="true">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<h5 class="modal-title" id="modalDarkLabel">데이터를 삭제하시겠습니까?</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																</div>
-																<div class="modal-body">
-																	삭제한 데이터는 복구할 수 없습니다.
-																</div>
-																<div class="modal-footer">
-																	<button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button>
-																	<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
-																</div>
+										<form class="row" method="post">
+											<div class="col-6">
+												<input type="text" class="form-control" name="seq" th:value=${oneList.seq}>
+											</div>
+											<div class="col-6">
+												<input type="text" class="form-control" name="codeGroupName" th:value=${oneList.codeGroupName}>
+											</div>
+											<div class="col-6 g-3">
+												<a th:href="@{/codeGroupUserList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
+											</div>
+											<div class="col-6 g-3 gap-2 d-md-flex justify-content-md-end">
+												<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserUpdate';">저장</button>
+												<button type="submit" class="btn btn-info" onclick="javascript: form.action='codeGroupUserDeleteNy';">Ny변경</button>
+											  	<!-- <button type="submit" class="btn btn-danger" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button> -->
+											  	
+											  	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDark">식제</button>
+										  	</div>
+										  		<div class="modal fade" id="modalDark" tabindex="-1" aria-labelledby="modalDarkLabel" aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="modalDarkLabel">데이터를 삭제하시겠습니까?</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body">
+																삭제한 데이터는 복구할 수 없습니다.
+															</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="javascript: form.action='codeGroupUserDelete';">삭제</button>
+																<button type="button" class="btn btn-dark" data-bs-dismiss="modal">취소</button>
 															</div>
 														</div>
 													</div>
-											  	
-											  	
-											</form>
+												</div>
+										</form>
 										</div>
 									</div>
 										<!-- Form actions footer end -->

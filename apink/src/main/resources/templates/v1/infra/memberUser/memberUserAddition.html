@@ -5,20 +5,6 @@
 
 	<body>
 
-		<!-- Loading wrapper start -->
-		<!-- <div id="loading-wrapper">
-			<div class="spinner">
-                <div class="line1"></div>
-				<div class="line2"></div>
-				<div class="line3"></div>
-				<div class="line4"></div>
-				<div class="line5"></div>
-				<div class="line6"></div>
-            </div>
-		</div> -->
-		<!-- Loading wrapper end -->
-
-		<!-- Page wrapper start -->
 		<div class="page-wrapper">
 
 			<!-- Sidebar wrapper start -->
@@ -165,6 +151,10 @@
 												<div class="invalid-feedback" name="password" id="passwordFeedback"></div>
 											</div>
 											<div class="col-3">
+												<input type="text" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="비밀번호와 동일하게 입력하시오.">
+												<div class="invalid-feedback" name="passwordCheck" id="passwordCheckFeedback"></div>
+											</div>
+											<div class="col-3">
 												<input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="전화번호를 입력하시오.">
 												<div class="invalid-feedback" name="phoneNumber" id="phoneNumberFeedback"></div>
 											</div>
@@ -240,10 +230,6 @@
 		
 		<script src="xdmin\v1\js\validationXdm.js"></script>
 		
-		<script>
-			
-		</script>
-		
 		<!-- <script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(function () {
@@ -315,34 +301,37 @@
 				if(!checkOnlyNumber('ifcdReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false; */
 			}
 		 
-		/* function validation(){
-			alert("validation");
-			alert(document.getElementById("name").value);
-			alert(document.getElementById("deleteNy").value);
-		} */
+		document.getElementById("additional").onclick = function () {
+			
+			if(validationUpdt() == false) return false;
 		
-		
-		
-		/*
-		function validation() {
-			if(!nullToEmpty(document.getElementById("name").value)){
-				
-				return false;
-			}
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/signinXdmProc"
+				,data : { "password" : $("#password").val(), "passwordCheck" : $("#passwordCheck").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/memberUserInsert";
+/* 						if(response.changePwd == "true") {
+							location.href = "/memberUserList";
+						} else {
+							location.href = "/memberUserAddition";
+						} */
+					} else {
+						alert("비밀번호가 일치하지 않습니다.");
+				 		/* document.getElementById("modalAlertTitle").innerText = "확 인";
+				 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+				 		$("#modalAlert").modal("show"); */
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
 		}
-		
-		
-		
-		document.getElementById("back").onclick = function() {
-			goback();
-		}
-		function goback(){
-			alert("돌아가기");
-		} */
-		
 		</script>
-		
-		
 	</body>
 
 </html>

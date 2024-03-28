@@ -19,6 +19,7 @@
 				<when test="shOption == 1">AND a.seq = #{shValue}</when>
 				<when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
+			
 	</sql>
 	
     <select id="selectList" resultMap="resultMapObj">
@@ -31,6 +32,7 @@
             ,a.modificationDate
 		   <include refid="selectCommon" />
 			ORDER BY a.seq desc
+			limit #{rowNumToShow} offset #{startRnumForMysql}	
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
@@ -84,6 +86,7 @@
 		FROM codeGroup a
 		WHERE 1=1
 			AND deleteNy = 0
+		
 	</select>
 	
 	

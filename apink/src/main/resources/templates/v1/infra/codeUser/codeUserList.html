@@ -1,54 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Meta -->
-<meta name="description" content="Best Bootstrap Admin Dashboards">
-<meta name="author" content="Bootstrap Gallery" />
-<link rel="canonical" href="https://www.bootstrap.gallery/">
-<meta property="og:url" content="https://www.bootstrap.gallery">
-<meta property="og:title"
-	content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-<meta property="og:description"
-	content="Marketplace for Bootstrap Admin Dashboards">
-<meta property="og:type" content="Website">
-<meta property="og:site_name" content="Bootstrap Gallery">
-<link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
-
-<!-- Title -->
-<title>Bootstrap Admin Dashboards</title>
-
-
-<!-- *************
-			************ Common Css Files *************
-		************ -->
-
-<!-- Animated css -->
-<link rel="stylesheet" href="xdmin/v1/css/animate.css">
-
-<!-- Bootstrap font icons css -->
-<link rel="stylesheet"
-	href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
-
-<!-- Main css -->
-<link rel="stylesheet" href="xdmin/v1/css/main.min.css">
-
-
-<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-<!-- Scrollbar CSS -->
-<link rel="stylesheet"
-	href="xdmin/v1/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-
-</head>
+<head th:replace="~{v1/infra/blockDeclaration/head :: head}"></head>
 
 <body>
 
@@ -228,7 +181,9 @@
 				************ Main container start *************
 			************* -->
 		<div class="main-container">
-
+			<form name="formList" id="formList" method="post" autocomplete="off">
+				<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+				<!-- <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/> -->
 			<!-- Page header starts -->
 			<div class="page-header">
 
@@ -266,11 +221,7 @@
 
 					<!-- Leads start -->
 					<a href="orders.html" class="leads d-none d-xl-flex">
-						<div class="lead-details">
-							You have <span class="count"> 21 </span> new leads
-						</div> <span class="lead-icon"><i
-							class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
-							class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
+						<div class="lead-details">You have <span class="count">21 </span>new leads</div> <span class="lead-icon"><i class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
 					</a>
 					<!-- Leads end -->
 
@@ -319,20 +270,19 @@
 
 				</div>
 				<!-- Header actions ccontainer end -->
-
+			
 			</div>
 			<!-- Page header ends -->
-
 			<!-- Content wrapper scroll start -->
 			<div class="content-wrapper-scroll">
-
+			<!-- formStart -->
+			
 				<!-- Content wrapper start -->
 				<div class="content-wrapper">
 
 					<!-- search s -->
 					<div class="card">
-						<!-- 수정필요 -->
-						<form name="formList" id="formList" method="post" autocomplete="off">
+						
 							<div class="card-header">
 								<div class="card-title">코드관리</div>
 							</div>
@@ -401,7 +351,7 @@
 								<!-- Form actions footer end -->
 
 							</div>
-						</form>
+						
 					</div>
 
 					<!-- search e -->
@@ -411,23 +361,7 @@
 
 							<div class="card">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<label>total: </label>
-										</div>
-										<div class="col-sm-12 col-md-6  d-flex justify-content-end">
-											<div class="col-md-1 col-sm-1">
-												<select name="apiCallbacks_length"
-													aria-controls="apiCallbacks"
-													class="form-select form-select-sm">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="25">25</option>
-													<option value="50">50</option>
-												</select>
-											</div>
-										</div>
-									</div>
+									<div th:replace= "~{v1/infra/blockDeclaration/body :: pageCount}"></div>
 									<div class="table-responsive">
 											<table class="table m-0">
 												<thead>
@@ -458,42 +392,8 @@
 											</table>				
 										</div>
 									<div class="row mt-3">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="basicExample_paginate">
-
-											<ul class="pagination justify-content-center">
-												<li class="paginate_button page-item previous disabled"
-													id="basicExample_previous"><a href="#"
-													aria-controls="basicExample" data-dt-idx="0" tabindex="0"
-													class="page-link">이전</a></li>
-												<li class="paginate_button page-item active"><a
-													href="#" aria-controls="basicExample" data-dt-idx="1"
-													tabindex="0" class="page-link">1</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="2" tabindex="0"
-													class="page-link">2</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="3" tabindex="0"
-													class="page-link">3</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="4" tabindex="0"
-													class="page-link">4</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="5" tabindex="0"
-													class="page-link">5</a></li>
-												<li class="paginate_button page-item disabled"
-													id="basicExample_ellipsis"><a href="#"
-													aria-controls="basicExample" data-dt-idx="6" tabindex="0"
-													class="page-link">…</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="7" tabindex="0"
-													class="page-link">12</a></li>
-												<li class="paginate_button page-item next"
-													id="basicExample_next"><a href="#"
-													aria-controls="basicExample" data-dt-idx="8" tabindex="0"
-													class="page-link">다음</a></li>
-											</ul>
-										</div>
+										<!-- 페이징 -->
+										<div th:replace= "~{v1/infra/blockDeclaration/body :: pageButton}"></div>
 									</div>
 									<div class="row mt-3">
 										<div class="col d-grid gap-2 d-md-flex justify-content-md">
@@ -535,29 +435,16 @@
 										</div>
 									</div>
 								</div>
-
-								</div>
-
-
+							</div>
 							</div>
 						</div>
 					</div>
-					<!-- Content wrapper end -->
-
-					<!-- App Footer start -->
+					</form>
 					<div class="app-footer">
 						<span>© Arise admin 2023</span>
 					</div>
-					<!-- App footer end -->
-
 				</div>
-				<!-- Content wrapper scroll end -->
-
 			</div>
-			<!-- *************
-				************ Main container end *************
-			************* -->
-
 		</div>
 		<!-- Page wrapper end -->
 
@@ -595,7 +482,7 @@
 					
 				});
 	
-			let codeUserList = "/codeUserList"; /* ### */
+			let goUrlXdmList = "/codeUserList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
@@ -604,23 +491,28 @@
 			let seq = document.querySelector("input[name=seq]"); /* ### */
 			
 			let form = document.querySelector("form[name=formList]");
-	
+			
+			goList = function (thisPage) {
+				document.querySelector("input[name=thisPage]").value = thisPage;
+			    form.action = goUrlXdmList;
+			    form.submit();
+			}
 		
 			
 			document.getElementById("btnSearch").onclick = function() {
-				form.action = codeUserList;
+				form.action = goUrlXdmList;
 				form.submit();
 			};
 			
 			document.getElementById("btnReset").onclick = function() {
-				location.href = codeUserList;
+				location.href = goUrlXdmList;
 			}
 			
 			
 		});
 		function enterkey() {
 			if (window.event.keyCode == 13) {
-			    form.action = codeUserList;
+			    form.action = goUrlXdmList;
 			    form.submit();
 		    }
 		}

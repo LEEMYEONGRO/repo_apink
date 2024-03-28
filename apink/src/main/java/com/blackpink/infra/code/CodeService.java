@@ -46,6 +46,10 @@ public class CodeService {
 		return dao.codeDelete(dto);
 	}
 	
+	public int selectOneCount(CodeVo vo) {
+		return dao.selectOneCount(vo);
+	}
+	
     @PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();

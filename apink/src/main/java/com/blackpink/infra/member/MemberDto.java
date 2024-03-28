@@ -17,6 +17,7 @@ public class MemberDto {
 	
 	private Integer xseqCount;
 
+	private String passwordCheck;
 	
 	public String getSeq() {
 		return seq;
@@ -104,6 +105,14 @@ public class MemberDto {
 
 	public void setXseqCount(Integer xseqCount) {
 		this.xseqCount = xseqCount;
+	}
+
+	public String getPasswordCheck() {
+		return passwordCheck;
+	}
+
+	public void setPasswordCheck(String passwordCheck) {
+		this.passwordCheck = passwordCheck;
 	}
 
 	

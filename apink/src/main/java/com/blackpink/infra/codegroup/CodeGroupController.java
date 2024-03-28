@@ -1,6 +1,7 @@
 package com.blackpink.infra.codegroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -117,13 +118,11 @@ public class CodeGroupController {
 	public String codeGroupUserList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		setSearch(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		int rowcount = service.selectOneCount(vo);
-		model.addAttribute("list", rowcount);
-		
-		System.out.println(rowcount);
-		
-		model.addAttribute("list", service.selectList(vo));
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
 		
 //		 model.addAttribute("vo", vo);
 		
@@ -205,7 +204,17 @@ public class CodeGroupController {
 //		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 //		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		
+	
 		
 	}
 		
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
 }
