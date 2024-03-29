@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Meta -->
+		<meta name="description" content="Best Bootstrap Admin Dashboards">
+		<meta name="author" content="Bootstrap Gallery" />
+		<link rel="canonical" href="https://www.bootstrap.gallery/">
+		<meta property="og:url" content="https://www.bootstrap.gallery">
+		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+		<meta property="og:type" content="Website">
+		<meta property="og:site_name" content="Bootstrap Gallery">
+		<link rel="shortcut icon" href="xdmin/v1/images/favicon.svg">
+
+		<!-- Title -->
+		<title>Bootstrap Admin Dashboards</title>
+
+
+		<!-- *************1`
+			************ Common Css Files *************
+		************ -->
+
+		<!-- Animated css -->
+		<link rel="stylesheet" href="xdmin/v1/css/animate.css">
+
+		<!-- Bootstrap font icons css -->
+		<link rel="stylesheet" href="xdmin/v1/fonts/bootstrap/bootstrap-icons.css">
+
+		<!-- Main css -->
+		<link rel="stylesheet" href="xdmin/v1/css/main.min.css">
+
+
+	</head>
+
+	<body class="login-container">
+
+		<!-- Loading wrapper start -->
+		<!-- <div id="loading-wrapper">
+			<div class="spinner">
+                <div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+				<div class="line4"></div>
+				<div class="line5"></div>
+				<div class="line6"></div>
+            </div>
+		</div> -->
+		<!-- Loading wrapper end -->
+
+		<!-- Login box start -->
+		<form action="index.html" class="needs" novalidate>
+			<div class="login-box">
+				<div class="login-form">
+					<a href="index.html" class="login-logo">
+						<img src="xdmin/v1/images/logo.svg" alt="Vico Admin" />
+					</a>
+					<div class="login-welcome">
+						관리자로그인화면에 들어오신걸 환영합니다. <br />아이디와 비밀번호를 입력 후 로그인해주세요.
+					</div>
+					<div class="mb-3">
+							<label for="validationCustom01" class="form-label">아이디</label>
+							<input type="text" class="form-control" id="email" name="email" value="" required="">
+						</div>
+					<div class="mb-3">
+						<div class="d-flex justify-content-between">
+							<label for="validationCustom01" class="form-label">비밀번호</label>
+							<a href="forgot-password.html" class="btn-link ml-auto">비밀번호를 잊으셨나요?</a>
+						</div>
+							<input type="password" class="form-control" id="password" name="password" value="password" required="">
+					</div>
+					<div class="login-form-actions">
+						<button type="button" class="btn" name="login" id="login" > <span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
+							로그인</button>
+					</div>
+					<div class="login-form-actions">
+						<button type="button" class="btn"> <img src="xdmin/v1/images/google.svg" class="login-icon"
+								alt="Login with Google">
+							구글 로그인</button>
+						<button type="button" class="btn"> <img src="xdmin/v1/images/facebook.svg" class="login-icon"
+								alt="Login with Facebook">
+							페이스북 로그인</button>
+					</div>
+					<div class="login-form-footer">
+						<div class="additional-link">
+							계정이 없으신가요? <a href="signup.html">가입하기</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<!-- Login box end -->
+
+		<!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="xdmin/v1/js/jquery.min.js"></script>
+		<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
+		<script src="xdmin/v1/js/modernizr.js"></script>
+		<script src="xdmin/v1/js/moment.js"></script>
+
+		<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+		<!-- Main Js Required -->
+		<script src="xdmin/v1/js/main.js"></script>
+		
+		<script>
+		/* // Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+		  'use strict'
+
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  const forms = document.querySelectorAll('.needs-validation')
+
+		  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+
+		      form.classList.add('was-validated')
+		    }, false)
+		  })
+		})() */
+		
+		document.getElementById("login").onclick = function () {
+			
+//			if(validationUpdt() == false) return false;
+		
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/signinxdm"
+				,data : {"email" : $("#email").val(), "password" : $("#password").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/memberUserList";
+					} else if(response.rt == "email") {
+						alert("이메일이 일치하지 않습니다.");
+						} else if(response.rt == "password"){
+							alert("비밀번호가 일치하지 않습니다.");
+							}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		</script>
+	</body>
+
+</html>

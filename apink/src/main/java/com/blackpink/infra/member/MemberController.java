@@ -1,5 +1,6 @@
 package com.blackpink.infra.member;
 
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,6 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
-	private String password;
 	
 	@RequestMapping(value = "/memberUserList")
 	public String memberUserList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
@@ -45,20 +45,62 @@ public class MemberController {
 		return "/v1/infra/memberUser/memberUserAddition";
 	}
 	
-	
-	@RequestMapping("memberUserInsert")
-	public String memberUserInsert(MemberDto dto) {
+	@RequestMapping(value = "/xdmlogin")
+	public String xdmlogin(MemberDto dto) {
 		
+		return "/v1/infra/login/xdmlogin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/signinxdm")
+	public Map<String, Object> signinxdm(MemberDto dto, HttpSession httpSession) {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		MemberDto dtoL = service.login(dto);
+		
+	if(dto.getEmail().equals(dtoL.getEmail())) {
+		if(matchesBcrypt(dto.getPassword(),dtoL.getPassword() , 10)) {
+			returnMap.put("rt", "success");
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			httpSession.setAttribute("sessEmailXdm", dtoL.getEmail());
+			httpSession.setAttribute("sessNameXdm", dtoL.getName());
+		}else {
+			returnMap.put("rt", "password");
+		}
+	}else {
+		returnMap.put("rt", "email");
+	}
+	
+	return returnMap;
+}
+	@ResponseBody
+	@RequestMapping(value = "/signoutinxdm")
+	public Map<String, Object> signoutinxdm(HttpSession httpSession) {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		httpSession.invalidate();
+		
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "/memberUserInsert")
+	public String memberUserInsert(MemberDto dto) {
+		System.out.println("memberUserInsert");
 		dto.setPassword(encodeBcrypt(dto.getPassword(), 10));
 		
-//		System.out.println("dto.getIfmmId()encoded : " + dto.getPassword());
+		System.out.println("dto.getIfmmId()encoded : " + dto.getPassword());
 		
 		service.insert(dto);
 		
 		return "redirect:/memberUserList";
 	}
 	
-	@RequestMapping("memberUserCorrection")
+	@RequestMapping(value = "/memberUserCorrection")
 	public String memberUserCorrection(MemberDto dto, Model model) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
@@ -67,7 +109,7 @@ public class MemberController {
 		
 	}
 		
-	@RequestMapping("memberUserUpdate")
+	@RequestMapping(value = "/memberUserUpdate")
 	public String memberUserUpdate(MemberDto dto) {
 		
 		service.update(dto);
@@ -76,7 +118,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("memberUserDeleteNy")
+	@RequestMapping(value = "/memberUserDeleteNy")
 	public String memberUserDeleteNy(MemberDto dto) {
 		
 		service.updateDeleteNy(dto);
@@ -85,7 +127,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("memberUserDelete")
+	@RequestMapping(value = "/memberUserDelete")
 	public String memberUserDelete(MemberDto dto) {
 		
 		service.delete(dto);
@@ -124,19 +166,22 @@ public class MemberController {
 
 			
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
-	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  System.out.println("1");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+		System.out.println("2");
 	  return passwordEncoder.matches(planeText, hashValue);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "signinXdmProc")
 	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
-		String password = dto.getPassword();
+//		String passwordCheck = dto.getPasswordCheck();
 		dto.setPassword(encodeBcrypt(dto.getPassword(),10));
 		
-		if(matchesBcrypt(password, dto.getPasswordCheck(), 10)) {
+		if(matchesBcrypt(dto.getPasswordCheck(), dto.getPassword(),10)) {
 			returnMap.put("rt", "success");
 		} else {
 			System.out.println("false");

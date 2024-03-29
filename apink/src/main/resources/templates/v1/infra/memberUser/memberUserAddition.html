@@ -170,7 +170,7 @@
 												</a>
 											</div>
 											<div class="col-6 g-3 d-md-flex justify-content-md-end">
-												<button class="btn btn-info" type="button" id ="additional">추가</button>
+												<button class="btn btn-info" type="button" name="additional" id ="additional">추가</button>
 											</div>
 										</form>
 										</div>
@@ -271,7 +271,7 @@
 		 
 		 let form = document.querySelector("form[name=formName]")
 		 
-		 document.getElementById("additional").onclick = function() {
+		 insertCall = function() {
 				if(validationUpdt() == false){
 					return false;				
 				}else {
@@ -291,7 +291,7 @@
 		 function validationUpdt() {
 				if(!checkOnlyKoreanEnglish('name', 2, 0, "회원이름은 한글, 영문대소문자만 입력 가능합니다.")) return false;
 				if(!checkEmail('email', 2, 0, "이메일은 영대소문자, 숫자만 입력 가능합니다.")) return false;
-				if(!checkPassword('password', 2, 0, "비밀번호는 특수문자(!,@,#,$,%,^,&,*) 영대소문자, 숫자가 포함되어야 입력이 가능합니다.")) return false;
+//				if(!checkPassword('password', 2, 0, "비밀번호는 특수문자(!,@,#,$,%,^,&,*) 영대소문자, 숫자가 포함되어야 입력이 가능합니다.")) return false;
 				if(!checkOnlyKoreanNumber('phoneNumber', 2, 0, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 				/* if(!checkOnlyEnglishNumber('ifcdReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 				if(!checkOnlyEnglishNumber('ifcdReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;		
@@ -310,11 +310,12 @@
 				,cache: false
 				,type: "post"
 				,url: "/signinXdmProc"
-				,data : { "password" : $("#password").val(), "passwordCheck" : $("#passwordCheck").val()}
+				,data : {"password" : $("#password").val(), "passwordCheck" : $("#passwordCheck").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
-						location.href = "/memberUserInsert";
-/* 						if(response.changePwd == "true") {
+						/* alert("비밀번호가 일치"); */
+						insertCall();
+						/*if(response.changePwd == "true") {
 							location.href = "/memberUserList";
 						} else {
 							location.href = "/memberUserAddition";

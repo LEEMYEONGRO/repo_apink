@@ -45,6 +45,16 @@
         	AND a.seq = #{seq}
     </select>
     
+    <select id="login" resultMap="resultMapObj">
+    	SELECT
+    		a.email
+    		,a.password
+    		,a.name
+    	FROM member a
+        WHERE 1=1 
+        	AND a.email = #{email}
+    </select>
+    
     <insert id="insert">
     	INSERT INTO member (
     		name

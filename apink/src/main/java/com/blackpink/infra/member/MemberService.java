@@ -20,6 +20,10 @@ public class MemberService {
 		
 	}
 	
+	public MemberDto login(MemberDto dto) {
+		return dao.login(dto);
+	}
+	
 	public int insert(MemberDto dto) {
 		return dao.insert(dto);
 	}
