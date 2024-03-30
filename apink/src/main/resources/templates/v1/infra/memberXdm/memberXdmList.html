@@ -5,44 +5,20 @@
 
 <body>
 
-	<!-- Loading wrapper start -->
-	<!-- <div id="loading-wrapper">
-			<div class="spinner">
-                <div class="line1"></div>
-				<div class="line2"></div>
-				<div class="line3"></div>
-				<div class="line4"></div>
-				<div class="line5"></div>
-				<div class="line6"></div>
-            </div>
-		</div> -->
-	<!-- Loading wrapper end -->
-
-	<!-- Page wrapper start -->
 	<div class="page-wrapper">
 
-		<!-- Sidebar wrapper start -->
+		<!-- 네비게이션바 시작 -->
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
-		<!-- Sidebar wrapper end -->
-
-		<!-- *************
-				************ Main container start *************
-			************* -->
+		<!-- 네이게이션바 종료 -->
 		<div class="main-container">
-
-			<!-- Page header starts -->
+			<!-- 상단바 시작 -->
 			<div th:replace="~{v1/infra/blockDeclaration/body :: topnav}"></div>
-			<!-- Page header ends -->
-
-			<!-- Content wrapper scroll start -->
+			<!-- 상단바 종료 -->
 			<div class="content-wrapper-scroll">
-
-				<!-- Content wrapper start -->
 				<div class="content-wrapper">
 
 					<!-- search s -->
 					<div class="card">
-						<!-- 수정필요 -->
 						<form name="formList" id="formList" method="post" autocomplete="off">
 							<div class="card-header">
 								<div class="card-title">회원관리</div>
@@ -173,7 +149,7 @@
 													th:each="list : ${list}">
 													<td><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
 													<td th:text="${list.seq}"></td>
-													<td><a th:href="@{/memberUserCorrection(seq=${list.seq},name=${list.name})}" th:text="${list.name}"></a></td>
+													<td><a th:href="@{/memberXdmCorrection(seq=${list.seq},name=${list.name})}" th:text="${list.name}"></a></td>
 													<th th:text="${#dates.format(list.dateBirth, 'yyyy/MM/dd')}"></th>
 													
 													<td th:if="${list.gender != null}" 
@@ -241,7 +217,7 @@
 											</button>
 										</div>
 										<div class="col d-md-flex justify-content-md-end">
-											<a th:href="@{/memberUserAddition}">
+											<a th:href="@{/memberXdmAddition}">
 												<button type="button" class="btn btn-info">
 													<i class="bi bi-plus-circle-fill"></i>
 												</button>
@@ -296,34 +272,8 @@
 			************* -->
 
 		</div>
-		<!-- Page wrapper end -->
-
-		<!-- *************
-			************ Required JavaScript Files *************
-		************* -->
-		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<!-- <script src="xdmin/v1/js/jquery.min.js"></script> -->
-		<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
-		<script src="xdmin/v1/js/modernizr.js"></script>
-		<script src="xdmin/v1/js/moment.js"></script>
-
-		<!-- datetimepicker  -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-		<!-- *************
-			************ Vendor Js Files *************
-		************* -->
-
-		<!-- Overlay Scroll JS -->
-		<script src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-		<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
-
-
-		<!-- Main Js Required -->
-		<script src="xdmin/v1/js/main.js"></script>
-		<!-- logout -->
-		<script src="xdmin/v1/js/common.js"></script>
+		
+		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 		
 	<script type="text/javascript">
 			window.addEventListener('load', function() {
@@ -333,7 +283,7 @@
 					
 				});
 	
-			let memberUserList = "/memberUserList"; /* ### */
+			let goUrlXdmList = "/memberXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
@@ -346,19 +296,19 @@
 		
 			
 			document.getElementById("btnSearch").onclick = function() {
-				form.action = memberUserList;
+				form.action = goUrlXdmList;
 				form.submit();
 			};
 			
 			document.getElementById("btnReset").onclick = function() {
-				location.href = memberUserList;
+				location.href = goUrlXdmList;
 			}
 			
 			
 		});
 		function enterkey() {
 			if (window.event.keyCode == 13) {
-			    form.action = memberUserList;
+			    form.action = goUrlXdmList;
 			    form.submit();
 		    }
 		}

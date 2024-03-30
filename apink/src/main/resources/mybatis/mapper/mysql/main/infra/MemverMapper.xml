@@ -20,8 +20,7 @@
                 FROM member a
 		        WHERE 1=1
 	        <if test="shDelNy != null and !shDelNy.equals('')">AND a.deleteNy = #{shDelNy}</if>
-	      	<if test="shGender != null and !shGender.equals('')">AND a.gender = #{shGender}</if>
-	      	
+	        
 			<choose>
 				<when test="shOptionDate == 1">AND a.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				<when test="shOptionDate == 2">AND a.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>

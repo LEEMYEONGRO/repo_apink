@@ -7,110 +7,15 @@
 
 		<div class="page-wrapper">
 
-			<!-- Sidebar wrapper start -->
-				<th:block th:replace="~{v1/infra/blockDeclaration/navigationBar :: navigationBar}"></th:block>
-			<!-- Sidebar wrapper end -->
-
-			<!-- *************
-				************ Main container start *************
-			************* -->
+			<!-- 네비게이션바 시작 -->
+			<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
+			<!-- 네이게이션바 종료 -->
 			<div class="main-container">
-
-				<!-- Page header starts -->
-				<div class="page-header">
-
-					<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
-
-					<!-- Breadcrumb start -->
-					<ol class="breadcrumb d-md-flex d-none">
-						<li class="breadcrumb-item">
-							<i class="bi bi-house"></i>
-							<a href="index.html">Home</a>
-						</li>
-						<li class="breadcrumb-item">Forms</li>
-						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Form Layout</li>
-					</ol>
-					<!-- Breadcrumb end -->
-
-					<!-- Header actions ccontainer start -->
-					<div class="header-actions-container">
-
-						<!-- Search container start -->
-						<div class="search-container">
-
-							<!-- Search input group start -->
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search anything">
-								<button class="btn" type="button">
-									<i class="bi bi-search"></i>
-								</button>
-							</div>
-							<!-- Search input group end -->
-
-						</div>
-						<!-- Search container end -->
-
-						<!-- Leads start -->
-						<a href="orders.html" class="leads d-none d-xl-flex">
-							<div class="lead-details">You have <span class="count"> 21 </span> new leads </div>
-							<span class="lead-icon"><i
-									class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
-									class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
-						</a>
-						<!-- Leads end -->
-
-						<!-- Header actions start -->
-						<ul class="header-actions">
-							<li class="dropdown d-none d-md-block">
-								<a href="#" id="countries" data-toggle="dropdown" aria-haspopup="true">
-									<img src="xdmin/v1/images/flags/1x1/br.svg" class="flag-img" alt="Admin Panels" />
-								</a>
-								<div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
-									<div class="country-container">
-										<a href="index.html">
-											<img src="xdmin/v1/images/flags/1x1/us.svg" alt="Clean Admin Dashboards" />
-										</a>
-										<a href="index.html">
-											<img src="xdmin/v1/images/flags/1x1/in.svg" alt="Google Dashboards" />
-										</a>
-										<a href="index.html">
-											<img src="xdmin/v1/images/flags/1x1/gb.svg" alt="AI Admin Dashboards" />
-										</a>
-										<a href="index.html">
-											<img src="xdmin/v1/images/flags/1x1/tr.svg" alt="Modern Dashboards" />
-										</a>
-										<a href="index.html">
-											<img src="xdmin/v1/images/flags/1x1/ca.svg" alt="Best Admin Dashboards" />
-										</a>
-									</div>
-								</div>
-							</li>
-							<li class="dropdown">
-								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Abigale Heaney</span>
-									<span class="avatar">
-										<img src="xdmin/v1/images/user.png" alt="Admin Templates">
-										<span class="status online"></span>
-									</span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
-									<div class="header-profile-actions">
-										<a href="profile.html">Profile</a>
-										<a href="account-settings.html">Settings</a>
-										<a href="login.html">Logout</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-						<!-- Header actions end -->
-
-					</div>
-					<!-- Header actions ccontainer end -->
-
-				</div>
-				<!-- Page header ends -->
-
-				<!-- Content wrapper scroll start -->
+	
+				<!-- 상단바 시작 -->
+				<div th:replace="~{v1/infra/blockDeclaration/body :: topnav}"></div>
+				<!-- 상단바 종료 -->
+				
 				<div class="content-wrapper-scroll">
 
 					<!-- Content wrapper start -->
@@ -165,7 +70,7 @@
 												</select>
 											</div>
 											<div class="col-6 g-3">
-												<a th:href="@{/memberUserList}">
+												<a th:href="@{/memberXdmList}">
 													<button type="button" class="btn btn-success" id = "back">돌아가기</button>
 												</a>
 											</div>
@@ -196,61 +101,9 @@
 				<!-- Content wrapper scroll end -->
 
 			
-			<!-- *************
-				************ Main container end *************
-			************* -->
-		
-		<!-- Page wrapper end -->
-
-		<!-- *************
-			************ Required JavaScript Files *************
-		************* -->
-		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
-		<script src="xdmin/v1/js/modernizr.js"></script>
-		<script src="xdmin/v1/js/moment.js"></script>
-
-		<!-- datetimepicker  -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-		<!-- *************
-			************ Vendor Js Files *************
-		************* -->
-
-		<!-- Overlay Scroll JS -->
-		<script src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-		<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
-
-
-		<!-- Main Js Required -->
-		<script src="xdmin/v1/js/main.js"></script>
-		
+		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 		<!-- validations  -->
-		
 		<script src="xdmin\v1\js\validationXdm.js"></script>
-		
-		<!-- <script>
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
-		(function () {
-		  'use strict'
-
-		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-		  var forms = document.querySelectorAll('.needs-validation')
-
-		  // Loop over them and prevent submission
-		  Array.prototype.slice.call(forms)
-		    .forEach(function (form) {
-		      form.addEventListener('submit', function (event) {
-		        if (!form.checkValidity()) {
-		          event.preventDefault()
-		          event.stopPropagation()
-		        }
-		        form.classList.add('was-validated')
-		      }, false)
-		    })
-		})()
-		</script> -->
 		<script>
 				window.addEventListener('load', function() {
 					$("#dateBirth").datetimepicker({
@@ -259,7 +112,7 @@
 					});
 				});
 				
-				let memberUserList = "/memberUserList"; /* ### */
+				let memberXdmList = "/memberXdmList"; /* ### */
 				let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 		</script>
 		<script>
@@ -275,7 +128,7 @@
 				if(validationUpdt() == false){
 					return false;				
 				}else {
-					form.action = "memberUserInsert";
+					form.action = "memberXdmInsert";
 					form.submit();
 				}
 			}
@@ -316,9 +169,9 @@
 						/* alert("비밀번호가 일치"); */
 						insertCall();
 						/*if(response.changePwd == "true") {
-							location.href = "/memberUserList";
+							location.href = "/memberXdmList";
 						} else {
-							location.href = "/memberUserAddition";
+							location.href = "/memberXdmAddition";
 						} */
 					} else {
 						alert("비밀번호가 일치하지 않습니다.");

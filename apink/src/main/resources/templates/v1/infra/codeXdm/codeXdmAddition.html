@@ -13,7 +13,7 @@
 				<!-- 상단바 시작 -->
 				<div th:replace="~{v1/infra/blockDeclaration/body :: topnav}"></div>
 				<!-- 상단바 종료 -->
-			<div class="content-wrapper-scroll">
+				<div class="content-wrapper-scroll">
 
 					<!-- Content wrapper start -->
 					<div class="content-wrapper">
@@ -24,27 +24,34 @@
 								<!-- Card start -->
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">코드그룹관리</div>
+										<div class="card-title">코드관리</div>
 									</div>
 									<div class="card-body">
-										<form class="row" method="post" name= "formName">
-											<div class="col-6">
-													<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="코드그룹이름을 입력하시오.">
-											</div>
-											<div class="col-6">
-													<select class="form-select" name="deleteNy" id="deleteNy">
+											<form class="row" method="post" action="codeXdmInsert">
+												
+												<div class="col-4 mb-3">
+													<select id="codeGroup_seq" name="codeGroup_seq" class="form-select form-select-sm">
+															<option value="">코드그룹이름</option>
+															<option th:each="listCodeGroup : ${@codeGroupService.selectListWithoutPaging()}" th:value="${listCodeGroup.seq}" th:text="${listCodeGroup.codeGroupName}" ></option>
+													</select>
+												</div>
+												<div class="col-4">
+														<input type="text" class="form-control" name="codeName" placeholder="코드이름을 입력하시오.">
+												</div>
+												<div class="col-4">
+													<select class="form-select" name="deleteNy">
 														<option value="0">N</option>
 														<option value="1">Y</option>
 													</select>
 												</div>
-											<div class="col-6 g-3">
-												<a th:href="@{/codeGroupXdmList}"><button type="button" class="btn btn-success" id = "back">돌아가기</button></a>
-											</div>
-											<div class="col-6 g-3 d-md-flex justify-content-md-end">
-												<button class="btn btn-info" type="button" id = "additional">추가</button>
-											</div>
-										</form>
-									</div>
+												<div class="col-6 g-3">
+													<a th:href="@{/codeXdmList}"><button type="button" class="btn btn-success" id="back" >돌아가기</button></a>
+												</div>
+													<div class="col-6 g-3 d-md-flex justify-content-md-end">
+														<button class="btn btn-info" type="submit">추가</button>
+													</div>
+												</form>
+										</div>
 										<!-- Form actions footer end -->
 									</div>
 									</div>
@@ -95,28 +102,6 @@
 		
 		<!-- validations  -->
 		<script>
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
-		(function () {
-		  'use strict'
-
-		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-		  var forms = document.querySelectorAll('.needs-validation')
-
-		  // Loop over them and prevent submission
-		  Array.prototype.slice.call(forms)
-		    .forEach(function (form) {
-		      form.addEventListener('submit', function (event) {
-		        if (!form.checkValidity()) {
-		          event.preventDefault()
-		          event.stopPropagation()
-		        }
-
-		        form.classList.add('was-validated')
-		      }, false)
-		    })
-		})()
-		</script>
-		<script>
 		
 		/* document.getElementById("additional").onclick = function() {
 			validation();
@@ -133,13 +118,13 @@
 			if(validation() == false){
 				alert("값을 입력하시오.");				
 			}else {
-				form.action = "codeGroupXdmInsert";
+				form.action = "codeXdmInsert";
 				form.submit();
 			}
 		}
 		
 		function validation() {
-			if(!nullToEmpty(document.getElementById("codeGroupName").value)){
+			if(!nullToEmpty(document.getElementById("codeName").value)){
 				
 				return false;
 			}

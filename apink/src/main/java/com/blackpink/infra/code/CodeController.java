@@ -87,8 +87,8 @@ public class CodeController {
 //		return "redirect:/codeXdmList";
 //	}
 
-	@RequestMapping(value = "/codeUserList")
-	public String codeUserList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception { 
+	@RequestMapping(value = "/codeXdmList")
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception { 
 		
 		setSearch(vo);
 		
@@ -102,62 +102,62 @@ public class CodeController {
 //		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
 //		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
 		
-		return "/v1/infra/codeUser/codeUserList";
+		return "/v1/infra/codeXdm/codeXdmList";
 	}
 	
 	
-	@RequestMapping(value = "/codeUserAddition")
-	public String codeUserAddition(CodeDto dto, Model model ) {
+	@RequestMapping(value = "/codeXdmAddition")
+	public String codeXdmAddition(CodeDto dto, Model model ) {
 		
 		model.addAttribute("listCodeGroup", codeGroupService.selectListWithoutPaging());
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeUser/codeUserAddition";
+		return "/v1/infra/codeXdm/codeXdmAddition";
 	}
 	
 	
-	@RequestMapping("codeUserInsert")
-	public String codeUserInsert(CodeDto dto) {
+	@RequestMapping("codeXdmInsert")
+	public String codeXdmInsert(CodeDto dto) {
 		
 		service.insert(dto);
 		System.out.println(dto.toString()+ "--------------------------------------------");
-		return "redirect:/codeUserList";
+		return "redirect:/codeXdmList";
 	}
 	
-	@RequestMapping("codeUserCorrection")
-	public String codeUserCorrection(CodeDto dto, Model model) {
+	@RequestMapping("codeXdmCorrection")
+	public String codeXdmCorrection(CodeDto dto, Model model) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeUser/codeUserCorrection";
+		return "/v1/infra/codeXdm/codeXdmCorrection";
 		
 	}
 		
-	@RequestMapping("codeUserUpdate")
-	public String codeUserUpdate(CodeDto dto) {
+	@RequestMapping("codeXdmUpdate")
+	public String codeXdmUpdate(CodeDto dto) {
 		
 		service.update(dto);
 		
-		return "redirect:/codeUserList";
+		return "redirect:/codeXdmList";
 		
 	}
 	
-	@RequestMapping("codeUserDeleteNy")
-	public String codeUserDeleteNy(CodeDto dto) {
+	@RequestMapping("codeXdmDeleteNy")
+	public String codeXdmDeleteNy(CodeDto dto) {
 		
 		service.deleteNyUpdate(dto);
 		
-		return "redirect:/codeUserList";
+		return "redirect:/codeXdmList";
 		
 	}
 	
-	@RequestMapping("codeUserDelete")
-	public String codeUserDelete(CodeDto dto) {
+	@RequestMapping("codeXdmDelete")
+	public String codeXdmDelete(CodeDto dto) {
 		
 		service.codeDelete(dto);
 	
-		return "redirect:/codeUserList";
+		return "redirect:/codeXdmList";
 	}
 	
 	

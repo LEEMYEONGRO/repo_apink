@@ -1,6 +1,5 @@
 package com.blackpink.infra.member;
 
-import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +20,8 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
-	@RequestMapping(value = "/memberUserList")
-	public String memberUserList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmList")
+	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		setSearch(vo);
 		
@@ -33,22 +32,22 @@ public class MemberController {
 		
 //		 model.addAttribute("vo", vo);
 		
-		return "/v1/infra/memberUser/memberUserList";
+		return "/v1/infra/memberXdm/memberXdmList";
 	}
 	
 	
-	@RequestMapping(value = "/memberUserAddition")
-	public String memberUserAddition(MemberDto dto, Model model ) {
+	@RequestMapping(value = "/memberXdmAddition")
+	public String memberXdmAddition(MemberDto dto, Model model ) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/memberUser/memberUserAddition";
+		return "/v1/infra/memberXdm/memberXdmAddition";
 	}
 	
-	@RequestMapping(value = "/xdmlogin")
-	public String xdmlogin(MemberDto dto) {
+	@RequestMapping(value = "/loginXdm")
+	public String loginXdm(MemberDto dto) {
 		
-		return "/v1/infra/login/xdmlogin";
+		return "/v1/infra/loginXdm/loginXdm";
 	}
 	
 	@ResponseBody
@@ -88,51 +87,51 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/memberUserInsert")
-	public String memberUserInsert(MemberDto dto) {
-		System.out.println("memberUserInsert");
+	@RequestMapping(value = "/memberXdmInsert")
+	public String memberXdmInsert(MemberDto dto) {
+		System.out.println("memberXdmInsert");
 		dto.setPassword(encodeBcrypt(dto.getPassword(), 10));
 		
 		System.out.println("dto.getIfmmId()encoded : " + dto.getPassword());
 		
 		service.insert(dto);
 		
-		return "redirect:/memberUserList";
+		return "redirect:/memberXdmList";
 	}
 	
-	@RequestMapping(value = "/memberUserCorrection")
-	public String memberUserCorrection(MemberDto dto, Model model) {
+	@RequestMapping(value = "/memberXdmCorrection")
+	public String memberXdmCorrection(MemberDto dto, Model model) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/memberUser/memberUserCorrection";
+		return "/v1/infra/memberXdm/memberXdmCorrection";
 		
 	}
 		
-	@RequestMapping(value = "/memberUserUpdate")
-	public String memberUserUpdate(MemberDto dto) {
+	@RequestMapping(value = "/memberXdmUpdate")
+	public String memberXdmUpdate(MemberDto dto) {
 		
 		service.update(dto);
 		
-		return "redirect:/memberUserList";
+		return "redirect:/memberXdmList";
 		
 	}
 	
-	@RequestMapping(value = "/memberUserDeleteNy")
-	public String memberUserDeleteNy(MemberDto dto) {
+	@RequestMapping(value = "/memberXdmDeleteNy")
+	public String memberXdmDeleteNy(MemberDto dto) {
 		
 		service.updateDeleteNy(dto);
 		
-		return "redirect:/memberUserList";
+		return "redirect:/memberXdmList";
 		
 	}
 	
-	@RequestMapping(value = "/memberUserDelete")
-	public String memberUserDelete(MemberDto dto) {
+	@RequestMapping(value = "/memberXdmDelete")
+	public String memberXdmDelete(MemberDto dto) {
 		
 		service.delete(dto);
 		
-		return "redirect:/memberUserList";
+		return "redirect:/memberXdmList";
 		
 	}
 	

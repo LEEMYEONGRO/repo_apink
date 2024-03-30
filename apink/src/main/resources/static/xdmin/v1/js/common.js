@@ -9,7 +9,7 @@
 				,success: function(response) {
 					if(response.rt == "success") {
 						
-						location.href = "/xdmlogin";
+						location.href = "/loginXdm";
 						
 					} else {
 						alert("로그아웃 실패.");
