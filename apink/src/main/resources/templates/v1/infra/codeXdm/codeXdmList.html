@@ -18,7 +18,9 @@
 			
 				<!-- Content wrapper start -->
 				<div class="content-wrapper">
-
+					<!-- formStart -->
+					<form name="formList" id="formList" method="post" autocomplete="off">
+						<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 					<!-- search s -->
 					<div class="card">
 						
@@ -177,8 +179,8 @@
 							</div>
 							</div>
 						</div>
+						</form>
 					</div>
-					</form>
 					<div class="app-footer">
 						<span>© Arise admin 2023</span>
 					</div>

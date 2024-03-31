@@ -6,10 +6,10 @@
 	<resultMap id="resultMapObj" type="com.blackpink.infra.code.CodeDto"></resultMap>
 	
 	<sql id ="selectCommon">
-	FROM codeGroup a
-	LEFT JOIN code b 
-         on b.codeGroup_seq = a.seq
-         WHERE 1=1
+		FROM codeGroup a
+		LEFT JOIN code b 
+	         on b.codeGroup_seq = a.seq
+	         WHERE 1=1
 		        <if test="shDelNy != null and !shDelNy.equals('')">AND b.deleteNy = #{shDelNy}</if>
 		       
 				<choose>
@@ -22,9 +22,10 @@
 		            <when test="shOption == 2">AND b.codeName LIKE CONCAT('%',#{shValue},'%')</when>
 		        </choose>
 	</sql>
+	
     <select id="selectList" resultMap="resultMapObj">
-      	SELECT
-      		a.seq as groupseq
+		SELECT
+			a.seq as groupseq
       		,a.codeGroupName
             ,b.seq
             ,b.codeName
@@ -88,13 +89,22 @@
 			AND seq = #{seq}
 	</delete>
 	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			b.seq
+			,b.codeName
+		FROM code b
+		WHERE 1=1
+			AND deleteNy = 0
+	</select>
+	
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
-			seq
-			,codeName
-			,codeGroup_seq
+			b.seq
+			,b.codeName
+			,b.codeGroup_seq
 		FROM
-			code
+			code b
 		WHERE 1=1
 			AND deleteNy = 0
     </select>

@@ -1,6 +1,8 @@
 package com.blackpink.infra.member;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MemberDto {
 
@@ -18,6 +20,9 @@ public class MemberDto {
 	private Integer xseqCount;
 
 	private String passwordCheck;
+	
+//	for cache
+	public static List<MemberDto> cachedCodeArrayList = new ArrayList<MemberDto>();	
 	
 	public String getSeq() {
 		return seq;
@@ -115,14 +120,13 @@ public class MemberDto {
 		this.passwordCheck = passwordCheck;
 	}
 
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "MemberDto [seq=" + seq + ", name=" + name + ", dateBirth=" + dateBirth + ", gender=" + gender
+				+ ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber + ", deleteNy="
+				+ deleteNy + ", creationDate=" + creationDate + ", modificationDate=" + modificationDate
+				+ ", xseqCount=" + xseqCount + ", passwordCheck=" + passwordCheck + "]";
+	}
 
-
-	
-	
-	
 	
 }

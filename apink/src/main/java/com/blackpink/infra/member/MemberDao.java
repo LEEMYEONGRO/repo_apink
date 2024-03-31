@@ -3,8 +3,8 @@ package com.blackpink.infra.member;
 import java.util.List;
 
 public interface MemberDao {
-	
-	public List<MemberDto> selectList();
+
+	public List<MemberDto> selectList(MemberVo vo);
 	
 	public MemberDto selectOne(MemberDto dto); 
 
@@ -18,6 +18,10 @@ public interface MemberDao {
 	
 	public int delete(MemberDto dto);
 	
-	public List<MemberDto> selectList(MemberVo vo);
+	public List<MemberDto> selectListCachedCodeArrayList();
+	
+	public List<MemberDto> selectListWithoutPaging(); 
 
+	public int selectOneCount(MemberVo vo);
+	
 }

@@ -25,7 +25,11 @@ public class MemberController {
 		
 		setSearch(vo);
 		
-		model.addAttribute("list", service.selectList(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
 
 		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
 		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
@@ -165,10 +169,8 @@ public class MemberController {
 
 			
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
-	  System.out.println("1");
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
-		System.out.println("2");
-	  return passwordEncoder.matches(planeText, hashValue);
+		return passwordEncoder.matches(planeText, hashValue);
 	}
 	
 	@ResponseBody

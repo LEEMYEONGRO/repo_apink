@@ -2,7 +2,7 @@ package com.blackpink.infra.code;
 
 import java.util.List;
 
-import com.blackpink.infra.codegroup.CodeGroupVo;
+import com.blackpink.infra.codegroup.CodeGroupDto;
 
 public interface CodeDao {
 
@@ -19,6 +19,8 @@ public interface CodeDao {
 	public int codeDelete(CodeDto dto);
 	
 	public List<CodeDto> selectListCachedCodeArrayList();
+	
+	public List<CodeDto> selectListWithoutPaging();
 	
 	public int selectOneCount(CodeVo vo);
 	

@@ -1,6 +1,8 @@
 package com.blackpink.infra.codegroup;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CodeGroupDto {
 
@@ -13,7 +15,8 @@ public class CodeGroupDto {
 	private Integer xseqCount;
 
 	
-	
+//	for cache
+	public static List<CodeGroupDto> cachedCodeArrayList = new ArrayList<CodeGroupDto>();
 	
 	
 	public String getSeq() {
@@ -62,6 +65,13 @@ public class CodeGroupDto {
 
 	public void setXseqCount(Integer xseqCount) {
 		this.xseqCount = xseqCount;
+	}
+
+	@Override
+	public String toString() {
+		return "CodeGroupDto [seq=" + seq + ", codeGroupName=" + codeGroupName + ", deleteNy=" + deleteNy
+				+ ", creationDate=" + creationDate + ", modificationDate=" + modificationDate + ", xseqCount="
+				+ xseqCount + "]";
 	}
 
 	

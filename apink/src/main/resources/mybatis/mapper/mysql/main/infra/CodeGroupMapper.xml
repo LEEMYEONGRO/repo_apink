@@ -82,13 +82,21 @@
     <select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
 			a.seq
-			, a.codeGroupName
+			,a.codeGroupName
 		FROM codeGroup a
 		WHERE 1=1
 			AND deleteNy = 0
 		
 	</select>
 	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			a.seq
+			,a.codeGroupName
+		FROM codeGroup a
+		WHERE 1=1
+			AND deleteNy = 0
+    </select>
 	
 	<select id="selectOneCount">
 		SELECT COUNT(*)

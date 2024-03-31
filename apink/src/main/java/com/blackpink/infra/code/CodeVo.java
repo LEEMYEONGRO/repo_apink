@@ -27,7 +27,7 @@ public class CodeVo {
 	
 	private int startRnumForMysql = 0;		// 쿼리 시작 row
 	
-public void setParamsPaging(int totalRows) {
+	public void setParamsPaging(int totalRows) {
 		
 //		setThisPage(3);
 

@@ -178,36 +178,11 @@
 				</div>
 			</div>
 			</div>
-			<!-- Page wrapper end -->
-	
-			<!-- *************
-				************ Required JavaScript Files *************
-			************* -->
-			<!-- Required jQuery first, then Bootstrap Bundle JS -->
-			<!-- <script src="xdmin/v1/js/jquery.min.js"></script> -->
-			<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
-			<script src="xdmin/v1/js/modernizr.js"></script>
-			<script src="xdmin/v1/js/moment.js"></script>
-	
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-			<!-- *************
-				************ Vendor Js Files *************
-			************* -->
-	
-			<!-- Overlay Scroll JS -->
-			<script
-				src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-			<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
-	
-	
-			<!-- Main Js Required -->
-			<script src="xdmin/v1/js/main.js"></script>
-			<!--  -->
-	
+			
+			<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
+			
 		<script type="text/javascript">
-		let codeGroupXdmList = "/codeGroupXdmList"; /* ### */
+		let goUrlXdmList = "/codeGroupXdmList"; /* ### */
 		let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
@@ -216,6 +191,7 @@
 		let seq = document.querySelector("input[name=seq]"); /* ### */
 		
 		let form = document.querySelector("form[name=formList]");
+		
 				window.addEventListener('load', function() {
 					$("#shDateStart, #shDateEnd").datetimepicker({
 						timepicker : false,
@@ -225,24 +201,24 @@
 		
 			goList = function (thisPage) {
 			    document.querySelector("input[name=thisPage]").value = thisPage;
-			    form.action = codeGroupXdmList;
+			    form.action = goUrlXdmList;
 			    form.submit();
 			}
-			page-link
+			
 				document.getElementById("btnSearch").onclick = function() {
-					form.action = codeGroupXdmList;
+					form.action = goUrlXdmList;
 					form.submit();
 				};
 				
 				document.getElementById("btnReset").onclick = function() {
-					location.href = codeGroupXdmList;
+					location.href = goUrlXdmList;
 				}
 				
 				
 			});
 			function enterkey() {
 				if (window.event.keyCode == 13) {
-				    form.action = codeGroupXdmList;
+				    form.action = goUrlXdmList;
 				    form.submit();
 			    }
 			}

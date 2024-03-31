@@ -20,6 +20,7 @@
 					<!-- search s -->
 					<div class="card">
 						<form name="formList" id="formList" method="post" autocomplete="off">
+							<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 							<div class="card-header">
 								<div class="card-title">회원관리</div>
 							</div>
@@ -109,23 +110,7 @@
 
 							<div class="card">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<label>total:</label>
-										</div>
-										<div class="col-sm-12 col-md-6  d-flex justify-content-end">
-											<div class="col-md-1 col-sm-1">
-												<select name="apiCallbacks_length"
-													aria-controls="apiCallbacks"
-													class="form-select form-select-sm">
-													<option value="5">5</option>
-													<option value="10">10</option>
-													<option value="25">25</option>
-													<option value="50">50</option>
-												</select>
-											</div>
-										</div>
-									</div>
+								<div th:replace= "~{v1/infra/blockDeclaration/body :: pageCount}"></div>
 									<div class="table-responsive">
 										<table class="table m-0">
 											<thead>
@@ -172,42 +157,8 @@
 										</table>
 									</div>
 									<div class="row mt-3">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="basicExample_paginate">
-
-											<ul class="pagination justify-content-center">
-												<li class="paginate_button page-item previous disabled"
-													id="basicExample_previous"><a href="#"
-													aria-controls="basicExample" data-dt-idx="0" tabindex="0"
-													class="page-link">이전</a></li>
-												<li class="paginate_button page-item active"><a
-													href="#" aria-controls="basicExample" data-dt-idx="1"
-													tabindex="0" class="page-link">1</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="2" tabindex="0"
-													class="page-link">2</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="3" tabindex="0"
-													class="page-link">3</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="4" tabindex="0"
-													class="page-link">4</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="5" tabindex="0"
-													class="page-link">5</a></li>
-												<li class="paginate_button page-item disabled"
-													id="basicExample_ellipsis"><a href="#"
-													aria-controls="basicExample" data-dt-idx="6" tabindex="0"
-													class="page-link">…</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													aria-controls="basicExample" data-dt-idx="7" tabindex="0"
-													class="page-link">12</a></li>
-												<li class="paginate_button page-item next"
-													id="basicExample_next"><a href="#"
-													aria-controls="basicExample" data-dt-idx="8" tabindex="0"
-													class="page-link">다음</a></li>
-											</ul>
-										</div>
+										<!-- 페이징 -->
+										<div th:replace= "~{v1/infra/blockDeclaration/body :: pageButton}"></div>
 									</div>
 									<div class="row mt-3">
 										<div class="col d-grid gap-2 d-md-flex justify-content-md">
@@ -276,13 +227,6 @@
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 		
 	<script type="text/javascript">
-			window.addEventListener('load', function() {
-				$("#shDateStart, #shDateEnd").datetimepicker({
-					timepicker : false,
-					format : 'Y/m/d'
-					
-				});
-	
 			let goUrlXdmList = "/memberXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
@@ -292,26 +236,38 @@
 			let seq = document.querySelector("input[name=seq]"); /* ### */
 			
 			let form = document.querySelector("form[name=formList]");
+
+			window.addEventListener('load', function() {
+				$("#shDateStart, #shDateEnd").datetimepicker({
+					timepicker : false,
+					format : 'Y/m/d'
+					
+				});
+
 	
-		
-			
-			document.getElementById("btnSearch").onclick = function() {
-				form.action = goUrlXdmList;
-				form.submit();
-			};
-			
-			document.getElementById("btnReset").onclick = function() {
-				location.href = goUrlXdmList;
-			}
-			
-			
-		});
-		function enterkey() {
-			if (window.event.keyCode == 13) {
+			goList = function (thisPage) {
+			    document.querySelector("input[name=thisPage]").value = thisPage;
 			    form.action = goUrlXdmList;
 			    form.submit();
-		    }
-		}
+			}
+			
+				document.getElementById("btnSearch").onclick = function() {
+					form.action = goUrlXdmList;
+					form.submit();
+				};
+				
+				document.getElementById("btnReset").onclick = function() {
+					location.href = goUrlXdmList;
+				}
+				
+				
+			});
+			function enterkey() {
+				if (window.event.keyCode == 13) {
+				    form.action = goUrlXdmList;
+				    form.submit();
+			    }
+			}
 		
 		
 	</script>

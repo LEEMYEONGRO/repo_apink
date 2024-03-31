@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
 
@@ -15,98 +14,6 @@ public class CodeGroupController {
 	
 	@Autowired
 	CodeGroupService service;
-	
-	//@RequestMapping("codeGroupXdmList")
-	//public String codeGroupXdmList(Model model) {
-		
-//		List<CodeGroupDto> codeGroupDtos = service.selectList();
-//		
-//		for(CodeGroupDto a: codeGroupDtos) {
-//			System.out.println(a.getCodeType());
-//		}
-//		
-		//model.addAttribute("list", service.selectList());
-				
-				
-		//return "/v1/infra/codegroup/codeGroupXdmList";
-		
-	//}
-	
-//	@RequestMapping("codeGroupView")
-//	public String codeGroupView(CodeGroupDto dto) {
-//		
-//		System.out.println("dto.getSeq(): " + dto.getSeq());
-//		System.out.println("dto.getCodeType(): " + dto.getCodeType());
-//		System.out.println("dto.getDeleteNy(): " + dto.getDeleteNy());
-//		
-//		return "codeGroupView";
-//	}
-	
-//	@RequestMapping("codeGroupView")
-//	public String codeGroupView(CodeGroupDto dto, Model model) {
-//		
-//		model.addAttribute("oneList", service.selectOne(dto));
-//		
-//		return "/v1/infra/codegroup/codeGroupView";
-//		
-//		
-//	}
-//	
-//	@RequestMapping("codeGroupCorrection")
-//	public String codeGroupCorrection(CodeGroupDto dto, Model model) {
-//		
-//		model.addAttribute("oneList", service.selectOne(dto));
-//		
-//		return "/v1/infra/codegroup/codeGroupCorrection";
-//		
-//		
-//	}
-//	
-//	@RequestMapping("codeGroupRegistration")
-//	public String codeGroupRegistration(CodeGroupDto dto, Model model) {
-//		
-//		model.addAttribute("oneList", service.selectOne(dto));
-//		
-//		return "/v1/infra/codegroup/codeGroupRegistration";
-//		
-//		
-//	}
-//	
-//	@RequestMapping("codeGroupInsert")
-//	public String codeGroupInsert(CodeGroupDto dto) {
-//		
-//		service.insert(dto);
-//		
-//		return "redirect:/codeGroupXdmList";
-//		
-//	}
-//	
-//	@RequestMapping("codeGroupUpdate")
-//	public String codeGroupUpdate(CodeGroupDto dto) {
-//		
-//		service.update(dto);
-//		
-//		return "redirect:/codeGroupXdmList";
-//		
-//	}
-//	
-//	@RequestMapping("updateDeleteNy")
-//	public String updateDeleteNy(CodeGroupDto dto) {
-//		
-//		service.updateDeleteNy(dto);
-//		
-//		return "redirect:/codeGroupXdmList";
-//		
-//	}
-//	
-//	@RequestMapping("delete")
-//	public String delete(CodeGroupDto dto) {
-//		
-//		service.delete(dto);
-//		
-//		return "redirect:/codeGroupXdmList";
-//		
-//	}
 	
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -118,13 +25,12 @@ public class CodeGroupController {
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		setSearch(vo);
+		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
-		
-//		 model.addAttribute("vo", vo);
 		
 		return "/v1/infra/codeGroupXdm/codeGroupXdmList";
 	}
@@ -133,11 +39,12 @@ public class CodeGroupController {
 	@RequestMapping(value = "/codeGroupXdmAddition")
 	public String codeGroupXdmAddition(CodeGroupDto dto, Model model ) {
 		
+		
+		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
 		return "/v1/infra/codeGroupXdm/codeGroupXdmAddition";
 	}
-	
 	
 	@RequestMapping("codeGroupXdmInsert")
 	public String codeGroupXdmInsert(CodeGroupDto dto) {
@@ -217,4 +124,5 @@ public class CodeGroupController {
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
 	}
+	
 }

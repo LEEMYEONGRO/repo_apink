@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blackpink.infra.codegroup.CodeGroupDto;
+import com.blackpink.infra.codegroup.CodeGroupVo;
+
 import jakarta.annotation.PostConstruct;
 
 @Service
@@ -16,15 +19,7 @@ public class CodeService {
 	
 	public List<CodeDto> selectList(CodeVo vo) { 
 	    	return dao.selectList(vo); 
-	    }
-	
-//	페이징 테스트중 수정필요.    
-	 
-   
-   
-    
-//	페이징 테스트중 수정필요.    
-	
+	    }  
 	
 	public CodeDto selectOne(CodeDto dto) {
 		return dao.selectOne(dto);
@@ -44,6 +39,10 @@ public class CodeService {
 	
 	public int codeDelete(CodeDto dto) {
 		return dao.codeDelete(dto);
+	}
+	
+	public List<CodeDto> selectListWithoutPaging() {
+		return dao.selectListWithoutPaging();
 	}
 	
 	public int selectOneCount(CodeVo vo) {
