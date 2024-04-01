@@ -30,9 +30,10 @@ public class MemberController {
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
-
+		
 		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
 		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
+		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
 		
 //		 model.addAttribute("vo", vo);
 		

@@ -7,6 +7,8 @@
 
 	<div class="page-wrapper">
 
+		<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 		<!-- 네비게이션바 시작 -->
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
 		<!-- 네이게이션바 종료 -->
@@ -19,8 +21,6 @@
 
 					<!-- search s -->
 					<div class="card">
-						<form name="formList" id="formList" method="post" autocomplete="off">
-							<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 							<div class="card-header">
 								<div class="card-title">회원관리</div>
 							</div>
@@ -100,7 +100,7 @@
 								<!-- Form actions footer end -->
 
 							</div>
-						</form>
+				
 					</div>
 
 					<!-- search e -->
@@ -201,8 +201,6 @@
 								</div>
 
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -222,11 +220,13 @@
 				************ Main container end *************
 			************* -->
 
+			</form>
 		</div>
 		
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 		
 	<script type="text/javascript">
+	
 			let goUrlXdmList = "/memberXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
@@ -245,11 +245,11 @@
 				});
 
 	
-			goList = function (thisPage) {
-			    document.querySelector("input[name=thisPage]").value = thisPage;
-			    form.action = goUrlXdmList;
-			    form.submit();
-			}
+				goList = function (thisPage) {
+				    document.querySelector("input[name=thisPage]").value = thisPage;
+				    form.action = goUrlXdmList;
+				    form.submit();
+				}
 			
 				document.getElementById("btnSearch").onclick = function() {
 					form.action = goUrlXdmList;
@@ -283,8 +283,7 @@
 				form.submit();
 			} */
 	</script>
-		
-		
+	
 </body>
 
 </html>

@@ -14,7 +14,7 @@
 						id="rowNumToShow"
 					aria-controls="apiCallbacks"
 					class="form-select form-select-sm" 
-					th:onchange="goList(1)">
+					th:onchange="javascript:goList(1)">
 					<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
 					<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
 					<option value="25" th:selected="${vo.rowNumToShow == 25}">25</option>

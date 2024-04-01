@@ -189,38 +189,9 @@
 		</div>
 		<!-- Page wrapper end -->
 
-		<!-- *************
-			************ Required JavaScript Files *************
-		************* -->
-		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<!-- <script src="xdmin/v1/js/jquery.min.js"></script> -->
-		<script src="xdmin/v1/js/bootstrap.bundle.min.js"></script>
-		<script src="xdmin/v1/js/modernizr.js"></script>
-		<script src="xdmin/v1/js/moment.js"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-		<!-- *************
-			************ Vendor Js Files *************
-		************* -->
-
-		<!-- Overlay Scroll JS -->
-		<script src="xdmin/v1/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-		<script src="xdmin/v1/vendor/overlay-scroll/custom-scrollbar.js"></script>
-
-
-		<!-- Main Js Required -->
-		<script src="xdmin/v1/js/main.js"></script>
-		<!--  -->
+		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 
 	<script type="text/javascript">
-			window.addEventListener('load', function() {
-				$("#shDateStart, #shDateEnd").datetimepicker({
-					timepicker : false,
-					format : 'Y-m-d'
-					
-				});
 	
 			let goUrlXdmList = "/codeXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
@@ -232,6 +203,13 @@
 			
 			let form = document.querySelector("form[name=formList]");
 			
+			window.addEventListener('load', function() {
+				$("#shDateStart, #shDateEnd").datetimepicker({
+					timepicker : false,
+					format : 'Y-m-d'
+					
+				});
+
 			goList = function (thisPage) {
 				document.querySelector("input[name=thisPage]").value = thisPage;
 			    form.action = goUrlXdmList;

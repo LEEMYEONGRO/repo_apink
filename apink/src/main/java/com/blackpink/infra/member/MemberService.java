@@ -6,10 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.blackpink.infra.code.CodeDto;
-import com.blackpink.infra.codegroup.CodeGroupDto;
-import com.blackpink.infra.codegroup.CodeGroupVo;
-
 import jakarta.annotation.PostConstruct;
 
 @Service

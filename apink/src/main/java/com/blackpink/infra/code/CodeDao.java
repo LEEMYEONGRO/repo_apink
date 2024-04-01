@@ -2,8 +2,6 @@ package com.blackpink.infra.code;
 
 import java.util.List;
 
-import com.blackpink.infra.codegroup.CodeGroupDto;
-
 public interface CodeDao {
 
 	public List<CodeDto> selectList(CodeVo vo);
