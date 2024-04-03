@@ -342,7 +342,7 @@
                                                 	<div class="col-12">
 		                                    	   		<h5 style="font-weight:bold;">비밀번호 수정</h5>
 		                                            </div>
-                                                    <div class="col-12">
+                                                   	<div class="col-12">
                                                         <div class="form-group">
                                                             <label>기존 비밀번호</label>
                                                             <input type="password" class="form-control">
@@ -411,56 +411,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">#0000</th>
-                                                        <td>
-                                                        	<img src="./assets/images/product/product-11.jpg">
-                                                        </td>
-                                                        <td><a href="#">오버핏 프리미엄 남녀공용 맨투맨 2중 합포면 무지 맨투맨</a></td>
-                                                        <td>2024년 2월27일</td>
-                                                        <td>배송중</td>
-                                                        <td>27,000원</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#0001</th>
-                                                        <td>
-                                                        	<img src="./assets/images/product/product-11.jpg">
-                                                        </td>
-                                                        <td><a href="#">남녀공용 데일리 울라이크 니트</a></td>
-                                                        <td>2024년 2월27일</td>
-                                                        <td>배송중</td>
-                                                        <td>40,000원</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#0002</th>
-                                                        <td>
-                                                        	<img src="./assets/images/product/product-11.jpg">
-                                                        </td>
-                                                        <td><a href="#">울 캐시 라이크 니트</a></td>
-                                                        <td>2024년 2월27일</td>
-                                                        <td>배송완료</td>
-                                                        <td>45,000원</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#0003</th>
-                                                        <td>
-                                                        	<img src="./assets/images/product/product-11.jpg">
-                                                        </td>
-                                                        <td><a href="#">여성용 반밴딩 와이드 정장 슬렉스 오피스 사무실 하이라이즈</a></td>
-                                                        <td>2024년 2월27일</td>
-                                                        <td>배송중</td>
-                                                        <td>32,000원</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#0004</th>
-                                                        <td>
-                                                        	<img src="./assets/images/product/product-11.jpg">
-                                                        </td>
-                                                        <td><a href="#">남성용 세미와이드 히든밴딩</a></td>
-                                                        <td>2024년 2월27일</td>
-                                                        <td>배송준비중</td>
-                                                        <td>54,000원</td>
-                                                    </tr>
+                                                    <tr th:each="list : ${list}">
+														<td th:text="${list.pdSeq}"></td>
+														<td>
+															<img src="./assets/images/product/product-11.jpg">
+														</td>
+														<td th:text="${list.pdName}"></td>
+														<td></td>
+														<td></td>
+														<td th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></td>
+													</tr>
                                                 </tbody>
                                             </table>
                                         </div>

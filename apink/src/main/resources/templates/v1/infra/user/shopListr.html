@@ -365,7 +365,7 @@
 	                                    <div class="product-content">
 	                                        <div class="inner">
 	                                            <h5 class="title">
-	                                            	<a href="single-product.html" th:text="${list.pdName}"></a>
+	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq},pdName=${list.pdName})}" th:text="${list.pdName}"></a>
 	                                            </h5>
 	                                            <div class="product-price-variant">
 	                                                <span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>

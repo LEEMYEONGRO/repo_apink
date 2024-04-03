@@ -91,6 +91,14 @@ public class ProductController {
 		return "/v1/infra/product/productXdmCorrection";
 		
 	}
+	
+	@RequestMapping(value = "shopDetailedPage")
+	public String shopDetailedPage(ProductDto dto, Model model) {
+		
+		model.addAttribute("item", service.item(dto));
+		
+		return "/v1/infra/user/shopDetailedPage";
+	}
 		
 	@RequestMapping(value = "/productXdmUpdate")
 	public String productXdmUpdate(ProductDto dto) {

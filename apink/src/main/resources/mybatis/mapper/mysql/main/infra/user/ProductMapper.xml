@@ -97,6 +97,16 @@
         	AND pdSeq = #{pdSeq}
     </select>
     
+    <select id="item" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdName
+            ,pdPrice
+        FROM product
+        WHERE 1=1 
+        	AND pdSeq = #{pdSeq}
+    </select>
+    
     <insert id="insert">
     	INSERT INTO product (
     		pdName

@@ -13,6 +13,8 @@ public interface ProductDao {
 	
 	public ProductDto selectOne(ProductDto dto);
 
+	public ProductDto item(ProductDto dto);
+	
 	public int insert(ProductDto dto);
 	
 	public int update(ProductDto dto);

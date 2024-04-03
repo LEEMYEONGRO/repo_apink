@@ -30,6 +30,10 @@ public class ProductService {
 		return dao.selectOne(dto);
 	}
 	
+	public ProductDto item(ProductDto dto) {
+		return dao.item(dto);
+	}
+	
 	public int insert(ProductDto dto) {
 		return dao.insert(dto);
 	}
