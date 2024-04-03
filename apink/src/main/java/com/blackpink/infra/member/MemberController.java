@@ -63,13 +63,13 @@ public class MemberController {
 		
 		MemberDto dtoL = service.login(dto);
 		
-	if(dto.getEmail().equals(dtoL.getEmail())) {
-		if(matchesBcrypt(dto.getPassword(),dtoL.getPassword() , 10)) {
+	if(dto.getMbEmail().equals(dtoL.getMbEmail())) {
+		if(matchesBcrypt(dto.getMbPassword(),dtoL.getMbPassword() , 10)) {
 			returnMap.put("rt", "success");
-			
+
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessEmailXdm", dtoL.getEmail());
-			httpSession.setAttribute("sessNameXdm", dtoL.getName());
+			httpSession.setAttribute("sessEmailXdm", dtoL.getMbEmail());
+			httpSession.setAttribute("sessNameXdm", dtoL.getMbName());
 		}else {
 			returnMap.put("rt", "password");
 		}
@@ -95,9 +95,9 @@ public class MemberController {
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto) {
 		System.out.println("memberXdmInsert");
-		dto.setPassword(encodeBcrypt(dto.getPassword(), 10));
+		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));
 		
-		System.out.println("dto.getIfmmId()encoded : " + dto.getPassword());
+		System.out.println("dto.getIfmmId()encoded : " + dto.getMbPassword());
 		
 		service.insert(dto);
 		
@@ -181,9 +181,9 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
 //		String passwordCheck = dto.getPasswordCheck();
-		dto.setPassword(encodeBcrypt(dto.getPassword(),10));
+		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(),10));
 		
-		if(matchesBcrypt(dto.getPasswordCheck(), dto.getPassword(),10)) {
+		if(matchesBcrypt(dto.getPasswordCheck(), dto.getMbPassword(),10)) {
 			returnMap.put("rt", "success");
 		} else {
 			System.out.println("false");

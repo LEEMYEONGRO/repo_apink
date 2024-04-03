@@ -133,24 +133,24 @@
 												<tr th:if="${!#lists.isEmpty(list)}"
 													th:each="list : ${list}">
 													<td><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
-													<td th:text="${list.seq}"></td>
-													<td><a th:href="@{/memberXdmCorrection(seq=${list.seq},name=${list.name})}" th:text="${list.name}"></a></td>
-													<th th:text="${#dates.format(list.dateBirth, 'yyyy/MM/dd')}"></th>
+													<td th:text="${list.mbSeq}"></td>
+													<td><a th:href="@{/memberXdmCorrection(mbSeq=${list.mbSeq},name=${list.mbName})}" th:text="${list.mbName}"></a></td>
+													<th th:text="${#dates.format(list.mbDateBirth, 'yyyy/MM/dd')}"></th>
 													
-													<td th:if="${list.gender != null}" 
-														th:text="${@codeService.selectOneCachedCode(list.gender)}" 
+													<td th:if="${list.mbGender != null}" 
+														th:text="${@codeService.selectOneCachedCode(list.mbGender)}" 
 														class="ifmmGenderCd align-middle">
 													</td>
-													<td th:unless="${list.gender != null}" class="ifmmGenderCd align-middle"></td>
+													<td th:unless="${list.mbGender != null}" class="ifmmGenderCd align-middle"></td>
 													
 													
-													<td th:text="${list.email}"></td>
-													<td th:text="${list.password}"></td>
-													<td th:text="${list.phoneNumber}"></td>
-													<th th:text="${#dates.format(list.creationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-													<th th:text="${#dates.format(list.modificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-													<td th:if="${list.deleteNy eq 0}">N</td>
-													<td th:unless="${list.deleteNy eq 0}">Y</td>
+													<td th:text="${list.mbEmail}"></td>
+													<td th:text="${list.mbPassword}"></td>
+													<td th:text="${list.mbPhoneNumber}"></td>
+													<th th:text="${#dates.format(list.mbCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+													<th th:text="${#dates.format(list.mbModificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+													<td th:if="${list.mbDeleteNy eq 0}">N</td>
+													<td th:unless="${list.mbDeleteNy eq 0}">Y</td>
 												</tr>
 
 											</tbody>

@@ -8,7 +8,10 @@ public class BaseVo {
 	private int thisPage = 1;				// 현재 페이지
 	private int rowNumToShow = 5;			// 화면에 보여줄 데이터 줄 갯수
 	private int pageNumToShow = 5;			// 화면에 보여줄 페이징 번호 갯수
-
+//
+	private int rowNumToShowPd = 9;			// 화면에 보여줄 데이터 줄 갯수
+	private int pageNumToShowPd = 5;		// 화면에 보여줄 페이징 번호 갯수
+//
 	private int totalRows;					// 전체 데이터 갯수
 	private int totalPages;					// 전체 페이지 번호
 	private int startPage;					// 시작 페이지 번호
@@ -70,10 +73,6 @@ public class BaseVo {
 //		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 		
 	}
-	
-	
-	
-	
 	
 public int getThisPage() {
 		return thisPage;
@@ -163,5 +162,38 @@ public int getThisPage() {
 		this.startRnumForMysql = startRnumForMysql;
 	}
 
+
+
+
+
+	public int getRowNumToShowPd() {
+		return rowNumToShowPd;
+	}
+
+
+
+
+
+	public void setRowNumToShowPd(int rowNumToShowPd) {
+		this.rowNumToShowPd = rowNumToShowPd;
+	}
+
+
+
+
+
+	public int getPageNumToShowPd() {
+		return pageNumToShowPd;
+	}
+
+
+
+
+
+	public void setPageNumToShowPd(int pageNumToShowPd) {
+		this.pageNumToShowPd = pageNumToShowPd;
+	}
+
 	//	paging end	
+	
 }

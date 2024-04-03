@@ -5,6 +5,7 @@
 
 	<body>
 		<div class="page-wrapper">
+		<form name="formList" id="formList" method="post" autocomplete="off">
 			<!-- 네비게이션바 시작 -->
 			<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
 			<!-- 네이게이션바 종료 -->
@@ -29,12 +30,11 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<form class="row" method="post">
 												<div class="col-6">
-													<input type="text" class="form-control" name="seq" th:value=${oneList.seq}>
+													<input type="text" class="form-control" name="cdSeq" th:value=${oneList.cdSeq}>
 												</div>
 												<div class="col-6">
-													<input type="text" class="form-control" name="codeName" th:value=${oneList.codeName}>
+													<input type="text" class="form-control" name="cdName" th:value=${oneList.cdName}>
 												</div>
 												<div class="col-6 g-3">
 													<a th:href="@{/codeXdmList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
@@ -62,7 +62,6 @@
 															</div>
 														</div>
 													</div>
-											</form>
 										</div>
 									</div>
 										<!-- Form actions footer end -->
@@ -83,6 +82,7 @@
 					</div>
 					<!-- App footer end -->
 
+				</form>
 				</div>
 				<!-- Content wrapper scroll end -->
 

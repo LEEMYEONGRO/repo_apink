@@ -121,13 +121,13 @@
 													<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
 														<td><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
 														<td th:text="${list.groupseq}"></td>
-														<td th:text="${list.codeGroupName}"></td>
-											 			<td th:text="${list.seq}"></td>
-											 			<td> <a th:href="@{/codeXdmCorrection(seq=${list.seq},codeName=${list.codeName})}" th:text="${list.codeName}"></a></td>
-											 			<th th:text="${#dates.format(list.creationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-											 			<th th:text="${#dates.format(list.modificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-														<td th:if="${list.deleteNy eq 0}">N</td>
-														<td th:unless="${list.deleteNy eq 0}">Y</td> 			
+														<td th:text="${list.cgName}"></td>
+											 			<td th:text="${list.cdSeq}"></td>
+											 			<td> <a th:href="@{/codeXdmCorrection(cdSeq=${list.cdSeq},cdName=${list.cdName})}" th:text="${list.cdName}"></a></td>
+											 			<th th:text="${#dates.format(list.cdCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+											 			<th th:text="${#dates.format(list.cdModificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+														<td th:if="${list.cdDeleteNy eq 0}">N</td>
+														<td th:unless="${list.cdDeleteNy eq 0}">Y</td> 			
 											 		</tr>
 												</tbody>
 											</table>				

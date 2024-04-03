@@ -21,6 +21,12 @@ public class CodeGroupController {
 		return "/v1/infra/index/index";
 	}
 	
+	@RequestMapping(value = "/portfolioIndex")
+	public String portfolioIndex() {
+		
+		return "/v1/infra/portfolio/portfolioIndex";
+	}
+	
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
@@ -38,8 +44,6 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/codeGroupXdmAddition")
 	public String codeGroupXdmAddition(CodeGroupDto dto, Model model ) {
-		
-		
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		

@@ -1,0 +1,154 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blackpink.infra.user.product.ProductDao">
+
+	<resultMap id="resultMapObj" type="com.blackpink.infra.user.product.ProductDto"></resultMap>
+
+	 <sql id ="selectCommon">
+		FROM product
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND pdDeleteNy = #{shDelNy}</if>
+        
+			<choose>
+				<when test="shOptionDate == 1">AND pdCreationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND pdModificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+   
+			<choose>
+				<when test="shOption == 1">AND pdSeq = #{shValue}</when>
+				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	<!-- shopList -->
+	<sql id ="selectPd">
+		FROM product
+		WHERE 1=1
+			AND pdDeleteNy = 0
+			<!-- <choose>
+				<when test="shOption == 1">AND pdSeq = #{shValue}</when>
+				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose> -->
+	</sql>
+	<!-- shopListEnd -->
+	
+    <select id="selectList" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdCode
+            ,pdName
+            ,pdPrice
+            ,pdlikeNy
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+		   <include refid="selectCommon" />
+			ORDER BY pdSeq desc
+			limit #{rowNumToShow} offset #{startRnumForMysql}	
+    </select>
+
+<!-- shopList -->
+<select id="selectPdList" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdCode
+            ,pdName
+            ,pdPrice
+            ,pdlikeNy
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+		   	<include refid="selectPd" />
+			ORDER BY pdSeq desc
+			limit #{rowNumToShowPd} offset #{startRnumForMysql}	
+    </select>
+    
+    <select id="selectPdOneCount">
+		SELECT COUNT(*)
+			<include refid="selectPd" />
+	</select>
+	<!-- shopListEnd -->
+	
+	<!-- myPage -->
+	<select id="selectMyPage" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdCode
+            ,pdName
+            ,pdPrice
+            ,pdlikeNy
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+		   	<include refid="selectCommon" />
+			ORDER BY pdSeq desc
+			limit #{rowNumToShow} offset #{startRnumForMysql}	
+    </select>
+	<!-- myPageEnd -->
+    
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdName
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+        FROM product
+        WHERE 1=1 
+        	AND pdSeq = #{pdSeq}
+    </select>
+    
+    <insert id="insert">
+    	INSERT INTO product (
+    		pdName
+    		,pdDeleteNy
+    	)VALUES(
+    		#{pdName}
+    		,#{pdDeleteNy}
+    	)
+    </insert>
+    
+    <update id="update">
+    	UPDATE product 
+    	SET
+    		pdName = #{pdName}
+    	WHERE 1=1
+    		AND pdSeq = #{pdSeq}
+    </update>
+    
+    <update id="updateDeleteNy">
+    	UPDATE product 
+    	SET
+    		pdDeleteNy = 1
+    	WHERE 1=1
+    		AND pdSeq = #{pdSeq}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM product
+    	WHERE 1=1
+    		AND pdSeq = #{pdSeq}
+    </delete>
+    
+    <select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			pdSeq
+			,pdName
+		FROM product
+		WHERE 1=1
+			AND pdDeleteNy = 0
+	</select>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			pdSeq
+			,pdName
+		FROM product
+		WHERE 1=1
+			AND pdDeleteNy = 0
+    </select>
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+</mapper>

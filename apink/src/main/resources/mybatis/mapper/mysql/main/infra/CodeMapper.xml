@@ -8,105 +8,105 @@
 	<sql id ="selectCommon">
 		FROM codeGroup a
 		LEFT JOIN code b 
-	         on b.codeGroup_seq = a.seq
+	         on b.cgSeq = a.cgSeq
 	         WHERE 1=1
-		        <if test="shDelNy != null and !shDelNy.equals('')">AND b.deleteNy = #{shDelNy}</if>
+		        <if test="shDelNy != null and !shDelNy.equals('')">AND b.cdDeleteNy = #{shDelNy}</if>
 		       
 				<choose>
-					<when test="shOptionDate == 1">AND b.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND b.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 1">AND b.cdCreationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND b.cdModificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
 				 
 		        <choose>
-		            <when test="shOption == 1">AND b.seq = #{shValue}</when>
-		            <when test="shOption == 2">AND b.codeName LIKE CONCAT('%',#{shValue},'%')</when>
+		            <when test="shOption == 1">AND b.cdSeq = #{shValue}</when>
+		            <when test="shOption == 2">AND b.cdName LIKE CONCAT('%',#{shValue},'%')</when>
 		        </choose>
 	</sql>
 	
     <select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.seq as groupseq
-      		,a.codeGroupName
-            ,b.seq
-            ,b.codeName
-            ,b.deleteNy
-            ,b.creationDate
-            ,b.modificationDate
-            ,b.codeGroup_seq
+			a.cgSeq as groupseq
+      		,a.cgName
+            ,b.cdSeq
+            ,b.cdName
+            ,b.cdDeleteNy
+            ,b.cdCreationDate
+            ,b.cdModificationDate
+            ,b.cgSeq
          <include refid="selectCommon" />
-			ORDER BY b.seq desc
+			ORDER BY b.cdSeq desc
 			limit #{rowNumToShow} offset #{startRnumForMysql}
          
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
       	SELECT
-      		a.seq as groupseq
-      		,a.codeGroupName
-            ,b.seq
-            ,b.codeName
-            ,b.deleteNy
-            ,b.creationDate
-            ,b.modificationDate
-            ,b.codeGroup_seq
+      		a.cgSeq as groupseq
+      		,a.cgName
+            ,b.cdSeq
+            ,b.cdName
+            ,b.cdDeleteNy
+            ,b.cdCreationDate
+            ,b.cdModificationDate
+            ,b.cgSeq
          FROM code b ,codeGroup a
         WHERE 1=1
-        	and a.seq = b.codeGroup_seq
-        	and b.seq = #{seq}
+        	and a.cgSeq = b.cgSeq
+        	and b.cdSeq = #{cdSeq}
     </select>
 	  
 	<insert id="insert">
 	 INSERT INTO code (
-	 	codeName
-	 	,deleteNy
-	 	,codeGroup_seq
+	 	cdName
+	 	,cdDeleteNy
+	 	,cgSeq
 	 )VALUES(
-	 	#{codeName}
-	 	,#{deleteNy}
-	 	,#{codeGroup_seq}
+	 	#{cdName}
+	 	,#{cdDeleteNy}
+	 	,#{cgSeq}
 	 )
 	</insert>
 	
 	<update id="update">
 		UPDATE code
 		SET
-			codeName = #{codeName}
+			cdName = #{cdName}
 		WHERE 1=1
-			AND seq = #{seq}
+			AND cdSeq = #{cdSeq}
 	</update>
 	
 	<update id="deleteNyUpdate">
 		UPDATE code
 		SET
-			deleteNy = 1
+			cdDeleteNy = 1
 		WHERE 1=1
-			AND seq = #{seq}
+			AND cdSeq = #{cdSeq}
 	</update>
 	
 	<delete id="codeDelete">
 		DELETE FROM code
 		WHERE 1=1
-			AND seq = #{seq}
+			AND cdSeq = #{cdSeq}
 	</delete>
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
-			b.seq
-			,b.codeName
+			b.cdSeq
+			,b.cdName
 		FROM code b
 		WHERE 1=1
-			AND deleteNy = 0
+			AND cdDeleteNy = 0
 	</select>
 	
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
-			b.seq
-			,b.codeName
-			,b.codeGroup_seq
+			b.cdSeq
+			,b.cdName
+			,b.cgSeq
 		FROM
 			code b
 		WHERE 1=1
-			AND deleteNy = 0
+			AND cdDeleteNy = 0
     </select>
     
 	<select id="selectOneCount">

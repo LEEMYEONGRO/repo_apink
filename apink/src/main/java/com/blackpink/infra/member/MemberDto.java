@@ -6,16 +6,16 @@ import java.util.List;
 
 public class MemberDto {
 
-	private String seq;
-	private String name;
-	private Date dateBirth;
-	private Integer gender;
-	private String email;
-	private String password;
-	private String phoneNumber;
-	private Integer deleteNy;
-	private Date creationDate;
-	private Date modificationDate;
+	private String mbSeq;
+	private String mbName;
+	private Date mbDateBirth;
+	private Integer mbGender;
+	private String mbEmail;
+	private String mbPassword;
+	private String mbPhoneNumber;
+	private Integer mbDeleteNy;
+	private Date mbCreationDate;
+	private Date mbModificationDate;
 	
 	private Integer xseqCount;
 
@@ -24,84 +24,86 @@ public class MemberDto {
 //	for cache
 	public static List<MemberDto> cachedCodeArrayList = new ArrayList<MemberDto>();	
 	
-	public String getSeq() {
-		return seq;
+	
+
+	public String getMbSeq() {
+		return mbSeq;
 	}
 
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setMbSeq(String mbSeq) {
+		this.mbSeq = mbSeq;
 	}
 
-	public String getName() {
-		return name;
+	public String getMbName() {
+		return mbName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMbName(String mbName) {
+		this.mbName = mbName;
 	}
 
-	public Date getDateBirth() {
-		return dateBirth;
+	public Date getMbDateBirth() {
+		return mbDateBirth;
 	}
 
-	public void setDateBirth(Date dateBirth) {
-		this.dateBirth = dateBirth;
+	public void setMbDateBirth(Date mbDateBirth) {
+		this.mbDateBirth = mbDateBirth;
 	}
 
-	public Integer getGender() {
-		return gender;
+	public Integer getMbGender() {
+		return mbGender;
 	}
 
-	public void setGender(Integer gender) {
-		this.gender = gender;
+	public void setMbGender(Integer mbGender) {
+		this.mbGender = mbGender;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMbEmail() {
+		return mbEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMbEmail(String mbEmail) {
+		this.mbEmail = mbEmail;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMbPassword() {
+		return mbPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMbPassword(String mbPassword) {
+		this.mbPassword = mbPassword;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getMbPhoneNumber() {
+		return mbPhoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setMbPhoneNumber(String mbPhoneNumber) {
+		this.mbPhoneNumber = mbPhoneNumber;
 	}
 
-	public Integer getDeleteNy() {
-		return deleteNy;
+	public Integer getMbDeleteNy() {
+		return mbDeleteNy;
 	}
 
-	public void setDeleteNy(Integer deleteNy) {
-		this.deleteNy = deleteNy;
+	public void setMbDeleteNy(Integer mbDeleteNy) {
+		this.mbDeleteNy = mbDeleteNy;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getMbCreationDate() {
+		return mbCreationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setMbCreationDate(Date mbCreationDate) {
+		this.mbCreationDate = mbCreationDate;
 	}
 
-	public Date getModificationDate() {
-		return modificationDate;
+	public Date getMbModificationDate() {
+		return mbModificationDate;
 	}
 
-	public void setModificationDate(Date modificationDate) {
-		this.modificationDate = modificationDate;
+	public void setMbModificationDate(Date mbModificationDate) {
+		this.mbModificationDate = mbModificationDate;
 	}
 
 	public Integer getXseqCount() {
@@ -122,10 +124,10 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [seq=" + seq + ", name=" + name + ", dateBirth=" + dateBirth + ", gender=" + gender
-				+ ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber + ", deleteNy="
-				+ deleteNy + ", creationDate=" + creationDate + ", modificationDate=" + modificationDate
-				+ ", xseqCount=" + xseqCount + ", passwordCheck=" + passwordCheck + "]";
+		return "MemberDto [mbSeq=" + mbSeq + ", mbName=" + mbName + ", mbDateBirth=" + mbDateBirth + ", mbGender="
+				+ mbGender + ", mbEmail=" + mbEmail + ", mbPassword=" + mbPassword + ", mbPhoneNumber=" + mbPhoneNumber
+				+ ", mbDeleteNy=" + mbDeleteNy + ", mbCreationDate=" + mbCreationDate + ", mbModificationDate="
+				+ mbModificationDate + ", xseqCount=" + xseqCount + ", passwordCheck=" + passwordCheck + "]";
 	}
 
 	

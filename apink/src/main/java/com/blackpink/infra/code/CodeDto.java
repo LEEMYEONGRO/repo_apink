@@ -7,131 +7,90 @@ import java.util.List;
 public class CodeDto {
 	
 	private String groupseq;
-	private String codeGroupName;
-	private String seq;
-	private String codeName;
-	private Integer deleteNy;
-	private Date creationDate;
-	private Date modificationDate;
-	private String codeGroup_seq;
+	private String cgName;
+	private String cdSeq;
+	private String cdName;
+	private Integer cdDeleteNy;
+	private Date cdCreationDate;
+	private Date cdModificationDate;
+	private String cgSeq;
 	
 //	for cache
-	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();	
-	
-	
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+
 	public String getGroupseq() {
 		return groupseq;
 	}
-
-
 
 	public void setGroupseq(String groupseq) {
 		this.groupseq = groupseq;
 	}
 
-
-
-	public String getCodeGroupName() {
-		return codeGroupName;
+	public String getCgName() {
+		return cgName;
 	}
 
-
-
-	public void setCodeGroupName(String codeGroupName) {
-		this.codeGroupName = codeGroupName;
+	public void setCgName(String cgName) {
+		this.cgName = cgName;
 	}
 
-
-
-	public String getSeq() {
-		return seq;
+	public String getCdSeq() {
+		return cdSeq;
 	}
 
-
-
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
 	}
 
-
-
-	public String getCodeName() {
-		return codeName;
+	public String getCdName() {
+		return cdName;
 	}
 
-
-
-	public void setCodeName(String codeName) {
-		this.codeName = codeName;
+	public void setCdName(String cdName) {
+		this.cdName = cdName;
 	}
 
-
-
-	public Integer getDeleteNy() {
-		return deleteNy;
+	public Integer getCdDeleteNy() {
+		return cdDeleteNy;
 	}
 
-
-
-	public void setDeleteNy(Integer deleteNy) {
-		this.deleteNy = deleteNy;
+	public void setCdDeleteNy(Integer cdDeleteNy) {
+		this.cdDeleteNy = cdDeleteNy;
 	}
 
-
-
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getCdCreationDate() {
+		return cdCreationDate;
 	}
 
-
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setCdCreationDate(Date cdCreationDate) {
+		this.cdCreationDate = cdCreationDate;
 	}
 
-
-
-	public Date getModificationDate() {
-		return modificationDate;
+	public Date getCdModificationDate() {
+		return cdModificationDate;
 	}
 
-
-
-	public void setModificationDate(Date modificationDate) {
-		this.modificationDate = modificationDate;
+	public void setCdModificationDate(Date cdModificationDate) {
+		this.cdModificationDate = cdModificationDate;
 	}
 
-
-
-	public String getCodeGroup_seq() {
-		return codeGroup_seq;
+	public String getCgSeq() {
+		return cgSeq;
 	}
 
-
-
-	public void setCodeGroup_seq(String codeGroup_seq) {
-		this.codeGroup_seq = codeGroup_seq;
+	public void setCgSeq(String cgSeq) {
+		this.cgSeq = cgSeq;
 	}
-
-
-
-	public static List<CodeDto> getCachedCodeArrayList() {
-		return cachedCodeArrayList;
-	}
-
-
-	public static void setCachedCodeArrayList(List<CodeDto> cachedCodeArrayList) {
-		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
-	}
-
 
 	@Override
 	public String toString() {
-		return "CodeDto [groupseq=" + groupseq + ", codeGroupName=" + codeGroupName + ", seq=" + seq + ", codeName="
-				+ codeName + ", deleteNy=" + deleteNy + ", creationDate=" + creationDate + ", modificationDate="
-				+ modificationDate + ", codeGroup_seq=" + codeGroup_seq + "]";
-	}
-
+		return "CodeDto [groupseq=" + groupseq + ", cgName=" + cgName + ", cdSeq=" + cdSeq + ", cdName=" + cdName
+				+ ", cdDeleteNy=" + cdDeleteNy + ", cdCreationDate=" + cdCreationDate + ", cdModificationDate="
+				+ cdModificationDate + ", cgSeq=" + cgSeq + "]";
+	}	
+	
+	
+	
 
 
 	

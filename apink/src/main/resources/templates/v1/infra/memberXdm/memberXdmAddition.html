@@ -32,39 +32,41 @@
 									<div class="card-body">
 										<form class="row" method="post" name="formName">
 											<div class="col-3 mb-3">
-												<input type="text" class="form-control" name="name" id="name" placeholder="회원이름을 입력하시오.">
-												<div class="invalid-feedback" name="name" id="nameFeedback"></div>
+												<input type="text" class="form-control" name="mbName" id="mbName" placeholder="회원이름을 입력하시오.">
+												<div class="invalid-feedback" name="mbName" id="nameFeedback"></div>
 											</div>
 											<div class="col-3">
 												<div class="mb-3">
-													<input type="text" id="dateBirth" name="dateBirth" placeholder="생년월일" class="form-control" autocomplete="off" readonly>
-												</div>
+												<input type="text" id="mbDateBirth" name="mbDateBirth"
+													placeholder="생년월일" class="form-control" autocomplete="off"
+													readonly>
+											</div>
 											</div>
 											<div class="col-3">
-												<select class="form-select" name="gender" id="gender">
+												<select class="form-select" name="mbGender" id="mbGender">
 													<option value="4">남자</option>
 													<option value="5">여자</option>
 													<option value="6">기타</option>
 												</select>
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control" name="email" id="email" placeholder="이메일을 입력하시오.">
-												<div class="invalid-feedback" name="email" id="emailFeedback"></div>
+												<input type="text" class="form-control" name="mbEmail" id="mbEmail" placeholder="이메일을 입력하시오.">
+												<div class="invalid-feedback" name="mbEmail" id="emailFeedback"></div>
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control" name="password" id="password" placeholder="비밀번호를 입력하시오.">
-												<div class="invalid-feedback" name="password" id="passwordFeedback"></div>
+												<input type="text" class="form-control" name="mbPassword" id="mbPassword" placeholder="비밀번호를 입력하시오.">
+												<div class="invalid-feedback" name="mbPassword" id="passwordFeedback"></div>
 											</div>
 											<div class="col-3">
 												<input type="text" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="비밀번호와 동일하게 입력하시오.">
 												<div class="invalid-feedback" name="passwordCheck" id="passwordCheckFeedback"></div>
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="전화번호를 입력하시오.">
-												<div class="invalid-feedback" name="phoneNumber" id="phoneNumberFeedback"></div>
+												<input type="text" class="form-control" name="mbPhoneNumber" id="mbPhoneNumber" placeholder="전화번호를 입력하시오.">
+												<div class="invalid-feedback" name="mbPhoneNumber" id="phoneNumberFeedback"></div>
 											</div>
 											<div class="col-3">
-												<select class="form-select" name="deleteNy" id="deleteNy">
+												<select class="form-select" name="mbDeleteNy" id="mbDeleteNy">
 													<option value="0">N</option>
 													<option value="1">Y</option>
 												</select>
@@ -106,7 +108,7 @@
 		<script src="xdmin\v1\js\validationXdm.js"></script>
 		<script>
 				window.addEventListener('load', function() {
-					$("#dateBirth").datetimepicker({
+					$("#mbDateBirth").datetimepicker({
 						timepicker : false,
 			 			format: 'Y/m/d'
 					});
@@ -142,10 +144,10 @@
 		}
 		
 		 function validationUpdt() {
-				if(!checkOnlyKoreanEnglish('name', 2, 0, "회원이름은 한글, 영문대소문자만 입력 가능합니다.")) return false;
-				if(!checkEmail('email', 2, 0, "이메일은 영대소문자, 숫자만 입력 가능합니다.")) return false;
+				if(!checkOnlyKoreanEnglish('mbName', 2, 0, "회원이름은 한글, 영문대소문자만 입력 가능합니다.")) return false;
+				if(!checkEmail('mbEmail', 2, 0, "이메일은 영대소문자, 숫자만 입력 가능합니다.")) return false;
 //				if(!checkPassword('password', 2, 0, "비밀번호는 특수문자(!,@,#,$,%,^,&,*) 영대소문자, 숫자가 포함되어야 입력이 가능합니다.")) return false;
-				if(!checkOnlyKoreanNumber('phoneNumber', 2, 0, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+				if(!checkOnlyKoreanNumber('mbPhoneNumber', 2, 0, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 				/* if(!checkOnlyEnglishNumber('ifcdReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 				if(!checkOnlyEnglishNumber('ifcdReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;		
 				if(!checkOnlyNumber('ifcdReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
@@ -163,7 +165,7 @@
 				,cache: false
 				,type: "post"
 				,url: "/signinXdmProc"
-				,data : {"password" : $("#password").val(), "passwordCheck" : $("#passwordCheck").val()}
+				,data : {"mbPassword" : $("#mbPassword").val(), "passwordCheck" : $("#passwordCheck").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 						/* alert("비밀번호가 일치"); */

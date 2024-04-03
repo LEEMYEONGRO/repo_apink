@@ -6,76 +6,60 @@ import java.util.List;
 
 public class CodeGroupDto {
 
-	private String seq;
-	private String codeGroupName;
-	private Integer deleteNy;
-	private Date creationDate;
-	private Date modificationDate;
-	
-	private Integer xseqCount;
-
+	private String cgSeq;
+	private String cgName;
+	private Integer cgDeleteNy;
+	private Date cgCreationDate;
+	private Date cgModificationDate;
 	
 //	for cache
 	public static List<CodeGroupDto> cachedCodeArrayList = new ArrayList<CodeGroupDto>();
-	
-	
-	public String getSeq() {
-		return seq;
+
+	public String getCgSeq() {
+		return cgSeq;
 	}
 
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setCgSeq(String cgSeq) {
+		this.cgSeq = cgSeq;
 	}
 
-	public String getCodeGroupName() {
-		return codeGroupName;
+	public String getCgName() {
+		return cgName;
 	}
 
-	public void setCodeGroupName(String codeGroupName) {
-		this.codeGroupName = codeGroupName;
+	public void setCgName(String cgName) {
+		this.cgName = cgName;
 	}
 
-	public Integer getDeleteNy() {
-		return deleteNy;
+	public Integer getCgDeleteNy() {
+		return cgDeleteNy;
 	}
 
-	public void setDeleteNy(Integer deleteNy) {
-		this.deleteNy = deleteNy;
+	public void setCgDeleteNy(Integer cgDeleteNy) {
+		this.cgDeleteNy = cgDeleteNy;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getCgCreationDate() {
+		return cgCreationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setCgCreationDate(Date cgCreationDate) {
+		this.cgCreationDate = cgCreationDate;
 	}
 
-	public Date getModificationDate() {
-		return modificationDate;
+	public Date getCgModificationDate() {
+		return cgModificationDate;
 	}
 
-	public void setModificationDate(Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
-
-	public Integer getXseqCount() {
-		return xseqCount;
-	}
-
-	public void setXseqCount(Integer xseqCount) {
-		this.xseqCount = xseqCount;
+	public void setCgModificationDate(Date cgModificationDate) {
+		this.cgModificationDate = cgModificationDate;
 	}
 
 	@Override
 	public String toString() {
-		return "CodeGroupDto [seq=" + seq + ", codeGroupName=" + codeGroupName + ", deleteNy=" + deleteNy
-				+ ", creationDate=" + creationDate + ", modificationDate=" + modificationDate + ", xseqCount="
-				+ xseqCount + "]";
+		return "CodeGroupDto [cgSeq=" + cgSeq + ", cgName=" + cgName + ", cgDeleteNy=" + cgDeleteNy
+				+ ", cgCreationDate=" + cgCreationDate + ", cgModificationDate=" + cgModificationDate + "]";
 	}
-
-	
-	
 	
 	
 }

@@ -5,6 +5,7 @@
 
 	<body>
 		<div class="page-wrapper">
+		<form name="formList" id="formList" method="post" action="codeXdmInsert" autocomplete="off">
 			<!-- 네비게이션바 시작 -->
 			<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
 			<!-- 네이게이션바 종료 -->
@@ -27,30 +28,29 @@
 										<div class="card-title">코드관리</div>
 									</div>
 									<div class="card-body">
-											<form class="row" method="post" action="codeXdmInsert">
-												
-												<div class="col-4 mb-3">
-													<select id="codeGroup_seq" name="codeGroup_seq" class="form-select form-select-sm">
-															<option value="">코드그룹이름</option>
-															<option th:each="listCodeGroup : ${@codeGroupService.selectListWithoutPaging()}" th:value="${listCodeGroup.seq}" th:text="${listCodeGroup.codeGroupName}" ></option>
-													</select>
+										<div class="row">
+											<div class="col-4">
+												<select id="cgSeq" name="cgSeq" class="form-select form-select-sm">
+														<option value="">코드그룹이름</option>
+														<option th:each="listCodeGroup : ${@codeGroupService.selectListWithoutPaging()}" th:value="${listCodeGroup.cgSeq}" th:text="${listCodeGroup.cgName}" ></option>
+												</select>
+											</div>
+											<div class="col-4">
+													<input type="text" class="form-control" name="cdName" placeholder="코드이름을 입력하시오.">
+											</div>
+											<div class="col-4">
+												<select class="form-select" name="cdDeleteNy">
+													<option value="0">N</option>
+													<option value="1">Y</option>
+												</select>
+											</div>
+											<div class="col-6 g-3">
+												<a th:href="@{/codeXdmList}"><button type="button" class="btn btn-success" id="back" >돌아가기</button></a>
+											</div>
+												<div class="col-6 g-3 d-md-flex justify-content-md-end">
+													<button class="btn btn-info" type="submit">추가</button>
 												</div>
-												<div class="col-4">
-														<input type="text" class="form-control" name="codeName" placeholder="코드이름을 입력하시오.">
-												</div>
-												<div class="col-4">
-													<select class="form-select" name="deleteNy">
-														<option value="0">N</option>
-														<option value="1">Y</option>
-													</select>
-												</div>
-												<div class="col-6 g-3">
-													<a th:href="@{/codeXdmList}"><button type="button" class="btn btn-success" id="back" >돌아가기</button></a>
-												</div>
-													<div class="col-6 g-3 d-md-flex justify-content-md-end">
-														<button class="btn btn-info" type="submit">추가</button>
-													</div>
-												</form>
+											</div>
 										</div>
 										<!-- Form actions footer end -->
 									</div>
@@ -70,6 +70,7 @@
 					</div>
 					<!-- App footer end -->
 
+								</form>
 				</div>
 				<!-- Content wrapper scroll end -->
 
@@ -124,7 +125,7 @@
 		}
 		
 		function validation() {
-			if(!nullToEmpty(document.getElementById("codeName").value)){
+			if(!nullToEmpty(document.getElementById("cdName").value)){
 				
 				return false;
 			}

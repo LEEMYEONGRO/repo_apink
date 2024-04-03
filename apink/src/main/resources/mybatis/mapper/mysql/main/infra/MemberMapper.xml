@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blackpink.infra.member.MemberDao">
+
+	<resultMap id="resultMapObj" type="com.blackpink.infra.member.MemberDto"></resultMap>
+	
+	<sql id ="selectCommon">
+	     FROM member a
+	        WHERE 1=1
+	        <if test="shDelNy != null and !shDelNy.equals('')">AND mbDeleteNy = #{shDelNy}</if>
+	        <if test="shGender != null and !shGender.equals('')">AND mbGender = #{shGender}</if>
+			<choose>
+				<when test="shOptionDate == 1">AND mbCreationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND mbModificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			
+	        <choose>
+	            <when test="shOption == 1">AND mbSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND mbName LIKE CONCAT('%',#{shValue},'%')</when>
+	        </choose>
+			
+	</sql>
+	
+    <select id="selectList" resultMap="resultMapObj">
+        SELECT
+            mbSeq
+            ,mbName
+            ,mbDateBirth
+            ,mbGender
+            ,mbEmail
+            ,mbPassword
+            ,mbPhoneNumber
+            ,mbDeleteNy
+            ,mbCreationDate
+            ,mbModificationDate
+            <include refid="selectCommon" />
+			ORDER BY mbSeq desc
+			limit #{rowNumToShow} offset #{startRnumForMysql} 
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            mbSeq
+            ,mbName
+            ,mbDeleteNy
+            ,mbCreationDate
+            ,mbModificationDate
+        FROM member
+        WHERE 1=1 
+        	AND mbSeq = #{mbSeq}
+    </select>
+    
+    <select id="login" resultMap="resultMapObj">
+    	SELECT
+    		mbEmail
+    		,mbPassword
+    		,mbName
+    	FROM member
+        WHERE 1=1 
+        	AND mbEmail = #{mbEmail}
+    </select>
+    
+	<insert id="insert">
+    	INSERT INTO member (
+    		mbName
+    		,mbDateBirth
+            ,mbGender
+            ,mbEmail
+            ,mbPassword
+            ,mbPhoneNumber
+    		,mbDeleteNy
+    	)VALUES(
+    		#{mbName}
+    		,#{mbDateBirth}
+            ,#{mbGender}
+            ,#{mbEmail}
+            ,#{mbPassword}
+            ,#{mbPhoneNumber}
+    		,#{mbDeleteNy}
+    	)
+    </insert>
+    
+    <update id="update">
+    	UPDATE member 
+    	SET
+    		mbName = #{mbName}
+    		,mbDateBirth = #{mbDateBirth}
+            ,mbGender = #{mbGender}
+            ,mbEmail = #{mbEmail}
+            ,mbPassword = #{mbPassword}
+            ,mbPhoneNumber = #{mbPhoneNumber}
+    	WHERE 1=1
+    		AND mbSeq = #{mbSeq}
+    </update>
+    
+    <update id="updateDeleteNy">
+    	UPDATE member 
+    	SET
+    		mbDeleteNy = 1
+    	WHERE 1=1
+    		AND mbSeq = #{mbSeq}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM member
+    	WHERE 1=1
+    		AND mbSeq = #{mbSeq}
+    </delete>
+    
+    <select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			mbSeq
+			,mbName
+		FROM member
+		WHERE 1=1
+			AND mbDeleteNy = 0
+		
+	</select>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			mbSeq
+			,mbName
+		FROM
+			member
+		WHERE 1=1
+			AND mbDeleteNy = 0
+    </select>
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+    
+	  
+</mapper>

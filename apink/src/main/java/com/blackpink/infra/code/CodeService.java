@@ -61,8 +61,8 @@ public class CodeService {
     public static String selectOneCachedCode(int code) throws Exception {
 		String rt = "";
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-			if (codeRow.getSeq().equals(Integer.toString(code))) {
-				rt = codeRow.getCodeName();
+			if (codeRow.getCdSeq().equals(Integer.toString(code))) {
+				rt = codeRow.getCdName();
 			} else {
 				// by pass
 			}
@@ -73,7 +73,7 @@ public class CodeService {
     public static List<CodeDto> selectListCachedCode(String seq) throws Exception {
 		List<CodeDto> rt = new ArrayList<CodeDto>();
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-			if (codeRow.getSeq().equals(seq)) {
+			if (codeRow.getCdSeq().equals(seq)) {
 				rt.add(codeRow);
 			} else {
 				// by pass

@@ -6,96 +6,95 @@
 	<resultMap id="resultMapObj" type="com.blackpink.infra.codegroup.CodeGroupDto"></resultMap>
 
 	 <sql id ="selectCommon">
-		FROM codeGroup a
+		FROM codeGroup
 		WHERE 1=1
-			<if test="shDelNy != null and !shDelNy.equals('')">AND deleteNy = #{shDelNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND cgDeleteNy = #{shDelNy}</if>
         
 			<choose>
-				<when test="shOptionDate == 1">AND a.creationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 1">AND cgCreationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND cgModificationDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			</choose>
    
 			<choose>
-				<when test="shOption == 1">AND a.seq = #{shValue}</when>
-				<when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 1">AND cgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND cgName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
 			
 	</sql>
 	
     <select id="selectList" resultMap="resultMapObj">
         SELECT
-            a.seq
-            ,a.codeGroupName
-            ,(select count(aa.seq) from code aa where 1=1 and aa.codeGroup_seq = a.seq) as xseqCount
-            ,a.deleteNy
-            ,a.creationDate
-            ,a.modificationDate
+            cgSeq
+            ,cgName
+            ,cgDeleteNy
+            ,cgCreationDate
+            ,cgModificationDate
 		   <include refid="selectCommon" />
-			ORDER BY a.seq desc
+			ORDER BY cgSeq desc
 			limit #{rowNumToShow} offset #{startRnumForMysql}	
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
-            a.seq
-            ,a.codeGroupName
-            ,a.deleteNy
-            ,a.creationDate
-            ,a.modificationDate
-        FROM codeGroup a
+            cgSeq
+            ,cgName
+            ,cgDeleteNy
+            ,cgCreationDate
+            ,cgModificationDate
+        FROM codeGroup
         WHERE 1=1 
-        	AND a.seq = #{seq}
+        	AND cgSeq = #{cgSeq}
     </select>
     
     <insert id="insert">
     	INSERT INTO codeGroup (
-    		codeGroupName
-    		,deleteNy
+    		cgName
+    		,cgDeleteNy
     	)VALUES(
-    		#{codeGroupName}
-    		,#{deleteNy}
+    		#{cgName}
+    		,#{cgDeleteNy}
     	)
     </insert>
     
     <update id="update">
     	UPDATE codeGroup 
     	SET
-    		codeGroupName = #{codeGroupName}
+    		cgName = #{cgName}
     	WHERE 1=1
-    		AND seq = #{seq}
+    		AND cgSeq = #{cgSeq}
     </update>
     
     <update id="updateDeleteNy">
     	UPDATE codeGroup 
     	SET
-    		deleteNy = 1
+    		cgDeleteNy = 1
     	WHERE 1=1
-    		AND seq = #{seq}
+    		AND cgSeq = #{cgSeq}
     </update>
     
     <delete id="delete">
     	DELETE FROM codeGroup
     	WHERE 1=1
-    		AND seq = #{seq}
+    		AND cgSeq = #{cgSeq}
     </delete>
     
     <select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
-			a.seq
-			,a.codeGroupName
-		FROM codeGroup a
+			cgSeq
+			,cgName
+		FROM codeGroup
 		WHERE 1=1
-			AND deleteNy = 0
+			AND cgDeleteNy = 0
 		
 	</select>
 	
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
-			a.seq
-			,a.codeGroupName
-		FROM codeGroup a
+			cgSeq
+			,cgName
+		FROM codeGroup
 		WHERE 1=1
-			AND deleteNy = 0
+			AND cgDeleteNy = 0
     </select>
 	
 	<select id="selectOneCount">

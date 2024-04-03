@@ -60,8 +60,8 @@ public class CodeGroupService {
     public static String selectOneCachedCode(int codeGroup) throws Exception {
 		String rt = "";
 		for(CodeGroupDto codeGroupRow : CodeGroupDto.cachedCodeArrayList) {
-			if (codeGroupRow.getSeq().equals(Integer.toString(codeGroup))) {
-				rt = codeGroupRow.getCodeGroupName();
+			if (codeGroupRow.getCgSeq().equals(Integer.toString(codeGroup))) {
+				rt = codeGroupRow.getCgName();
 			} else {
 				// by pass
 			}
@@ -72,7 +72,7 @@ public class CodeGroupService {
     public static List<CodeGroupDto> selectListCachedCode(String seq) throws Exception {
 		List<CodeGroupDto> rt = new ArrayList<CodeGroupDto>();
 		for(CodeGroupDto codeGroupRow : CodeGroupDto.cachedCodeArrayList) {
-			if (codeGroupRow.getSeq().equals(seq)) {
+			if (codeGroupRow.getCgSeq().equals(seq)) {
 				rt.add(codeGroupRow);
 			} else {
 				// by pass

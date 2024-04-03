@@ -64,8 +64,8 @@ public class MemberService {
     public static String selectOneCachedCode(int member) throws Exception {
 		String rt = "";
 		for(MemberDto memberRow : MemberDto.cachedCodeArrayList) {
-			if (memberRow.getSeq().equals(Integer.toString(member))) {
-				rt = memberRow.getName();
+			if (memberRow.getMbSeq().equals(Integer.toString(member))) {
+				rt = memberRow.getMbName();
 			} else {
 				// by pass
 			}
@@ -73,10 +73,10 @@ public class MemberService {
 		return rt;
 	}
     
-    public static List<MemberDto> selectListCachedCode(String seq) throws Exception {
+    public static List<MemberDto> selectListCachedCode(String MbSeq) throws Exception {
 		List<MemberDto> rt = new ArrayList<MemberDto>();
 		for(MemberDto memberRow : MemberDto.cachedCodeArrayList) {
-			if (memberRow.getSeq().equals(seq)) {
+			if (memberRow.getMbSeq().equals(MbSeq)) {
 				rt.add(memberRow);
 			} else {
 				// by pass
