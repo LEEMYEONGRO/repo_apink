@@ -69,6 +69,7 @@ public class MemberController {
 
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 			httpSession.setAttribute("sessEmailXdm", dtoL.getMbEmail());
+			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());
 			httpSession.setAttribute("sessNameXdm", dtoL.getMbName());
 		}else {
 			returnMap.put("rt", "password");
@@ -76,9 +77,9 @@ public class MemberController {
 	}else {
 		returnMap.put("rt", "email");
 	}
-	
 	return returnMap;
 }
+	
 	@ResponseBody
 	@RequestMapping(value = "/signoutinxdm")
 	public Map<String, Object> signoutinxdm(HttpSession httpSession) {

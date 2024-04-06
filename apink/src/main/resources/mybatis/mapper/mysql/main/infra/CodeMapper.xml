@@ -23,48 +23,52 @@
 		        </choose>
 	</sql>
 	
-    <select id="selectList" resultMap="resultMapObj">
+	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.cgSeq as groupseq
-      		,a.cgName
-            ,b.cdSeq
-            ,b.cdName
-            ,b.cdDeleteNy
-            ,b.cdCreationDate
-            ,b.cdModificationDate
-            ,b.cgSeq
-         <include refid="selectCommon" />
-			ORDER BY b.cdSeq desc
-			limit #{rowNumToShow} offset #{startRnumForMysql}
-         
-    </select>
-    
-    <select id="selectOne" resultMap="resultMapObj">
-      	SELECT
-      		a.cgSeq as groupseq
-      		,a.cgName
-            ,b.cdSeq
-            ,b.cdName
-            ,b.cdDeleteNy
-            ,b.cdCreationDate
-            ,b.cdModificationDate
-            ,b.cgSeq
-         FROM code b ,codeGroup a
-        WHERE 1=1
-        	and a.cgSeq = b.cgSeq
-        	and b.cdSeq = #{cdSeq}
-    </select>
-	  
+			,a.cgName
+			,b.cdSeq
+			,b.cdName
+			,b.cdDeleteNy
+			,b.cdCreationDate
+			,b.cdModificationDate
+			,b.cgSeq
+		<include refid="selectCommon" />
+		ORDER BY b.cdSeq desc
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.cgSeq as groupseq
+			,a.cgName
+			,b.cdSeq
+			,b.cdName
+			,b.cdDeleteNy
+			,b.cdCreationDate
+			,b.cdModificationDate
+			,b.cgSeq
+		FROM code b, codeGroup a
+		WHERE 1=1
+			and a.cgSeq = b.cgSeq
+			and b.cdSeq = #{cdSeq}
+	</select>
+	
 	<insert id="insert">
-	 INSERT INTO code (
-	 	cdName
-	 	,cdDeleteNy
-	 	,cgSeq
-	 )VALUES(
-	 	#{cdName}
-	 	,#{cdDeleteNy}
-	 	,#{cgSeq}
-	 )
+		INSERT code (
+			cdName
+			,cdDeleteNy
+			,cgSeq
+		)VALUS(
+			#{cdName}
+			,#{cdDeleteNy}
+			,#{cgSeq}
+		)
 	</insert>
 	
 	<update id="update">
@@ -75,43 +79,30 @@
 			AND cdSeq = #{cdSeq}
 	</update>
 	
-	<update id="deleteNyUpdate">
-		UPDATE code
-		SET
+	<update id="updateDeleteNy">
+		UPDATE
+		SET 
 			cdDeleteNy = 1
 		WHERE 1=1
-			AND cdSeq = #{cdSeq}
+			AND cdSeq = #{cdSeq}			
 	</update>
 	
-	<delete id="codeDelete">
-		DELETE FROM code
-		WHERE 1=1
-			AND cdSeq = #{cdSeq}
+	<delete id="delete">
+	 	DELETE FROM code
+	 	WHERE 1=1
+	 		AND cdSeq = #{cdSeq}
 	</delete>
 	
-	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+	
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT
-			b.cdSeq
-			,b.cdName
-		FROM code b
+			cdSeq
+			,cdName
+			,cgSeq
+		FROM code
 		WHERE 1=1
 			AND cdDeleteNy = 0
 	</select>
-	
-	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-		SELECT 
-			b.cdSeq
-			,b.cdName
-			,b.cgSeq
-		FROM
-			code b
-		WHERE 1=1
-			AND cdDeleteNy = 0
-    </select>
-    
-	<select id="selectOneCount">
-		SELECT COUNT(*)
-		<include refid="selectCommon" />
-	</select> 
 	
 </mapper>

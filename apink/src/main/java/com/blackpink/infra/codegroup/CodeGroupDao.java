@@ -1,6 +1,5 @@
 package com.blackpink.infra.codegroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CodeGroupDao {
@@ -20,8 +19,6 @@ public interface CodeGroupDao {
 	public List<CodeGroupDto> selectListWithoutPaging();
 	
 	public int selectOneCount(CodeGroupVo vo);
-
-	public ArrayList<CodeGroupDto> selectListCachedCodeArrayList();
 	
 
 }

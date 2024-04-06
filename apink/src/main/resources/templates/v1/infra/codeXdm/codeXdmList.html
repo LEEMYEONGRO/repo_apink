@@ -9,21 +9,17 @@
 			<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
 			<!-- 네이게이션바 종료 -->
 			<div class="main-container">
-	
 				<!-- 상단바 시작 -->
 				<div th:replace="~{v1/infra/blockDeclaration/body :: topnav}"></div>
 				<!-- 상단바 종료 -->
 			<div class="content-wrapper-scroll">
-			<!-- formStart -->
-			
 				<!-- Content wrapper start -->
 				<div class="content-wrapper">
 					<!-- formStart -->
 					<form name="formList" id="formList" method="post" autocomplete="off">
 						<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
-					<!-- search s -->
-					<div class="card">
-						
+						<!-- search s -->
+						<div class="card">
 							<div class="card-header">
 								<div class="card-title">코드관리</div>
 							</div>
@@ -89,17 +85,10 @@
 										</div>
 									</div>
 								</div>
-								<!-- Form actions footer end -->
-
 							</div>
-						
-					</div>
-
-					<!-- search e -->
-					<!-- Row start -->
+						</div>
 					<div class="row">
 						<div class="col-12">
-
 							<div class="card">
 								<div class="card-body">
 									<div th:replace= "~{v1/infra/blockDeclaration/body :: pageCount}"></div>
@@ -152,8 +141,6 @@
 										</div>
 									</div>
 									<div class="modals-placeholder">
-
-										<!-- Modal Fade -->
 										<div class="modal fade" id="modalDark" tabindex="-1"
 											aria-labelledby="modalDarkLabel" aria-hidden="true">
 											<div class="modal-dialog">
@@ -177,22 +164,18 @@
 									</div>
 								</div>
 							</div>
-							</div>
 						</div>
-						</form>
 					</div>
+						</form>
+				</div>
 					<div class="app-footer">
 						<span>© Arise admin 2023</span>
 					</div>
-				</div>
 			</div>
 		</div>
-		<!-- Page wrapper end -->
-
+	</div>
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
-
 	<script type="text/javascript">
-	
 			let goUrlXdmList = "/codeXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
@@ -225,8 +208,6 @@
 			document.getElementById("btnReset").onclick = function() {
 				location.href = goUrlXdmList;
 			}
-			
-			
 		});
 		function enterkey() {
 			if (window.event.keyCode == 13) {
@@ -234,23 +215,7 @@
 			    form.submit();
 		    }
 		}
-		
-		
 	</script>
-
-	<script>
-			/* document.getElementById("btnForm").onclick = function() {
-				goForm(0);
-			} 
-
-			goForm = function(keyValue) {
-				seq.value = keyValue;
-				form.action = goUrlXdmForm;
-				form.submit();
-			} */
-	</script>
-		
-		
 </body>
 
 </html>

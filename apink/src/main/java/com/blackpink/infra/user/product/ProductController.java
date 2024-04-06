@@ -29,24 +29,7 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping(value = "/myPage")
-	public String myPage(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
-		
-		setSearch(vo);
-				
-		vo.setParamsPaging(service.selectOneCount(vo));
-		
-		if (vo.getTotalRows() > 0) {
-			model.addAttribute("list", service.selectMyPage(vo));
-		}
-		
-//		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
-//		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
-//		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
-//		
-		return "/v1/infra/user/myPage";
-		
-	}
+	
 	
 	@RequestMapping(value = "/productXdmList")
 	public String productXdmList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {

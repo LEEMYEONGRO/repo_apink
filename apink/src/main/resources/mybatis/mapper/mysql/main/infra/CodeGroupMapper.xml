@@ -88,15 +88,6 @@
 		
 	</select>
 	
-	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-		SELECT 
-			cgSeq
-			,cgName
-		FROM codeGroup
-		WHERE 1=1
-			AND cgDeleteNy = 0
-    </select>
-	
 	<select id="selectOneCount">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />

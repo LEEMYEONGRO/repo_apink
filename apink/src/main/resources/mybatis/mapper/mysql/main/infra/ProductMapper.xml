@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.blackpink.infra.user.product.ProductDao">
@@ -19,6 +20,7 @@
 				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
 	</sql>
+	
 	<!-- shopList -->
 	<sql id ="selectPd">
 		FROM product
@@ -29,25 +31,8 @@
 				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose> -->
 	</sql>
-	<!-- shopListEnd -->
 	
-    <select id="selectList" resultMap="resultMapObj">
-        SELECT
-            pdSeq
-            ,pdCode
-            ,pdName
-            ,pdPrice
-            ,pdlikeNy
-            ,pdDeleteNy
-            ,pdCreationDate
-            ,pdModificationDate
-		   <include refid="selectCommon" />
-			ORDER BY pdSeq desc
-			limit #{rowNumToShow} offset #{startRnumForMysql}	
-    </select>
-
-<!-- shopList -->
-<select id="selectPdList" resultMap="resultMapObj">
+	<select id="selectPdList" resultMap="resultMapObj">
         SELECT
             pdSeq
             ,pdCode
@@ -66,7 +51,7 @@
 		SELECT COUNT(*)
 			<include refid="selectPd" />
 	</select>
-	<!-- shopListEnd -->
+	<!-- shopList -->
 	
 	<!-- myPage -->
 	<select id="selectMyPage" resultMap="resultMapObj">
@@ -83,7 +68,57 @@
 			ORDER BY pdSeq desc
 			limit #{rowNumToShow} offset #{startRnumForMysql}	
     </select>
-	<!-- myPageEnd -->
+	<!-- myPage -->
+
+    <!-- 주문상세 -->
+    <select id="item" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdName
+            ,pdPrice
+        FROM product
+        WHERE 1=1 
+        	AND pdSeq = #{pdSeq}
+    </select>
+     <!-- 주문상세 -->
+	
+	<!-- 리뷰 -->
+	<select id="selectReview" resultMap="resultMapObj">
+		SELECT
+			a.pdSeq as productSeq
+			,a.pdName
+			,b.rvSeq
+			,b.rvName
+			,b.rvContent
+			,b.rvScores
+			,b.rvDeleteNy
+			,b.rvCreationDate
+			,b.rvModificationDate
+			,b.pdSeq
+		FROM review
+		WHERE 1=1 
+		FROM  product a
+		LEFT JOIN review b 
+	         on b.pdSeq = a.pdSeq
+	         WHERE 1=1
+	</select>
+	<!-- 리뷰 -->
+	
+	<!-- 관리자 화면 -->
+    <select id="selectList" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdCode
+            ,pdName
+            ,pdPrice
+            ,pdlikeNy
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+		   <include refid="selectCommon" />
+			ORDER BY pdSeq desc
+			limit #{rowNumToShow} offset #{startRnumForMysql}	
+    </select>
     
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
@@ -96,17 +131,6 @@
         WHERE 1=1 
         	AND pdSeq = #{pdSeq}
     </select>
-    
-    <select id="item" resultMap="resultMapObj">
-        SELECT
-            pdSeq
-            ,pdName
-            ,pdPrice
-        FROM product
-        WHERE 1=1 
-        	AND pdSeq = #{pdSeq}
-    </select>
-    
     <insert id="insert">
     	INSERT INTO product (
     		pdName
@@ -138,7 +162,9 @@
     	WHERE 1=1
     		AND pdSeq = #{pdSeq}
     </delete>
+    <!-- 관리자 화면 -->
     
+    <!-- 공통 페이징 -->
     <select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
 			pdSeq
@@ -147,6 +173,7 @@
 		WHERE 1=1
 			AND pdDeleteNy = 0
 	</select>
+	<!-- 공통 페이징 -->
 	
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
@@ -156,9 +183,11 @@
 		WHERE 1=1
 			AND pdDeleteNy = 0
     </select>
-	
+    
+	<!-- 카운트 -->
 	<select id="selectOneCount">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />
 	</select>
+	<!-- 카운트 -->
 </mapper>

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ProductDto {
 
+//	제품
 	private String pdSeq;
 	private int pdCode;
 	private String pdName;
@@ -14,7 +15,8 @@ public class ProductDto {
 	private Integer pdDeleteNy;
 	private Date pdCreationDate;
 	private Date pdModificationDate;
-	
+//	제품
+
 //	for cache
 	public static List<ProductDto> cachedCodeArrayList = new ArrayList<ProductDto>();
 	

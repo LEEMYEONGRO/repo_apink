@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blackpink.infra.payment.PaymentDao">
+
+	<resultMap id="resultMapObj" type="com.blackpink.infra.payment.PaymentDto"></resultMap>
+
+	<select id="selectMypage" resultMap="resultMapObj">
+        SELECT 
+			a.pmSeq
+			,a.pmCreationDate
+		    ,a.mbSeq
+		    ,b.pdSeq
+			,b.pdName
+		    ,b.pdPrice
+			FROM payment a
+			LEFT JOIN product b 
+			 on a.pmSeq = b.pdSeq
+			 WHERE 1=1
+		     and mbSeq = #{mbSeq}
+	</select>
+</mapper>

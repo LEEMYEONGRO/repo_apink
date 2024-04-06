@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
+
+
+<body>
+    <div class="axil-signin-area">
+
+        <!-- Start Header -->
+        <div class="signin-header">
+            <div class="row align-items-center">
+                <div class="col-sm-4">
+                    <a href="index.html" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                </div>
+                <div class="col-sm-8">
+                    <div class="singin-header-btn">
+                        <p>계정이 없으신가요?</p>
+                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">회원가입</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6">
+                <div class="axil-signin-banner bg_image bg_image--9">
+                    <h3 class="title">최고의 상품을 제공하겠습니다.</h3>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-xl-2">
+                <div class="axil-signin-form-wrap">
+                    <div class="axil-signin-form">
+                        <h3 class="title">로그인을 해주세요.</h3>
+                        <p class="b2 mb--55">아래의 세부정보를 입력해주세요.</p>
+                        <form class="singin-form">
+                            <div class="form-group">
+                                <label>이메일</label>
+                                <input type="text" class="form-control" id="mbEmail" name="mbEmail" value="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>비밀번호</label>
+                            	<input type="password" class="form-control" id="mbPassword" name="mbPassword" value="password" required="">
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <button type="button" class="axil-btn btn-bg-primary submit-btn" name="login" id="login" >로그인</button>
+                                <a href="forgot-password.html" class="forgot-btn">비밀번호를 잊으셨나요?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS  -->
+    <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
+	<script>
+		document.getElementById("login").onclick = function () {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/signinxdm"
+				,data : {"mbEmail" : $("#mbEmail").val(), "mbPassword" : $("#mbPassword").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/myPage";
+					} else if(response.rt == "mbEmail") {
+						alert("이메일이 일치하지 않습니다.");
+						} else if(response.rt == "mbPassword"){
+							alert("비밀번호가 일치하지 않습니다.");
+							}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		</script>
+</body>
+
+</html>

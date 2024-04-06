@@ -14,30 +14,7 @@
         <div class="axil-header-top">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-sm-6 col-12">
-                        <div class="header-top-dropdown">
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    English
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                    <li><a class="dropdown-item" href="#">Spanish</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    USD
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">USD</a></li>
-                                    <li><a class="dropdown-item" href="#">AUD</a></li>
-                                    <li><a class="dropdown-item" href="#">EUR</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-lg-6 col-sm-6 col-12"></div>
                     <div class="col-lg-6 col-sm-6 col-12">
                         <div class="header-top-link">
                             <ul class="quick-link">
@@ -358,14 +335,14 @@
 	                        	 <div class="col-xl-4 col-sm-6">
 	                                <div class="axil-product product-style-one mb--30">
 	                                	<div class="thumbnail">
-	                                        <a href="">
+	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq},pdName=${list.pdName})}">
 	                                            <img src="user/v1/assets/images/product/electric/product-08.png" alt="Product Images">
 	                                        </a>
 	                                    </div>
 	                                    <div class="product-content">
 	                                        <div class="inner">
 	                                            <h5 class="title">
-	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq},pdName=${list.pdName})}" th:text="${list.pdName}"></a>
+	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"></a>
 	                                            </h5>
 	                                            <div class="product-price-variant">
 	                                                <span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>

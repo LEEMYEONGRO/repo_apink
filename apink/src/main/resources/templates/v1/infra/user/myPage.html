@@ -250,12 +250,8 @@
                 <div class="axil-dashboard-warp">
                     <div class="axil-dashboard-author">
                         <div class="media">
-                            <div class="thumbnail">
-                                <img src="./assets/images/product/author1.png" alt="Hello Annie">
-                            </div>
                             <div class="media-body">
-                                <h5 class="title mb-0">김영일</h5>
-                                <span class="joining-date">2024년 02월 26일에 가입</span>
+                                <h5 class="title mb-0">[[${session.sessNameXdm}]]</h5>
                             </div>
                         </div>
                     </div>
@@ -412,12 +408,12 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr th:each="list : ${list}">
-														<td th:text="${list.pdSeq}"></td>
+														<td th:text="${list.pmSeq}"></td>
 														<td>
 															<img src="./assets/images/product/product-11.jpg">
 														</td>
 														<td th:text="${list.pdName}"></td>
-														<td></td>
+														<th th:text="${#dates.format(list.pmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 														<td></td>
 														<td th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></td>
 													</tr>
@@ -1020,7 +1016,7 @@
 
    <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
-
+	
 	
 	
 </body>

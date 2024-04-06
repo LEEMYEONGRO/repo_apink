@@ -28,13 +28,14 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "/codeGroupXdmList")
+
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
-		setSearch(vo);
+		setSearch(vo); 
 		
-		vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo)); 
 		
-		if (vo.getTotalRows() > 0) {
+		if (vo.getTotalRows() > 0) { 
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
@@ -53,9 +54,9 @@ public class CodeGroupController {
 	@RequestMapping("codeGroupXdmInsert")
 	public String codeGroupXdmInsert(CodeGroupDto dto) {
 		
-		service.insert(dto);
+		service.insert(dto); 
 		
-		return "redirect:/codeGroupXdmList";
+		return "redirect:/codeGroupXdmList"; 
 	}
 	
 	@RequestMapping("codeGroupXdmCorrection")
@@ -95,7 +96,7 @@ public class CodeGroupController {
 	}
 	
 	
-	public void setSearch(CodeGroupVo vo) throws Exception {
+	public void setSearch(CodeGroupVo vo) throws Exception { 
 		/* 최초 화면 로딩시에 세팅은 문제가 없지만 */
 		/*이후 전체적으로 데이터를 조회를 하려면 null 값이 넘어 오는 관계로 문제가 전체 데이터 조회가 되지 못한다.*/
 		/*해서 BaseVo.java 에서 기본값을 주어서 처리*/
@@ -119,12 +120,12 @@ public class CodeGroupController {
 		
 	}
 		
-	public String encodeBcrypt(String planeText, int strength) {
+	public String encodeBcrypt(String planeText, int strength) { 
 		  return new BCryptPasswordEncoder(strength).encode(planeText);
 	}
 
 			
-	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) { 
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
 	}
