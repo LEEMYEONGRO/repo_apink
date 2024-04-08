@@ -16,8 +16,8 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 	
-	@RequestMapping(value = "/shopListr")
-	public String shopListr(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
+	@RequestMapping(value = "/shopList")
+	public String shopList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 		
 		vo.setParamsPaging(service.selectPdOneCount(vo));
 		
@@ -25,11 +25,21 @@ public class ProductController {
 			model.addAttribute("list", service.selectPdList(vo));
 		}
 		
-		return "/v1/infra/user/shopListr";
+		return "/v1/infra/user/shopList";
 		
 	}
 	
-	
+	@RequestMapping(value = "/indexUser")
+	public String indexUser(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(service.selectPdOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectPdList(vo));
+		}
+		
+		return "/v1/infra/user/indexUser";
+	}
 	
 	@RequestMapping(value = "/productXdmList")
 	public String productXdmList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {

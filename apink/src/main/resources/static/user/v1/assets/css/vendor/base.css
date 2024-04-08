@@ -354,4 +354,10 @@ a.content__text-link[data-fx="14"]:hover::after {
 	.content__text {
 		grid-column: span 3;
 	}
+	
+	#price {
+	  width:125px;
+	  height:30px;
+	  font-size:12px;
+	}
 }

@@ -136,14 +136,11 @@
 													<td th:text="${list.mbSeq}"></td>
 													<td><a th:href="@{/memberXdmCorrection(mbSeq=${list.mbSeq},name=${list.mbName})}" th:text="${list.mbName}"></a></td>
 													<th th:text="${#dates.format(list.mbDateBirth, 'yyyy/MM/dd')}"></th>
-													
 													<td th:if="${list.mbGender != null}" 
 														th:text="${@codeService.selectOneCachedCode(list.mbGender)}" 
 														class="ifmmGenderCd align-middle">
 													</td>
 													<td th:unless="${list.mbGender != null}" class="ifmmGenderCd align-middle"></td>
-													
-													
 													<td th:text="${list.mbEmail}"></td>
 													<td th:text="${list.mbPassword}"></td>
 													<td th:text="${list.mbPhoneNumber}"></td>

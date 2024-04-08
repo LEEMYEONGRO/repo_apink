@@ -42,6 +42,18 @@ public class CodeService {
 		return dao.delete(dto);
 	}
 	
+	public static String selectOneCachedCode(int code) throws Exception {
+		String rt = "";
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			if (codeRow.getCdSeq().equals(Integer.toString(code))) {
+				rt = codeRow.getCdName();
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
+	
 	 @PostConstruct
 		public void selectListCachedCodeArrayList() throws Exception {
 			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();
