@@ -57,16 +57,39 @@
     <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
 	<script>
+		/* // Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+		  'use strict'
+
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  const forms = document.querySelectorAll('.needs-validation')
+
+		  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+
+		      form.classList.add('was-validated')
+		    }, false)
+		  })
+		})() */
+		
 		document.getElementById("login").onclick = function () {
+			
+//			if(validationUpdt() == false) return false;
+		
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
-				,url: "/signinxdm"
+				,url: "/signinUser"
 				,data : {"mbEmail" : $("#mbEmail").val(), "mbPassword" : $("#mbPassword").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
-						location.href = "/myPage";
+						location.href = "/indexUser";
 					} else if(response.rt == "mbEmail") {
 						alert("이메일이 일치하지 않습니다.");
 						} else if(response.rt == "mbPassword"){

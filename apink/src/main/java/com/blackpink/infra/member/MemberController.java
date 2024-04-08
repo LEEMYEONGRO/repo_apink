@@ -56,21 +56,21 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/signinxdm")
-	public Map<String, Object> signinxdm(MemberDto dto, HttpSession httpSession) {
+	@RequestMapping(value = "/signinXdm")
+	public Map<String, Object> signinXdm(MemberDto dto, HttpSession httpSession) {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		MemberDto dtoL = service.login(dto);
 		
-	if(dto.getMbEmail().equals(dtoL.getMbEmail())) {
-		if(matchesBcrypt(dto.getMbPassword(),dtoL.getMbPassword() , 10)) {
-			returnMap.put("rt", "success");
+		if(dto.getMbEmail().equals(dtoL.getMbEmail())) {
+			if(matchesBcrypt(dto.getMbPassword(),dtoL.getMbPassword() , 10)) {
+				returnMap.put("rt", "success");
 
-			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 			httpSession.setAttribute("sessEmailXdm", dtoL.getMbEmail());
 			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());
 			httpSession.setAttribute("sessNameXdm", dtoL.getMbName());
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 		}else {
 			returnMap.put("rt", "password");
 		}

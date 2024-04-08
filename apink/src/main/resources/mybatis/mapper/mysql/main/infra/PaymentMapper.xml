@@ -13,6 +13,7 @@
 		    ,b.pdSeq
 			,b.pdName
 		    ,b.pdPrice
+		    ,b.pdDeliveryStatus
 			FROM payment a
 			LEFT JOIN product b 
 			 on a.pmSeq = b.pdSeq

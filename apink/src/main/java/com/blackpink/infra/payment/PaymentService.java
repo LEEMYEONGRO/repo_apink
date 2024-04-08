@@ -11,8 +11,8 @@ public class PaymentService {
 	@Autowired
 	PaymentDao dao;
 	
-	public List<PaymentDto> selectMypage(PaymentDto dto){
-		return dao.selectMypage(dto);
+	public List<PaymentDto> selectMypage(PaymentVo vo){
+		return dao.selectMypage(vo);
 	}
 	
 }

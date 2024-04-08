@@ -1,6 +1,8 @@
 package com.blackpink.infra.payment;
 
-public class PaymentVo {
+import com.blackpink.common.base.BaseVo;
+
+public class PaymentVo extends BaseVo {
 
 	private Integer shDelNy = 0; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private Integer shOptionDate = 1;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
@@ -8,7 +10,7 @@ public class PaymentVo {
 	private String shDateEnd;
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String ShValue;
-	
+	private String mbSeq;
 	
 	public Integer getShDelNy() {
 		return shDelNy;
@@ -45,6 +47,13 @@ public class PaymentVo {
 	}
 	public void setShValue(String shValue) {
 		ShValue = shValue;
+	}
+	
+	public String getMbSeq() {
+		return mbSeq;
+	}
+	public void setMbSeq(String mbSeq) {
+		this.mbSeq = mbSeq;
 	}
 	
 	

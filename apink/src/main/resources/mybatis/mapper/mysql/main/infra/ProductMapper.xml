@@ -37,6 +37,7 @@
             pdSeq
             ,pdCode
             ,pdName
+            ,pdDeliveryStatus
             ,pdPrice
             ,pdlikeNy
             ,pdDeleteNy
@@ -58,6 +59,7 @@
         SELECT
             pdSeq
             ,pdCode
+            ,pdDeliveryStatus
             ,pdName
             ,pdPrice
             ,pdlikeNy
@@ -109,6 +111,7 @@
         SELECT
             pdSeq
             ,pdCode
+            ,pdDeliveryStatus
             ,pdName
             ,pdPrice
             ,pdlikeNy

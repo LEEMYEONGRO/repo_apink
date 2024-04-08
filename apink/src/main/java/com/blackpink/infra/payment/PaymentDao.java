@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PaymentDao {
 	
-	public List<PaymentDto> selectMypage(PaymentDto dto);
+	public List<PaymentDto> selectMypage(PaymentVo vo);
 	
 }

@@ -3,8 +3,6 @@
 
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
 
-
-
 <body class="sticky-header">
 	<!-- 상단바 시작 -->
     <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
@@ -76,7 +74,7 @@
 				                                <li class="separator"></li>
 				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">맨투맨</a></li>
 				                            </ul>
-                                    <span class="price-amount" name="pdName" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'">27,000원</span>
+                                    <span class="price-amount" name="pdName" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'"></span>
                                     <div class="product-rating">
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -112,7 +110,6 @@
                                             </div>
                                         </div>
                                         <!-- End Product Variation  -->
-
                                         <!-- Start Product Variation  -->
                                         <div class="product-variation product-size-variation">
                                             <h6 class="title">Size:</h6>

@@ -9,6 +9,7 @@ public class PaymentDto {
 	private String mbSeq;
 	private String pdSeq;
 	private String pdName;
+	private int pdDeliveryStatus;
 	private int pdPrice;
 	
 	
@@ -47,6 +48,12 @@ public class PaymentDto {
 	}
 	public void setPdPrice(int pdPrice) {
 		this.pdPrice = pdPrice;
+	}
+	public int getPdDeliveryStatus() {
+		return pdDeliveryStatus;
+	}
+	public void setPdDeliveryStatus(int pdDeliveryStatus) {
+		this.pdDeliveryStatus = pdDeliveryStatus;
 	}
 	
 	
