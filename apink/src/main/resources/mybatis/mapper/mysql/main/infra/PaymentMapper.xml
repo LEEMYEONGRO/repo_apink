@@ -5,19 +5,54 @@
 
 	<resultMap id="resultMapObj" type="com.blackpink.infra.payment.PaymentDto"></resultMap>
 
-	<select id="selectMypage" resultMap="resultMapObj">
+	 <select id="selectMypage" resultMap="resultMapObj">
         SELECT 
-			a.pmSeq
+			a.pmSeq as paymentSeq
 			,a.pmCreationDate
 		    ,a.mbSeq
-		    ,b.pdSeq
+		    ,b.pdSeq as productSeq
 			,b.pdName
 		    ,b.pdPrice
-		    ,b.pdDeliveryStatus
 			FROM payment a
 			LEFT JOIN product b 
 			 on a.pmSeq = b.pdSeq
 			 WHERE 1=1
 		     and mbSeq = #{mbSeq}
 	</select>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.mbSeq as memberSeq
+			,b.pmSeq as paymentSeq
+			,b.pmCreationDate
+			,b.pmDeliveryStatus
+			,b.mbSeq
+			,c.pmSeq
+			,c.pdSeq
+			,d.pdSeq as productSeq
+			,d.pdName
+			,d.pdPrice
+			FROM member a
+			JOIN payment b 
+			on b.mbSeq = a.mbSeq 
+			JOIN productpayment c 
+			on c.pmSeq = b.pmSeq
+			JOIN product d 
+			on d.pdSeq = c.pdSeq
+		WHERE
+			 a.mbSeq = #{mbSeq}
+	</select>
+	
+ 	<select id="item" resultMap="resultMapObj">
+    	SELECT
+    		mbSeq
+    		,mbEmail
+    		,mbDateBirth
+    		,mbPassword
+    		,mbName
+    		,mbPhoneNumber
+    	FROM member
+        WHERE
+        	mbSeq = #{mbSeq}
+		</select>
 </mapper>

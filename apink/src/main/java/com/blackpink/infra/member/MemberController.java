@@ -31,9 +31,9 @@ public class MemberController {
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
-		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
-		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
-		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
+//		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
+//		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
+//		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
 		
 //		 model.addAttribute("vo", vo);
 		

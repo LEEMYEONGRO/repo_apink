@@ -15,4 +15,11 @@ public class PaymentService {
 		return dao.selectMypage(vo);
 	}
 	
+	public List<PaymentDto> selectList(PaymentVo vo){
+		return dao.selectList(vo);
+	}
+	
+	public PaymentDto item(PaymentVo vo) {
+		return dao.item(vo);
+	}
 }

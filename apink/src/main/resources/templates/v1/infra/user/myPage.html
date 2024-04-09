@@ -75,28 +75,26 @@
 		                                            <div class="col-lg-12">
                                                         <div class="form-group" >
                                                             <label>이메일</label>
-                                                            <input type="text" readonly class="form-control" value="kim01@naver.com">
+                                                            <input type="text" readonly class="form-control" th:value="${item.mbEmail}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <label>사용자 이름</label>
-                                                            <input type="text" class="form-control" value="김영일">
+                                                            <input type="text" class="form-control" th:value="${item.mbName}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
 							                                <label>생년월일</label>
-							                                <input type="text" id="shDate" class="form-control" name="shDate" placeholder="1997-07-18" readonly>
-								                               	<script>
-																	window.addEventListener('load', function() {
-																		$("#shDate").datetimepicker({
-																			timepicker:false,
-																			format: 'Y-m-d'
-																		});
-																	});
-																</script>	
+							                                <input type="text" id="shDate" class="form-control" name="shDate" th:value="${#dates.format(item.mbDateBirth, 'yyyy/MM/dd HH:mm:ss')}">
 							                            </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>전화번호</label>
+                                                            <input type="text" class="form-control" th:value="${item.mbPhoneNumber}">
+                                                        </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group mb--40">
@@ -198,14 +196,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr th:each="list : ${list}">
+                                                    <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
 														<td th:text="${list.pmSeq}"></td>
 														<td>
 															<img src="/assets/images/product/product-11.jpg">
 														</td>
 														<td th:text="${list.pdName}"></td>
-														<th th:text="${#dates.format(list.pmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-														<td th:if="${list.pdDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pdDeliveryStatus)}"></td>
+														<td th:text="${#dates.format(list.pmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+														<td th:if="${list.pdDeliveryStatus != null}"></td>
 														<td th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></td>
 													</tr>
                                                 </tbody>
@@ -808,7 +806,14 @@
    <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
 	
-	
+   	<script>
+		window.addEventListener('load', function() {
+			$("#shDate").datetimepicker({
+				timepicker:false,
+				format: 'Y-m-d'
+			});
+		});
+	</script>	
 	
 </body>
 
