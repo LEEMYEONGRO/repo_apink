@@ -19,7 +19,6 @@
 	            <when test="shOption == 1">AND mbSeq = #{shValue}</when>
 	            <when test="shOption == 2">AND mbName LIKE CONCAT('%',#{shValue},'%')</when>
 	        </choose>
-			
 	</sql>
 	
     <select id="selectList" resultMap="resultMapObj">
@@ -38,6 +37,11 @@
 			ORDER BY mbSeq desc
 			limit #{rowNumToShow} offset #{startRnumForMysql} 
     </select>
+
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
     
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
@@ -128,10 +132,6 @@
 			AND mbDeleteNy = 0
     </select>
 	
-	<select id="selectOneCount">
-		SELECT COUNT(*)
-		<include refid="selectCommon" />
-	</select>
     
 	  
 </mapper>

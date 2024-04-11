@@ -222,7 +222,6 @@
 		<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 		
 	<script type="text/javascript">
-	
 			let goUrlXdmList = "/memberXdmList"; /* ### */
 			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 			let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
@@ -239,8 +238,6 @@
 					format : 'Y/m/d'
 					
 				});
-
-	
 				goList = function (thisPage) {
 				    document.querySelector("input[name=thisPage]").value = thisPage;
 				    form.action = goUrlXdmList;
@@ -264,8 +261,6 @@
 				    form.submit();
 			    }
 			}
-		
-		
 	</script>
 
 	<script>

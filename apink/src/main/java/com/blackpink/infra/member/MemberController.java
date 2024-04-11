@@ -95,7 +95,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto) {
-		System.out.println("memberXdmInsert");
 		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));
 		
 		System.out.println("dto.getIfmmId()encoded : " + dto.getMbPassword());

@@ -7,7 +7,7 @@ public class PaymentDto {
 	private String memberSeq;
 	private String paymentSeq;
 	private Date pmCreationDate;
-	private int pdDeliveryStatus;
+	private int pmDeliveryStatus;
 	private String mbSeq;
 	private String pmSeq;
 	private String pdSeq;
@@ -40,11 +40,12 @@ public class PaymentDto {
 	public void setPmCreationDate(Date pmCreationDate) {
 		this.pmCreationDate = pmCreationDate;
 	}
-	public int getPdDeliveryStatus() {
-		return pdDeliveryStatus;
+	
+	public int getPmDeliveryStatus() {
+		return pmDeliveryStatus;
 	}
-	public void setPdDeliveryStatus(int pdDeliveryStatus) {
-		this.pdDeliveryStatus = pdDeliveryStatus;
+	public void setPmDeliveryStatus(int pmDeliveryStatus) {
+		this.pmDeliveryStatus = pmDeliveryStatus;
 	}
 	public String getMbSeq() {
 		return mbSeq;

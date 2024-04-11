@@ -5,20 +5,26 @@
 
 	<resultMap id="resultMapObj" type="com.blackpink.infra.payment.PaymentDto"></resultMap>
 
-	 <select id="selectMypage" resultMap="resultMapObj">
-        SELECT 
-			a.pmSeq as paymentSeq
-			,a.pmCreationDate
-		    ,a.mbSeq
-		    ,b.pdSeq as productSeq
-			,b.pdName
-		    ,b.pdPrice
-			FROM payment a
-			LEFT JOIN product b 
-			 on a.pmSeq = b.pdSeq
-			 WHERE 1=1
-		     and mbSeq = #{mbSeq}
-	</select>
+	<sql id ="selectCommon">
+		FROM member a
+			JOIN payment b 
+			 on b.mbSeq = a.mbSeq 
+			JOIN productpayment c 
+			 on c.pmSeq = b.pmSeq
+			JOIN product d 
+			 on d.pdSeq = c.pdSeq
+		WHERE
+			 a.mbSeq = #{mbSeq}	
+		<!-- <if test="shGender != null and !shGender.equals('')">AND mbGender = #{mbGender}</if> -->
+		<choose>
+			<when test="shOptionDate == 1">AND pmCreationDate BETWEEN #{shDateStart} AND #{shDateEnd} </when>
+		</choose>
+		
+		<choose>
+			<when test="shOption == 1">AND d.pdName = #{shValue}</when>
+			<when test="shOption == 2">AND a.mbSeq LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
+	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
@@ -32,21 +38,17 @@
 			,d.pdSeq as productSeq
 			,d.pdName
 			,d.pdPrice
-			FROM member a
-			JOIN payment b 
-			on b.mbSeq = a.mbSeq 
-			JOIN productpayment c 
-			on c.pmSeq = b.pmSeq
-			JOIN product d 
-			on d.pdSeq = c.pdSeq
-		WHERE
-			 a.mbSeq = #{mbSeq}
+		<include refid="selectCommon"></include>
+	</select>
+	
+	<select id="selectOneCount">
+		SELECT COUNT(*)
+		<include refid="selectCommon"></include>
 	</select>
 	
  	<select id="item" resultMap="resultMapObj">
     	SELECT
-    		mbSeq
-    		,mbEmail
+    		mbEmail
     		,mbDateBirth
     		,mbPassword
     		,mbName
@@ -55,4 +57,16 @@
         WHERE
         	mbSeq = #{mbSeq}
 		</select>
+		
+	<update id="update">
+		UPDATE member 
+    	SET
+    		mbName = #{mbName}
+    		,mbDateBirth = #{mbDateBirth}
+            ,mbGender = #{mbGender}
+            ,mbEmail = #{mbEmail}
+            ,mbPhoneNumber = #{mbPhoneNumber}
+    	WHERE 1=1
+    		AND mbSeq = #{mbSeq}
+	</update>
 </mapper>

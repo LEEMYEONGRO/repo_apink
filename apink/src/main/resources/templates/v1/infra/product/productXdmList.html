@@ -102,7 +102,6 @@
 															id="inlineCheckbox1" value="option1"></th>
 														<th>제품번호</th>
 														<th>제품이름</th>
-														<th>배송상태</th>
 														<th>등록일</th>
 														<th>삭제여부</th>
 													</tr>
@@ -116,7 +115,6 @@
 														<td><a
 															th:href="@{/productXdmCorrection(pdSeq=${list.pdSeq},pdName=${list.pdName})}"
 															th:text="${list.pdName}"></a></td>
-														<th th:if="${list.pdDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pdDeliveryStatus)}"></th>
 														<th
 															th:text="${#dates.format(list.pdCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 														<td th:if="${list.pdDeleteNy eq 0}">N</td>

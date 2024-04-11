@@ -11,15 +11,19 @@ public class PaymentService {
 	@Autowired
 	PaymentDao dao;
 	
-	public List<PaymentDto> selectMypage(PaymentVo vo){
-		return dao.selectMypage(vo);
-	}
-	
 	public List<PaymentDto> selectList(PaymentVo vo){
 		return dao.selectList(vo);
 	}
 	
 	public PaymentDto item(PaymentVo vo) {
 		return dao.item(vo);
+	}
+	
+	public int update(PaymentDto dto) {
+		return dao.update(dto);
+	}
+	
+	public int selectOneCount(PaymentVo vo) {
+		return dao.selectOneCount(vo);
 	}
 }

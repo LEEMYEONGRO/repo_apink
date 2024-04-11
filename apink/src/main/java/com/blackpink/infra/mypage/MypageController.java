@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
-import com.blackpink.infra.member.MemberDto;
-import com.blackpink.infra.member.MemberVo;
 import com.blackpink.infra.payment.PaymentDto;
 import com.blackpink.infra.payment.PaymentService;
 import com.blackpink.infra.payment.PaymentVo;
@@ -30,20 +28,20 @@ public class MypageController {
 	MypageService MypageService;
 	
 	@RequestMapping(value = "/myPage")
-	public String myPage(@ModelAttribute("vo")PaymentVo vo,PaymentDto dto, Model model, HttpSession httpSession) throws Exception {
+	public String myPage(@ModelAttribute("vo")PaymentVo vo,Model model, HttpSession httpSession) throws Exception {
 		
-//		setSearch(vo);
+		setSearch(vo);
 		
-//		vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
-//		if (vo.getTotalRows() > 0) {
-//		}
-			vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
+		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
+		}
 			model.addAttribute("item", service.item(vo));
-			return "/v1/infra/user/myPage";
+			
+		return "/v1/infra/user/myPage";
 	}
-	
 	
 	public void setSearch(PaymentVo vo) throws Exception {
 		vo.setShDateStart(vo.getShDateStart() == null
@@ -53,6 +51,14 @@ public class MypageController {
 		    ? UtilDateTime.nowString()
 		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
 
+	}
+	
+	@RequestMapping(value = "update")
+	public String update(PaymentDto dto) {
+		
+		service.update(dto);
+		
+		return "readable:/myPage";
 	}
 	
 	@RequestMapping(value = "/loginUser")

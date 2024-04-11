@@ -15,7 +15,6 @@ public class ProductDto {
 	private Integer pdDeleteNy;
 	private Date pdCreationDate;
 	private Date pdModificationDate;
-	private int pdDeliveryStatus;
 //	제품
 
 //	for cache
@@ -84,23 +83,17 @@ public class ProductDto {
 	public void setPdModificationDate(Date pdModificationDate) {
 		this.pdModificationDate = pdModificationDate;
 	}
-	
-	
-	
-	public int getPdDeliveryStatus() {
-		return pdDeliveryStatus;
-	}
-
-	public void setPdDeliveryStatus(int pdDeliveryStatus) {
-		this.pdDeliveryStatus = pdDeliveryStatus;
-	}
 
 	@Override
 	public String toString() {
 		return "ProductDto [pdSeq=" + pdSeq + ", pdCode=" + pdCode + ", pdName=" + pdName + ", pdPrice=" + pdPrice
 				+ ", pdlikeNy=" + pdlikeNy + ", pdDeleteNy=" + pdDeleteNy + ", pdCreationDate=" + pdCreationDate
-				+ ", pdModificationDate=" + pdModificationDate + ", pdDeliveryStatus=" + pdDeliveryStatus + "]";
+				+ ", pdModificationDate=" + pdModificationDate + "]";
 	}
+	
+	
+	
+
 
 	
 	
