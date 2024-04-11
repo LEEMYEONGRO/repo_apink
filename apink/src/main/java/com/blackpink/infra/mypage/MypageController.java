@@ -34,7 +34,7 @@ public class MypageController {
 		
 		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
 		vo.setParamsPaging(service.selectOneCount(vo));
-		
+		System.out.println(vo.getShValue() + "-------------------------------------------");
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}

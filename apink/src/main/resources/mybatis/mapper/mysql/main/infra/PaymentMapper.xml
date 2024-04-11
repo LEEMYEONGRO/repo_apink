@@ -21,8 +21,7 @@
 		</choose>
 		
 		<choose>
-			<when test="shOption == 1">AND d.pdName = #{shValue}</when>
-			<when test="shOption == 2">AND a.mbSeq LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 1">AND d.pdName LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
 	
