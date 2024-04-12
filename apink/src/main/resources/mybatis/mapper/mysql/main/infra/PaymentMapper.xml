@@ -51,11 +51,12 @@
     		,mbDateBirth
     		,mbPassword
     		,mbName
+    		,mbGender
     		,mbPhoneNumber
     	FROM member
         WHERE
         	mbSeq = #{mbSeq}
-		</select>
+	</select>
 		
 	<update id="update">
 		UPDATE member 
@@ -63,9 +64,8 @@
     		mbName = #{mbName}
     		,mbDateBirth = #{mbDateBirth}
             ,mbGender = #{mbGender}
-            ,mbEmail = #{mbEmail}
             ,mbPhoneNumber = #{mbPhoneNumber}
     	WHERE 1=1
-    		AND mbSeq = #{mbSeq}
+    		AND mbEmail = #{mbEmail}
 	</update>
 </mapper>

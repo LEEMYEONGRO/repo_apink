@@ -4,6 +4,7 @@
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
 
 <body>
+<!-- 상단바 시작 -->
 	<div th:fragment="topbar">
         <div class="axil-mainmenu">
             <div class="container">
@@ -94,9 +95,31 @@
             </div>
         </div>
 	</div>
-
-
-
+<!-- 상단바 종료 -->
+<!-- 페이징시작 -->
+	<div th:fragment="pageButton" class="col">
+		<ul class="pagination justify-content-center mb-0">
+			<li th:if="${vo.startPage gt vo.pageNumToShow}"
+				class="page-item" style="cursor: pointer;"><a
+				class="page-link"
+				href="javascript:goList(${vo.startPage - 1})"
+				th:attr="onclick=|goList('${vo.startPage - 1}')|"><i
+					class="">이전</i></a></li>
+			<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}"
+				th:classappend="${num eq vo.thisPage} ? active : ''"
+				class="page-item" style="cursor: pointer;"><a
+				class="page-link" th:attr="onclick=|goList('${num}')|"
+				th:text="${num}">
+					<!-- ${i.index} -->
+			</a></li>
+			<li th:if="${vo.endPage ne vo.totalPages}"
+				class="page-item" style="cursor: pointer;"><a
+				class="page-link"
+				th:attr="onclick=|goList('${vo.endPage + 1}')|"><i
+					class="">다음</i></a></li>
+		</ul>
+	</div>
+<!-- 페이징종료 -->
 
 
 

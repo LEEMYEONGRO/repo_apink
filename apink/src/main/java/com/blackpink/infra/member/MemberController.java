@@ -96,9 +96,7 @@ public class MemberController {
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto) {
 		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));
-		
-		System.out.println("dto.getIfmmId()encoded : " + dto.getMbPassword());
-		
+
 		service.insert(dto);
 		
 		return "redirect:/memberXdmList";

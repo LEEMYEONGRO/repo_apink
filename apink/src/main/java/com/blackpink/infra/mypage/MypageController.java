@@ -34,11 +34,14 @@ public class MypageController {
 		
 		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
 		vo.setParamsPaging(service.selectOneCount(vo));
+		
 		System.out.println(vo.getShValue() + "-------------------------------------------");
+		
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
-			model.addAttribute("item", service.item(vo));
+		
+		model.addAttribute("item", service.item(vo));
 			
 		return "/v1/infra/user/myPage";
 	}
@@ -50,15 +53,14 @@ public class MypageController {
 		vo.setShDateEnd(vo.getShDateEnd() == null
 		    ? UtilDateTime.nowString()
 		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
-
 	}
 	
 	@RequestMapping(value = "update")
 	public String update(PaymentDto dto) {
 		
 		service.update(dto);
-		
-		return "readable:/myPage";
+		System.out.println(dto.getMbDateBirth() + "---------------------------------------------");
+		return "redirect:/myPage";
 	}
 	
 	@RequestMapping(value = "/loginUser")

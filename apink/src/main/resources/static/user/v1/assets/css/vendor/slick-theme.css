@@ -11,7 +11,29 @@
     src: url('../../fonts/slick.eot');
     src: url('../../fonts/slick.eot?#iefix') format('embedded-opentype'), url('../../fonts/slick.woff') format('woff'), url('../../fonts/slick.ttf') format('truetype'), url('../../fonts/slick.svg#slick') format('svg');
 }
+/* 마이페이지 수정작업을 위한 css적용  */
+.col-6 h6 {
+    margin-top: 15px; /* 원하는 여백 크기 */
+    margin-bottom: 10px; /* 원하는 여백 크기 */
+}
 
+.col-sm-12.col-md-6.d-flex.justify-content-end {
+    margin-bottom: 10px; /* 선택 목록 아래에 여백 추가 */
+}
+
+.pagination .page-link {
+    font-size: 14px; /* 텍스트 크기 조절 */
+    padding: 10px 14px; /* 버튼 크기 조절 (상하 10px, 좌우 20px) */
+}
+
+.pagination .page-item {
+    font-size: 14px; /* 버튼 크기 조절 */
+    padding: 10px 14px; /* 버튼 크기 조절 (상하 10px, 좌우 20px) */
+}
+
+.pagination .page-link i {
+    font-size: 16px; /* 아이콘 크기 조절 */
+}
 
 /* Arrows */
 .slick-prev,

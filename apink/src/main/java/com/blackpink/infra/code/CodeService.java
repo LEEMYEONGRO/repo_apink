@@ -42,6 +42,15 @@ public class CodeService {
 		return dao.delete(dto);
 	}
 	
+	@PostConstruct
+	public void selectListCachedCodeArrayList() throws Exception {
+		List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();
+//			codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+		CodeDto.cachedCodeArrayList.clear(); 
+		CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
+		System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
+	}
+	
 	public static String selectOneCachedCode(int code) throws Exception {
 		String rt = "";
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
@@ -54,12 +63,15 @@ public class CodeService {
 		return rt;
 	}
 	
-	 @PostConstruct
-		public void selectListCachedCodeArrayList() throws Exception {
-			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();
-//			codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-			CodeDto.cachedCodeArrayList.clear(); 
-			CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
-			System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
+	public static List<CodeDto> selectListCachedCode(String cgSeq) throws Exception {
+		List<CodeDto> rt = new ArrayList<CodeDto>();
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			if (codeRow.getCgSeq().equals(cgSeq)) {
+				rt.add(codeRow);
+			} else {
+				// by pass
+			}
 		}
+		return rt;
+	}
 }

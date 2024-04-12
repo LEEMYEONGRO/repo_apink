@@ -86,7 +86,7 @@
                                         		<div class="col-lg-12">
                                   					<div class="form-group">
 							           				<label>생년월일</label>
-							           					<input type="text" id="shDate" class="form-control" name="shDate" th:value="${#dates.format(item.mbDateBirth, 'yyyy/MM/dd')}">
+							           					<input type="text" id="shDate" class="form-control" name="mbDateBirth" th:value="${#dates.format(item.mbDateBirth, 'yyyy/MM/dd')}">
 							          				</div>
                                  				</div>
                                                 <div class="col-lg-12">
@@ -98,16 +98,16 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group mb--40">
                                                         <label>성별</label>
-                                                        <select class="select2">
-                                                            <option value="1">남자</option>
-                                                            <option value="1">여자</option>
-                                                            <option value="1">기타</option>
-                                                        </select>
+                                                        <select class="select2" name="mbGender" >
+															<th:block th:each="list : ${@codeService.selectListCachedCode(2)}">
+																<option th:value="${list.cdSeq}" th:text="${list.cdSeq +' '+item.mbGender}" th:selected="${item.mbGender.equals(list.cdSeq)}"></option>
+															</th:block>
+														</select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                 	<div class="form-group mb--0">
-                                                        <input type="submit" class="axil-btn" value="저장">
+                                                        <input type="submit" class="axil-btn" value="저장" onclick="javascript: form.action='update';">
                                                 	</div>
                                                 </div>
                             				</div>
@@ -168,12 +168,12 @@
 										<div class="col-2">
 											<input type="button" id="btnSearch" class="axil-btn" value="조회">
 	                                    </div>
-	                                    <div class="col-sm-12 col-md-6">
-												total: <label th:text="${vo.totalRows}"></label>
-											</div>
+	                                    <div class="col-6">
+											<h6>total: <label th:text="${vo.totalRows}"></label></h6>
+										</div>
 										<div class="col-sm-12 col-md-6  d-flex justify-content-end">
-											<div class="col-md-1 col-sm-1">
-												<select name="rowNumToShow" id="rowNumToShow" aria-controls="apiCallbacks" class="form-select form-select-sm" th:onchange="javascript:goList(1)">
+											<div class="col-md-3 col-sm-3">
+												<select name="rowNumToShow" id="rowNumToShow" aria-controls="apiCallbacks" class="select2" th:onchange="javascript:goList(1)">
 													<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
 													<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
 													<option value="15" th:selected="${vo.rowNumToShow == 25}">15</option>
@@ -195,7 +195,6 @@
                                                         <th scope="col">금액</th>
                                                     </tr>
                                                 </thead>
-                                                
                                                 <tbody>
                                                     <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
 														<td th:text="${list.pmSeq}"></td>
@@ -211,6 +210,9 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <!-- 페이징시작 -->
+                                    <div th:replace= "~{v1/infra/blockDeclaration/user/body :: pageButton}"></div>
+                                	<!-- 페이징종료 -->
                                 </div>
                                 <div class="tab-pane fade" id="nav-address" role="tabpanel">
                                     <div class="axil-dashboard-address">
@@ -471,7 +473,7 @@
 		window.addEventListener('load', function() {
 			$("#shDate").datetimepicker({
 				timepicker:false,
-				format: 'Y-m-d'
+				format: 'Y/m/d'
 			});
 		});
 	</script>
