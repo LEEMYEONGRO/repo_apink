@@ -59,7 +59,13 @@ public class MypageController {
 	public String update(PaymentDto dto) {
 		
 		service.update(dto);
-		System.out.println(dto.getMbDateBirth() + "---------------------------------------------");
+		return "redirect:/myPage";
+	}
+	
+	@RequestMapping(value = "updatePw")
+	public String updatePw(PaymentDto dto) {
+		
+		service.updatePw(dto);
 		return "redirect:/myPage";
 	}
 	
@@ -93,10 +99,41 @@ public class MypageController {
 		returnMap.put("rt", "email");
 	}
 	return returnMap;
-}
+	}
 	
+//	@ResponseBody
+//	@RequestMapping(value = "/newPassword")
+//	public Map<String, Object> newPassword(PaymentDto dto) {
+//		
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		
+//		PaymentDto dtoPw = service.newPassword(dto);
+//		
+//		if(matchesBcrypt(dto.getMbPassword(),dtoPw.getMbPassword() , 10)) {
+//			if((dto.getMbPassword().equals(dtoPw.getMbPassword())) {
+//				returnMap.put("rt", "success");
+//		
+//		if(dto.getMbPassword().equals(dtoPw.getMbPassword())) {
+//			if(matchesBcrypt(dto.getMbPassword(),dtoPw.getMbPassword() , 10)) {
+//				returnMap.put("rt", "success");
+//		}else {
+//			returnMap.put("rt", "newPassword");
+//		}
+//	}else {
+//		returnMap.put("rt", "password");
+//	}
+//		return returnMap;
+//	}
+	
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 		return passwordEncoder.matches(planeText, hashValue);
 	}
+	
+	
 }

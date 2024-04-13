@@ -100,7 +100,7 @@
                                                         <label>성별</label>
                                                         <select class="select2" name="mbGender" >
 															<th:block th:each="list : ${@codeService.selectListCachedCode(2)}">
-																<option th:value="${list.cdSeq}" th:text="${list.cdSeq +' '+item.mbGender}" th:selected="${item.mbGender.equals(list.cdSeq)}"></option>
+																<option th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${item.mbGender == list.cdSeq}"></option>
 															</th:block>
 														</select>
                                                     </div>
@@ -126,20 +126,20 @@
                                               	<div class="col-12">
                                                    <div class="form-group">
                                                        <label>기존 비밀번호</label>
-                                                       <input type="password" class="form-control">
+                                                       <input type="password" class="form-control" id="mbPassword" name="mbPassword" placeholder="기존 비밀번호를 입력하시오.">
                                                    </div>
                                                    <div class="form-group">
                                                        <label>새 비밀번호</label>
-                                                       <input type="password" class="form-control">
+                                                       <input type="password" class="form-control" id="newmbPassword" name="newmbPassword" placeholder="새 비밀번호를 입력하시오.">
                                                    </div>
                                                    <div class="form-group">
                                                        <label>새 비밀번호 확인</label>
-                                                       <input type="password" class="form-control">
+                                                       <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" placeholder="새 비밀번호확인을 입력하시오.">
                                                    </div>
                                                    <div class="form-group mb--0">
-                                                       <input type="submit" class="axil-btn" value="저장">
+                                                       <input type="submit" class="axil-btn" name="changePassword" id="changePassword" value="변경">
                                                    </div>
-                                               </div>
+                                               	</div>
                                            </div>
                                         </div>
                                 	</div>
@@ -515,6 +515,7 @@
 			    }
 			}
 	</script>
+	
 </body>
 
 </html>

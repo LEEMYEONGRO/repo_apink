@@ -23,6 +23,14 @@ public class PaymentService {
 		return dao.update(dto);
 	}
 	
+	public int updatePw(PaymentDto dto) {
+		return dao.updatePw(dto);
+	}
+	
+	public PaymentDto newPassword(PaymentDto dto) {
+		return dao.newPassword(dto);
+	}
+	
 	public int selectOneCount(PaymentVo vo) {
 		return dao.selectOneCount(vo);
 	}

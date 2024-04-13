@@ -68,4 +68,20 @@
     	WHERE 1=1
     		AND mbEmail = #{mbEmail}
 	</update>
+	
+	<select id="newPassword" resultMap="resultMapObj">
+    	SELECT
+    		mbPassword
+    	FROM member
+        WHERE 1=1 
+        	AND mbSeq = #{mbSeq}
+    </select>
+	
+	<update id="updatePw">
+		UPDATE member
+		SET
+			mbPassword = #{newmbPassword}
+		WHERE 1=1
+			AND mbSeq = #{mbSeq}
+	</update>
 </mapper>
