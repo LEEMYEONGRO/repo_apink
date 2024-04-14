@@ -11,9 +11,9 @@ public interface PaymentDao {
 	
 	public int update(PaymentDto dto);
 	
-	public int updatePw(PaymentDto dto);
+	public int updatePw(PaymentVo vo);
 	
-	public PaymentDto newPassword(PaymentDto dto);
+	public PaymentDto existingPassword(PaymentVo vo);
 	
 	public int selectOneCount(PaymentVo vo);
 }

@@ -62,13 +62,6 @@ public class MypageController {
 		return "redirect:/myPage";
 	}
 	
-	@RequestMapping(value = "updatePw")
-	public String updatePw(PaymentDto dto) {
-		
-		service.updatePw(dto);
-		return "redirect:/myPage";
-	}
-	
 	@RequestMapping(value = "/loginUser")
 	public String loginUser(PaymentDto dto) {
 		
@@ -100,30 +93,35 @@ public class MypageController {
 	}
 	return returnMap;
 	}
-	
-//	@ResponseBody
-//	@RequestMapping(value = "/newPassword")
-//	public Map<String, Object> newPassword(PaymentDto dto) {
-//		
-//		Map<String, Object> returnMap = new HashMap<String, Object>();
-//		
-//		PaymentDto dtoPw = service.newPassword(dto);
-//		
-//		if(matchesBcrypt(dto.getMbPassword(),dtoPw.getMbPassword() , 10)) {
-//			if((dto.getMbPassword().equals(dtoPw.getMbPassword())) {
-//				returnMap.put("rt", "success");
-//		
-//		if(dto.getMbPassword().equals(dtoPw.getMbPassword())) {
-//			if(matchesBcrypt(dto.getMbPassword(),dtoPw.getMbPassword() , 10)) {
-//				returnMap.put("rt", "success");
-//		}else {
-//			returnMap.put("rt", "newPassword");
-//		}
-//	}else {
-//		returnMap.put("rt", "password");
-//	}
-//		return returnMap;
-//	}
+
+	@ResponseBody
+	@RequestMapping(value = "/newPassword")
+	public Map<String, Object> newPassword(@ModelAttribute("vo")PaymentVo vo, PaymentDto dto, HttpSession httpSession) {
+		
+		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		PaymentDto dtoPw = service.existingPassword(vo); // 기존 비밀번호를 가져옴
+		
+		// 기존 비밀번호 확인
+	    if(matchesBcrypt(vo.getMbPassword(),dtoPw.getMbPassword() , 10)) {
+	    	// 새 비밀번호와 확인 비밀번호 일치 여부 확인
+		    if (dto.getNewmbPassword().equals(dto.getPasswordCheck())) {
+		    	
+		        vo.setNewmbPassword(encodeBcrypt(vo.getNewmbPassword(), 10));
+		        service.updatePw(vo);
+		        
+		        returnMap.put("rt", "success");
+		    }else{
+		    	returnMap.put("rt", "no");
+		    }
+	    }else {
+	    	returnMap.put("rt", "existingPassword");
+	    }
+	    
+	    return returnMap;
+	}
 	
 	public String encodeBcrypt(String planeText, int strength) {
 		  return new BCryptPasswordEncoder(strength).encode(planeText);

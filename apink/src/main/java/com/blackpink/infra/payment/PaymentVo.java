@@ -12,6 +12,9 @@ public class PaymentVo extends BaseVo {
 	private String ShValue;
 	private String mbSeq;
 	
+	private String mbPassword;
+	private String newmbPassword;
+	
 	public Integer getShDelNy() {
 		return shDelNy;
 	}
@@ -55,6 +58,23 @@ public class PaymentVo extends BaseVo {
 	public void setMbSeq(String mbSeq) {
 		this.mbSeq = mbSeq;
 	}
+	
+	public String getMbPassword() {
+		return mbPassword;
+	}
+	
+	public void setMbPassword(String mbPassword) {
+		this.mbPassword = mbPassword;
+	}
+	
+	public String getNewmbPassword() {
+		return newmbPassword;
+	}
+	
+	public void setNewmbPassword(String newmbPassword) {
+		this.newmbPassword = newmbPassword;
+	}
+	
 	
 	
 }

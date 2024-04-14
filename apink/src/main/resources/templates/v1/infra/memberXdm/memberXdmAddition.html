@@ -165,7 +165,10 @@
 				,cache: false
 				,type: "post"
 				,url: "/signinXdmProc"
-				,data : {"mbPassword" : $("#mbPassword").val(), "passwordCheck" : $("#passwordCheck").val()}
+				,data : {
+					"mbPassword" : $("#mbPassword").val(),
+					"passwordCheck" : $("#passwordCheck").val()
+					}
 				,success: function(response) {
 					if(response.rt == "success") {
 						/* alert("비밀번호가 일치"); */
