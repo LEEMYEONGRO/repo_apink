@@ -19,8 +19,20 @@ public class PaymentService {
 		return dao.item(vo);
 	}
 	
+	public List<PaymentDto> addressList(PaymentVo vo) {
+		return dao.addressList(vo);
+	}
+	
+	public PaymentDto addressItem(PaymentDto dto) {
+		return dao.addressItem(dto);
+	}
+	
 	public int update(PaymentDto dto) {
 		return dao.update(dto);
+	}
+	
+	public int addressUpdate(PaymentDto dto) {
+		return dao.addressUpdate(dto);
 	}
 	
 	public int updatePw(PaymentVo vo) {
@@ -33,5 +45,9 @@ public class PaymentService {
 	
 	public int selectOneCount(PaymentVo vo) {
 		return dao.selectOneCount(vo);
+	}
+	
+	public int addressCount(PaymentVo vo) {
+		return dao.addressCount(vo);
 	}
 }

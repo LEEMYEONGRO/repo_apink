@@ -14,7 +14,7 @@
 			JOIN product d 
 			 on d.pdSeq = c.pdSeq
 		WHERE
-			 a.mbSeq = #{mbSeq}	
+			 a.mbSeq = #{mbSeq}
 		<!-- <if test="shGender != null and !shGender.equals('')">AND mbGender = #{mbGender}</if> -->
 		<choose>
 			<when test="shOptionDate == 1">AND pmCreationDate BETWEEN #{shDateStart} AND #{shDateEnd} </when>
@@ -24,6 +24,7 @@
 			<when test="shOption == 1">AND d.pdName LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
+	
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
@@ -56,7 +57,65 @@
         WHERE
         	mbSeq = #{mbSeq}
 	</select>
-		
+	
+	<sql id ="addressCommon">
+		FROM
+		    member a
+		JOIN
+		    address b on b.mbSeq = a.mbSeq
+		WHERE
+        	a.mbSeq = #{mbSeq}
+	</sql>
+
+	<select id="addressList" resultMap="resultMapObj">
+		SELECT
+		    a.mbSeq as memberSeq
+		    ,b.arSeq
+		    ,b.arName
+		    ,b.arUserName
+		    ,b.arPhoneNumber
+		    ,b.arPostalCode
+		    ,b.arNumberAddress
+		    ,b.arRoadNameAddress
+		    ,b.arDetailAddress
+		    ,b.mbSeq as addressSeq
+		<include refid="addressCommon"></include>
+	</select>
+	
+	<select id="addressCount">
+		SELECT COUNT(*)
+		<include refid="addressCommon"></include>
+	</select>
+
+	<select id="addressItem" resultMap="resultMapObj">
+		SELECT
+		    arSeq
+		    ,arName
+		    ,arUserName
+		    ,arPhoneNumber
+		    ,arPostalCode
+		    ,arNumberAddress
+		    ,arRoadNameAddress
+		    ,arDetailAddress
+		    ,mbSeq as addressSeq
+			FROM address
+		WHERE arSeq = #{arSeq}
+	</select>
+	
+	<update id="addressUpdate">
+		UPDATE address 
+    	SET
+    		arName = #{arName}
+    		,arUserName = #{arUserName}
+            ,arPhoneNumber = #{arPhoneNumber}
+            ,arPostalCode = #{arPostalCode}
+            ,arNumberAddress = #{arNumberAddress}
+            ,arRoadNameAddress = #{arRoadNameAddress}
+            ,arDetailAddress = #{arDetailAddress}
+    	WHERE 1=1
+    		AND arName = #{arName}
+	</update>
+	
 	<update id="update">
 		UPDATE member 
     	SET

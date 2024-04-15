@@ -25,6 +25,16 @@ public class PaymentDto {
 	private String passwordCheck;
 	private String newmbPassword;
 	
+	private String arSeq;
+	private String arName;
+	private String arUserName;
+	private String arPhoneNumber;
+	private String arPostalCode;
+	private String arNumberAddress;
+	private String arRoadNameAddress;
+	private String arDetailAddress;
+	private String addressSeq;
+	
 	public String getMemberSeq() {
 		return memberSeq;
 	}
@@ -166,6 +176,78 @@ public class PaymentDto {
 	
 	public void setPasswordCheck(String passwordCheck) {
 		this.passwordCheck = passwordCheck;
+	}
+	
+	public String getArSeq() {
+		return arSeq;
+	}
+	
+	public void setArSeq(String arSeq) {
+		this.arSeq = arSeq;
+	}
+	
+	public String getArName() {
+		return arName;
+	}
+	
+	public void setArName(String arName) {
+		this.arName = arName;
+	}
+	
+	public String getArUserName() {
+		return arUserName;
+	}
+	
+	public void setArUserName(String arUserName) {
+		this.arUserName = arUserName;
+	}
+	
+	public String getArPhoneNumber() {
+		return arPhoneNumber;
+	}
+	
+	public void setArPhoneNumber(String arPhoneNumber) {
+		this.arPhoneNumber = arPhoneNumber;
+	}
+	
+	public String getArPostalCode() {
+		return arPostalCode;
+	}
+	
+	public void setArPostalCode(String arPostalCode) {
+		this.arPostalCode = arPostalCode;
+	}
+	
+	public String getArNumberAddress() {
+		return arNumberAddress;
+	}
+	
+	public void setArNumberAddress(String arNumberAddress) {
+		this.arNumberAddress = arNumberAddress;
+	}
+	
+	public String getArRoadNameAddress() {
+		return arRoadNameAddress;
+	}
+	
+	public void setArRoadNameAddress(String arRoadNameAddress) {
+		this.arRoadNameAddress = arRoadNameAddress;
+	}
+	
+	public String getArDetailAddress() {
+		return arDetailAddress;
+	}
+	
+	public void setArDetailAddress(String arDetailAddress) {
+		this.arDetailAddress = arDetailAddress;
+	}
+	
+	public String getAddressSeq() {
+		return addressSeq;
+	}
+	
+	public void setAddressSeq(String addressSeq) {
+		this.addressSeq = addressSeq;
 	}
 	
 	

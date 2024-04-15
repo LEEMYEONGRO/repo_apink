@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import com.blackpink.infra.code.CodeDto;
 import com.blackpink.infra.payment.PaymentDto;
 import com.blackpink.infra.payment.PaymentService;
 import com.blackpink.infra.payment.PaymentVo;
@@ -37,14 +38,14 @@ public class MypageController {
 		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		System.out.println(vo.getShValue() + "-------------------------------------------");
-		
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
 		model.addAttribute("item", service.item(vo));
-			
+		
+		model.addAttribute("addressList", service.addressList(vo));
+		
 		return "/v1/infra/user/myPage";
 	}
 	
@@ -57,10 +58,25 @@ public class MypageController {
 		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
 	}
 	
+	@RequestMapping(value = "/addressUserCorrection")
+	public String addressUserCorrection(PaymentDto dto, Model model) {
+		
+		model.addAttribute("addressItem", service.addressItem(dto));
+		
+		return "/v1/infra/user/addressUserCorrection";
+	}
+	
 	@RequestMapping(value = "update")
 	public String update(PaymentDto dto) {
 		
 		service.update(dto);
+		return "redirect:/myPage";
+	}
+	
+	@RequestMapping(value = "addressUpdate")
+	public String addressUpdate(PaymentDto dto) {
+		
+		service.addressUpdate(dto);
 		return "redirect:/myPage";
 	}
 	
@@ -133,7 +149,6 @@ public class MypageController {
 	    }else {
 	    	returnMap.put("rt", "existingPassword");
 	    }
-	    
 	    return returnMap;
 	}
 	
@@ -141,7 +156,6 @@ public class MypageController {
 		  return new BCryptPasswordEncoder(strength).encode(planeText);
 	}
 
-			
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 		return passwordEncoder.matches(planeText, hashValue);

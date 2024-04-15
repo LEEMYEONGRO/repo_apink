@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
+
+
+<body class="sticky-header">
+	<form name="formList" id="formList" method="post" autocomplete="off">
+    <!-- 상단바 시작 -->
+        <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
+    <!-- 상단바 종료 -->
+    <main class="main-wrapper">
+        <!-- Start Breadcrumb Area  -->
+        <div class="axil-breadcrumb-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="inner">
+                            <ul class="axil-breadcrumb">
+                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="separator"></li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">마이페이지</li>
+                            </ul>
+                            <h1 class="title">마이페이지</h1>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="inner">
+                            <div class="bradcrumb-thumb">
+                                <img src="assets/images/product/product-45.png" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb Area  -->
+
+        <!-- Start My Account Area  -->
+        <div class="axil-dashboard-area axil-section-gap">
+            <div class="container">
+                <div class="axil-dashboard-warp">
+                    <div class="axil-dashboard-author">
+                        <div class="media">
+                            <div class="media-body">
+                                <h5 class="title mb-0">[[${session.sessNameUser}]]</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-xl-3 col-md-4">
+                            <aside class="axil-dashboard-aside">
+                                <nav class="axil-dashboard-nav">
+                                    <div class="nav nav-tabs" role="tablist">
+                                    	<a class="nav-item nav-link active" th:href="@{/myPage}" role="tab" ><i class="fas fa-user"></i>계정</a>
+                                    	<a class="nav-item nav-link" th:href="@{/myPage}" role="tab" ><i class="fas fa-user"></i>비밀번호 변경</a>
+                                       	<a class="nav-item nav-link" th:href="@{/myPage}" role="tab" ><i class="fas fa-home"></i>주소</a>
+                                        <a class="nav-item nav-link" th:href="@{/myPage}" role="tab" ><i class="fas fa-shopping-basket"></i>주문내역</a>
+                                        <a class="nav-item nav-link" onclick="logout()"><i class="fal fa-sign-out"></i>로그아웃</a>
+                                    </div>
+                                </nav>
+                            </aside>
+                        </div>
+                        <div class="col-xl-9 col-md-8">
+                            <div class="tab-content">
+                                    <div class="col-lg-9">
+                                        <div class="axil-dashboard-account">
+                                        	<div class="row">
+                                            	<div class="col-12">
+		                                    		<h5 style="font-weight:bold;">주소수정</h5>
+		                                    	</div>
+                                                <div class="col-lg-12">
+                                                	<div class="form-group">
+                                                    	<label>주소정보 이름</label>
+                                                    	<input type="text" class="form-control" name="arName" th:value="${addressItem.arName}">
+                                                	</div>
+                                              	</div>
+                                                <div class="col-lg-12">
+                                                	<div class="form-group">
+                                                    	<label>이름</label>
+                                                    	<input type="text" class="form-control" name="arUserName" th:value="${addressItem.arUserName}">
+                                                	</div>
+                                              	</div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>전화번호</label>
+                                                        <input type="text" class="form-control" name="arPhoneNumber" th:value="${addressItem.arPhoneNumber}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>우편번호</label>
+                                                        <input type="text" class="form-control" name="arPostalCode" th:value="${addressItem.arPostalCode}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>지번주소</label>
+                                                        <input type="text" class="form-control" name="arNumberAddress" th:value="${addressItem.arNumberAddress}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>도로명주소</label>
+                                                        <input type="text" class="form-control" name="arRoadNameAddress" th:value="${addressItem.arRoadNameAddress}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>상세주소</label>
+                                                        <input type="text" class="form-control" name="arDetailAddress" th:value="${addressItem.arDetailAddress}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                	<div class="form-group mb--0">
+                                                        <button type="submit" class="axil-btn" onclick="javascript: form.action='addressUpdate';">저장</button>
+                                                	</div>
+                                                </div>
+                            				</div>
+                                		</div>
+                                	</div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+        <!-- End My Account Area  -->
+
+        <!-- Start Axil Newsletter Area  -->
+        <div class="axil-newsletter-area axil-section-gap pt--0">
+            <div class="container">
+                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
+                    <div class="newsletter-content">
+                        <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
+                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
+                        <div class="input-group newsletter-form">
+                            <div class="position-relative newsletter-inner mb--15">
+                                <input placeholder="example@gmail.com" type="text">
+                            </div>
+                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End .container -->
+        </div>
+        <!-- End Axil Newsletter Area  -->
+    </main>
+
+
+    <div class="service-area">
+        <div class="container">
+            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="./assets/images/icons/service1.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Fast &amp; Secure Delivery</h6>
+                            <p>Tell about your service.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="./assets/images/icons/service2.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Money Back Guarantee</h6>
+                            <p>Within 10 days.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="./assets/images/icons/service3.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">24 Hour Return Policy</h6>
+                            <p>No question ask.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-box service-style-2">
+                        <div class="icon">
+                            <img src="./assets/images/icons/service4.png" alt="Service">
+                        </div>
+                        <div class="content">
+                            <h6 class="title">Pro Quality Support</h6>
+                            <p>24/7 Live support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Footer Area  -->
+    <footer class="axil-footer-area footer-style-2">
+        <!-- Start Footer Top Area  -->
+        <div class="footer-top separator-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Support</h5>
+                            <!-- <div class="logo mb--30">
+                            <a href="index.html">
+                                <img class="light-logo" src="assets/images/logo/logo.png" alt="Logo Images">
+                            </a>
+                        </div> -->
+                            <div class="inner">
+                                <p>685 Market Street, <br>
+                                Las Vegas, LA 95820, <br>
+                                United States.
+                                </p>
+                                <ul class="support-list-item">
+                                    <li><a href="mailto:example@domain.com"><i class="fal fa-envelope-open"></i> example@domain.com</a></li>
+                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+01) 850-315-5862</a></li>
+                                    <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Account</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="sign-up.html">Login / Register</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">Quick Link</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Top Area  -->
+        <!-- Start Copyright Area  -->
+        <div class="copyright-area copyright-default separator-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-4">
+                        <div class="social-share">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-left d-flex flex-wrap justify-content-center">
+                            <ul class="quick-link">
+                                <li>© 2023. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
+                            <span class="card-text">Accept For</span>
+                            <ul class="payment-icons-bottom quick-link">
+                                <li><img src="assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
+                                <li><img src="assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
+                                <li><img src="assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright Area  -->
+    </footer>
+	</form>
+    <!-- End Footer Area  -->
+
+   <!-- JS  -->
+    <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
+	
+	
+	
+	
+	
+</body>
+
+</html>

@@ -112,7 +112,7 @@
 														<td th:text="${list.groupseq}"></td>
 														<td th:text="${list.cgName}"></td>
 											 			<td th:text="${list.cdSeq}"></td>
-											 			<td> <a th:href="@{/codeXdmCorrection(cdSeq=${list.cdSeq},cdName=${list.cdName})}" th:text="${list.cdName}"></a></td>
+											 			<td> <a th:href="@{/codeXdmCorrection(cdSeq=${list.cdSeq})}" th:text="${list.cdName}"></a></td>
 											 			<th th:text="${#dates.format(list.cdCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 											 			<th th:text="${#dates.format(list.cdModificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 														<td th:if="${list.cdDeleteNy eq 0}">N</td>

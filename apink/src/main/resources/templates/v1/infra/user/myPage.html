@@ -55,7 +55,7 @@
                                     <div class="nav nav-tabs" role="tablist">
                                     	<a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>계정</a>
                                     	<a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-pssword" role="tab" aria-selected="false"><i class="fas fa-user"></i>비밀번호 변경</a>
-                                        <!-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>주소</a> -->
+                                       	<a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>주소</a>
                                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>주문내역</a>
                                         <a class="nav-item nav-link" onclick="logout()"><i class="fal fa-sign-out"></i>로그아웃</a>
                                     </div>
@@ -214,30 +214,31 @@
                                     <div th:replace= "~{v1/infra/blockDeclaration/user/body :: pageButton}"></div>
                                 	<!-- 페이징종료 -->
                                 </div>
-                                <!-- <div class="tab-pane fade" id="nav-address" role="tabpanel">
+                                <div class="tab-pane fade" id="nav-address" role="tabpanel">
                                     <div class="axil-dashboard-address">
                                         <div class="row row--30">
                                         	<div class="col-12">
                                     	   		<h5 style="font-weight:bold;">주소</h5>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" th:if="${!#lists.isEmpty(addressList)}" th:each="addressList : ${addressList}">
                                                 <div class="address-info mb--40">
                                                     <div class="addrss-header d-flex align-items-center justify-content-between">
-                                                        <h4 class="title mb-0">기본주소</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
+                                                        <h5 class="title mb-0">[[${addressList.arName}]]</h5>
+                                                        <a th:href="@{/addressUserCorrection(arSeq=${addressList.arSeq})}" class="address-edit"><i class="far fa-edit"></i></a>
                                                     </div>
-                                                    <ul class="address-details">
-                                                        <li>이름: 김영일</li>
-                                                        <li>이메일: kim01@naver.com</li>
-                                                        <li>전화번호: 010-0001-0001</li>
-                                                        <li class="mt--30">서울특별시 중랑구 겸재로2길 63 <br>
-                                                        송림리치빌 나동 403호</li>
+                                                    <ul class="address-details" >
+                                                        <li><strong>이름 : <span th:text="${addressList.arUserName}"></span></strong></li>
+											            <li><strong>전화번호 : <span th:text="${addressList.arPhoneNumber}"></span></strong></li>
+											            <li><strong>우편번호 : <span th:text="${addressList.arPostalCode}"></span></strong></li>
+											            <li><strong>지번주소 : <span th:text="${addressList.arNumberAddress}"></span></strong></li>
+											            <li><strong>도로명주소 : <span th:text="${addressList.arRoadNameAddress}"></span></strong></li>
+											            <li><strong>상세주소 : <span th:text="${addressList.arDetailAddress}"></span></strong></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
