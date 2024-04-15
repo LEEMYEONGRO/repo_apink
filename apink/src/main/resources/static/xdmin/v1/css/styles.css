@@ -17,7 +17,15 @@
 	object-fit: cover;
 	margin: auto
 }
- 	
+
+#imgsize {
+    width: 630px;
+    height: 360px;
+    position: relative;
+	display: block;
+	margin: 0 auto;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

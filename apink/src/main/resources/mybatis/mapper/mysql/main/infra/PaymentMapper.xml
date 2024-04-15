@@ -49,7 +49,6 @@
     	SELECT
     		mbEmail
     		,mbDateBirth
-    		,mbPassword
     		,mbName
     		,mbGender
     		,mbPhoneNumber

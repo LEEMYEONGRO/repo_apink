@@ -55,9 +55,9 @@
                                     <div class="nav nav-tabs" role="tablist">
                                     	<a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>계정</a>
                                     	<a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-pssword" role="tab" aria-selected="false"><i class="fas fa-user"></i>비밀번호 변경</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>주소</a>
+                                        <!-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>주소</a> -->
                                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>주문내역</a>
-                                        <a class="nav-item nav-link" href="sign-in.html"><i class="fal fa-sign-out"></i>로그아웃</a>
+                                        <a class="nav-item nav-link" onclick="logout()"><i class="fal fa-sign-out"></i>로그아웃</a>
                                     </div>
                                 </nav>
                             </aside>
@@ -100,14 +100,14 @@
                                                         <label>성별</label>
                                                         <select class="select2" name="mbGender" >
 															<th:block th:each="list : ${@codeService.selectListCachedCode(2)}">
-																<option th:value="${list.cdSeq}" th:text="${list.cdName}" th:selected="${item.mbGender == list.cdSeq}"></option>
+																<option th:selected="${item.mbGender == list.cdSeq}" th:value="${list.cdSeq}" th:text="${list.cdName}" ></option>
 															</th:block>
 														</select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-12">
                                                 	<div class="form-group mb--0">
-                                                        <input type="submit" class="axil-btn" value="저장" onclick="javascript: form.action='update';">
+                                                        <button type="submit" class="axil-btn" onclick="javascript: form.action='update';">저장</button>
                                                 	</div>
                                                 </div>
                             				</div>
@@ -214,7 +214,7 @@
                                     <div th:replace= "~{v1/infra/blockDeclaration/user/body :: pageButton}"></div>
                                 	<!-- 페이징종료 -->
                                 </div>
-                                <div class="tab-pane fade" id="nav-address" role="tabpanel">
+                                <!-- <div class="tab-pane fade" id="nav-address" role="tabpanel">
                                     <div class="axil-dashboard-address">
                                         <div class="row row--30">
                                         	<div class="col-12">
@@ -235,54 +235,9 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="address-info">
-                                                    <div class="addrss-header d-flex align-items-center justify-content-between">
-                                                        <h4 class="title mb-0">회사주소</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
-                                                    </div>
-                                                    <ul class="address-details">
-                                                        <li>이름: (주)영일</li>
-                                                        <li>이메일: kim01@naver.com</li>
-                                                        <li>전화번호: 010-0001-0001</li>
-                                                        <li class="mt--30">서울특별시 중랑구 겸재로2길 63 <br>
-                                                        송림리치빌 나동 403호</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="address-info">
-                                                    <div class="addrss-header d-flex align-items-center justify-content-between">
-                                                        <h4 class="title mb-0">본가주소</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
-                                                    </div>
-                                                    <ul class="address-details">
-                                                        <li>이름: 김영이</li>
-                                                        <li>이메일: kim02@naver.com</li>
-                                                        <li>전화번호: 010-0002-0002</li>
-                                                        <li class="mt--30">서울특별시 중랑구 겸재로2길 63 <br>
-                                                        송림리치빌 나동 403호</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="address-info">
-                                                    <div class="addrss-header d-flex align-items-center justify-content-between">
-                                                        <h4 class="title mb-0">친구주소</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
-                                                    </div>
-                                                    <ul class="address-details">
-                                                        <li>이름: 김영삼</li>
-                                                        <li>이메일: kim03@naver.com</li>
-                                                        <li>전화번호: 010-0003-0003</li>
-                                                        <li class="mt--30">서울특별시 중랑구 겸재로2길 63 <br>
-                                                        송림리치빌 나동 403호</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

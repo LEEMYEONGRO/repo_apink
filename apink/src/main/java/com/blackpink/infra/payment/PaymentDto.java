@@ -17,7 +17,7 @@ public class PaymentDto {
 	
 	private String mbName;
 	private Date mbDateBirth;
-	private Integer mbGender;
+	private String mbGender;
 	private String mbEmail;
 	private String mbPassword;
 	private String mbPhoneNumber;
@@ -120,11 +120,11 @@ public class PaymentDto {
 		this.mbDateBirth = mbDateBirth;
 	}
 	
-	public Integer getMbGender() {
+	public String getMbGender() {
 		return mbGender;
 	}
 	
-	public void setMbGender(Integer mbGender) {
+	public void setMbGender(String mbGender) {
 		this.mbGender = mbGender;
 	}
 	

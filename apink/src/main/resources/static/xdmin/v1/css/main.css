@@ -14608,6 +14608,7 @@ ul.sales-stats li p span small, ul.sales-stats li p span .small {
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-color: #e0e0e0;
 }
 
 .login-box {

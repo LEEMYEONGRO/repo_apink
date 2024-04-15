@@ -27,6 +27,8 @@ public class MypageController {
 	@Autowired
 	MypageService MypageService;
 	
+	
+	
 	@RequestMapping(value = "/myPage")
 	public String myPage(@ModelAttribute("vo")PaymentVo vo,Model model, HttpSession httpSession) throws Exception {
 		
@@ -93,7 +95,19 @@ public class MypageController {
 	}
 	return returnMap;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/logoutUser")
+	public Map<String, Object> logoutUser(HttpSession httpSession) {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		httpSession.invalidate();
+		
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/newPassword")
 	public Map<String, Object> newPassword(@ModelAttribute("vo")PaymentVo vo, PaymentDto dto, HttpSession httpSession) {
