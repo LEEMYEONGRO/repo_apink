@@ -21,11 +21,6 @@ public class MemberDto {
 
 	private String passwordCheck;
 	
-//	for cache
-	public static List<MemberDto> cachedCodeArrayList = new ArrayList<MemberDto>();	
-	
-	
-
 	public String getMbSeq() {
 		return mbSeq;
 	}

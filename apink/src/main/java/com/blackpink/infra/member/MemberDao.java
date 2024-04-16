@@ -18,8 +18,6 @@ public interface MemberDao {
 	
 	public int delete(MemberDto dto);
 	
-	public List<MemberDto> selectListCachedCodeArrayList();
-	
 	public List<MemberDto> selectListWithoutPaging(); 
 
 	public int selectOneCount(MemberVo vo);

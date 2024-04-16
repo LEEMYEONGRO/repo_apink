@@ -1,6 +1,5 @@
 package com.blackpink.infra.user.product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductDao {
@@ -29,6 +28,4 @@ public interface ProductDao {
 	
 	public int selectPdOneCount(ProductVo vo);
 
-	public ArrayList<ProductDto> selectListCachedCodeArrayList();
-	
 }

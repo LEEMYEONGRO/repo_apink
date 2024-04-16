@@ -174,15 +174,6 @@
 			AND pdDeleteNy = 0
 	</select>
 	<!-- 공통 페이징 -->
-	
-	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-		SELECT 
-			pdSeq
-			,pdName
-		FROM product
-		WHERE 1=1
-			AND pdDeleteNy = 0
-    </select>
     
 	<!-- 카운트 -->
 	<select id="selectOneCount">

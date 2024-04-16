@@ -1,8 +1,6 @@
 package com.blackpink.infra.user.product;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ProductDto {
 
@@ -17,8 +15,6 @@ public class ProductDto {
 	private Date pdModificationDate;
 //	제품
 
-//	for cache
-	public static List<ProductDto> cachedCodeArrayList = new ArrayList<ProductDto>();
 	
 	public String getPdSeq() {
 		return pdSeq;
@@ -84,21 +80,4 @@ public class ProductDto {
 		this.pdModificationDate = pdModificationDate;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductDto [pdSeq=" + pdSeq + ", pdCode=" + pdCode + ", pdName=" + pdName + ", pdPrice=" + pdPrice
-				+ ", pdlikeNy=" + pdlikeNy + ", pdDeleteNy=" + pdDeleteNy + ", pdCreationDate=" + pdCreationDate
-				+ ", pdModificationDate=" + pdModificationDate + "]";
-	}
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
 }

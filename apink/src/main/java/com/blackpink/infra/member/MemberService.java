@@ -52,39 +52,4 @@ public class MemberService {
 		return dao.selectOneCount(vo);
 	}
 	
-    @PostConstruct
-	public void selectListCachedCodeArrayList() throws Exception {
-		List<MemberDto> codeListFromDb = (ArrayList<MemberDto>) dao.selectListCachedCodeArrayList();
-//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-		MemberDto.cachedCodeArrayList.clear(); 
-		MemberDto.cachedCodeArrayList.addAll(codeListFromDb);
-		System.out.println("cachedCodeArrayList: " + MemberDto.cachedCodeArrayList.size() + " chached !");
-	}
-    
-    public static String selectOneCachedCode(int member) throws Exception {
-		String rt = "";
-		for(MemberDto memberRow : MemberDto.cachedCodeArrayList) {
-			if (memberRow.getMbSeq().equals(Integer.toString(member))) {
-				rt = memberRow.getMbName();
-			} else {
-				// by pass
-			}
-		}
-		return rt;
-	}
-    
-    public static List<MemberDto> selectListCachedCode(String MbSeq) throws Exception {
-		List<MemberDto> rt = new ArrayList<MemberDto>();
-		for(MemberDto memberRow : MemberDto.cachedCodeArrayList) {
-			if (memberRow.getMbSeq().equals(MbSeq)) {
-				rt.add(memberRow);
-			} else {
-				// by pass
-			}
-		}
-		return rt;
-	}
-    
-
-	
 }
