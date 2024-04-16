@@ -70,6 +70,7 @@ public class MypageController {
 	public String update(PaymentDto dto) {
 		
 		service.update(dto);
+		
 		return "redirect:/myPage";
 	}
 	
@@ -77,6 +78,15 @@ public class MypageController {
 	public String addressUpdate(PaymentDto dto) {
 		
 		service.addressUpdate(dto);
+		
+		return "redirect:/myPage";
+	}
+	
+	@RequestMapping(value = "addressInsert")
+	public String addressInsert(PaymentVo vo) {
+		
+		service.addressInsert(vo);
+		
 		return "redirect:/myPage";
 	}
 	

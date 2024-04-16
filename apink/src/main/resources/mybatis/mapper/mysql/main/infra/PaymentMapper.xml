@@ -69,22 +69,24 @@
 
 	<select id="addressList" resultMap="resultMapObj">
 		SELECT
-		    a.mbSeq as memberSeq
-		    ,b.arSeq
-		    ,b.arName
-		    ,b.arUserName
-		    ,b.arPhoneNumber
-		    ,b.arPostalCode
-		    ,b.arNumberAddress
-		    ,b.arRoadNameAddress
-		    ,b.arDetailAddress
-		    ,b.mbSeq as addressSeq
-		<include refid="addressCommon"></include>
+		    arSeq
+		    ,arName
+		    ,arUserName
+		    ,arPhoneNumber
+		    ,arPostalCode
+		    ,arNumberAddress
+		    ,arRoadNameAddress
+		    ,arDetailAddress
+		    ,mbSeq as addressSeq
+		FROM address
+		WHERE mbSeq = #{mbSeq}
+		ORDER BY arSeq
 	</select>
 	
 	<select id="addressCount">
 		SELECT COUNT(*)
-		<include refid="addressCommon"></include>
+		FROM address
+		WHERE mbSeq = #{mbSeq}
 	</select>
 
 	<select id="addressItem" resultMap="resultMapObj">
@@ -102,6 +104,27 @@
 		WHERE arSeq = #{arSeq}
 	</select>
 	
+	<insert id="addressInsert">
+		INSERT INTO address (
+    		arName
+    		,arUserName
+            ,arPhoneNumber
+            ,arPostalCode
+            ,arNumberAddress
+            ,arRoadNameAddress
+    		,arDetailAddress
+    		,mbSeq
+    	)VALUES(
+    		#{arName}
+    		,#{arUserName}
+            ,#{arPhoneNumber}
+            ,#{arPostalCode}
+            ,#{arNumberAddress}
+            ,#{arRoadNameAddress}
+    		,#{arDetailAddress}
+    	)	,#{mbSeq}
+	</insert>
+	
 	<update id="addressUpdate">
 		UPDATE address 
     	SET
@@ -113,7 +136,7 @@
             ,arRoadNameAddress = #{arRoadNameAddress}
             ,arDetailAddress = #{arDetailAddress}
     	WHERE 1=1
-    		AND arName = #{arName}
+    		AND arSeq = #{arSeq}
 	</update>
 	
 	<update id="update">

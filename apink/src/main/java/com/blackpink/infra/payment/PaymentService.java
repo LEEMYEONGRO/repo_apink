@@ -39,6 +39,10 @@ public class PaymentService {
 		return dao.updatePw(vo);
 	}
 	
+	public int addressInsert(PaymentVo vo) {
+		return dao.addressInsert(vo);
+	}
+	
 	public PaymentDto existingPassword(PaymentVo vo) {
 		return dao.existingPassword(vo);
 	}

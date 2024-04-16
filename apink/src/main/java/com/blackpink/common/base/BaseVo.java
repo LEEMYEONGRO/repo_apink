@@ -62,16 +62,6 @@ public class BaseVo {
 			setStartRnumForMysql((getRowNumToShow() * (getThisPage()-1)));
 		}
 		
-//		System.out.println("getThisPage():" + getThisPage());
-//		System.out.println("getTotalRows():" + getTotalRows());
-//		System.out.println("getRowNumToShow():" + getRowNumToShow());
-//		System.out.println("getTotalPages():" + getTotalPages());
-//		System.out.println("getStartPage():" + getStartPage());
-//		System.out.println("getEndPage():" + getEndPage());		
-//		System.out.println("getStartRnumForOracle():" + getStartRnumForOracle());
-//		System.out.println("getEndRnumForOracle():" + getEndRnumForOracle());
-//		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
-		
 	}
 	
 public int getThisPage() {
@@ -162,33 +152,17 @@ public int getThisPage() {
 		this.startRnumForMysql = startRnumForMysql;
 	}
 
-
-
-
-
 	public int getRowNumToShowPd() {
 		return rowNumToShowPd;
 	}
-
-
-
-
 
 	public void setRowNumToShowPd(int rowNumToShowPd) {
 		this.rowNumToShowPd = rowNumToShowPd;
 	}
 
-
-
-
-
 	public int getPageNumToShowPd() {
 		return pageNumToShowPd;
 	}
-
-
-
-
 
 	public void setPageNumToShowPd(int pageNumToShowPd) {
 		this.pageNumToShowPd = pageNumToShowPd;

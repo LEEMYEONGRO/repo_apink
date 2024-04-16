@@ -6,6 +6,8 @@
 
 <body class="sticky-header">
 	<form name="formList" id="formList" method="post" autocomplete="off">
+		<!-- arSeq를 불러오기 위한 input type="hidden" -->
+		 <input type="hidden" id="arSeq" name="arSeq" th:value="${addressItem.arSeq}">
     <!-- 상단바 시작 -->
         <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
     <!-- 상단바 종료 -->
@@ -304,10 +306,6 @@
 
    <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
-	
-	
-	
-	
 	
 </body>
 
