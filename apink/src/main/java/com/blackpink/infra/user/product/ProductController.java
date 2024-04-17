@@ -19,14 +19,13 @@ public class ProductController {
 	@RequestMapping(value = "/shopList")
 	public String shopList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 		
-		vo.setParamsPaging(service.selectPdOneCount(vo));
+		vo.setPdParamsPaging(service.selectPdOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectPdList(vo));
 		}
 		
 		return "/v1/infra/user/shopList";
-		
 	}
 	
 	@RequestMapping(value = "/indexUser")
@@ -130,8 +129,6 @@ public class ProductController {
 		vo.setShDateEnd(vo.getShDateEnd() == null
 		    ? UtilDateTime.nowString()
 		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
-		
-		
 	}
 		
 }

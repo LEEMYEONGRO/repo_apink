@@ -15,148 +15,13 @@
 					<div class="col-lg-5 col-sm-6">
 						<div class="main-slider-content">
 							<div class="slider-content-activation-one">
-								<div class="single-slide slick-slide" data-sal="slide-up"
+								<div th:each= "list : ${list}" class="single-slide slick-slide" data-sal="slide-up"
 									data-sal-delay="400" data-sal-duration="800">
-									<span class="subtitle"><i class="fas fa-fire"></i> Hot
-										Deal In This Week</span>
-									<h1 class="title">Roco Wireless Headphone</h1>
+									<span class="subtitle"><i class="fas fa-fire"></i>베스트 상품</span>
+									<h1 class="title" th:text="${list.pdName}"></h1>
 									<div class="slide-action">
 										<div class="shop-btn">
-											<a href="shop.html" class="axil-btn btn-bg-white"><i
-												class="fal fa-shopping-cart"></i>Shop Now</a>
-										</div>
-										<div class="item-rating">
-											<div class="thumb">
-												<ul>
-													<li><img
-														src="user/v1/assets/images/others/author1.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author2.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author3.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author4.png"
-														alt="Author"></li>
-												</ul>
-											</div>
-											<div class="content">
-												<span class="rating-icon"> <i class="fas fa-star"></i>
-													<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-													class="fas fa-star"></i> <i class="fal fa-star"></i>
-												</span> <span class="review-text"> <span>100+</span> Reviews
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="single-slide slick-slide">
-									<span class="subtitle"><i class="fas fa-fire"></i> Hot
-										Deal In This Week</span>
-									<h1 class="title">Smart Digital Watch</h1>
-									<div class="slide-action">
-										<div class="shop-btn">
-											<a href="shop.html" class="axil-btn btn-bg-white"><i
-												class="fal fa-shopping-cart"></i>Shop Now</a>
-										</div>
-										<div class="item-rating">
-											<div class="thumb">
-												<ul>
-													<li><img
-														src="user/v1/assets/images/others/author1.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author2.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author3.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author4.png"
-														alt="Author"></li>
-												</ul>
-											</div>
-											<div class="content">
-												<span class="rating-icon"> <i class="fas fa-star"></i>
-													<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-													class="fas fa-star"></i> <i class="fal fa-star"></i>
-												</span> <span class="review-text"> <span>100+</span> Reviews
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="single-slide slick-slide">
-									<span class="subtitle"><i class="fas fa-fire"></i> Hot
-										Deal In This Week</span>
-									<h1 class="title">Roco Wireless Headphone</h1>
-									<div class="slide-action">
-										<div class="shop-btn">
-											<a href="shop.html" class="axil-btn btn-bg-white"><i
-												class="fal fa-shopping-cart"></i>Shop Now</a>
-										</div>
-										<div class="item-rating">
-											<div class="thumb">
-												<ul>
-													<li><img
-														src="user/v1/assets/images/others/author1.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author2.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author3.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author4.png"
-														alt="Author"></li>
-												</ul>
-											</div>
-											<div class="content">
-												<span class="rating-icon"> <i class="fas fa-star"></i>
-													<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-													class="fas fa-star"></i> <i class="fal fa-star"></i>
-												</span> <span class="review-text"> <span>100+</span> Reviews
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="single-slide slick-slide">
-									<span class="subtitle"><i class="fas fa-fire"></i> Hot
-										Deal In This Week</span>
-									<h1 class="title">Smart Digital Watch</h1>
-									<div class="slide-action">
-										<div class="shop-btn">
-											<a href="shop.html" class="axil-btn btn-bg-white"><i
-												class="fal fa-shopping-cart"></i>Shop Now</a>
-										</div>
-										<div class="item-rating">
-											<div class="thumb">
-												<ul>
-													<li><img
-														src="user/v1/assets/images/others/author1.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author2.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author3.png"
-														alt="Author"></li>
-													<li><img
-														src="user/v1/assets/images/others/author4.png"
-														alt="Author"></li>
-												</ul>
-											</div>
-											<div class="content">
-												<span class="rating-icon"> <i class="fas fa-star"></i>
-													<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-													class="fas fa-star"></i> <i class="fal fa-star"></i>
-												</span> <span class="review-text"> <span>100+</span> Reviews
-												</span>
-											</div>
+											<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
 										</div>
 									</div>
 								</div>
@@ -166,34 +31,11 @@
 					<div class="col-lg-7 col-sm-6">
 						<div class="main-slider-large-thumb">
 							<div class="slider-thumb-activation-one axil-slick-dots">
-								<div class="single-slide slick-slide" data-sal="slide-up"
-									data-sal-delay="600" data-sal-duration="1500">
+								<div class="single-slide slick-slide" th:each= "list : ${list}" data-sal="slide-up" ata-sal-delay="600" data-sal-duration="1500">
 									<img src="user/v1/assets/images/product/product-38.png"
 										alt="Product">
 									<div class="product-price">
-										<span class="text">From</span> <span class="price-amount">$49.00</span>
-									</div>
-								</div>
-								<div class="single-slide slick-slide" data-sal="slide-up"
-									data-sal-delay="600" data-sal-duration="1500">
-									<img src="user/v1/assets/images/product/product-39.png"
-										alt="Product">
-									<div class="product-price">
-										<span class="text">From</span> <span class="price-amount">$49.00</span>
-									</div>
-								</div>
-								<div class="single-slide slick-slide">
-									<img src="user/v1/assets/images/product/product-38.png"
-										alt="Product">
-									<div class="product-price">
-										<span class="text">From</span> <span class="price-amount">$49.00</span>
-									</div>
-								</div>
-								<div class="single-slide slick-slide">
-									<img src="user/v1/assets/images/product/product-39.png"
-										alt="Product">
-									<div class="product-price">
-										<span class="text">From</span> <span class="price-amount">$49.00</span>
+										<span class="price-amount" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 									</div>
 								</div>
 							</div>
@@ -208,7 +50,6 @@
 					src="user/v1/assets/images/others/shape-2.png" alt="Shape"></li>
 			</ul>
 		</div>
-
 		<!-- End Slider Area -->
 
 		<!-- Start Best Sellers Product Area  -->
@@ -218,272 +59,32 @@
 				<div class="product-area pb--50">
 					<div class="section-title-wrapper">
 						<span class="title-highlighter highlighter-primary"> <i
-							class="far fa-shopping-basket"></i>This Month
+							class="far fa-shopping-basket"></i>고민중인 고객님께 추천
 						</span>
 						<h2 class="title">베스트 상품</h2>
 					</div>
-					<div
-						class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-30.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$30</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #001 <span
-												class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
+					<div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile ">
+						<div class="axil-product product-style-one" th:each= "list : ${list}">
+							<div class="thumbnail">
+								<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}"> <img data-sal="fade"
+									data-sal-delay="100" data-sal-duration="1500"
+									src="user/v1/assets/images/product/nft/product-30.png"
+									alt="Product Images">
+								</a>
+							</div>
+							<div class="product-content">
+								<div class="inner">
+									<h5 class="title">
+										<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"><span
+											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
+									</h5>
+									<div class="product-price-variant">
+										<span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="200" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-31.png"
-										alt="Product Images">
-									</a>
-
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$3000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #002</a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="300" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-32.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$100</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #003 <span
-												class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="400" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-29.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$2000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #004 <span
-												class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-33.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$5000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #005</a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="200" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-32.png"
-										alt="Product Images">
-									</a>
-
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$3000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #006</a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="300" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-31.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$100</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #007 <span
-												class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="400" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-30.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$2000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #008 <span
-												class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-						<div class="slick-single-layout">
-							<div class="axil-product product-style-six">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="fade"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="user/v1/assets/images/product/nft/product-29.png"
-										alt="Product Images">
-									</a>
-								</div>
-								<div class="product-content">
-									<div class="inner">
-										<div class="product-price-variant">
-											<span class="price current-price">$5000</span>
-										</div>
-										<h5 class="title">
-											<a href="single-product-7.html">Anime #009</a>
-										</h5>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End .slick-single-layout -->
-
 					</div>
 				</div>
 			</div>
@@ -497,33 +98,15 @@
 						<div class="product-isotope-heading">
 							<div class="section-title-wrapper">
 								<span class="title-highlighter highlighter-primary"><i
-									class="far fa-shopping-basket"></i> Our Products</span>
-								<h2 class="title">새로 출시한 제품</h2>
-							</div>
-							<div class="isotope-button">
-								<button data-filter="*" class="is-checked">
-									<span class="filter-text">All</span>
-								</button>
-								<button data-filter=".art" class="">
-									<span class="filter-text">Art</span>
-								</button>
-								<button data-filter=".music">
-									<span class="filter-text">Music</span>
-								</button>
-								<button data-filter=".photography">
-									<span class="filter-text">Photography</span>
-								</button>
-								<button data-filter=".sports">
-									<span class="filter-text">Sports</span>
-								</button>
+									class="far fa-shopping-basket"></i>최신 상품을 원하는 고객님께 추천</span>
+								<h2 class="title">새로 출시한 상품</h2>
 							</div>
 						</div>
 						<div class="row row--15 isotope-list">
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product music">
+							<div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product music" th:each= "list : ${list}">
 								<div class="axil-product product-style-one">
 									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
+										<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}"> <img data-sal="fade"
 											data-sal-delay="100" data-sal-duration="1500"
 											src="user/v1/assets/images/product/nft/product-15.png"
 											alt="Product Images">
@@ -538,212 +121,11 @@
 									<div class="product-content">
 										<div class="inner">
 											<h5 class="title">
-												<a href="single-product-7.html">Anime #001 <span
+												<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"><span
 													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
 											</h5>
 											<div class="product-price-variant">
-												<span class="price current-price">$4000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product photography art sports">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="200" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-2.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #002 <span
-													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$500</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product sports music photography">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="300" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-3.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #003 <span
-													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$3000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product art music">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="400" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-4.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #004</a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$2000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product music photography sports art">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="100" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-5.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #001 <span
-													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$4000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product photography">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="200" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-6.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #002 <span
-													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$500</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product sports art photography">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="300" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-7.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #003 <span
-													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$3000</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product art music sports">
-								<div class="axil-product product-style-one">
-									<div class="thumbnail">
-										<a href="single-product-7.html"> <img data-sal="fade"
-											data-sal-delay="400" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-8.png"
-											alt="Product Images">
-										</a>
-										<div class="product-hover-action">
-											<ul class="cart-action">
-												<li class="select-option"><a
-													href="single-product-7.html">Buy Product</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="inner">
-											<h5 class="title">
-												<a href="single-product-7.html">Anime #004</a>
-											</h5>
-											<div class="product-price-variant">
-												<span class="price current-price">$2000</span>
+												<span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 											</div>
 										</div>
 									</div>
@@ -755,236 +137,6 @@
 			</div>
 		</div>
 		<!-- End Expolre Product Area  -->
-		<!-- Start Most Sold Product Area  -->
-		<div class="axil-most-sold-product axil-section-gap pb--0">
-			<div class="container">
-				<div class="product-area pb--50">
-					<div class="section-title-wrapper section-title-center">
-						<span class="title-highlighter highlighter-primary"><i
-							class="fas fa-star"></i> Most Sold</span>
-						<h2 class="title">이번주 가장 많이 판매된 제품</h2>
-					</div>
-					<div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 row--15">
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-18.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #200 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$5000</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-22.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #201 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$7955</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-19.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #202 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$2999</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-23.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #200 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$5000</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-20.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #201</a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$7955</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-24.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #202 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$2999</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-28.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #200 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$5000</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-25.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #201 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$7955</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="axil-product-list product-list-style-2">
-								<div class="thumbnail">
-									<a href="single-product-7.html"> <img data-sal="zoom-in"
-										data-sal-delay="100" data-sal-duration="1500"
-										src="./user/v1/assets/images/product/nft/product-26.jpg"
-										alt="NFT">
-									</a>
-								</div>
-								<div class="product-content">
-									<h6 class="product-title">
-										<a href="single-product-7.html">Anime #202 <span
-											class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
-									</h6>
-									<div class="product-price-variant">
-										<span class="price current-price">$2999</span>
-									</div>
-									<div class="product-cart">
-										<a href="single-product-7.html" class="cart-btn">Buy
-											Product</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Most Sold Product Area  -->
 
 
 	</main>

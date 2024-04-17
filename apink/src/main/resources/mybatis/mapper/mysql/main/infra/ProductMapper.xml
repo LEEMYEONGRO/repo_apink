@@ -26,10 +26,10 @@
 		FROM product
 		WHERE 1=1
 			AND pdDeleteNy = 0
-			<!-- <choose>
+			<choose>
 				<when test="shOption == 1">AND pdSeq = #{shValue}</when>
 				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
-			</choose> -->
+			</choose>
 	</sql>
 	
 	<select id="selectPdList" resultMap="resultMapObj">

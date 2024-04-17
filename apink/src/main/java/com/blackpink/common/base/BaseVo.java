@@ -64,6 +64,46 @@ public class BaseVo {
 		
 	}
 	
+public void setPdParamsPaging(int totalRows) {
+		
+//		setThisPage(3);
+
+		setTotalRows(totalRows);
+
+		if (getTotalRows() == 0) {
+			setTotalPages(1);
+		} else {
+			setTotalPages(getTotalRows() / getRowNumToShowPd());
+		}
+
+		if (getTotalRows() % getRowNumToShowPd() > 0) {
+			setTotalPages(getTotalPages() + 1);
+		}
+
+		if (getTotalPages() < getThisPage()) {
+			setThisPage(getTotalPages());
+		}
+		
+		setStartPage(((getThisPage() - 1) / getPageNumToShowPd()) * getPageNumToShowPd() + 1);
+
+		setEndPage(getStartPage() + getPageNumToShowPd() - 1);
+
+		if (getEndPage() > getTotalPages()) {
+			setEndPage(getTotalPages());
+		}
+		
+		setEndRnumForOracle((getRowNumToShowPd() * getThisPage()));
+		setStartRnumForOracle((getEndRnumForOracle() - getRowNumToShowPd()) + 1);
+		if (getStartRnumForOracle() < 1) setStartRnumForOracle(1);
+		
+		if (thisPage == 1) {
+			setStartRnumForMysql(0);
+		} else {
+			setStartRnumForMysql((getRowNumToShowPd() * (getThisPage()-1)));
+		}
+		
+	}
+	
 public int getThisPage() {
 		return thisPage;
 	}

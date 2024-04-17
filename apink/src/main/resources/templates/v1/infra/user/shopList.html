@@ -5,8 +5,10 @@
 
 
 <body class="sticky-header">
+	<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/>
 	<!-- 상단바 시작 -->
-        <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
+    <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
     <!-- 상단바 종료 -->
 
     <main class="main-wrapper">
@@ -134,6 +136,15 @@
                                             <option>낮은 가격순</option>
                                             <option>가격 높은순</option>
                                         </select>
+                                        <select class="single-select" name="rowNumToShowPd" id="rowNumToShowPd" th:onchange="javascript:goList(1)">
+                                        	<option value="1" th:selected="${vo.rowNumToShowPd == 1}">1</option>
+                                        	<option value="3" th:selected="${vo.rowNumToShowPd == 3}">3</option>
+                                        	<option value="6" th:selected="${vo.rowNumToShowPd == 6}">6</option>
+                                            <option value="9" th:selected="${vo.rowNumToShowPd == 9}">9</option>
+											<option value="18" th:selected="${vo.rowNumToShowPd == 18}">18</option>
+											<option value="27" th:selected="${vo.rowNumToShowPd == 27}">27</option>
+											<option value="36" th:selected="${vo.rowNumToShowPd == 36}">36</option>
+                                        </select>
                                         <!-- End Single Select  -->
                                     </div>
                                     <div class="d-lg-none">
@@ -165,6 +176,28 @@
 	                                </div>
 	                            </div>
 	                        </th:block>
+	                        <!-- 페이징시작 -->
+                           	<ul class="pagination justify-content-center mb-0">
+								<li th:if="${vo.startPage gt vo.pageNumToShowPd}"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link"
+									href="javascript:goList(${vo.startPage - 1})"
+									th:attr="onclick=|goList('${vo.startPage - 1}')|"><i
+										class="">이전</i></a></li>
+								<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}"
+									th:classappend="${num eq vo.thisPage} ? active : ''"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link" th:attr="onclick=|goList('${num}')|"
+									th:text="${num}">
+										<!-- ${i.index} -->
+								</a></li>
+								<li th:if="${vo.endPage ne vo.totalPages}"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link"
+									th:attr="onclick=|goList('${vo.endPage + 1}')|"><i
+										class="">다음</i></a></li>
+							</ul>
+                           	<!-- 페이징종료 -->
                         </div>
                         <!-- <div class="text-center pt--20">
                             <a href="#" class="axil-btn btn-bg-lighter btn-load-more">더보기</a>
@@ -514,9 +547,36 @@
             </div>
         </div>
     </div>
+    </form>
     <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
     
+    <script type="text/javascript">
+   		let goUrlXdmList = "/shopList"; /* ### */
+	    let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
+		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
+		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
+		let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView"; /* ### */
+	
+		let seq = document.querySelector("input[name=seq]"); /* ### */
+		
+		let form = document.querySelector("form[name=formList]");
+		
+		window.addEventListener('load', function() {
+	
+		goList = function (thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+		    form.action = goUrlXdmList;
+		    form.submit();
+		}
+	});
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+		    form.action = goUrlXdmList;
+		    form.submit();
+	    }
+	}
+	</script>
 
 </body>
 
