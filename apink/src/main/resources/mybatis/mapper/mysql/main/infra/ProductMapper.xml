@@ -181,4 +181,18 @@
 		<include refid="selectCommon" />
 	</select>
 	<!-- 카운트 -->
+	<!--  -->
+	<insert id="insertRv">
+    	INSERT INTO review (
+			rvSeq
+			,rvName
+	    	,pdSeq
+    	)VALUES(
+    		#{rvSeq}
+    		,#{rvName}
+    		,#{pdSeq}
+    	)
+    </insert>
+	
+	
 </mapper>

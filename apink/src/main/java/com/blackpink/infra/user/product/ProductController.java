@@ -1,14 +1,20 @@
 package com.blackpink.infra.user.product;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
@@ -119,6 +125,25 @@ public class ProductController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/reviewinsert")
+	public Map<String, Object> bookDate(Model model, ProductDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		dto.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
+		String str = dto.getMbSeq();
+		if(str != null)
+		{
+			returnMap.put("rt", "success");
+			service.insertRv(dto);
+		}
+		else
+		{
+			returnMap.put("rt", "false");
+		}
+	
+		return returnMap;
+	}
 	
 	public void setSearch(ProductVo vo) throws Exception {
 		

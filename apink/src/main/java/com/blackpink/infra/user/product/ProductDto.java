@@ -14,7 +14,12 @@ public class ProductDto {
 	private Date pdCreationDate;
 	private Date pdModificationDate;
 //	제품
-
+// 리뷰
+	private String rvSeq;
+	private String rvName;
+	private String rvContent;
+	private String mbSeq;
+// 리뷰
 	
 	public String getPdSeq() {
 		return pdSeq;
@@ -80,4 +85,37 @@ public class ProductDto {
 		this.pdModificationDate = pdModificationDate;
 	}
 
+	public String getRvSeq() {
+		return rvSeq;
+	}
+
+	public void setRvSeq(String rvSeq) {
+		this.rvSeq = rvSeq;
+	}
+
+	public String getRvName() {
+		return rvName;
+	}
+
+	public void setRvName(String rvName) {
+		this.rvName = rvName;
+	}
+
+	public String getRvContent() {
+		return rvContent;
+	}
+
+	public void setRvContent(String rvContent) {
+		this.rvContent = rvContent;
+	}
+
+	public String getMbSeq() {
+		return mbSeq;
+	}
+
+	public void setMbSeq(String mbSeq) {
+		this.mbSeq = mbSeq;
+	}
+
+	
 }

@@ -16,6 +16,8 @@ public interface ProductDao {
 	
 	public int insert(ProductDto dto);
 	
+	public int insertRv(ProductDto dto);
+	
 	public int update(ProductDto dto);
 	
 	public int updateDeleteNy(ProductDto dto);

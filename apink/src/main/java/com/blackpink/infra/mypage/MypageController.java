@@ -150,6 +150,7 @@ public class MypageController {
 		    if (dto.getNewmbPassword().equals(dto.getPasswordCheck())) {
 		    	
 		        vo.setNewmbPassword(encodeBcrypt(vo.getNewmbPassword(), 10));
+		        
 		        service.updatePw(vo);
 		        
 		        returnMap.put("rt", "success");

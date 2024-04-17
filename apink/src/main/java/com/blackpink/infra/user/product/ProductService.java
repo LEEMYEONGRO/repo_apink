@@ -42,6 +42,10 @@ public class ProductService {
 		return dao.update(dto);
 	}
 	
+	public int insertRv(ProductDto dto) {
+		return dao.insertRv(dto);
+	}
+	
 	public int updateDeleteNy(ProductDto dto) {
 		return dao.updateDeleteNy(dto);
 	}
