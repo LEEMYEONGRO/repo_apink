@@ -93,8 +93,10 @@ public class ProductController {
 	@RequestMapping(value = "shopDetailedPage")
 	public String shopDetailedPage(ProductDto dto, Model model) {
 		
-		model.addAttribute("item", service.item(dto));
 		
+		model.addAttribute("list", service.selectRvList(dto));
+		
+		model.addAttribute("item", service.item(dto));
 		return "/v1/infra/user/shopDetailedPage";
 	}
 		
@@ -127,21 +129,19 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/reviewinsert")
-	public Map<String, Object> bookDate(Model model, ProductDto dto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> reviewinsert(Model model, ProductDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		dto.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
+		
 		String str = dto.getMbSeq();
-		if(str != null)
-		{
+		if(str != null){
 			returnMap.put("rt", "success");
 			service.insertRv(dto);
 		}
-		else
-		{
+		else{
 			returnMap.put("rt", "false");
 		}
-	
 		return returnMap;
 	}
 	

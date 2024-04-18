@@ -147,13 +147,13 @@ public class MypageController {
 		// 기존 비밀번호 확인
 	    if(matchesBcrypt(vo.getMbPassword(),dtoPw.getMbPassword() , 10)) {
 	    	// 새 비밀번호와 확인 비밀번호 일치 여부 확인
-		    if (dto.getNewmbPassword().equals(dto.getPasswordCheck())) {
+		    if(dto.getNewmbPassword().equals(dto.getPasswordCheck())) {
 		    	
-		        vo.setNewmbPassword(encodeBcrypt(vo.getNewmbPassword(), 10));
+		    	vo.setNewmbPassword(encodeBcrypt(vo.getNewmbPassword(), 10));
+			        
+		    	service.updatePw(vo);
 		        
-		        service.updatePw(vo);
-		        
-		        returnMap.put("rt", "success");
+			    returnMap.put("rt", "success");
 		    }else{
 		    	returnMap.put("rt", "no");
 		    }

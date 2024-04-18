@@ -26,6 +26,10 @@ public class ProductService {
 		return dao.selectMyPage(vo);
 	}
 	
+	public List<ProductDto> selectRvList(ProductDto dto) {
+		return dao.selectRvList(dto);
+	}
+	
 	public ProductDto selectOne(ProductDto dto) {
 		return dao.selectOne(dto);
 	}
@@ -64,5 +68,9 @@ public class ProductService {
 	
 	public int selectPdOneCount(ProductVo vo) {
 		return dao.selectPdOneCount(vo);
+	}
+	
+	public int selectRvOneCount(ProductVo vo) {
+		return dao.selectRvOneCount(vo);
 	}
 }

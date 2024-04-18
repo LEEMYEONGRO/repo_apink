@@ -18,8 +18,9 @@ public class ProductDto {
 	private String rvSeq;
 	private String rvName;
 	private String rvContent;
-	private String mbSeq;
+	private int rvScores;
 // 리뷰
+	private String mbSeq;
 	
 	public String getPdSeq() {
 		return pdSeq;
@@ -109,6 +110,14 @@ public class ProductDto {
 		this.rvContent = rvContent;
 	}
 
+	public int getRvScores() {
+		return rvScores;
+	}
+
+	public void setRvScores(int rvScores) {
+		this.rvScores = rvScores;
+	}
+	
 	public String getMbSeq() {
 		return mbSeq;
 	}

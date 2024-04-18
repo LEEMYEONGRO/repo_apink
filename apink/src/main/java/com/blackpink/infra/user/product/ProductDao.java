@@ -10,6 +10,8 @@ public interface ProductDao {
 	
 	public List<ProductDto> selectMyPage(ProductVo vo);
 	
+	public List<ProductDto> selectRvList(ProductDto dto);
+	
 	public ProductDto selectOne(ProductDto dto);
 
 	public ProductDto item(ProductDto dto);
@@ -30,4 +32,5 @@ public interface ProductDao {
 	
 	public int selectPdOneCount(ProductVo vo);
 
+	public int selectRvOneCount(ProductVo vo);
 }
