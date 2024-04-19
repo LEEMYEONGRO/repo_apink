@@ -20,6 +20,7 @@ public class ProductDto {
 	private String rvContent;
 	private int rvScores;
 // 리뷰
+	private String mbName;
 	private String mbSeq;
 	
 	public String getPdSeq() {
@@ -124,6 +125,14 @@ public class ProductDto {
 
 	public void setMbSeq(String mbSeq) {
 		this.mbSeq = mbSeq;
+	}
+
+	public String getMbName() {
+		return mbName;
+	}
+
+	public void setMbName(String mbName) {
+		this.mbName = mbName;
 	}
 
 	

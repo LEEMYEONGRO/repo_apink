@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import com.blackpink.infra.codegroup.CodeGroupDto;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -91,8 +93,24 @@ public class MemberController {
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+// 회원가입	
+	@RequestMapping(value = "/joinMembership")
+	public String joinMembership(MemberDto dto, Model model ) {
+		
+		return "/v1/infra/user/joinMembership";
+	}
+	
+	@RequestMapping(value = "/insertMember")
+	public String insertMember(MemberDto dto) {
+		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));
+
+		service.insert(dto);
+		
+		return "redirect:/indexUser";
+	}
 	
 	
+// 회원가입
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto) {
 		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));

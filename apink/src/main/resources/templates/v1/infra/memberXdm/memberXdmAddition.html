@@ -43,7 +43,7 @@
 											</div>
 											</div>
 											<div class="col-3">
-												<select class="form-select" name="" id="mbGender">
+												<select class="form-select" name="mbGender" id="mbGender">
 													<option value="4">남자</option>
 													<option value="5">여자</option>
 													<option value="6">기타</option>
@@ -171,18 +171,9 @@
 					}
 				,success: function(response) {
 					if(response.rt == "success") {
-						/* alert("비밀번호가 일치"); */
 						insertCall();
-						/*if(response.changePwd == "true") {
-							location.href = "/memberXdmList";
-						} else {
-							location.href = "/memberXdmAddition";
-						} */
 					} else {
 						alert("비밀번호가 일치하지 않습니다.");
-				 		/* document.getElementById("modalAlertTitle").innerText = "확 인";
-				 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-				 		$("#modalAlert").modal("show"); */
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){

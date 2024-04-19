@@ -133,9 +133,11 @@ public class ProductController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		dto.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
-		
+		dto.setRvName((String)httpSession.getAttribute("sessNameUser"));
+		System.out.println(dto.getPdSeq() + "1------------------------------------------");
 		String str = dto.getMbSeq();
 		if(str != null){
+			System.out.println(dto.getPdSeq() + "2------------------------------------------");
 			returnMap.put("rt", "success");
 			service.insertRv(dto);
 		}

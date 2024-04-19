@@ -115,11 +115,13 @@
 			rvSeq
 			,rvName
 			,rvContent
+			,rvScores
 	    	,pdSeq
     	)VALUES(
     		#{rvSeq}
     		,#{rvName}
     		,#{rvContent}
+    		,#{rvScores}
     		,#{pdSeq}
     	)
     </insert>

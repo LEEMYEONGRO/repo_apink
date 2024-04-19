@@ -248,14 +248,14 @@
                                     </div>
                                     <!-- End .col -->
                                     <div class="col-lg-6 mb--40">
-                                    	<input type="hidden" id="pdSeq" name="pdSeq">
-                                    	<input type="hidden" id="rvSeq" name="rvSeq">
+                                    	<input type="hidden" id="pdSeq" name="pdSeq" th:value="${item.pdSeq}">
+                                    	<input type="hidden" id="rvName" name="rvName">
                                         <!-- Start Comment Respond  -->
                                         <div class="comment-respond pro-des-commend-respond mt--0">
                                             <h5 class="title mb--30">리뷰작성</h5>
                                             <div class="rating-wrapper d-flex-center mb--40"> 별점 <span class="require">*</span>
                                                 <div class="reating-inner ml--20">
-                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                    <a href="#"><i class="fa-star"></i></a>
                                                     <a href="#"><i class="fal fa-star"></i></a>
                                                     <a href="#"><i class="fal fa-star"></i></a>
                                                     <a href="#"><i class="fal fa-star"></i></a>
@@ -638,7 +638,7 @@
 				,cache: false
 				,type: "post"
 				,url: "/reviewinsert"
-				,data : {"rvRvwCntnt" : $("#rvRvwCntnt").val(), "pdSeq" : $("#pdSeq").val()}
+				,data : {"rvContent" : $("#rvContent").val(), "pdSeq" : $("#pdSeq").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 						 alert("있음")
