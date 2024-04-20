@@ -5,8 +5,8 @@
 
 
 <body>
+	
     <div class="axil-signin-area">
-
         <!-- Start Header -->
         <div class="signin-header">
             <div class="row align-items-center">
@@ -32,12 +32,12 @@
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
+                    <form class="row" method="post" name="formName">
                         <h3 class="title">회원가입</h3>
                         <p class="b2 mb--55">아래의 세부정보를 입력해주세요.</p>
-                        <form class="singin-form">
                             <div class="form-group">
                                 <label>사용자 이름</label>
-                                <input type="text" class="form-control" name="username" placeholder="사용자 이름">
+                                <input type="text" class="form-control" name="mbName" id="mbName" placeholder="사용자 이름">
                             </div>
                             <div class="form-group">
                                 <label>생년월일</label>
@@ -46,7 +46,6 @@
                             <div class="form-group">
                                 <label>성별</label>
 									<select type="text" name="mbGender" id="mbGender" class="form-select2" required="">
-										<option disabled="" >성별</option>
 										<option value="4">남자</option>
 										<option value="5">여자</option>
 										<option value="6">기타</option>
@@ -71,17 +70,17 @@
                             <div class="form-group">
                                 <button type="button" id="additional" name="additional" class="axil-btn btn-bg-primary submit-btn">회원가입</button>
                             </div>
-                        </form>
+                            <input type="hidden" id="mbDeleteNy" name="mbDeleteNy" value="0">
+                    	</form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
-    
-	<script src="xdmin\v1\js\validationXdm.js"></script>
+    <!-- validations  -->
+		<script src="xdmin\v1\js\validationXdm.js"></script>
 		<script>
 				window.addEventListener('load', function() {
 					$("#mbDateBirth").datetimepicker({
@@ -90,7 +89,7 @@
 					});
 				});
 				
-				let indexUser = "/indexUser"; /* ### */
+				let memberXdmList = "/memberXdmList"; /* ### */
 				let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 		</script>
 		<script>
@@ -106,7 +105,7 @@
 				if(validationUpdt() == false){
 					return false;				
 				}else {
-					form.action = "joinMembership";
+					form.action = "insertMember";
 					form.submit();
 				}
 			}

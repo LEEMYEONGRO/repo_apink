@@ -36,10 +36,10 @@
                                     <a href="#">Pages</a>
                                     <ul class="axil-submenu">
                                         <li><a th:href="@{/loginUser}">로그인</a></li>
-                                        <li><a th:href="@{/}">회원가입</a></li>
+                                        <li><a th:href="@{/joinMembership}">회원가입</a></li>
                                         <li><a th:href="@{/myPage}">마이페이지</a></li>
                                         <li><a th:href="@{/}">장바구니</a></li>
-                                        <li><a th:href="@{/}">결제</a></li>
+                                        <li><a th:href="@{/payment}">결제</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -81,7 +81,7 @@
                                         </li>
                                     </ul>
                                     <a th:href="@{/loginUser}" class="axil-btn btn-bg-primary">Login</a>
-                                    <div class="reg-footer text-center">계정이 없으신가요?<a href="sign-up.html" class="btn-link">회원가입</a></div>
+                                    <div class="reg-footer text-center">계정이 없으신가요?<a th:href="@{/joinMembership}" class="btn-link">회원가입</a></div>
                                 </div>
                             </li>
                             <li class="axil-mobile-toggle">

@@ -97,6 +97,7 @@ public class MemberController {
 	@RequestMapping(value = "/joinMembership")
 	public String joinMembership(MemberDto dto, Model model ) {
 		
+		model.addAttribute("oneList", service.selectOne(dto));
 		return "/v1/infra/user/joinMembership";
 	}
 	
