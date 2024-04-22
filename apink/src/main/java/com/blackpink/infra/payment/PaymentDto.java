@@ -7,7 +7,7 @@ public class PaymentDto {
 	private String memberSeq;
 	private String paymentSeq;
 	private Date pmCreationDate;
-	private int pmDeliveryStatus;
+	private int pdpmDeliveryStatus;
 	private String mbSeq;
 	private String pmSeq;
 	private String pdSeq;
@@ -58,12 +58,12 @@ public class PaymentDto {
 		this.pmCreationDate = pmCreationDate;
 	}
 	
-	public int getPmDeliveryStatus() {
-		return pmDeliveryStatus;
+	public int getPdpmDeliveryStatus() {
+		return pdpmDeliveryStatus;
 	}
 	
-	public void setPmDeliveryStatus(int pmDeliveryStatus) {
-		this.pmDeliveryStatus = pmDeliveryStatus;
+	public void setPdpmDeliveryStatus(int pdpmDeliveryStatus) {
+		this.pdpmDeliveryStatus = pdpmDeliveryStatus;
 	}
 	
 	public String getMbSeq() {
@@ -249,13 +249,5 @@ public class PaymentDto {
 	public void setAddressSeq(String addressSeq) {
 		this.addressSeq = addressSeq;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

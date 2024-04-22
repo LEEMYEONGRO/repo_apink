@@ -15,7 +15,7 @@ public class PaymentController {
 	PaymentService service;
 	
 	@RequestMapping(value = "/payment")
-	public String myPage(@ModelAttribute("vo")PaymentVo vo,Model model, HttpSession httpSession) throws Exception {
+	public String payment(@ModelAttribute("vo")PaymentVo vo,Model model, HttpSession httpSession) throws Exception {
 		
 //		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
 		

@@ -203,7 +203,7 @@
 														</td>
 														<td th:text="${list.pdName}"></td>
 														<td th:text="${#dates.format(list.pmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
-														<td th:if="${list.pmDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pmDeliveryStatus)}"></td>
+														<td th:if="${list.pdpmDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pdpmDeliveryStatus)}"></td>
 														<td th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></td>
 													</tr>
                                                 </tbody>

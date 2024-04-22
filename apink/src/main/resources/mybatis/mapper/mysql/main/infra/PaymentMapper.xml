@@ -3,86 +3,89 @@
 
 <mapper namespace="com.blackpink.infra.payment.PaymentDao">
 
-	<resultMap id="resultMapObj" type="com.blackpink.infra.payment.PaymentDto"></resultMap>
+	<resultMap id="resultMapObj"
+		type="com.blackpink.infra.payment.PaymentDto"></resultMap>
 
-	<sql id ="selectCommon">
+	<sql id="selectCommon">
 		FROM member a
-			JOIN payment b 
-			 on b.mbSeq = a.mbSeq 
-			JOIN productpayment c 
-			 on c.pmSeq = b.pmSeq
-			JOIN product d 
-			 on d.pdSeq = c.pdSeq
+		JOIN payment b
+		on b.mbSeq = a.mbSeq
+		JOIN productpayment c
+		on c.pmSeq = b.pmSeq
+		JOIN product d
+		on d.pdSeq = c.pdSeq
 		WHERE
-			 a.mbSeq = #{mbSeq}
-		<!-- <if test="shGender != null and !shGender.equals('')">AND mbGender = #{mbGender}</if> -->
+		a.mbSeq = #{mbSeq}
+		<!-- <if test="shGender != null and !shGender.equals('')">AND mbGender 
+			= #{mbGender}</if> -->
 		<choose>
-			<when test="shOptionDate == 1">AND pmCreationDate BETWEEN #{shDateStart} AND #{shDateEnd} </when>
+			<when test="shOptionDate == 1">AND pmCreationDate BETWEEN #{shDateStart} AND
+				#{shDateEnd} </when>
 		</choose>
-		
+
 		<choose>
 			<when test="shOption == 1">AND d.pdName LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
-	
-	
+
+
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.mbSeq as memberSeq
-			,b.pmSeq as paymentSeq
-			,b.pmCreationDate
-			,b.pmDeliveryStatus
-			,b.mbSeq
-			,c.pmSeq
-			,c.pdSeq
-			,d.pdSeq as productSeq
-			,d.pdName
-			,d.pdPrice
+		a.mbSeq as memberSeq
+		,b.pmSeq as paymentSeq
+		,b.pmCreationDate
+		,b.mbSeq
+		,c.pdpmDeliveryStatus
+		,c.pmSeq
+		,c.pdSeq
+		,d.pdSeq as productSeq
+		,d.pdName
+		,d.pdPrice
 		<include refid="selectCommon"></include>
 	</select>
-	
+
 	<select id="selectOneCount">
 		SELECT COUNT(*)
 		<include refid="selectCommon"></include>
 	</select>
-	
- 	<select id="item" resultMap="resultMapObj">
-    	SELECT
-    		mbEmail
-    		,mbDateBirth
-    		,mbName
-    		,mbGender
-    		,mbPhoneNumber
-    	FROM member
-        WHERE
-        	mbSeq = #{mbSeq}
-	</select>
-	
-	<sql id ="addressCommon">
-		FROM
-		    member a
-		JOIN
-		    address b on b.mbSeq = a.mbSeq
+
+	<select id="item" resultMap="resultMapObj">
+		SELECT
+		mbEmail
+		,mbDateBirth
+		,mbName
+		,mbGender
+		,mbPhoneNumber
+		FROM member
 		WHERE
-        	a.mbSeq = #{mbSeq}
+		mbSeq = #{mbSeq}
+	</select>
+
+	<sql id="addressCommon">
+		FROM
+		member a
+		JOIN
+		address b on b.mbSeq = a.mbSeq
+		WHERE
+		a.mbSeq = #{mbSeq}
 	</sql>
 
 	<select id="addressList" resultMap="resultMapObj">
 		SELECT
-		    arSeq
-		    ,arName
-		    ,arUserName
-		    ,arPhoneNumber
-		    ,arPostalCode
-		    ,arNumberAddress
-		    ,arRoadNameAddress
-		    ,arDetailAddress
-		    ,mbSeq as addressSeq
+		arSeq
+		,arName
+		,arUserName
+		,arPhoneNumber
+		,arPostalCode
+		,arNumberAddress
+		,arRoadNameAddress
+		,arDetailAddress
+		,mbSeq as addressSeq
 		FROM address
 		WHERE mbSeq = #{mbSeq}
 		ORDER BY arSeq
 	</select>
-	
+
 	<select id="addressCount">
 		SELECT COUNT(*)
 		FROM address
@@ -91,78 +94,79 @@
 
 	<select id="addressItem" resultMap="resultMapObj">
 		SELECT
-		    arSeq
-		    ,arName
-		    ,arUserName
-		    ,arPhoneNumber
-		    ,arPostalCode
-		    ,arNumberAddress
-		    ,arRoadNameAddress
-		    ,arDetailAddress
-		    ,mbSeq as addressSeq
-			FROM address
+		arSeq
+		,arName
+		,arUserName
+		,arPhoneNumber
+		,arPostalCode
+		,arNumberAddress
+		,arRoadNameAddress
+		,arDetailAddress
+		,mbSeq as addressSeq
+		FROM address
 		WHERE arSeq = #{arSeq}
 	</select>
-	
+
 	<insert id="addressInsert">
 		INSERT INTO address (
-    		arName
-    		,arUserName
-            ,arPhoneNumber
-            ,arPostalCode
-            ,arNumberAddress
-            ,arRoadNameAddress
-    		,arDetailAddress
-    		,mbSeq
-    	)VALUES(
-    		#{arName}
-    		,#{arUserName}
-            ,#{arPhoneNumber}
-            ,#{arPostalCode}
-            ,#{arNumberAddress}
-            ,#{arRoadNameAddress}
-    		,#{arDetailAddress}
-    	)	,#{mbSeq}
+		arName
+		,arUserName
+		,arPhoneNumber
+		,arPostalCode
+		,arNumberAddress
+		,arRoadNameAddress
+		,arDetailAddress
+		,mbSeq
+		)VALUES(
+		#{arName}
+		,#{arUserName}
+		,#{arPhoneNumber}
+		,#{arPostalCode}
+		,#{arNumberAddress}
+		,#{arRoadNameAddress}
+		,#{arDetailAddress}
+		) ,#{mbSeq}
 	</insert>
-	
+
 	<update id="addressUpdate">
-		UPDATE address 
-    	SET
-    		arName = #{arName}
-    		,arUserName = #{arUserName}
-            ,arPhoneNumber = #{arPhoneNumber}
-            ,arPostalCode = #{arPostalCode}
-            ,arNumberAddress = #{arNumberAddress}
-            ,arRoadNameAddress = #{arRoadNameAddress}
-            ,arDetailAddress = #{arDetailAddress}
-    	WHERE 1=1
-    		AND arSeq = #{arSeq}
+		UPDATE address
+		SET
+		arName = #{arName}
+		,arUserName = #{arUserName}
+		,arPhoneNumber = #{arPhoneNumber}
+		,arPostalCode = #{arPostalCode}
+		,arNumberAddress = #{arNumberAddress}
+		,arRoadNameAddress = #{arRoadNameAddress}
+		,arDetailAddress = #{arDetailAddress}
+		WHERE 1=1
+		AND arSeq = #{arSeq}
 	</update>
-	
+
 	<update id="update">
-		UPDATE member 
-    	SET
-    		mbName = #{mbName}
-    		,mbDateBirth = #{mbDateBirth}
-            ,mbGender = #{mbGender}
-            ,mbPhoneNumber = #{mbPhoneNumber}
-    	WHERE 1=1
-    		AND mbEmail = #{mbEmail}
+		UPDATE member
+		SET
+		mbName = #{mbName}
+		,mbDateBirth = #{mbDateBirth}
+		,mbGender = #{mbGender}
+		,mbPhoneNumber = #{mbPhoneNumber}
+		WHERE 1=1
+		AND mbEmail = #{mbEmail}
 	</update>
-	
+
 	<select id="existingPassword" resultMap="resultMapObj">
-    	SELECT
-    		mbPassword
-    	FROM member
-        WHERE 1=1 
-        	AND mbSeq = #{mbSeq}
-    </select>
-	
+		SELECT
+		mbPassword
+		FROM member
+		WHERE 1=1
+		AND mbSeq = #{mbSeq}
+	</select>
+
 	<update id="updatePw">
 		UPDATE member
 		SET
-			mbPassword = #{newmbPassword}
+		mbPassword = #{newmbPassword}
 		WHERE 1=1
-			AND mbSeq = #{mbSeq}
+		AND mbSeq = #{mbSeq}
 	</update>
+
 </mapper>
