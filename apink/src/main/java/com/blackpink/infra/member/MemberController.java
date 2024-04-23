@@ -69,18 +69,21 @@ public class MemberController {
 			if(matchesBcrypt(dto.getMbPassword(),dtoL.getMbPassword() , 10)) {
 				returnMap.put("rt", "success");
 
+			System.out.println(dto.getMbSeq() + "------------------------1");
+			System.out.println(dto.getMbEmail() + "------------------------2");
+			System.out.println(dto.getMbPassword() + "------------------------3");
 			httpSession.setAttribute("sessEmailXdm", dtoL.getMbEmail());
-			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());
+			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());s
 			httpSession.setAttribute("sessNameXdm", dtoL.getMbName());
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			}else {
+				returnMap.put("rt", "password");
+			}
 		}else {
-			returnMap.put("rt", "password");
+			returnMap.put("rt", "email");
 		}
-	}else {
-		returnMap.put("rt", "email");
+		return returnMap;
 	}
-	return returnMap;
-}
 	
 	@ResponseBody
 	@RequestMapping(value = "/signoutinxdm")

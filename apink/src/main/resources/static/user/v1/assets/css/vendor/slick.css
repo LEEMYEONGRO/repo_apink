@@ -113,3 +113,25 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+  .custom-input {
+    width: 50px;
+    height: 25px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+/* 숫자 입력 필드의 스핀 버튼 크기 조절 */
+.custom-input::-webkit-inner-spin-button,
+.custom-input::-webkit-outer-spin-button {
+  height: 25px; /* 버튼의 높이를 원하는 값으로 조절합니다. */
+  width: 35px; /* 버튼의 너비를 원하는 값으로 조절합니다. */
+  margin-top: 17px; /* 기본적인 버튼 위치를 위로 올라가지 않도록 합니다. */
+}
+
+.custom-select {
+    width: 100px;
+    height: 40px;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: -10px;
+  }

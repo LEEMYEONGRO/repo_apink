@@ -57,7 +57,8 @@
     
     <select id="login" resultMap="resultMapObj">
     	SELECT
-    		mbEmail
+    		mbSeq
+    		,mbEmail
     		,mbPassword
     		,mbName
     	FROM member
@@ -121,16 +122,6 @@
 			AND mbDeleteNy = 0
 		
 	</select>
-	
-	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-		SELECT 
-			mbSeq
-			,mbName
-		FROM
-			member
-		WHERE 1=1
-			AND mbDeleteNy = 0
-    </select>
 	
     
 	  

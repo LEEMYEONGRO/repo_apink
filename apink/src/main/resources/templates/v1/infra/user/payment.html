@@ -3,14 +3,6 @@
 
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
 
-<style type="text/css">
-.custom-input {
-  width: 100px;
-  height: 25px;
-  padding: 8px;
-  font-size: 16px;
-}
-</style>
 <body class="sticky-header">
    <!-- 상단바 시작 -->
         <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
@@ -68,27 +60,30 @@
                             <div class="axil-order-summery order-checkout-summery">
                                 <h5 class="title mb--20">주문내역</h5>
                                 <div class="summery-table-wrap">
-                                    <table class="table summery-table">
+                                    <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>제품</th>
-                                                <th>수량</th>
-                                                <th>사이즈</th>
-                                                <th>색상</th>
-                                                <th>금액</th>
+                                                <th class="col-4">제품</th>
+                                                <th class="col-2">수량</th>
+                                                <th class="col-2">사이즈</th>
+                                                <th class="col-2">색상</th>
+                                                <th class="col-2">금액</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="order-product">
-                                                <td>오버핏 남녀공용 맨투맨</td>
-                                                <td><input class="custom-input" type='number' min='1' max='99' step='1'></td>
-                                                <td>27,000원</td>
+                                                <td class="col-4">오버핏 남녀공용 맨투맨</td>
+                                                <td class="col-2">1</td>
+                                                <td class="col-2">M</td>
+                                                <td class="col-2">블랙</td>
+                                                <td class="col-2">27,000원</td>
                                             </tr>
+                                        </tbody>
+                                        <tbody>
                                             <tr class="order-shipping">
                                                 <td colspan="2">
                                                     <div class="shipping-amount">
                                                         <span class="title">배송비</span>
-                                                        <span class="amount">0원</span>
                                                     </div>
                                                     <div class="input-group">
                                                         <input type="radio" id="radio1" name="shipping" checked>
@@ -97,7 +92,10 @@
                                                 </td>
                                             </tr>
                                             <tr class="order-total">
-                                                <td>Total</td>
+                                                <td>Total:</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td class="order-total-amount">27,000원</td>
                                             </tr>
                                         </tbody>
