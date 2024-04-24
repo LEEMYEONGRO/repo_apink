@@ -11,4 +11,6 @@ public class Constants {
 	public static final int SESSION_MINUTE_XDM = 30;
 
 	public static final String URL_LOGINFORM = "/loginXdm";
+	
+	public static final String URL_LOGINUSER = "/loginUser";
 }

@@ -115,13 +115,6 @@ public class MemberDto {
 		this.passwordCheck = passwordCheck;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberDto [mbSeq=" + mbSeq + ", mbName=" + mbName + ", mbDateBirth=" + mbDateBirth + ", mbGender="
-				+ mbGender + ", mbEmail=" + mbEmail + ", mbPassword=" + mbPassword + ", mbPhoneNumber=" + mbPhoneNumber
-				+ ", mbDeleteNy=" + mbDeleteNy + ", mbCreationDate=" + mbCreationDate + ", mbModificationDate="
-				+ mbModificationDate + ", xseqCount=" + xseqCount + ", passwordCheck=" + passwordCheck + "]";
-	}
 
 	
 }

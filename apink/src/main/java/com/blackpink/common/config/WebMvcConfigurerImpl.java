@@ -18,9 +18,14 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 					.excludePathPatterns(
 //							"/resources/**",
 //							"/adt/**",
+							"/user/**",
 							"/xdmin/**",
 							"/loginXdm",
-							"/signinXdm"
+							"/loginUser",
+							"/signinXdm",
+							"/portfolioIndex",
+							"/indexUser"
+//							"/"
 //							"/v1/infra/member/signupXdmForm",
 //							"/v1/infra/member/signinXdmForm",
 //							"/v1/infra/member/signinXdmProc"

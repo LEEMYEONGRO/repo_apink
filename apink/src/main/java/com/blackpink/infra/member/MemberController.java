@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
-import com.blackpink.infra.codegroup.CodeGroupDto;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -69,11 +69,8 @@ public class MemberController {
 			if(matchesBcrypt(dto.getMbPassword(),dtoL.getMbPassword() , 10)) {
 				returnMap.put("rt", "success");
 
-			System.out.println(dto.getMbSeq() + "------------------------1");
-			System.out.println(dto.getMbEmail() + "------------------------2");
-			System.out.println(dto.getMbPassword() + "------------------------3");
 			httpSession.setAttribute("sessEmailXdm", dtoL.getMbEmail());
-			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());s
+			httpSession.setAttribute("sessMbSeqXdm", dtoL.getMbSeq());
 			httpSession.setAttribute("sessNameXdm", dtoL.getMbName());
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 			}else {
