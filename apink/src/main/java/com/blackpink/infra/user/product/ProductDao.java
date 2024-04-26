@@ -16,6 +16,10 @@ public interface ProductDao {
 
 	public ProductDto item(ProductDto dto);
 	
+	public List<ProductDto> selectSizeList(ProductDto dto);
+	
+	public List<ProductDto> selectColorList(ProductDto dto);
+	
 	public int insert(ProductDto dto);
 	
 	public int insertRv(ProductDto dto);

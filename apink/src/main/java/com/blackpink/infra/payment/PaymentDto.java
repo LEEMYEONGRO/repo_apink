@@ -6,7 +6,6 @@ public class PaymentDto {
 	
 	private String memberSeq;
 	private String paymentSeq;
-	private Date pmCreationDate;
 	private int pdpmDeliveryStatus;
 	private String mbSeq;
 	private String pmSeq;
@@ -34,6 +33,17 @@ public class PaymentDto {
 	private String arRoadNameAddress;
 	private String arDetailAddress;
 	private String addressSeq;
+	
+	private String pmCardCode;				//카드사명
+	private String pmPayerName;				//카드사용자명
+	private String pmCardNumber;			//카드번호
+	private Date pmCardMonth;				//카드유효기간 월
+	private Date pmCardYear;				//카드유효기간 연도
+	private int pmCardVerificationCode;		//카드인증번호
+	private Integer pmDeleteNy;
+	private Date pmCreationDate;
+	private Date pmModificationDate;
+	
 	
 	public String getMemberSeq() {
 		return memberSeq;
@@ -249,5 +259,55 @@ public class PaymentDto {
 	public void setAddressSeq(String addressSeq) {
 		this.addressSeq = addressSeq;
 	}
+	public String getPmCardCode() {
+		return pmCardCode;
+	}
+	public void setPmCardCode(String pmCardCode) {
+		this.pmCardCode = pmCardCode;
+	}
+	public String getPmPayerName() {
+		return pmPayerName;
+	}
+	public void setPmPayerName(String pmPayerName) {
+		this.pmPayerName = pmPayerName;
+	}
+	public String getPmCardNumber() {
+		return pmCardNumber;
+	}
+	public void setPmCardNumber(String pmCardNumber) {
+		this.pmCardNumber = pmCardNumber;
+	}
+	public Date getPmCardMonth() {
+		return pmCardMonth;
+	}
+	public void setPmCardMonth(Date pmCardMonth) {
+		this.pmCardMonth = pmCardMonth;
+	}
+	public Date getPmCardYear() {
+		return pmCardYear;
+	}
+	public void setPmCardYear(Date pmCardYear) {
+		this.pmCardYear = pmCardYear;
+	}
+	public int getPmCardVerificationCode() {
+		return pmCardVerificationCode;
+	}
+	public void setPmCardVerificationCode(int pmCardVerificationCode) {
+		this.pmCardVerificationCode = pmCardVerificationCode;
+	}
+	public Integer getPmDeleteNy() {
+		return pmDeleteNy;
+	}
+	public void setPmDeleteNy(Integer pmDeleteNy) {
+		this.pmDeleteNy = pmDeleteNy;
+	}
+	public Date getPmModificationDate() {
+		return pmModificationDate;
+	}
+	public void setPmModificationDate(Date pmModificationDate) {
+		this.pmModificationDate = pmModificationDate;
+	}
+	
+	
 	
 }

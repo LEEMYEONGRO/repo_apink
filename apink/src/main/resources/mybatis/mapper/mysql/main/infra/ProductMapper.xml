@@ -82,6 +82,32 @@
     </select>
      <!-- 주문상세 -->
 	
+	<!-- 주문상세에 재고, 색상, 수량 -->
+    <select id="selectSizeList" resultMap="resultMapObj">
+        SELECT
+			a.pdSeq
+			,b.szSeq 
+			,b.szCode 
+			,b.szStock
+		FROM product a
+			join size b on b.pdSeq = a.pdSeq
+		WHERE 1=1
+        	AND a.pdSeq = #{pdSeq}
+    </select>
+    
+    <select id="selectColorList" resultMap="resultMapObj">
+        
+        SELECT
+			a.pdSeq
+			,c.clSeq 
+			,c.clCode 
+			,c.clStock
+		FROM product a
+			join color c on c.pdSeq = a.pdSeq
+		WHERE 1=1
+        	AND a.pdSeq = #{pdSeq}
+    </select>
+     <!-- 주문상세 재고, 색상, 수량 -->
 	
 	<!-- 리뷰 -->
 	<sql id="selectCommonRv">

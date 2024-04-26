@@ -93,10 +93,14 @@ public class ProductController {
 	@RequestMapping(value = "shopDetailedPage")
 	public String shopDetailedPage(ProductDto dto, Model model) {
 		
-		
 		model.addAttribute("list", service.selectRvList(dto));
 		
 		model.addAttribute("item", service.item(dto));
+		
+		model.addAttribute("sizeList", service.selectSizeList(dto));
+		
+		model.addAttribute("colorList", service.selectColorList(dto));
+		
 		return "/v1/infra/user/shopDetailedPage";
 	}
 		

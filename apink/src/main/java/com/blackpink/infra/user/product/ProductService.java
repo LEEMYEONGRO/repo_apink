@@ -1,13 +1,9 @@
 package com.blackpink.infra.user.product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class ProductService {
@@ -36,6 +32,14 @@ public class ProductService {
 	
 	public ProductDto item(ProductDto dto) {
 		return dao.item(dto);
+	}
+	
+	public List<ProductDto> selectSizeList(ProductDto dto) {
+		return dao.selectSizeList(dto);
+	}
+	
+	public List<ProductDto> selectColorList(ProductDto dto) {
+		return dao.selectColorList(dto);
 	}
 	
 	public int insert(ProductDto dto) {
