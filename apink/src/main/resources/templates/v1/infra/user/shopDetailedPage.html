@@ -2,28 +2,13 @@
 <html class="no-js" lang="en">
 
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
-<style>
-/* 목록을 동그랗게 만들기 */
-.product-color ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.product-color li {
-    border-radius: 50%;
-    width: 50px; /* 필요에 따라 조절하세요 */
-    height: 50px; /* 필요에 따라 조절하세요 */
-    background-color: white; /* 초기 배경색 설정 */
-    transition: border-color 0.3s; /* 마우스 호버 시 테두리 색상 변경에 애니메이션 적용 */
-}
-
-/* 마우스 호버 시 테두리 색상 변경 */
-.product-color li:hover {
-    border: 2px solid black; /* 테두리 두께와 색상을 조절하세요 */
-}
-</style>
 <body class="sticky-header">
 	<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" id="pdSeq" name="pdSeq" th:value="${item.pdSeq}">
+	    <input type="hidden" id="rvName" name="rvName"> <!-- 리뷰 내용 입력 부분 -->
+	    <input type="hidden" id="selectedSize" name="selectedSize"> <!-- 사용자가 선택한 사이즈 코드 -->
+	    <input type="hidden" id="selectedColor" name="selectedColor"> <!-- 사용자가 선택한 색상 코드 -->
+	    <input type="number" id="pdpmQuantity" name="pdpmQuantity" value="1"> <!-- 상품 수량 -->
 		<!-- <input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/> -->
 	<!-- 상단바 시작 -->
     <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
@@ -120,7 +105,8 @@
                                         <div class="product-variation">
 										    <h6 class="title">색상:</h6>
 										    <select aria-controls="apiCallbacks" class="select2" th:if="${!#lists.isEmpty(colorList)}">
-										        <option th:each="colorList : ${colorList}" th:if="${colorList.clCode != null}" th:text="${@codeService.selectOneCachedCode(colorList.clCode)}" onclick="clCheck"></option>
+										        <option th:each="colorList : ${colorList}" th:if="${colorList.clCode != null}" th:text="${@codeService.selectOneCachedCode(colorList.clCode)}"
+										         id="clCode" name="clCode" onclick="clCheck"></option>
 										    </select>
 										</div>
                                         <!-- End Product Variation  -->
@@ -128,9 +114,8 @@
                                         <div class="product-variation">
                                             <h6 class="title">Size:</h6>
                                             <ul class="range-variant" th:if="${!#lists.isEmpty(sizeList)}" th:each= "sizeList : ${sizeList}">
-                                                <li th:if="${sizeList.szCode != null}" th:text="${@codeService.selectOneCachedCode(sizeList.szCode)}" onclick="szCheck">
-                                                	<input type="hidden" id="szSeq" name="szSeq">
-                                                </li>
+                                                <li th:if="${sizeList.szCode != null}" th:text="${@codeService.selectOneCachedCode(sizeList.szCode)}" 
+                                                id="szCode" name="szCode" onclick="szCheck"></li>
                                             </ul>
                                         </div>
                                         <!-- End Product Variation  -->
@@ -140,11 +125,11 @@
                                     <!-- Start Product Action Wrapper  -->
                                     <div class="product-action-wrapper d-flex-center">
                                         <!-- Start Quentity Action  -->
-                                        <div class="pro-qty"><input type="text" value="1"></div>
+                                        <div class="pro-qty"><input type="text" id="pdpmQuantity" name="pdpmQuantity" value="1"></div>
                                         <!-- End Quentity Action  -->
                                         <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a th:href="@{/payment}" class="axil-btn btn-bg-primary">상품구매하기</a></li>
+                                            <li class="add-to-cart"><a th:href="@{/payment}" id="paymentbtn" name= "paymentbtn" class="axil-btn btn-bg-primary">상품구매하기</a></li>
                                             <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                         <!-- End Product Action  -->
@@ -477,6 +462,23 @@
 		}
 	</script>
 	<script>
+	    // 상품구매하기 버튼 클릭 시 실행되는 함수
+	    document.getElementById("paymentbtn").onclick = function() {
+	        // 사용자가 입력한 리뷰 내용을 폼에 추가
+	        document.getElementById("rvName").value = document.getElementById("rvContent").value;
+	
+	        // 사용자가 선택한 사이즈와 색상 정보를 폼에 추가
+	        var selectedSize = document.querySelector(".product-variation #szCode li.active").textContent;
+	        var selectedColor = document.querySelector(".product-variation #clCode option:checked").textContent;
+	
+	        document.getElementById("selectedSize").value = selectedSize;
+	        document.getElementById("selectedColor").value = selectedColor;
+	
+	        // 폼 제출
+	        document.getElementById("productForm").submit();
+	    }
+	</script>
+	<!-- <script>
 	    function toggleSelection(item) {
 	        // 중복 클릭 방지를 위한 조건 추가
 	        if (!item.classList.contains('active')) {
@@ -501,8 +503,7 @@
 	            toggleSelection(item);
 	        });
 	    });
-	</script>
-
+	</script> -->
 </body>
 
 </html>

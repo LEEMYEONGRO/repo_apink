@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.blackpink.infra.user.product.ProductDto;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -15,11 +17,7 @@ public class PaymentController {
 	PaymentService service;
 	
 	@RequestMapping(value = "/payment")
-	public String payment(@ModelAttribute("vo")PaymentVo vo,Model model, HttpSession httpSession) throws Exception {
-		
-//		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
-		
-//		model.addAttribute("item", service.item(vo));
+	public String payment(@ModelAttribute("vo")PaymentVo vo, Model model,ProductDto pddto, PaymentDto dto, HttpSession httpSession) throws Exception {
 		
 		return "/v1/infra/user/payment";
 	}

@@ -34,6 +34,10 @@ public class ProductDto {
 	private int clStock;		//수량
 	private String clpdSeq;
 //	컬러
+
+//	구매수량
+	private int PdpmQuantity;
+//	구매수량
 	
 	private String mbName;
 	private String mbSeq;
@@ -169,6 +173,12 @@ public class ProductDto {
 	}
 	public void setMbSeq(String mbSeq) {
 		this.mbSeq = mbSeq;
+	}
+	public int getPdpmQuantity() {
+		return PdpmQuantity;
+	}
+	public void setPdpmQuantity(int pdpmQuantity) {
+		PdpmQuantity = pdpmQuantity;
 	}
 	
 	
