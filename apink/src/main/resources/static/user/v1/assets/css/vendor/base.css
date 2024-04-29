@@ -364,4 +364,35 @@ a.content__text-link[data-fx="14"]:hover::after {
 	.select2 {
     width: 200px; /* 원하는 너비값 */
 }
+
+	/* 클릭된 상태의 버튼 스타일 */
+	.clActive {
+	  background-color: #000; /* 활성화된 상태의 배경색 (검정색) */
+	  color: blue; /* 활성화된 상태의 텍스트 색상 (흰색) */
+	  border-color: #656973;
+	  
+	}
+	
+	/* 클릭된 상태의 버튼 내부 요소들 */
+	.clActive *,
+	.clActive .circle {
+	  color: #000 !important; /* 내부 요소들의 텍스트 색상을 검정색으로 설정 */
+	  background-color: #000 !important; /* 내부 요소들의 배경색을 검정색으로 설정 */
+	}
+	
+	/* 기본 버튼 스타일 */
+	.clButton {
+	  /* 기본 버튼의 스타일 정의 */
+	}
+	
+	/* 클릭된 상태가 아닌 버튼의 스타일 */
+	.clButton:not(.clActive) {
+	  /* 클릭되지 않은 상태의 버튼 스타일 정의 */
+	}
+	
+	/* 클릭된 버튼을 제외한 모든 버튼들을 비활성화 */
+	.clButton:not(.clActive) {
+	  pointer-events: none;
+}
+
 }

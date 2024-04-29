@@ -4,12 +4,10 @@
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
 <body class="sticky-header">
 	<form name="formList" id="formList" method="post" autocomplete="off">
-		<input type="hidden" id="pdSeq" name="pdSeq" th:value="${item.pdSeq}">
-	    <input type="hidden" id="rvName" name="rvName"> <!-- 리뷰 내용 입력 부분 -->
-	    <input type="hidden" id="selectedSize" name="selectedSize"> <!-- 사용자가 선택한 사이즈 코드 -->
-	    <input type="hidden" id="selectedColor" name="selectedColor"> <!-- 사용자가 선택한 색상 코드 -->
-	    <input type="number" id="pdpmQuantity" name="pdpmQuantity" value="1"> <!-- 상품 수량 -->
-		<!-- <input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/> -->
+		<input type="hidden" name="pdName" id="pdName" th:value="${item.pdName}">
+		<input type="hidden" name="pdPrice" id="pdPrice" th:value="${item.pdPrice}">
+		<input type="hidden" name="szCode" id="szCode">
+		<!-- <input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/>
 	<!-- 상단바 시작 -->
     <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
     <!-- 상단바 종료 -->
@@ -74,13 +72,13 @@
                         <div class="row">
                             <div class="single-product-content">
                                 <div class="inner">
-                                    <h2 class="product-title" name="pdName" id="pdName" th:text=${item.pdName}></h2>
+                                    <h2 class="product-title" th:text=${item.pdName}></h2>
                                     <ul class="axil-breadcrumb">
 				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">패션의류</a></li>
 				                                <li class="separator"></li>
 				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">맨투맨</a></li>
 				                            </ul>
-                                    <span class="price-amount" name="pdPrice" id="pdPrice" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'"></span>
+                                    <span class="price-amount" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'"></span>
                                     <div class="product-rating">
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -104,20 +102,25 @@
                                         <!-- Start Product Variation  -->
                                         <div class="product-variation">
 										    <h6 class="title">색상:</h6>
-										    <select aria-controls="apiCallbacks" class="select2" th:if="${!#lists.isEmpty(colorList)}">
-										        <option th:each="colorList : ${colorList}" th:if="${colorList.clCode != null}" th:text="${@codeService.selectOneCachedCode(colorList.clCode)}"
-										         id="clCode" name="clCode" onclick="clCheck"></option>
+										    <select name="clCode" id="clCode" aria-controls="apiCallbacks" class="select2" th:if="${!#lists.isEmpty(colorList)}">
+										        <option  th:each="colorList : ${colorList}" th:if="${colorList.clCode != null}" th:text="${@codeService.selectOneCachedCode(colorList.clCode)}" th:value=${colorList.clCode}
+										         onclick="clCheck"></option>
 										    </select>
 										</div>
                                         <!-- End Product Variation  -->
                                         <!-- Start Product Variation  -->
                                         <div class="product-variation">
-                                            <h6 class="title">Size:</h6>
-                                            <ul class="range-variant" th:if="${!#lists.isEmpty(sizeList)}" th:each= "sizeList : ${sizeList}">
-                                                <li th:if="${sizeList.szCode != null}" th:text="${@codeService.selectOneCachedCode(sizeList.szCode)}" 
-                                                id="szCode" name="szCode" onclick="szCheck"></li>
-                                            </ul>
-                                        </div>
+										    <h6 class="title">Size:</h6>
+										    <ul class="range-variant" th:if="${!#lists.isEmpty(sizeList)}" th:each="sizeList : ${sizeList}">
+										        <li th:if="${sizeList.szCode != null}" 
+										            th:text="${@codeService.selectOneCachedCode(sizeList.szCode)}"
+										            id="szCode"
+										            naem='szCode'
+										            th:value="${sizeList.szCode}"
+										            onclick="szCheck">
+										        </li>
+										    </ul>
+										</div>
                                         <!-- End Product Variation  -->
 
                                     </div>
@@ -125,11 +128,11 @@
                                     <!-- Start Product Action Wrapper  -->
                                     <div class="product-action-wrapper d-flex-center">
                                         <!-- Start Quentity Action  -->
-                                        <div class="pro-qty"><input type="text" id="pdpmQuantity" name="pdpmQuantity" value="1"></div>
+                                        <div class="pro-qty"><input type="text" name="pdpmQuantity" id="pdpmQuantity" value="1"></div>
                                         <!-- End Quentity Action  -->
                                         <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a th:href="@{/payment}" id="paymentbtn" name= "paymentbtn" class="axil-btn btn-bg-primary">상품구매하기</a></li>
+                                            <li class="add-to-cart"><a id="paymentbtn" name= "paymentbtn" class="axil-btn btn-bg-primary">상품구매하기</a></li>
                                             <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                         <!-- End Product Action  -->
@@ -438,6 +441,7 @@
 	<!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
 	<script type="text/javascript">
+	
 		document.getElementById("reviewbtn").onclick = function(){
 			
 			$.ajax({
@@ -460,50 +464,68 @@
 			});
 			
 		}
+			
+		
 	</script>
 	<script>
-	    // 상품구매하기 버튼 클릭 시 실행되는 함수
-	    document.getElementById("paymentbtn").onclick = function() {
-	        // 사용자가 입력한 리뷰 내용을 폼에 추가
-	        document.getElementById("rvName").value = document.getElementById("rvContent").value;
-	
-	        // 사용자가 선택한 사이즈와 색상 정보를 폼에 추가
-	        var selectedSize = document.querySelector(".product-variation #szCode li.active").textContent;
-	        var selectedColor = document.querySelector(".product-variation #clCode option:checked").textContent;
-	
-	        document.getElementById("selectedSize").value = selectedSize;
-	        document.getElementById("selectedColor").value = selectedColor;
-	
-	        // 폼 제출
-	        document.getElementById("productForm").submit();
+		
+	    function szCheck(szCode) {
+	        // 이벤트 핸들러의 매개변수로 Seq 값을 받아 처리
+	        var szItem = document.getElementById('szCode');
+	        // 나머지 함수 코드
 	    }
-	</script>
-	<!-- <script>
+	    
 	    function toggleSelection(item) {
 	        // 중복 클릭 방지를 위한 조건 추가
-	        if (!item.classList.contains('active')) {
+	        if (!item.classList.contains('clActive')) {
 	            // 다른 활성화된 요소가 있다면 해당 요소의 활성화 클래스를 제거
-	            document.querySelectorAll('.range-variant li.active').forEach(function(activeItem) {
-	                activeItem.classList.remove('active');
+	            document.querySelectorAll('.range-variant li.clActive').forEach(function(activeItem) {
+	                activeItem.classList.remove('clActive');
 	            });
-	
+	            let szCode = document.getElementById("szCode");
+	            szCode.value=null;
 	            // 현재 요소를 활성화 상태로 변경
-	            item.classList.add('active');
+	            item.classList.add('clActive');
 	
-	            // 선택된 색상 또는 사이즈 값 가져오기
+	            // 선택된 사이즈 값 가져오기
 	            var selectedValue = item.getAttribute('data-value');
+	            
+	            let aa = $(".clActive").attr("value");
+	            alert(aa);
+	            
+	            
+	            szCode.value=aa;
+	            alert(document.getElementById("szCode").value)
+	            
 	
 	            // 서버로 데이터 전송 또는 다른 동작 수행
 	            // sendToServer(selectedValue);
 	        }
 	    }
-	
+		
+	    
+	    
 	    document.querySelectorAll('.range-variant li').forEach(function(item) {
 	        item.addEventListener('click', function() {
 	            toggleSelection(item);
 	        });
 	    });
-	</script> -->
+	    
+		let goUrlPayment = "/payment";
+    	
+		let form = document.querySelector("form[name=formList]");
+		
+		document.getElementById("paymentbtn").onclick = function(){
+			form.action = goUrlPayment;
+			form.submit();
+		}
+
+		document.getElementById("paymentbtn").onclick = function(){
+				form.action = goUrlPayment;
+				form.submit();
+			}
+	    
+	</script>
 </body>
 
 </html>

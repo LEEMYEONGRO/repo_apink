@@ -72,18 +72,12 @@
                                         </thead>
                                         <tbody>
                                             <tr class="order-product">
-                                                <td class="col-4" id="pdName" name="pdName"></td>
-                                                <td class="col-2" id="pdpmQuantity" name="pdpmQuantity"></td>
-                                                <td class="col-2" id="szCode" name="szCode"></td>
-                                                <td class="col-2" id="clCode" name="clCode"></td>
-                                                <td class="col-2" id="pdPrice" name="pdPrice"></td>
-                                                
-                                                <!-- <td class="col-4" id="pdName" name="pdName"><span th:text="${pdList.pdName}"></td>
-                                                <td class="col-2" id="pdpmQuantity" name="pdpmQuantity"><span th:text="${pdList.pdpmQuantity}"></td>
-                                                <td class="col-2" id="szCode" name="szCode"><span th:text="${pdList.szCode}"></td>
-                                                <td class="col-2" id="clCode" name="clCode"><span th:text="${pdList.clCode}"></td>
-                                                <td class="col-2" id="pdPrice" name="pdPrice"><span th:text="${pdList.pdPrice}"></td> -->
-                                            </tr>
+											    <td class="col-4" th:text="${pdName}" id="pdName" name="pdName" th:value="${pdName}"></td>
+											    <td class="col-2" th:text="${pdpmQuantity}" id="pdpmQuantity" name="pdpmQuantity" th:value="${pdpmQuantity}"></td>
+											    <td class="col-2" th:text="${@codeService.selectOneCachedCode(szCode)}" id="szCode" name="szCode" th:value="${szCode}"></td>
+											    <td class="col-2" th:text="${@codeService.selectOneCachedCode(clCode)}" id="clCode" name="clCode" th:value="${clCode}"></td>
+											    <td class="col-2" th:text="${pdPrice}*${pdpmQuantity}" id="pdPrice" name="pdPrice" th:value="${pdPrice}"></td>
+											</tr>
                                         </tbody>
                                         <tbody>
                                             <tr class="order-shipping">
