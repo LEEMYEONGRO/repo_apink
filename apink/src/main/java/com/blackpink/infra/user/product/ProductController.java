@@ -31,7 +31,7 @@ public class ProductController {
 			model.addAttribute("list", service.selectPdList(vo));
 		}
 		
-		return "/v1/infra/user/shopList";
+		return "v1/infra/user/shopList";
 	}
 	
 	@RequestMapping(value = "/indexUser")
@@ -43,7 +43,7 @@ public class ProductController {
 			model.addAttribute("list", service.selectPdList(vo));
 		}
 		
-		return "/v1/infra/user/indexUser";
+		return "v1/infra/user/indexUser";
 	}
 	
 	@RequestMapping(value = "/productXdmList")
@@ -61,7 +61,7 @@ public class ProductController {
 //		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
 //		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
 //		
-		return "/v1/infra/product/productXdmList";
+		return "v1/infra/product/productXdmList";
 		
 	}
 	
@@ -70,7 +70,7 @@ public class ProductController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/product/productXdmAddition";
+		return "v1/infra/product/productXdmAddition";
 	}
 	
 	@RequestMapping(value = "/productXdmInsert")
@@ -86,7 +86,7 @@ public class ProductController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/product/productXdmCorrection";
+		return "v1/infra/product/productXdmCorrection";
 		
 	}
 	
@@ -101,7 +101,7 @@ public class ProductController {
 		
 		model.addAttribute("colorList", service.selectColorList(dto));
 		
-		return "/v1/infra/user/shopDetailedPage";
+		return "v1/infra/user/shopDetailedPage";
 	}
 		
 	@RequestMapping(value = "/productXdmUpdate")
