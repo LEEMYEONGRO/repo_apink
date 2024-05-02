@@ -33,6 +33,7 @@ public class PaymentDto {
 	private String arNumberAddress;			// 기본주소
 	private String arRoadNameAddress;		// 도로명주소
 	private String arDetailAddress;			// 상세주소
+	private String arSeeAlso;				// 참고사항
 	private String addressSeq;
 //	address
 	
@@ -253,6 +254,14 @@ public class PaymentDto {
 	
 	public void setArDetailAddress(String arDetailAddress) {
 		this.arDetailAddress = arDetailAddress;
+	}
+	
+	public String getArSeeAlso() {
+		return arSeeAlso;
+	}
+	
+	public void setArSeeAlso(String arSeeAlso) {
+		this.arSeeAlso = arSeeAlso;
 	}
 	
 	public String getAddressSeq() {

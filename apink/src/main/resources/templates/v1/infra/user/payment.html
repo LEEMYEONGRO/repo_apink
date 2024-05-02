@@ -27,40 +27,36 @@
                                 <div class="col-12">
                                       	<div class="form-group">
 		                                <label>등록된 주소정보</label>
-										<select th:if="${!#lists.isEmpty(addressList)}">
-											<option th:each="addressList : ${addressList}" th:value="${addressList.arSeq}" th:text="${addressList.arSeq}"></option>
+										<select id="addressSelect">
+										    <option th:each="addressList : ${addressList}" th:value="${addressList.arSeq}" th:text="${addressList.arName}"></option>
 										</select>
 		                            </div>
 		                        </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>이름 <span>*</span></label>
-                                        <input type="text" id="first-name" placeholder="성을 입력해주세요">
+                                        <input type="text" id="arUserName" name="arUserName" placeholder="성을 입력해주세요">
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>우편번호 <span>*</span></label>
+                                    <input type="text" id="arPostalCode" name="arPostalCode" placeholder="우편번호를 입력해주세요">
+                                </div>
+                                <div class="form-group">
                                     <label>주소 <span>*</span></label>
-                                    <input type="text" id="address1" placeholder="기본주소지를 입력해주세요">
+                                    <input type="text" id="arRoadNameAddress" name="arRoadNameAddress" placeholder="기본주소지를 입력해주세요">
                                 </div>
                                 <div class="form-group">
                                     <label>상세주소 <span>*</span></label>
-                                    <input type="text" id="address2" placeholder="상세주소지를 입력해주세요">
+                                    <input type="text" id="arDetailAddress" name="arDetailAddress" placeholder="상세주소지를 입력해주세요">
                                 </div>
                                 <div class="form-group">
                                     <label>전화번호 <span>*</span></label>
-                                    <input type="tel" id="phone" placeholder="집 또는 휴대폰번호를 입력해주세요">
-                                </div>
-                                <div class="form-group">
-                                    <label>이메일 <span>*</span></label>
-                                    <input type="email" id="email" placeholder="이메일주소를 입력해주세요">
-                                </div>
-                                <div class="form-group input-group">
-                                    <input type="checkbox" id="checkbox1" name="account-create">
-                                    <label for="checkbox1">작성내용확인</label>
+                                    <input type="tel" id="arPhoneNumber" name="arPhoneNumber" placeholder="집 또는 휴대폰번호를 입력해주세요">
                                 </div>
                                 <div class="form-group">
                                     <label>기타사항입력</label>
-                                    <textarea id="notes" rows="2" placeholder="주문배송지의 대한 기타사항을 입력해주세요."></textarea>
+                                    <textarea id="arSeeAlso" name="arSeeAlso" rows="2" placeholder="주문배송지의 대한 기타사항을 입력해주세요."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -196,6 +192,11 @@
    
    <!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </body>
 

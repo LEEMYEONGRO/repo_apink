@@ -80,6 +80,7 @@
 		,arNumberAddress
 		,arRoadNameAddress
 		,arDetailAddress
+		,arSeeAlso
 		,mbSeq as addressSeq
 		FROM address
 		WHERE mbSeq = #{mbSeq}
