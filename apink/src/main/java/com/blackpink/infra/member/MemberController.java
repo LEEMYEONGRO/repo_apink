@@ -39,7 +39,7 @@ public class MemberController {
 		
 //		 model.addAttribute("vo", vo);
 		
-		return "/v1/infra/memberXdm/memberXdmList";
+		return "v1/infra/memberXdm/memberXdmList";
 	}
 	
 	
@@ -48,13 +48,13 @@ public class MemberController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/memberXdm/memberXdmAddition";
+		return "v1/infra/memberXdm/memberXdmAddition";
 	}
 	
 	@RequestMapping(value = "/loginXdm")
 	public String loginXdm(MemberDto dto) {
 		
-		return "/v1/infra/loginXdm/loginXdm";
+		return "v1/infra/loginXdm/loginXdm";
 	}
 	
 	@ResponseBody
@@ -98,7 +98,7 @@ public class MemberController {
 	public String joinMembership(MemberDto dto, Model model ) {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
-		return "/v1/infra/user/joinMembership";
+		return "v1/infra/user/joinMembership";
 	}
 	
 	@RequestMapping(value = "/insertMember")
@@ -126,7 +126,7 @@ public class MemberController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/memberXdm/memberXdmCorrection";
+		return "v1/infra/memberXdm/memberXdmCorrection";
 		
 	}
 		

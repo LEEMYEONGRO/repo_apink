@@ -29,7 +29,7 @@ public class CodeController {
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
-		return "/v1/infra/codeXdm/codeXdmList";
+		return "v1/infra/codeXdm/codeXdmList";
 	}
 	
 	public void setSearch(CodeVo vo) throws Exception {
@@ -50,7 +50,7 @@ public class CodeController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeXdm/codeXdmAddition";
+		return "v1/infra/codeXdm/codeXdmAddition";
 	}
 	
 	@RequestMapping(value = "/codeXdmInsert")
@@ -66,7 +66,7 @@ public class CodeController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeXdm/codeXdmCorrection";
+		return "v1/infra/codeXdm/codeXdmCorrection";
 	}
 	
 	@RequestMapping(value = "/codeXdmUpdate")

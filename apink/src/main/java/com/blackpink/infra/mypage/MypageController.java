@@ -46,7 +46,7 @@ public class MypageController {
 		
 		model.addAttribute("addressList", service.addressList(vo));
 		
-		return "/v1/infra/user/myPage";
+		return "v1/infra/user/myPage";
 	}
 	
 	public void setSearch(PaymentVo vo) throws Exception {
@@ -63,7 +63,7 @@ public class MypageController {
 		
 		model.addAttribute("addressItem", service.addressItem(dto));
 		
-		return "/v1/infra/user/addressUserCorrection";
+		return "v1/infra/user/addressUserCorrection";
 	}
 	
 	@RequestMapping(value = "update")
@@ -93,7 +93,7 @@ public class MypageController {
 	@RequestMapping(value = "/loginUser")
 	public String loginUser(PaymentDto dto) {
 		
-		return "/v1/infra/user/loginUser";
+		return "v1/infra/user/loginUser";
 	}
 	
 	

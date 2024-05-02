@@ -42,6 +42,6 @@ public class PaymentController {
 	    
 	    model.addAttribute("addressList", service.addressList(vo));
 	    
-	    return "/v1/infra/user/payment";
+	    return "v1/infra/user/payment";
 	}
 }

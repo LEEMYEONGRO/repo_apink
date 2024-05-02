@@ -18,13 +18,13 @@ public class CodeGroupController {
 	@RequestMapping(value = "/index")
 	public String index() {
 		
-		return "/v1/infra/index/index";
+		return "v1/infra/index/index";
 	}
 	
 	@RequestMapping(value = "/portfolioIndex")
 	public String portfolioIndex() {
 		
-		return "/v1/infra/portfolio/portfolioIndex";
+		return "v1/infra/portfolio/portfolioIndex";
 	}
 	
 	@RequestMapping(value = "/codeGroupXdmList")
@@ -39,7 +39,7 @@ public class CodeGroupController {
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
-		return "/v1/infra/codeGroupXdm/codeGroupXdmList";
+		return "v1/infra/codeGroupXdm/codeGroupXdmList";
 	}
 	
 	
@@ -48,7 +48,7 @@ public class CodeGroupController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeGroupXdm/codeGroupXdmAddition";
+		return "v1/infra/codeGroupXdm/codeGroupXdmAddition";
 	}
 	
 	@RequestMapping("codeGroupXdmInsert")
@@ -64,7 +64,7 @@ public class CodeGroupController {
 		
 		model.addAttribute("oneList", service.selectOne(dto));
 		
-		return "/v1/infra/codeGroupXdm/codeGroupXdmCorrection";
+		return "v1/infra/codeGroupXdm/codeGroupXdmCorrection";
 		
 	}
 		
