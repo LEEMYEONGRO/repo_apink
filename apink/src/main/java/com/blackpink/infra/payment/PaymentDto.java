@@ -24,16 +24,19 @@ public class PaymentDto {
 	private String passwordCheck;
 	private String newmbPassword;
 	
-	private String arSeq;
-	private String arName;
-	private String arUserName;
-	private String arPhoneNumber;
-	private String arPostalCode;
-	private String arNumberAddress;
-	private String arRoadNameAddress;
-	private String arDetailAddress;
+//	address
+	private String arSeq;					// 주소Seq
+	private String arName;					// 주소지명
+	private String arUserName;				// 주소 거주자이름
+	private String arPhoneNumber;			// 주소 거주자휴대폰번호
+	private String arPostalCode;			// 우편번호
+	private String arNumberAddress;			// 기본주소
+	private String arRoadNameAddress;		// 도로명주소
+	private String arDetailAddress;			// 상세주소
 	private String addressSeq;
+//	address
 	
+//	payment
 	private String pmCardCode;				//카드사명
 	private String pmPayerName;				//카드사용자명
 	private String pmCardNumber;			//카드번호
@@ -43,7 +46,7 @@ public class PaymentDto {
 	private Integer pmDeleteNy;
 	private Date pmCreationDate;
 	private Date pmModificationDate;
-	
+//	payment
 	
 	public String getMemberSeq() {
 		return memberSeq;
