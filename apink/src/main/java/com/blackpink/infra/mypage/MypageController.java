@@ -61,7 +61,7 @@ public class MypageController {
 	@RequestMapping(value = "/addressUserCorrection")
 	public String addressUserCorrection(PaymentDto dto, Model model) {
 		
-		model.addAttribute("addressItem", service.addressItem(dto));
+//		model.addAttribute("addressItem", service.addressItem(dto));
 		
 		return "v1/infra/user/addressUserCorrection";
 	}

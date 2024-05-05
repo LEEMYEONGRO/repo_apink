@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.blackpink.interceptor.CheckLoginSessionInterceptor;
 
-@Configuration
+
 public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 
 		@Override
@@ -24,8 +24,10 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 							"/loginUser",
 							"/signinXdm",
 							"/portfolioIndex",
-							"/indexUser"
-//							"/"
+							"/indexUser",
+							"/shopList",
+							"/shopDetailedPage",
+							"/joinMembership"
 //							"/v1/infra/member/signupXdmForm",
 //							"/v1/infra/member/signinXdmForm",
 //							"/v1/infra/member/signinXdmProc"

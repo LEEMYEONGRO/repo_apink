@@ -11,6 +11,7 @@ public class PaymentVo extends BaseVo {
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String ShValue;
 	private String mbSeq;
+	private String arSeq;
 	
 	private String mbPassword;
 	private String newmbPassword;
@@ -73,6 +74,12 @@ public class PaymentVo extends BaseVo {
 	
 	public void setNewmbPassword(String newmbPassword) {
 		this.newmbPassword = newmbPassword;
+	}
+	public String getArSeq() {
+		return arSeq;
+	}
+	public void setArSeq(String arSeq) {
+		this.arSeq = arSeq;
 	}
 	
 	

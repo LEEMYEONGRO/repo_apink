@@ -38,11 +38,12 @@ public class PaymentDto {
 //	address
 	
 //	payment
+	private String pmName;
 	private String pmCardCode;				//카드사명
 	private String pmPayerName;				//카드사용자명
 	private String pmCardNumber;			//카드번호
-	private Date pmCardMonth;				//카드유효기간 월
-	private Date pmCardYear;				//카드유효기간 연도
+	private String pmCardMonth;				//카드유효기간 월
+	private String pmCardYear;				//카드유효기간 연도
 	private int pmCardVerificationCode;		//카드인증번호
 	private Integer pmDeleteNy;
 	private Date pmCreationDate;
@@ -271,6 +272,12 @@ public class PaymentDto {
 	public void setAddressSeq(String addressSeq) {
 		this.addressSeq = addressSeq;
 	}
+	public String getPmName() {
+		return pmName;
+	}
+	public void setPmName(String pmName) {
+		this.pmName = pmName;
+	}
 	public String getPmCardCode() {
 		return pmCardCode;
 	}
@@ -289,16 +296,16 @@ public class PaymentDto {
 	public void setPmCardNumber(String pmCardNumber) {
 		this.pmCardNumber = pmCardNumber;
 	}
-	public Date getPmCardMonth() {
+	public String getPmCardMonth() {
 		return pmCardMonth;
 	}
-	public void setPmCardMonth(Date pmCardMonth) {
+	public void setPmCardMonth(String pmCardMonth) {
 		this.pmCardMonth = pmCardMonth;
 	}
-	public Date getPmCardYear() {
+	public String getPmCardYear() {
 		return pmCardYear;
 	}
-	public void setPmCardYear(Date pmCardYear) {
+	public void setPmCardYear(String pmCardYear) {
 		this.pmCardYear = pmCardYear;
 	}
 	public int getPmCardVerificationCode() {

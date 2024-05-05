@@ -28,7 +28,7 @@
 		</choose>
 	</sql>
 
-
+	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 		a.mbSeq as memberSeq
@@ -48,7 +48,7 @@
 		SELECT COUNT(*)
 		<include refid="selectCommon"></include>
 	</select>
-
+	
 	<select id="item" resultMap="resultMapObj">
 		SELECT
 		mbEmail
@@ -69,7 +69,7 @@
 		WHERE
 		a.mbSeq = #{mbSeq}
 	</sql>
-
+	<!-- 주소정보불러오기 -->
 	<select id="addressList" resultMap="resultMapObj">
 		SELECT
 		arSeq
@@ -92,7 +92,8 @@
 		FROM address
 		WHERE mbSeq = #{mbSeq}
 	</select>
-
+	
+	<!-- 단일 주소정보불러오기 -->
 	<select id="addressItem" resultMap="resultMapObj">
 		SELECT
 		arSeq
@@ -103,11 +104,49 @@
 		,arNumberAddress
 		,arRoadNameAddress
 		,arDetailAddress
+		,arSeeAlso
 		,mbSeq as addressSeq
 		FROM address
 		WHERE arSeq = #{arSeq}
 	</select>
-
+	
+	<!-- 카드정보불러오기 -->
+	<select id="paymentList" resultMap="resultMapObj">
+		SELECT
+		pmSeq
+		,pmName
+		,pmPayerName
+		,pmCardNumber
+		,pmCardMonth
+		,pmCardYear
+		,pmCardVerificationCode
+		,pmDeleteNy
+		,pmCreationDate
+		,pmModificationDate
+		,mbSeq
+		FROM payment
+		WHERE mbSeq = #{mbSeq}
+	</select>
+	
+	<!-- 단일 카드정보불러오기 -->
+	<select id="paymentItem" resultMap="resultMapObj">
+		SELECT
+		pmSeq
+		,pmName
+		,pmCardCode
+		,pmPayerName
+		,pmCardNumber
+		,pmCardMonth
+		,pmCardYear
+		,pmCardVerificationCode
+		,pmDeleteNy
+		,pmCreationDate
+		,pmModificationDate
+		,mbSeq
+		FROM payment
+		WHERE pmSeq = #{pmSeq}
+	</select>
+	
 	<insert id="addressInsert">
 		INSERT INTO address (
 		arName
@@ -126,7 +165,8 @@
 		,#{arNumberAddress}
 		,#{arRoadNameAddress}
 		,#{arDetailAddress}
-		) ,#{mbSeq}
+		,#{mbSeq}
+		) 
 	</insert>
 
 	<update id="addressUpdate">

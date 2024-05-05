@@ -23,8 +23,17 @@ public class PaymentService {
 		return dao.addressList(vo);
 	}
 	
-	public PaymentDto addressItem(PaymentDto dto) {
-		return dao.addressItem(dto);
+	public PaymentDto addressItem(PaymentVo vo) {
+		return dao.addressItem(vo);
+	}
+	
+//	결제화면 카드정보
+	public List<PaymentDto> paymentList(PaymentVo vo) {
+		return dao.paymentList(vo);
+	}
+//	결제화면 단일카드정보
+	public PaymentDto paymentItem(PaymentDto dto) {
+		return dao.paymentItem(dto);
 	}
 	
 	public int update(PaymentDto dto) {

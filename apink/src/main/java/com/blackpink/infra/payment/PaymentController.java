@@ -19,7 +19,7 @@ public class PaymentController {
 
 	@Autowired
 	PaymentService service;
-	
+//	결제페이지
 	@RequestMapping(value = "/payment")
 	public String payment(@ModelAttribute("vo") PaymentVo vo, Model model, ProductDto pddto, PaymentDto dto, HttpSession httpSession) throws Exception {
 	    
@@ -37,17 +37,53 @@ public class PaymentController {
 //	    System.out.println(pdpmQuantity);
 //	    System.out.println(clCode);
 //	    System.out.println(szCode);
-	    // 받아온 데이터를 모델에 추가하여 결제 페이지로 전달
+	    
+//	    받아온 데이터를 모델에 추가하여 결제 페이지로 전달
 	    model.addAttribute("pdName", pdName);
 	    model.addAttribute("pdPrice", pdPrice);
 	    model.addAttribute("pdpmQuantity", pdpmQuantity);
 	    model.addAttribute("clCode", clCode);
 	    model.addAttribute("szCode", szCode);
-	    
+	   	
+//	    주소내역불러오기
 	    model.addAttribute("addressList", service.addressList(vo));
-	    
+	    model.addAttribute("paymentList", service.paymentList(vo));
 	    return "v1/infra/user/payment";
 	}
 	
+//	결제를 위한 주소정보 아작스
+	@ResponseBody
+	@RequestMapping(value = "addressSelectCheck")
+	public Map<String, Object> addressSelectCheck(PaymentVo vo, PaymentDto dto, Model model, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+				
+		if(dto.getArSeq() != null) {
+				        
+	        // returnMap에도 성공 여부와 함께 데이터를 담아 전달
+	        returnMap.put("rt", "success");
+	        returnMap.put("addressItem", service.addressItem(vo));
+			
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
 	
+//	결제를 위한 카드정보 아작스
+	@ResponseBody
+	@RequestMapping(value = "paymentSelectCheck")
+	public Map<String, Object> paymentSelectCheck(PaymentVo vo, PaymentDto dto, Model model, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+				
+		if(dto.getPmSeq() != null) {
+				        
+	        // returnMap에도 성공 여부와 함께 데이터를 담아 전달
+	        returnMap.put("rt", "success");
+	        returnMap.put("paymentItem", service.paymentItem(dto));
+			
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
 }
