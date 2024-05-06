@@ -168,6 +168,28 @@
 		,#{mbSeq}
 		) 
 	</insert>
+	<!-- 결제완료  -->
+	<insert id="productpaymentInsert">
+		INSERT INTO productpayment (
+		pdpmQuantity
+		,pdpmDeliveryStatus
+		,pdpmPaymentAmount
+		,pdpmDeleteNy
+		,pdpmCreationDate
+		,pdpmModificationDate
+		,pdSeq
+		,pmSeq
+		)VALUES(
+		#{pdpmQuantity}
+		,1
+		,#{pdpmPaymentAmount}
+		,0
+		,now()
+		,#{pdpmModificationDate}
+		,#{pdSeq}
+		,#{pmSeq}
+		) 
+	</insert>
 
 	<update id="addressUpdate">
 		UPDATE address
@@ -201,7 +223,7 @@
 		WHERE 1=1
 		AND mbSeq = #{mbSeq}
 	</select>
-
+	<!-- 마이페이지 비밀번호 업데이트 -->
 	<update id="updatePw">
 		UPDATE member
 		SET

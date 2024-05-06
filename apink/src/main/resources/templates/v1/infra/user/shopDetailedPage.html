@@ -130,7 +130,7 @@
                                         <!-- End Quentity Action  -->
                                         <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a id="paymentbtn" name= "paymentbtn" class="axil-btn btn-bg-primary">상품구매하기</a></li>
+                                            <li class="add-to-cart"><a id="paymentbtn" name="paymentbtn" class="axil-btn btn-bg-primary">상품구매하기</a></li>
                                             <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                         <!-- End Product Action  -->
@@ -330,13 +330,11 @@
 	    }
 		
 	    
-	    
 	    document.querySelectorAll('.range-variant li').forEach(function(item) {
 	        item.addEventListener('click', function() {
 	            toggleSelection(item);
 	        });
 	    });
-	    
 		let goUrlPayment = "/payment";
     	
 		let form = document.querySelector("form[name=formList]");

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.blackpink.infra.codegroup.CodeGroupDto;
 import com.blackpink.infra.user.product.ProductDto;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,12 +27,13 @@ public class PaymentController {
 		vo.setMbSeq((String)httpSession.getAttribute("sessMbSeqUser"));
 		
 		// 이전 페이지에서 전달한 데이터를 받아옴
+		String pdSeq = pddto.getPdSeq();
 	    String pdName = pddto.getPdName();
 	    int pdPrice = pddto.getPdPrice();
 	    int pdpmQuantity = pddto.getPdpmQuantity();
 	    String clCode = pddto.getClCode();
 	    String szCode = pddto.getSzCode();
-	    
+//	    System.out.println(pdSeq + "-----------------------------");
 //	    System.out.println(pdName);
 //	    System.out.println(pdPrice);
 //	    System.out.println(pdpmQuantity);
@@ -39,6 +41,7 @@ public class PaymentController {
 //	    System.out.println(szCode);
 	    
 //	    받아온 데이터를 모델에 추가하여 결제 페이지로 전달
+	    model.addAttribute("pdSeq", pdSeq);
 	    model.addAttribute("pdName", pdName);
 	    model.addAttribute("pdPrice", pdPrice);
 	    model.addAttribute("pdpmQuantity", pdpmQuantity);
@@ -49,6 +52,14 @@ public class PaymentController {
 	    model.addAttribute("addressList", service.addressList(vo));
 	    model.addAttribute("paymentList", service.paymentList(vo));
 	    return "v1/infra/user/payment";
+	}
+	
+	@RequestMapping("productpaymentInsert")
+	public String productpaymentInsert(PaymentDto dto) {
+		
+		service.productpaymentInsert(dto); 
+		
+		return "redirect:/myPage"; 
 	}
 	
 //	결제를 위한 주소정보 아작스
@@ -86,4 +97,6 @@ public class PaymentController {
 		}
 		return returnMap;
 	}
+	
+	
 }

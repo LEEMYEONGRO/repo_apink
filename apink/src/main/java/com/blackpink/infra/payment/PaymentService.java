@@ -63,4 +63,8 @@ public class PaymentService {
 	public int addressCount(PaymentVo vo) {
 		return dao.addressCount(vo);
 	}
+//	결제완료추가
+	public int productpaymentInsert(PaymentDto dto) {
+		return dao.productpaymentInsert(dto);
+	}
 }

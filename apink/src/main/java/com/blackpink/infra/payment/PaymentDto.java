@@ -6,7 +6,7 @@ public class PaymentDto {
 	
 	private String memberSeq;
 	private String paymentSeq;
-	private int pdpmDeliveryStatus;
+	private int pdpmDeliveryStatus;			// 배송상태
 	private String mbSeq;
 	private String pmSeq;
 	private String pdSeq;
@@ -49,6 +49,15 @@ public class PaymentDto {
 	private Date pmCreationDate;
 	private Date pmModificationDate;
 //	payment
+	
+//	productpayment
+	private String pdpmSeq;
+	private String pdpmQuantity;			// 구매수량
+	private double pdpmPaymentAmount;		// 총결제비용
+	private Integer pdpmDeleteNy;			// 삭제여부
+	private Date pdpmCreationDate;			// 등록일
+	private Date pdpmModificationDate;		// 수정일
+//	productpayment
 	
 	public String getMemberSeq() {
 		return memberSeq;
@@ -325,6 +334,42 @@ public class PaymentDto {
 	}
 	public void setPmModificationDate(Date pmModificationDate) {
 		this.pmModificationDate = pmModificationDate;
+	}
+	public String getPdpmSeq() {
+		return pdpmSeq;
+	}
+	public void setPdpmSeq(String pdpmSeq) {
+		this.pdpmSeq = pdpmSeq;
+	}
+	public String getPdpmQuantity() {
+		return pdpmQuantity;
+	}
+	public void setPdpmQuantity(String pdpmQuantity) {
+		this.pdpmQuantity = pdpmQuantity;
+	}
+	public double getPdpmPaymentAmount() {
+		return pdpmPaymentAmount;
+	}
+	public void setPdpmPaymentAmount(double pdpmPaymentAmount) {
+		this.pdpmPaymentAmount = pdpmPaymentAmount;
+	}
+	public Integer getPdpmDeleteNy() {
+		return pdpmDeleteNy;
+	}
+	public void setPdpmDeleteNy(Integer pdpmDeleteNy) {
+		this.pdpmDeleteNy = pdpmDeleteNy;
+	}
+	public Date getPdpmCreationDate() {
+		return pdpmCreationDate;
+	}
+	public void setPdpmCreationDate(Date pdpmCreationDate) {
+		this.pdpmCreationDate = pdpmCreationDate;
+	}
+	public Date getPdpmModificationDate() {
+		return pdpmModificationDate;
+	}
+	public void setPdpmModificationDate(Date pdpmModificationDate) {
+		this.pdpmModificationDate = pdpmModificationDate;
 	}
 	
 	

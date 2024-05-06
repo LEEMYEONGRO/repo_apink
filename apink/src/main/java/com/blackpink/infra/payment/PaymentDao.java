@@ -30,4 +30,6 @@ public interface PaymentDao {
 	public int selectOneCount(PaymentVo vo);
 	
 	public int addressCount(PaymentVo vo);
+//	결제완료추가
+	public int productpaymentInsert(PaymentDto dto);
 }
