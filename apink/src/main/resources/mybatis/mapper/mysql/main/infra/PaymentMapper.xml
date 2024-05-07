@@ -8,21 +8,18 @@
 
 	<sql id="selectCommon">
 		FROM member a
-		JOIN payment b
-		on b.mbSeq = a.mbSeq
-		JOIN productpayment c
-		on c.pmSeq = b.pmSeq
-		JOIN product d
-		on d.pdSeq = c.pdSeq
-		WHERE
-		a.mbSeq = #{mbSeq}
+			JOIN payment b
+			on b.mbSeq = a.mbSeq
+			JOIN productpayment c
+			on c.pmSeq = b.pmSeq
+			JOIN product d
+			on d.pdSeq = c.pdSeq
+		WHERE a.mbSeq = #{mbSeq}
 		<!-- <if test="shGender != null and !shGender.equals('')">AND mbGender 
 			= #{mbGender}</if> -->
 		<choose>
-			<when test="shOptionDate == 1">AND pmCreationDate BETWEEN #{shDateStart} AND
-				#{shDateEnd} </when>
+			<when test="shOptionDate == 1">AND c.pdpmCreationDate BETWEEN #{shDateStart} AND #{shDateEnd} </when>
 		</choose>
-
 		<choose>
 			<when test="shOption == 1">AND d.pdName LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
@@ -35,12 +32,15 @@
 		,b.pmSeq as paymentSeq
 		,b.pmCreationDate
 		,b.mbSeq
+		,c.pdpmSeq
+		,c.pdpmQuantity
 		,c.pdpmDeliveryStatus
+		,c.pdpmPaymentAmount
+		,c.pdpmCreationDate
 		,c.pmSeq
 		,c.pdSeq
 		,d.pdSeq as productSeq
 		,d.pdName
-		,d.pdPrice
 		<include refid="selectCommon"></include>
 	</select>
 

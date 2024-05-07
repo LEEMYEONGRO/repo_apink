@@ -197,14 +197,14 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
-														<td th:text="${list.pmSeq}"></td>
+														<td th:text="${list.pdpmSeq}"></td>
 														<td>
 															<img src="/assets/images/product/product-11.jpg">
 														</td>
 														<td th:text="${list.pdName}"></td>
-														<td th:text="${#dates.format(list.pmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+														<td th:text="${#dates.format(list.pdpmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 														<td th:if="${list.pdpmDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pdpmDeliveryStatus)}"></td>
-														<td th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></td>
+														<td th:text="${#numbers.formatInteger(list.pdpmPaymentAmount,1,'COMMA')} + '원'"></td>
 													</tr>
                                                 </tbody>
                                             </table>

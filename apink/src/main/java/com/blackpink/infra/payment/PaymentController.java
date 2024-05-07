@@ -97,6 +97,4 @@ public class PaymentController {
 		}
 		return returnMap;
 	}
-	
-	
 }
