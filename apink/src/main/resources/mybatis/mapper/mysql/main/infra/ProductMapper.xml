@@ -29,6 +29,7 @@
 			<choose>
 				<when test="shOption == 1">AND pdSeq = #{shValue}</when>
 				<when test="shOption == 2">AND pdName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND pdCode = #{pdCode}</when>
 			</choose>
 	</sql>
 	

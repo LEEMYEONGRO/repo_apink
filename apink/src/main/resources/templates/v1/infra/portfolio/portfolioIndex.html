@@ -28,9 +28,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#personalProject">personal project</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="#teamProject">teamproject</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="#teamProject2">teamproject2</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#teamProject2">teamproject 1/2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#teamProject">teamproject 2/2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Team</a></li> 
+                        <!-- <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -50,93 +51,111 @@
             </div>
         </header>
         <!-- personalProject -->
+        
         <section class="page-section bg-light" id="personalProject">
+        <div id="portfolio">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Personal Project</h2>
-                    <h3 class="section-subheading text-muted">가상의 쇼핑몰을 생각하여 만든 개인 프로젝트입니다. </h3>
+                    <h6 class="ext-muted">2024년 02월 ~ 2024년 05월</h6>
+                    <h3 class="section-subheading">사용자의 편의를 위한 깔끔한 디자인의 쇼핑몰</h3>
                 </div>
                 <div class="row">
-                	<div class="col-lg-6 col-sm-6 mb-6">
-                        <!-- Portfolio item 2-->
+                    <div class="col-6" style="float: none; margin:0 auto;">
+                        <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" th:href="@{/indexUser}" target="_blank">
-                                <img class="img-fluid" id="imgsize" src="xdmin/v1/assets/img/portfolio/userProject.png" alt="..." />
+                            <a class="portfolio-link" data-bs-toggle="modal" th:href="@{/indexUser}" target="_blank">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><h2>User</h2></div>
+                                </div>
+                                <img class="img-fluid" src="xdmin/v1/assets/img/portfolio/userProject.png" alt="..." />
                             </a>
-                            <!-- <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">UserProject</div>
-                            </div> -->
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">사용자를 위한 쇼핑몰</div>
+                                <!-- <div class="portfolio-caption-subheading text-muted">Illustration</div> -->
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6 mb-6">
+                    <div class="col-6" style="float: none; margin:0 auto;">
                         <!-- Portfolio item 1-->
-                        <div class="portfolio-item" >
-                            <a class="portfolio-link" th:href="@{/loginXdm}" style="float: left" target="_blank">
-                                <img class="img-fluid" id="imgsize" src="xdmin/v1/assets/img/portfolio/loginAdm.png">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" th:href="@{/loginXdm}" target="_blank">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><h2>Admin</h2></div>
+                                </div>
+                                <img class="img-fluid" src="xdmin/v1/assets/img/portfolio/loginAdm.png" />
                             </a>
-                            <!-- <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">AdminProject</div>
-                            </div> -->
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">쇼핑몰 관리자</div>
+                                <!-- <div class="portfolio-caption-subheading text-muted">Illustration</div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        </section>
+        <!-- teamProject2 -->
+        <section class="page-section bg-light" id="teamProject2">
+	        <div id="portfolio">
+	            <div class="container">
+	                <div class="text-center">
+	                    <h2 class="section-heading text-uppercase">teamProject 1/2</h2>
+	                    <h6 class="ext-muted">2024년 04월 ~ 2024년 05월</h6>
+	                    <h3 class="section-subheading">물류관리가 편한 시스템 구축</h3>
+	                </div>
+	                <div class="row">
+	                    <div class="col-sm-6" style="float: none; margin:0 auto;">
+	                        <!-- Portfolio item 1-->
+	                        <div class="portfolio-item">
+	                            <a class="portfolio-link" data-bs-toggle="modal" href="http://3.35.222.51:8082/loginCostco" target="_blank">
+	                                <div class="portfolio-hover">
+	                                    <div class="portfolio-hover-content"><h2 class="section-heading text-uppercase">teamProject</h2></div>
+	                                </div>
+	                                <img class="img-fluid" src="xdmin/v1/assets/img/portfolio/loginCostco.png" alt="..." />
+	                            </a>
+	                            <div class="portfolio-caption">
+	                                <div class="portfolio-caption-heading">물류관리 시스템</div>
+	                                <!-- <div class="portfolio-caption-subheading text-muted">Illustration</div> -->
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
         </section>
         <!-- teamProject -->
         <!-- <section class="page-section bg-light" id="teamProject">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">teamProject</h2>
+                    <h2 class="section-heading text-uppercase">teamProject 2/2</h2>
+                    <h6 class="ext-muted">2024년 05월 ~ 진행중</h6>
+                    <h3 class="section-subheading">낚시를 좋아하는 사람들을 위한 예약 및 정보공유커뮤니티사이트</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 mb-6">
-                        Portfolio item 1
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                                 <img class="img-fluid" src="xdmin/v1/assets/img/portfolio/userProject.png" alt="..." />
                                 
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">UserProject</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 mb-6">
-                        Portfolio item 2
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <img class="img-fluid" src="xdmin/v1/assets/img/portfolio/adminProject.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">AdminProject</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section> -->
-        <!-- teamProject2 -->
-        <section class="page-section bg-light" id="teamProject2">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">teamProject2</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6" style="float: none; margin:0 auto;">
-                        <!-- Portfolio item 1-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" href="http://3.35.222.51:8082/loginCostco" style="float: left" target="_blank">
-                                <img class="img-fluid" id="imgsize" src="xdmin/v1/assets/img/portfolio/loginCostco.png">
-                            </a>
-                            <div class="portfolio-caption">
-                                <!-- <div class="portfolio-caption-heading">AdminProject</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!-- Team-->
         <!-- <section class="page-section bg-light" id="team">
             <div class="container">
