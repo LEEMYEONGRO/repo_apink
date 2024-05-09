@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import com.blackpink.infra.mail.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,6 +22,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	MailService mailService;
 	
 	@RequestMapping(value = "/memberXdmList")
 	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
@@ -117,6 +121,17 @@ public class MemberController {
 		dto.setMbPassword(encodeBcrypt(dto.getMbPassword(), 10));
 
 		service.insert(dto);
+
+//		mailService.sendMailSimple();
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mailService.sendMailSimple();
+			}
+		});
+		
+		thread.start();
 		
 		return "redirect:/memberXdmList";
 	}
