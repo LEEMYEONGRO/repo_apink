@@ -1,8 +1,8 @@
 package com.blackpink.infra.codegroup;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class CodeGroupDto {
 
@@ -12,54 +12,55 @@ public class CodeGroupDto {
 	private Date cgCreationDate;
 	private Date cgModificationDate;
 	
-//	for cache
-	public static List<CodeGroupDto> cachedCodeArrayList = new ArrayList<CodeGroupDto>();
-
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
+	
+	
 	public String getCgSeq() {
 		return cgSeq;
 	}
-
 	public void setCgSeq(String cgSeq) {
 		this.cgSeq = cgSeq;
 	}
-
 	public String getCgName() {
 		return cgName;
 	}
-
 	public void setCgName(String cgName) {
 		this.cgName = cgName;
 	}
-
 	public Integer getCgDeleteNy() {
 		return cgDeleteNy;
 	}
-
 	public void setCgDeleteNy(Integer cgDeleteNy) {
 		this.cgDeleteNy = cgDeleteNy;
 	}
-
 	public Date getCgCreationDate() {
 		return cgCreationDate;
 	}
-
 	public void setCgCreationDate(Date cgCreationDate) {
 		this.cgCreationDate = cgCreationDate;
 	}
-
 	public Date getCgModificationDate() {
 		return cgModificationDate;
 	}
-
 	public void setCgModificationDate(Date cgModificationDate) {
 		this.cgModificationDate = cgModificationDate;
 	}
-
-	@Override
-	public String toString() {
-		return "CodeGroupDto [cgSeq=" + cgSeq + ", cgName=" + cgName + ", cgDeleteNy=" + cgDeleteNy
-				+ ", cgCreationDate=" + cgCreationDate + ", cgModificationDate=" + cgModificationDate + "]";
+	public MultipartFile getUploadFile() {
+		return uploadFile;
 	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
+	
+	
+	
 	
 	
 }

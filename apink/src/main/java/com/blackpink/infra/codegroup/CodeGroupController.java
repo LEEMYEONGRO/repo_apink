@@ -1,13 +1,19 @@
 package com.blackpink.infra.codegroup;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+
+import jakarta.mail.Multipart;
 
 @Controller
 public class CodeGroupController {
@@ -53,6 +59,12 @@ public class CodeGroupController {
 	
 	@RequestMapping("codeGroupXdmInsert")
 	public String codeGroupXdmInsert(CodeGroupDto dto) {
+		
+	System.out.println("dto.getUploadFiles()" + dto.getUploadFiles().length);
+			
+			for(MultipartFile a : dto.getUploadFiles()) {
+			    System.out.println(a.getOriginalFilename());
+			}
 		
 		service.insert(dto); 
 		
