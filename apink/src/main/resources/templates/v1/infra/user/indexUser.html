@@ -88,7 +88,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>n
 		<!-- End  Best Sellers Product Area  -->
 		<!-- Start Expolre Product Area  -->
 		<div class="axil-product-area bg-color-white axil-section-gap pb--0">
@@ -103,29 +103,29 @@
 							</div>
 						</div>
 						<div class="row row--15 isotope-list">
-							<div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product music" th:each= "list : ${list}">
+							<div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product music" th:each= "newProducts : ${newProducts}">
 								<div class="axil-product product-style-one">
 									<div class="thumbnail">
-										<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}"> <img data-sal="fade"
+										<a th:href="@{/shopDetailedPage(pdSeq=${newProducts.pdSeq})}"> <img data-sal="fade"
 											data-sal-delay="100" data-sal-duration="1500"
 											src="user/v1/assets/images/product/nft/product-15.png"
 											alt="Product Images">
 										</a>
 										<div class="product-hover-action">
-											<ul class="cart-action">
+											<!-- <ul class="cart-action">
 												<li class="select-option"><a
 													href="single-product-7.html">Buy Product</a></li>
-											</ul>
+											</ul> -->
 										</div>
 									</div>
 									<div class="product-content">
 										<div class="inner">
 											<h5 class="title">
-												<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"><span
+												<a th:href="@{/shopDetailedPage(pdSeq=${newProducts.pdSeq})}" th:text="${newProducts.pdName}"><span
 													class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
 											</h5>
 											<div class="product-price-variant">
-												<span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
+												<span class="price current-price" th:text="${#numbers.formatInteger(newProducts.pdPrice,1,'COMMA')} + '원'"></span>
 											</div>
 										</div>
 									</div>

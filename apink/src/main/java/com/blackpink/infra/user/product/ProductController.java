@@ -48,14 +48,15 @@ public class ProductController {
 	
 	@RequestMapping(value = "/indexUser")
 	public String indexUser(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
-		
-		vo.setParamsPaging(service.selectPdOneCount(vo));
-		
-		if (vo.getTotalRows() > 0) {
-			model.addAttribute("list", service.selectPdList(vo));
-		}
-		
-		return "v1/infra/user/indexUser";
+	    
+	    vo.setParamsPaging(service.selectPdOneCount(vo));
+	    
+	    if (vo.getTotalRows() > 0) {
+	        model.addAttribute("list", service.selectPdList(vo)); // pdView로 정렬된 상품 목록
+	        model.addAttribute("newProducts", service.selectPdListOrderBySeq(vo)); // pdSeq로 정렬된 상품 목록
+	    }
+	    
+	    return "v1/infra/user/indexUser";
 	}
 //	조회수 증강
 	@RequestMapping(value = "/viewUpdate")

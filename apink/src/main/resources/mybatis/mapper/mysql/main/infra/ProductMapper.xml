@@ -39,14 +39,32 @@
             ,pdCode
             ,pdName
             ,pdPrice
+            ,pdView
+            ,pdlikeNy
+            ,pdDeleteNy
+            ,pdCreationDate
+            ,pdModificationDate
+		   	<include refid="selectPd" />
+			ORDER BY pdView desc
+			limit 8	
+    </select>
+    
+    <select id="selectPdListOrderBySeq" resultMap="resultMapObj">
+        SELECT
+            pdSeq
+            ,pdCode
+            ,pdName
+            ,pdPrice
+            ,pdView
             ,pdlikeNy
             ,pdDeleteNy
             ,pdCreationDate
             ,pdModificationDate
 		   	<include refid="selectPd" />
 			ORDER BY pdSeq desc
-			limit #{rowNumToShowPd} offset #{startRnumForMysql}	
+			limit 12
     </select>
+    
     <!-- 카테고리 리스트 -->
     <sql id ="selectCategory">
 		FROM product a

@@ -148,12 +148,12 @@
                                     <div class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
                                         <span class="filter-results"></span>
-                                        <select class="single-select">
+                                        <!-- 추후수정 <select class="single-select">
                                             <option>인기순</option>
                                             <option>최신순</option>
                                             <option>낮은 가격순</option>
                                             <option>가격 높은순</option>
-                                        </select>
+                                        </select> -->
                                         <select class="single-select" name="rowNumToShowPd" id="rowNumToShowPd" th:onchange="javascript:goList(1)">
                                         	<option value="1" th:selected="${vo.rowNumToShowPd == 1}">1</option>
                                         	<option value="3" th:selected="${vo.rowNumToShowPd == 3}">3</option>

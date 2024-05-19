@@ -13,10 +13,15 @@ public class ProductService {
 	
 	public List<ProductDto> selectList(ProductVo vo){
 		return dao.selectList(vo);}
-	
+//	인덱스화면 상품리스트
 	public List<ProductDto> selectPdList(ProductVo vo){
 		return dao.selectPdList(vo);
 	}
+    
+    public List<ProductDto> selectPdListOrderBySeq(ProductVo vo) {
+        return dao.selectPdListOrderBySeq(vo);
+    }
+//	인덱스화면 상품리스트
 //	카테고리 리스트
 	public List<ProductDto> selectCategoryList(ProductVo vo){
 		return dao.selectCategoryList(vo);
@@ -85,4 +90,5 @@ public class ProductService {
 	public int viewUpdate(ProductDto dto) {
 		return dao.viewUpdate(dto);
 	}
+	
 }

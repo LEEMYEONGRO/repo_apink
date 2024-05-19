@@ -41,4 +41,7 @@ public interface ProductDao {
 	public int selectRvOneCount(ProductVo vo);
 
 	public int viewUpdate(ProductDto dto);
+	
+    public List<ProductDto> selectPdListOrderBySeq(ProductVo vo);
+	
 }
