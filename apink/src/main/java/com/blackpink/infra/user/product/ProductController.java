@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,14 +23,27 @@ public class ProductController {
 	
 	@RequestMapping(value = "/shopList")
 	public String shopList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
-		
+		setSearch(vo);
 		vo.setPdParamsPaging(service.selectPdOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-			model.addAttribute("list", service.selectPdList(vo));
+			model.addAttribute("list", service.selectCategoryList(vo));
 		}
 		
 		return "v1/infra/user/shopList";
+	}
+	
+//	카테고리 리스트
+	@RequestMapping(value = "/categoryselect")
+	public String categoryselect(@ModelAttribute("vo") ProductVo vo,Model model, ProductDto dto) throws Exception {
+		setSearch(vo);
+		vo.setPdParamsPaging(service.selectPdOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectCategoryList(vo));
+		}	
+		
+		return "v1/infra/user/shopListAjax";
 	}
 	
 	@RequestMapping(value = "/indexUser")
@@ -45,7 +57,15 @@ public class ProductController {
 		
 		return "v1/infra/user/indexUser";
 	}
-	
+//	조회수 증강
+	@RequestMapping(value = "/viewUpdate")
+	public String viewUpdate(ProductDto dto) {
+		
+		service.viewUpdate(dto);
+		
+		return "redirect:/shopDetailedPage";
+		
+	}
 	@RequestMapping(value = "/productXdmList")
 	public String productXdmList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 		
@@ -60,7 +80,7 @@ public class ProductController {
 //		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
 //		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
 //		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
-//		
+
 		return "v1/infra/product/productXdmList";
 		
 	}
@@ -100,6 +120,8 @@ public class ProductController {
 		model.addAttribute("sizeList", service.selectSizeList(dto));
 		
 		model.addAttribute("colorList", service.selectColorList(dto));
+		
+		service.viewUpdate(dto);
 		
 		return "v1/infra/user/shopDetailedPage";
 	}
@@ -150,6 +172,7 @@ public class ProductController {
 		}
 		return returnMap;
 	}
+	
 	
 	public void setSearch(ProductVo vo) throws Exception {
 		

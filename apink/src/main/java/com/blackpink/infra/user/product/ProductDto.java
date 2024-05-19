@@ -9,6 +9,7 @@ public class ProductDto {
 	private int pdCode;
 	private String pdName;
 	private int pdPrice;
+	private int pdView;
 	private Integer pdlikeNy;
 	private Integer pdDeleteNy;
 	private Date pdCreationDate;
@@ -42,6 +43,7 @@ public class ProductDto {
 	private String mbName;
 	private String mbSeq;
 	
+	
 	public String getPdSeq() {
 		return pdSeq;
 	}
@@ -65,6 +67,12 @@ public class ProductDto {
 	}
 	public void setPdPrice(int pdPrice) {
 		this.pdPrice = pdPrice;
+	}
+	public int getPdView() {
+		return pdView;
+	}
+	public void setPdView(int pdView) {
+		this.pdView = pdView;
 	}
 	public Integer getPdlikeNy() {
 		return pdlikeNy;
@@ -162,6 +170,12 @@ public class ProductDto {
 	public void setClpdSeq(String clpdSeq) {
 		this.clpdSeq = clpdSeq;
 	}
+	public int getPdpmQuantity() {
+		return PdpmQuantity;
+	}
+	public void setPdpmQuantity(int pdpmQuantity) {
+		PdpmQuantity = pdpmQuantity;
+	}
 	public String getMbName() {
 		return mbName;
 	}
@@ -174,12 +188,7 @@ public class ProductDto {
 	public void setMbSeq(String mbSeq) {
 		this.mbSeq = mbSeq;
 	}
-	public int getPdpmQuantity() {
-		return PdpmQuantity;
-	}
-	public void setPdpmQuantity(int pdpmQuantity) {
-		PdpmQuantity = pdpmQuantity;
-	}
+	
 	
 	
 

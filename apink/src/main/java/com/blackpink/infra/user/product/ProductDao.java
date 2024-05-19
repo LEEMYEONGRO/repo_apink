@@ -7,7 +7,9 @@ public interface ProductDao {
 	public List<ProductDto> selectList(ProductVo vo);
 	
 	public List<ProductDto> selectPdList(ProductVo vo);
-	
+//	카테고리 리스트
+	public List<ProductDto> selectCategoryList(ProductVo vo);
+//	마이페이지
 	public List<ProductDto> selectMyPage(ProductVo vo);
 	
 	public List<ProductDto> selectRvList(ProductDto dto);
@@ -37,4 +39,6 @@ public interface ProductDao {
 	public int selectPdOneCount(ProductVo vo);
 
 	public int selectRvOneCount(ProductVo vo);
+
+	public int viewUpdate(ProductDto dto);
 }

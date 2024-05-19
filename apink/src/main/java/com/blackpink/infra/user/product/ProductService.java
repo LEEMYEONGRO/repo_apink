@@ -17,6 +17,10 @@ public class ProductService {
 	public List<ProductDto> selectPdList(ProductVo vo){
 		return dao.selectPdList(vo);
 	}
+//	카테고리 리스트
+	public List<ProductDto> selectCategoryList(ProductVo vo){
+		return dao.selectCategoryList(vo);
+	}
 
 	public List<ProductDto> selectMyPage(ProductVo vo){
 		return dao.selectMyPage(vo);
@@ -76,5 +80,9 @@ public class ProductService {
 	
 	public int selectRvOneCount(ProductVo vo) {
 		return dao.selectRvOneCount(vo);
+	}
+	
+	public int viewUpdate(ProductDto dto) {
+		return dao.viewUpdate(dto);
 	}
 }

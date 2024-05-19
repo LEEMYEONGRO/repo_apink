@@ -51,14 +51,23 @@
                                 <h6 class="title">카테고리</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        <li class="current-cat"><a href="#">전체</a></li>
-                                        <li><a href="#">티셔츠</a></li>
-                                        <li><a href="#">니트</a></li>
-                                        <li><a href="#">맨투맨</a></li>
-                                        <li><a href="#">청바지</a></li>
-                                        <li><a href="#">슬랙스</a></li>
-                                        <li><a href="#">패딩</a></li>
-                                        <li><a href="#">유아용</a></li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="15" id="defaultCheck2" name="category" 
+                                        	th:field="*{vo.category}"  >
+        									<label class="form-check-label" for="defaultCheck2" th:text="${@codeService.selectOneCachedCode(15)}"></label>
+        								</li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="17" id="defaultCheck3" name="category" th:field="*{vo.category}">
+        									<label class="form-check-label" for="defaultCheck3" th:text="${@codeService.selectOneCachedCode(17)}"></label>
+        								</li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="18" id="defaultCheck4" name="category" th:field="*{vo.category}">
+        									<label class="form-check-label" for="defaultCheck4" th:text="${@codeService.selectOneCachedCode(18)}"></label>
+        								</li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="19" id="defaultCheck5" name="category" th:field="*{vo.category}">
+        									<label class="form-check-label" for="defaultCheck5" th:text="${@codeService.selectOneCachedCode(19)}"></label>
+        								</li>
                                     </ul>
                                 </div>
                             </div>
@@ -66,9 +75,18 @@
                                 <h6 class="title">성별</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        <li class="chosen"><a href="#">남성 (40)</a></li>
-                                        <li><a href="#">여성 (56)</a></li>
-                                        <li><a href="#">남녀공용 (18)</a></li>
+                                        <li>
+											<input class="form-check-input" type="checkbox" value="4" id="defaultCheck6" name="gender" th:field="*{vo.gender}">
+        									<label class="form-check-label" for="defaultCheck6" th:text="${@codeService.selectOneCachedCode(4)}"></label>                               	
+                                        </li>
+                                        <li>
+											<input class="form-check-input" type="checkbox" value="5" id="defaultCheck7" name="gender" th:field="*{vo.gender}">
+        									<label class="form-check-label" for="defaultCheck7" th:text="${@codeService.selectOneCachedCode(5)}"></label>
+										</li>
+										<li>
+											<input class="form-check-input" type="checkbox" value="6" id="defaultCheck8" name="gender" th:field="*{vo.gender}">
+        									<label class="form-check-label" for="defaultCheck8" th:text=남녀공용></label>
+										</li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,11 +94,22 @@
                                 <h6 class="title">색상</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        <li class="current-cat"><a href="#">전체</a></li>
-                                        <li><a href="#">검정색</a></li>
-                                        <li><a href="#">흰색</a></li>
-                                        <li><a href="#">베이지색</a></li>
-                                        <li><a href="#">청색</a></li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="11" id="defaultCheck10" name="color" th:field="*{vo.color}">
+        									<label class="form-check-label" for="defaultCheck10" th:text="${@codeService.selectOneCachedCode(11)}"></label>
+                                        </li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="12" id="defaultCheck11" name="color" th:field="*{vo.color}">
+        									<label class="form-check-label" for="defaultCheck11" th:text="${@codeService.selectOneCachedCode(12)}"></label>
+        								</li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="13" id="defaultCheck12" name="color" th:field="*{vo.color}">
+        									<label class="form-check-label" for="defaultCheck12" th:text="${@codeService.selectOneCachedCode(13)}"></label>
+        								</li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="14" id="defaultCheck13" name="color" th:field="*{vo.color}">
+        									<label class="form-check-label" for="defaultCheck13" th:text="${@codeService.selectOneCachedCode(14)}"></label>
+        								</li>
                                     </ul>
                                 </div>
                             </div>
@@ -89,35 +118,30 @@
                                 <h6 class="title">사이즈</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        <li class="chosen"><a href="#">XS</a></li>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                        <li><a href="#">3XL</a></li>
-                                        <li><a href="#">4XL</a></li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="7" id="defaultCheck14" name="size" th:field="*{vo.size}">
+        									<label class="form-check-label" for="defaultCheck14" th:text="${@codeService.selectOneCachedCode(7)}"></label>
+                                        </li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="8" id="defaultCheck15" name="size" th:field="*{vo.size}">
+        									<label class="form-check-label" for="defaultCheck15" th:text="${@codeService.selectOneCachedCode(8)}"></label>
+                                        </li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="9" id="defaultCheck16" name="size" th:field="*{vo.size}">
+        									<label class="form-check-label" for="defaultCheck16" th:text="${@codeService.selectOneCachedCode(9)}"></label>
+                                        </li>
+                                        <li>
+                                        	<input class="form-check-input" type="checkbox" value="10" id="defaultCheck17" name="size" th:field="*{vo.size}">
+        									<label class="form-check-label" for="defaultCheck17" th:text="${@codeService.selectOneCachedCode(10)}"></label>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="toggle-list product-price-range active">
-                                <h6 class="title">가격</h6>
-                                <div class="shop-submenu">
-                                	<div class="row">
-									  	<div class="col">
-									    	<input type="text" class="form-control" maxlength="8" placeholder="최소금액" id="price">
-									 	</div>
-									  	<div class="col">
-									    	<input type="text" class="form-control" maxlength="8" placeholder="최대금액" id="price">
-									  	</div>
-									</div>
-                                </div>
-                            </div>
-                            <button class="axil-btn btn-bg-primary">조건 검색</button>
+                            <button type="button" class="axil-btn btn-bg-primary" id="schbtn">조건 검색</button>
                         </div>
                         <!-- End .axil-shop-sidebar -->
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-9" id="listData">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="axil-shop-top mb--40">
@@ -193,9 +217,6 @@
 							</ul>
                            	<!-- 페이징종료 -->
                         </div>
-                        <!-- <div class="text-center pt--20">
-                            <a href="#" class="axil-btn btn-bg-lighter btn-load-more">더보기</a>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -208,7 +229,7 @@
 
 
     <!-- 하단 내용 -->
-    <div th:replace="~{v1/infra/blockDeclaration/user/body :: bottomContent}">
+    <div th:replace="~{v1/infra/blockDeclaration/user/body :: bottomContent}"></div>
     <!-- 하단 내용 -->
     
     </form>
@@ -227,12 +248,26 @@
 		let form = document.querySelector("form[name=formList]");
 		
 		window.addEventListener('load', function() {
-	
-		goList = function (thisPage) {
+		    
+	    goList = function (thisPage) {
 			document.querySelector("input[name=thisPage]").value = thisPage;
 		    form.action = goUrlXdmList;
 		    form.submit();
 		}
+	    /* goList = function(thisPage) {
+	    	document.querySelector("input[name=thisPage]").value = thisPage;
+	        $.ajax({
+	    		async: true
+	    		, cache: false
+	    		, type: "post"
+	    		, url: "/categoryselect"
+	    		, success: function(fragment) {
+	    			$("#listData").replaceWith(fragment);
+	    		}
+	    		, error: function(jqXHR, textStatus, errorThrown) {
+	    			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	    		}
+	    	}); */
 	});
 	function enterkey() {
 		if (window.event.keyCode == 13) {
@@ -240,6 +275,58 @@
 		    form.submit();
 	    }
 	}
+	/* 체크 배열 불러오기 */
+	document.getElementById("schbtn").onclick = function()
+	{
+		let category = [];
+		let gender = [];
+		let color = [];
+		let size = [];
+		
+		let list = new Array();
+		$("input[name=category]:checked").each(function(){
+			category.push($(this).val());
+			
+		});
+		$("input[name=gender]:checked").each(function(){
+			gender.push($(this).val());
+			
+		});
+		$("input[name=color]:checked").each(function(){
+			color.push($(this).val());
+			
+		});
+		$("input[name=size]:checked").each(function(){
+			size.push($(this).val());
+			
+		});
+		/* console.log(category);
+		console.log(gender);
+		console.log(color);
+		console.log(size); */
+		
+		list.push(category);
+		list.push(gender);
+		list.push(color);
+		list.push(size);
+		
+		console.log(list);
+		/* ,data : {"category" : category , "gender" : gender , "color" : color , "size" : size} */
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/categoryselect"
+			,data : {"category" : category , "gender" : gender , "color" : color , "size" : size}
+			,success: function(response) {
+				$("#listData").replaceWith(response);
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		}); 
+	}
+	
 	</script>
 
 </body>

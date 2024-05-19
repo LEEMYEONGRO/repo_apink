@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
+	<body class="sticky-header">
+					<div class="col-lg-9" id="listData">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="axil-shop-top mb--40">
+                                    <div class="category-select align-items-center justify-content-lg-end justify-content-between">
+                                        <!-- Start Single Select  -->
+                                        <span class="filter-results"></span>
+                                        <select class="single-select">
+                                            <option>인기순</option>
+                                            <option>최신순</option>
+                                            <option>낮은 가격순</option>
+                                            <option>가격 높은순</option>
+                                        </select>
+                                        <select class="single-select" name="rowNumToShowPd" id="rowNumToShowPd" th:onchange="javascript:goList(1)">
+                                        	<option value="1" th:selected="${vo.rowNumToShowPd == 1}">1</option>
+                                        	<option value="3" th:selected="${vo.rowNumToShowPd == 3}">3</option>
+                                        	<option value="6" th:selected="${vo.rowNumToShowPd == 6}">6</option>
+                                            <option value="9" th:selected="${vo.rowNumToShowPd == 9}">9</option>
+											<option value="18" th:selected="${vo.rowNumToShowPd == 18}">18</option>
+											<option value="27" th:selected="${vo.rowNumToShowPd == 27}">27</option>
+											<option value="36" th:selected="${vo.rowNumToShowPd == 36}">36</option>
+                                        </select>
+                                        <!-- End Single Select  -->
+                                    </div>
+                                    <div class="d-lg-none">
+                                        <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i> FILTER</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .row -->
+                        <div class="row row--15">
+	                        <th:block th:each= "list : ${list}">
+	                        	 <div class="col-xl-4 col-sm-6">
+	                                <div class="axil-product product-style-one mb--30">
+	                                	<div class="thumbnail">
+	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}">
+	                                            <img src="user/v1/assets/images/product/electric/product-08.png" alt="Product Images">
+	                                        </a>
+	                                    </div>
+	                                    <div class="product-content">
+	                                        <div class="inner">
+	                                            <h5 class="title">
+	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"></a>
+	                                            </h5>
+	                                            <div class="product-price-variant">
+	                                                <span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </th:block>
+	                        <!-- 페이징시작 -->
+                           	<ul class="pagination justify-content-center mb-0">
+								<li th:if="${vo.startPage gt vo.pageNumToShowPd}"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link"
+									href="javascript:goList(${vo.startPage - 1})"
+									th:attr="onclick=|goList('${vo.startPage - 1}')|"><i
+										class="">이전</i></a></li>
+								<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}"
+									th:classappend="${num eq vo.thisPage} ? active : ''"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link" th:attr="onclick=|goList('${num}')|"
+									th:text="${num}">
+										<!-- ${i.index} -->
+								</a></li>
+								<li th:if="${vo.endPage ne vo.totalPages}"
+									class="page-item" style="cursor: pointer;"><a
+									class="page-link"
+									th:attr="onclick=|goList('${vo.endPage + 1}')|"><i
+										class="">다음</i></a></li>
+							</ul>
+                           	<!-- 페이징종료 -->
+                        </div>
+                    </div>
+	</body>
+</html>

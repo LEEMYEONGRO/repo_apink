@@ -47,10 +47,71 @@
 			ORDER BY pdSeq desc
 			limit #{rowNumToShowPd} offset #{startRnumForMysql}	
     </select>
+    <!-- 카테고리 리스트 -->
+    <sql id ="selectCategory">
+		FROM product a
+		left join size b on b.pdSeq = a.pdSeq
+		left join color c on c.pdSeq = a.pdSeq
+		WHERE 1=1
+			AND pdDeleteNy = 0 
+			<trim prefix="AND" prefixOverrides="AND | OR">
+			<if test="category != null and category.size != 0">
+				a.pdCode IN
+			          <foreach collection="category" item="item" open="(" close=")" separator=",">
+				           #{item}
+					  </foreach> 		             
+			  </if>
+			 
+			  <if test="gender != null and gender.size != 0">
+				AND a.pdGender IN
+			          <foreach collection="gender" item="item" open="(" close=")" separator=",">
+				           #{item}
+					  </foreach> 		             
+			  </if>
+			  
+			  <if test="size != null and size.size != 0">
+				AND b.szCode IN
+			          <foreach collection="size" item="item" open="(" close=")" separator=",">
+				           #{item}
+					  </foreach> 		             
+			  </if>
+			  
+			  <if test="color != null and color.size != 0">
+				AND c.clCode IN
+			          <foreach collection="color" item="item" open="(" close=")" separator=",">
+				           #{item}
+					  </foreach> 		             
+			  </if>
+			  </trim>
+	</sql>
+    
+    <select id="selectCategoryList" resultMap="resultMapObj">
+        SELECT
+            a.pdSeq
+            ,a.pdCode
+            ,a.pdName
+            ,a.pdPrice
+            ,a.pdlikeNy
+            ,a.pdView
+            ,a.pdDeleteNy
+            ,a.pdCreationDate
+            ,a.pdModificationDate
+		   	<include refid="selectCategory" />
+			group by a.pdSeq
+			ORDER BY pdSeq desc
+			limit #{rowNumToShowPd} offset #{startRnumForMysql}
+    </select>
+    
+    <update id="viewUpdate">
+		UPDATE product 
+    	SET
+    		pdView = pdView + 1
+    	WHERE pdSeq = #{pdSeq}
+    </update>
     
     <select id="selectPdOneCount">
-		SELECT COUNT(*)
-			<include refid="selectPd" />
+		SELECT COUNT(DISTINCT a.pdSeq)
+			<include refid="selectCategory" />
 	</select>
 	<!-- shopList -->
 	
