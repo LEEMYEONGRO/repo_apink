@@ -26,13 +26,6 @@
                             <h1 class="title">패션의류</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="user/v1/assets/images/product/product-45.png" alt="Image">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -178,7 +171,7 @@
 	                                <div class="axil-product product-style-one mb--30">
 	                                	<div class="thumbnail">
 	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}">
-	                                            <img src="user/v1/assets/images/product/electric/product-08.png" alt="Product Images">
+	                                            <img th:src="${list.ibuPath}" width="330" height="330" alt="Description of image">
 	                                        </a>
 	                                    </div>
 	                                    <div class="product-content">

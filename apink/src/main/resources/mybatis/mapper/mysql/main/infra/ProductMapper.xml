@@ -70,8 +70,9 @@
 		FROM product a
 		left join size b on b.pdSeq = a.pdSeq
 		left join color c on c.pdSeq = a.pdSeq
+		left join infrboarduploaded d on d.pdSeq = a.pdSeq and d.ibuType = 1 and d.ibuDefaultNy = 1
 		WHERE 1=1
-			AND pdDeleteNy = 0 
+			AND pdDeleteNy = 0
 			<trim prefix="AND" prefixOverrides="AND | OR">
 			<if test="category != null and category.size != 0">
 				a.pdCode IN
@@ -114,8 +115,9 @@
             ,a.pdDeleteNy
             ,a.pdCreationDate
             ,a.pdModificationDate
+            ,d.ibuPath
 		   	<include refid="selectCategory" />
-			group by a.pdSeq
+			<!-- group by a.pdSeq -->
 			ORDER BY pdSeq desc
 			limit #{rowNumToShowPd} offset #{startRnumForMysql}
     </select>
@@ -252,7 +254,11 @@
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
             pdSeq
+            ,pdCode
+            ,pdGender
             ,pdName
+            ,pdPrice
+            ,pdView
             ,pdDeleteNy
             ,pdCreationDate
             ,pdModificationDate
@@ -269,13 +275,60 @@
     		,#{pdDeleteNy}
     	)
     </insert>
+    <!-- 이미지 추가 -->
+    <insert id="insertIbu">
+    	INSERT INTO infrboarduploaded (
+    		ibuType
+			,ibuCategory
+			,ibuDefaultNy
+			,ibuPath
+			,ibuOriginalName
+			,ibuUuidName
+			,ibuExt
+			,ibuSize
+			,ibuDelNy
+			,ibuRegDateTime
+			,pdSeq
+    	)VALUES(
+    		#{ibuType}
+			,#{ibuCategory}
+			,#{ibuDefaultNy}
+			,#{ibuPath}
+			,#{ibuOriginalName}
+			,#{ibuUuidName}
+			,#{ibuExt}
+			,#{ibuSize}
+			,0
+			,now()
+			,#{pdSeq}
+    	)
+    </insert>
     
+    <!-- 상품목록 업데이트 -->
     <update id="update">
     	UPDATE product 
-    	SET
-    		pdName = #{pdName}
+    	SET	pdCode = #{pdCode}
+    		,pdGender = #{pdGender}
+    		,pdName = #{pdName}
+    		,pdPrice = #{pdPrice}
+    		,pdView = #{pdView}
+    		,pdlikeNy = #{pdlikeNy}
     	WHERE 1=1
     		AND pdSeq = #{pdSeq}
+    </update>
+    
+    <update id="updateIbu">
+    	UPDATE infrboarduploaded 
+		SET ibuType = #{ibuType}
+			,ibuCategory = #{ibuCategory}
+			,ibuDefaultNy = 1
+			,ibuPath = #{ibuPath}
+			,ibuOriginalName = #{ibuOriginalName}
+			,ibuUuidName = #{ibuUuidName}
+			,ibuExt = #{ibuExt}
+			,ibuSize = #{Size}
+			,ibuRegDateTime = now()
+		WHERE pdSeq = #{pdSeq}
     </update>
     
     <update id="updateDeleteNy">

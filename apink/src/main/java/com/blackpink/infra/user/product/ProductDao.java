@@ -25,8 +25,10 @@ public interface ProductDao {
 	public int insert(ProductDto dto);
 	
 	public int insertRv(ProductDto dto);
-	
+//	제품업데이트
 	public int update(ProductDto dto);
+//	이미지 업로드
+	public int updateIbu(ProductDto dto);
 	
 	public int updateDeleteNy(ProductDto dto);
 	
@@ -43,5 +45,7 @@ public interface ProductDao {
 	public int viewUpdate(ProductDto dto);
 	
     public List<ProductDto> selectPdListOrderBySeq(ProductVo vo);
-	
+    
+    public int insertIbu(ProductDto dto);
+
 }

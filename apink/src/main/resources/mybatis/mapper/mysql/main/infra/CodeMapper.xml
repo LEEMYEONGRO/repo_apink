@@ -64,7 +64,7 @@
 			cdName
 			,cdDeleteNy
 			,cgSeq
-		)VALUS(
+		)VALUES(
 			#{cdName}
 			,#{cdDeleteNy}
 			,#{cgSeq}

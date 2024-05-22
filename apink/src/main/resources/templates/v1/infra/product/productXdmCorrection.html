@@ -22,23 +22,67 @@
 								<!-- Card start -->
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">코드그룹관리</div>
+										<div class="card-title">제품관리</div>
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<form class="row" method="post">
-												<div class="col-6">
-													<input type="text" class="form-control" name="cgSeq" th:value=${oneList.cgSeq}>
+											<form class="row" method="post" enctype="multipart/form-data">
+												<!-- 제품코드 -->
+												<div class="col-4 g-3">
+													<input type="text" class="form-control" name="pdSeq" th:value="${oneList.pdSeq}">
 												</div>
-												<div class="col-6">
-													<input type="text" class="form-control" name="cgName" th:value=${oneList.cgName}>
+												<!-- 제품명 -->
+												<div class="col-4 g-3">
+													<input type="text" class="form-control" name="pdName" th:value="${oneList.pdName}">
+												</div>
+												<!-- 제품가격 -->
+												<div class="col-4 g-3">
+													<input type="text" class="form-control" name="pdPrice" th:value="${oneList.pdPrice}">
+												</div>
+												<!-- 제품조회수 -->
+												<div class="col-4 g-3">
+													<input type="text" class="form-control" name="pdView" th:value="${oneList.pdView}">
+												</div>
+												<!-- 제품카테고리 -->
+												<div class="col-4 g-3">
+													<select class="form-select" name="pdCode" id="pdCode" >
+														<th:block th:each="list : ${@codeService.selectListCachedCode(5)}">
+															<option th:selected="${oneList.pdCode == list.cdSeq}" th:value="${list.cdSeq}" th:text="${list.cdName}"></option>
+														</th:block>
+													</select>
+												</div>
+												<!-- 제품카테고리 성별 -->
+												<div class="col-4 g-3">
+													<select class="form-select" name="pdGender" >
+														<th:block th:each="list : ${@codeService.selectListCachedCode(2)}">
+															<option th:selected="${oneList.pdGender == list.cdSeq}" th:value="${list.cdSeq}" th:text="${list.cdName}" ></option>
+														</th:block>
+													</select>
+												</div>
+												<!-- 이미지파일 업로드 -->
+												<div class="col-4 g-3">
+													<select class="form-select" id="ibuDefaultNy" name="ibuDefaultNy">
+														<!-- <option value="">이미지 구분</option> -->
+														<option value="0">목록 및 상세 이미지</option>
+														<option value="1">대표 이미지</option>
+													</select>
+												</div>
+												<div class="col-4 g-3">
+													<select class="form-select" id="ibuType" name="ibuType">
+														<!-- <option value="">이미지 구분</option> -->
+														<option value="1">목록이미지</option>
+														<option value="2">상세이미지</option>
+													</select>
+												</div>
+												<div class="col-4 g-3">
+													<input type="file" class="form-control" multiple="multiple" id ="uploadFiles" name="uploadFiles" aria-label="file example" required="">
 												</div>
 												<div class="col-6 g-3">
-													<a th:href="@{/codeGroupXdmList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
+													<a th:href="@{/productXdmList}"><button type="button" class="btn btn-success" >돌아가기</button></a>
 												</div>
 												<div class="col-6 g-3 gap-2 d-md-flex justify-content-md-end">
-													<button type="button" class="btn btn-info" onclick="javascript: form.action='codeGroupXdmUpdate';">저장</button>
-													<button type="button" class="btn btn-info" onclick="javascript: form.action='codeGroupXdmDeleteNy';">Ny변경</button>
+													<button type="submit" class="btn btn-info" onclick="javascript: form.action='productXdmUpdate';">저장</button>
+													<button type="button" class="btn btn-info" onclick="javascript: form.action='productDeleteNy';">Ny변경</button>
 												  	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDark">식제</button>
 											  	</div>
 										  		<div class="modal fade" id="modalDark" tabindex="-1" aria-labelledby="modalDarkLabel" aria-hidden="true">

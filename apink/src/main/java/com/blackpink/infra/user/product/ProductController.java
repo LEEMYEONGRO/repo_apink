@@ -45,7 +45,7 @@ public class ProductController {
 		
 		return "v1/infra/user/shopListAjax";
 	}
-	
+//	index화면 상품리스트
 	@RequestMapping(value = "/indexUser")
 	public String indexUser(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 	    
@@ -93,7 +93,7 @@ public class ProductController {
 		
 		return "v1/infra/product/productXdmAddition";
 	}
-	
+//	제품추가
 	@RequestMapping(value = "/productXdmInsert")
 	public String productXdmInsert(ProductDto dto) {
 		
@@ -110,7 +110,7 @@ public class ProductController {
 		return "v1/infra/product/productXdmCorrection";
 		
 	}
-	
+//	상품 상세목록
 	@RequestMapping(value = "shopDetailedPage")
 	public String shopDetailedPage(ProductDto dto, Model model) {
 		
@@ -126,11 +126,11 @@ public class ProductController {
 		
 		return "v1/infra/user/shopDetailedPage";
 	}
-		
+//		제품업데이트
 	@RequestMapping(value = "/productXdmUpdate")
-	public String productXdmUpdate(ProductDto dto) {
+	public String productXdmUpdate(ProductDto dto) throws Exception {
 		
-		service.update(dto);
+		service.updateIbu(dto);
 		
 		return "redirect:/productXdmList";
 		

@@ -2,11 +2,14 @@ package com.blackpink.infra.user.product;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDto {
 
 //	제품
 	private String pdSeq;
-	private int pdCode;
+	private String pdCode;
+	private String pdGender;
 	private String pdName;
 	private int pdPrice;
 	private int pdView;
@@ -44,17 +47,37 @@ public class ProductDto {
 	private String mbSeq;
 	
 	
+//	이미지업로드
+	private String ibuType;
+	private String ibuCategory;
+	private Integer ibuDefaultNy;
+	private String ibuPath;
+	private String ibuOriginalName;
+	private String ibuUuidName;
+	private String ibuExt;
+	private int ibuSize;
+	private Integer ibuDelNy;
+	private Date ibuRegDateTime;
+	private MultipartFile[] uploadFiles;
+//	이미지업로드
+	
 	public String getPdSeq() {
 		return pdSeq;
 	}
 	public void setPdSeq(String pdSeq) {
 		this.pdSeq = pdSeq;
 	}
-	public int getPdCode() {
+	public String getPdCode() {
 		return pdCode;
 	}
-	public void setPdCode(int pdCode) {
+	public void setPdCode(String pdCode) {
 		this.pdCode = pdCode;
+	}
+	public String getPdGender() {
+		return pdGender;
+	}
+	public void setPdGender(String pdGender) {
+		this.pdGender = pdGender;
 	}
 	public String getPdName() {
 		return pdName;
@@ -188,6 +211,73 @@ public class ProductDto {
 	public void setMbSeq(String mbSeq) {
 		this.mbSeq = mbSeq;
 	}
+	public String getIbuType() {
+		return ibuType;
+	}
+	public void setIbuType(String ibuType) {
+		this.ibuType = ibuType;
+	}
+	public String getIbuCategory() {
+		return ibuCategory;
+	}
+	public void setIbuCategory(String ibuCategory) {
+		this.ibuCategory = ibuCategory;
+	}
+	public Integer getIbuDefaultNy() {
+		return ibuDefaultNy;
+	}
+	public void setIbuDefaultNy(Integer ibuDefaultNy) {
+		this.ibuDefaultNy = ibuDefaultNy;
+	}
+	public String getIbuPath() {
+		return ibuPath;
+	}
+	public void setIbuPath(String ibuPath) {
+		this.ibuPath = ibuPath;
+	}
+	public String getIbuOriginalName() {
+		return ibuOriginalName;
+	}
+	public void setIbuOriginalName(String ibuOriginalName) {
+		this.ibuOriginalName = ibuOriginalName;
+	}
+	public String getIbuUuidName() {
+		return ibuUuidName;
+	}
+	public void setIbuUuidName(String ibuUuidName) {
+		this.ibuUuidName = ibuUuidName;
+	}
+	public String getIbuExt() {
+		return ibuExt;
+	}
+	public void setIbuExt(String ibuExt) {
+		this.ibuExt = ibuExt;
+	}
+	public int getIbuSize() {
+		return ibuSize;
+	}
+	public void setIbuSize(int ibuSize) {
+		this.ibuSize = ibuSize;
+	}
+	public Integer getIbuDelNy() {
+		return ibuDelNy;
+	}
+	public void setIbuDelNy(Integer ibuDelNy) {
+		this.ibuDelNy = ibuDelNy;
+	}
+	public Date getIbuRegDateTime() {
+		return ibuRegDateTime;
+	}
+	public void setIbuRegDateTime(Date ibuRegDateTime) {
+		this.ibuRegDateTime = ibuRegDateTime;
+	}
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
+	
 	
 	
 	
