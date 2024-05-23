@@ -2,7 +2,12 @@
 <html class="no-js" lang="en">
 
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
-
+	<style type="text/css">
+	  .thumbnail img {
+	    width: 300px;
+	    height: 330px;
+	}
+	</style>
 
 <body class="sticky-header">
 	<form name="formList" id="formList" method="post" autocomplete="off">
@@ -169,16 +174,19 @@
 	                        <th:block th:each= "list : ${list}">
 	                        	 <div class="col-xl-4 col-sm-6">
 	                                <div class="axil-product product-style-one mb--30">
+	                                	<!-- 상품이미지 -->
 	                                	<div class="thumbnail">
 	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}">
-	                                            <img th:src="${list.ibuPath}" width="330" height="330" alt="Description of image">
+	                                            <img th:src="${list.ibuPath}" alt="Description of image">
 	                                        </a>
 	                                    </div>
 	                                    <div class="product-content">
 	                                        <div class="inner">
+	                                        	<!-- 상품명 -->
 	                                            <h5 class="title">
 	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"></a>
 	                                            </h5>
+	                                            <!-- 상품가격 -->
 	                                            <div class="product-price-variant">
 	                                                <span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 	                                            </div>

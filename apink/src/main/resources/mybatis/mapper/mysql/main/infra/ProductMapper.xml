@@ -35,33 +35,43 @@
 	
 	<select id="selectPdList" resultMap="resultMapObj">
         SELECT
-            pdSeq
-            ,pdCode
-            ,pdName
-            ,pdPrice
-            ,pdView
-            ,pdlikeNy
-            ,pdDeleteNy
-            ,pdCreationDate
-            ,pdModificationDate
-		   	<include refid="selectPd" />
-			ORDER BY pdView desc
-			limit 8	
+            a.pdSeq
+            ,a.pdCode
+            ,a.pdName
+            ,a.pdPrice
+            ,a.pdlikeNy
+            ,a.pdView
+            ,a.pdDeleteNy
+            ,a.pdCreationDate
+            ,a.pdModificationDate
+            ,d.ibuPath
+        ,GROUP_CONCAT(DISTINCT b.szCode  ORDER BY b.szCode SEPARATOR ', ') AS sizes
+    	,GROUP_CONCAT(DISTINCT c.clCode  ORDER BY c.clCode SEPARATOR ', ') AS colors
+		   	<include refid="selectCategory" />
+			<!-- group by a.pdSeq -->
+		GROUP BY a.pdSeq, a.pdCode, a.pdName, a.pdPrice, a.pdlikeNy, a.pdView, a.pdDeleteNy, a.pdCreationDate, a.pdModificationDate, d.ibuPath
+		ORDER BY a.pdSeq DESC
+		limit 8	
     </select>
     
     <select id="selectPdListOrderBySeq" resultMap="resultMapObj">
         SELECT
-            pdSeq
-            ,pdCode
-            ,pdName
-            ,pdPrice
-            ,pdView
-            ,pdlikeNy
-            ,pdDeleteNy
-            ,pdCreationDate
-            ,pdModificationDate
-		   	<include refid="selectPd" />
-			ORDER BY pdSeq desc
+            a.pdSeq
+            ,a.pdCode
+            ,a.pdName
+            ,a.pdPrice
+            ,a.pdlikeNy
+            ,a.pdView
+            ,a.pdDeleteNy
+            ,a.pdCreationDate
+            ,a.pdModificationDate
+            ,d.ibuPath
+        ,GROUP_CONCAT(DISTINCT b.szCode  ORDER BY b.szCode SEPARATOR ', ') AS sizes
+    	,GROUP_CONCAT(DISTINCT c.clCode  ORDER BY c.clCode SEPARATOR ', ') AS colors
+		   	<include refid="selectCategory" />
+			<!-- group by a.pdSeq -->
+		GROUP BY a.pdSeq, a.pdCode, a.pdName, a.pdPrice, a.pdlikeNy, a.pdView, a.pdDeleteNy, a.pdCreationDate, a.pdModificationDate, d.ibuPath
+		ORDER BY a.pdSeq DESC
 			limit 12
     </select>
     
@@ -71,8 +81,7 @@
 		left join size b on b.pdSeq = a.pdSeq
 		left join color c on c.pdSeq = a.pdSeq
 		left join infrboarduploaded d on d.pdSeq = a.pdSeq and d.ibuType = 1 and d.ibuDefaultNy = 1
-		WHERE 1=1
-			AND pdDeleteNy = 0
+		WHERE a.pdDeleteNy = 0
 			<trim prefix="AND" prefixOverrides="AND | OR">
 			<if test="category != null and category.size != 0">
 				a.pdCode IN
@@ -116,10 +125,13 @@
             ,a.pdCreationDate
             ,a.pdModificationDate
             ,d.ibuPath
+        ,GROUP_CONCAT(DISTINCT b.szCode  ORDER BY b.szCode SEPARATOR ', ') AS sizes
+    	,GROUP_CONCAT(DISTINCT c.clCode  ORDER BY c.clCode SEPARATOR ', ') AS colors
 		   	<include refid="selectCategory" />
 			<!-- group by a.pdSeq -->
-			ORDER BY pdSeq desc
-			limit #{rowNumToShowPd} offset #{startRnumForMysql}
+		GROUP BY a.pdSeq, a.pdCode, a.pdName, a.pdPrice, a.pdlikeNy, a.pdView, a.pdDeleteNy, a.pdCreationDate, a.pdModificationDate, d.ibuPath
+		ORDER BY a.pdSeq DESC
+		limit #{rowNumToShowPd} offset #{startRnumForMysql}
     </select>
     
     <update id="viewUpdate">
@@ -152,7 +164,7 @@
     </select>
 	<!-- myPage -->
 
-    <!-- 주문상세 -->
+    <!-- 주문상세목록 -->
     <select id="item" resultMap="resultMapObj">
         SELECT
             pdSeq
@@ -164,6 +176,15 @@
     </select>
      <!-- 주문상세 -->
 	
+	<!-- 주문상세 이미지목록 -->
+	<select id="selectIbuList" resultMap="resultMapObj">
+		select
+			ibuSeq
+			,ibuPath
+			,ibuType
+		from infrboarduploaded
+		where pdSeq = #{pdSeq}
+	</select>
 	<!-- 주문상세에 재고, 색상, 수량 -->
     <select id="selectSizeList" resultMap="resultMapObj">
         SELECT

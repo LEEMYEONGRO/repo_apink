@@ -32,8 +32,7 @@
 						<div class="main-slider-large-thumb">
 							<div class="slider-thumb-activation-one axil-slick-dots">
 								<div class="single-slide slick-slide" th:each= "list : ${list}" data-sal="slide-up" ata-sal-delay="600" data-sal-duration="1500">
-									<img src="user/v1/assets/images/product/product-38.png"
-										alt="Product">
+									<img th:src="${list.ibuPath}" alt="Product">
 									<div class="product-price">
 										<span class="price-amount" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 									</div>
@@ -68,7 +67,7 @@
 							<div class="thumbnail">
 								<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}"> <img data-sal="fade"
 									data-sal-delay="100" data-sal-duration="1500"
-									src="user/v1/assets/images/product/nft/product-30.png"
+									th:src="${list.ibuPath}"
 									alt="Product Images">
 								</a>
 							</div>
@@ -108,7 +107,7 @@
 									<div class="thumbnail">
 										<a th:href="@{/shopDetailedPage(pdSeq=${newProducts.pdSeq})}"> <img data-sal="fade"
 											data-sal-delay="100" data-sal-duration="1500"
-											src="user/v1/assets/images/product/nft/product-15.png"
+											th:src="${newProducts.ibuPath}"
 											alt="Product Images">
 										</a>
 										<div class="product-hover-action">

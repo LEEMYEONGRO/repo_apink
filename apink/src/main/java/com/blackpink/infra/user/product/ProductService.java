@@ -29,11 +29,11 @@ public class ProductService {
 	public List<ProductDto> selectPdList(ProductVo vo){
 		return dao.selectPdList(vo);
 	}
-    
+//	인덱스화면 상품리스트    
     public List<ProductDto> selectPdListOrderBySeq(ProductVo vo) {
         return dao.selectPdListOrderBySeq(vo);
     }
-//	인덱스화면 상품리스트
+
 //	카테고리 리스트
 	public List<ProductDto> selectCategoryList(ProductVo vo){
 		return dao.selectCategoryList(vo);
@@ -42,11 +42,14 @@ public class ProductService {
 	public List<ProductDto> selectMyPage(ProductVo vo){
 		return dao.selectMyPage(vo);
 	}
-	
+//	리뷰 리스트
 	public List<ProductDto> selectRvList(ProductDto dto) {
 		return dao.selectRvList(dto);
 	}
-	
+//	상품상세 이미지리스트
+	public List<ProductDto> selectIbuList(ProductDto dto) {
+		return dao.selectIbuList(dto);
+	}
 	public ProductDto selectOne(ProductDto dto) {
 		return dao.selectOne(dto);
 	}

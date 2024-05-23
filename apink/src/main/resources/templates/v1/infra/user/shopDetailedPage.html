@@ -1,7 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head th:replace="~{v1/infra/blockDeclaration/user/head :: head}"></head>
+<head th:replace="~{v1/infra/blockDeclaration/user/head :: head}">
+</head>
 <body class="sticky-header">
 	<form name="formList" id="formList" method="post" autocomplete="off">
 		<input type="hidden" name="pdName" id="pdName" th:value="${item.pdName}">
@@ -17,52 +18,24 @@
             <div class="single-product-thumb mb--40">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-7 mb--40">
+                        <div class="col-lg-7 mb--40" >
                             <div class="row">
                                 <div class="col-lg-10 order-lg-2">
                                     <div class="single-product-thumbnail-wrap zoom-gallery">
                                         <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
-                                            <div class="thumbnail">
-                                                <a href="user/v1/assets/images/product/product-big-01.png" class="popup-zoom">
-                                                    <img src="user/v1/assets/images/product/product-big-01.png" alt="Product Images">
+                                            <div class="thumbnail" th:each= "ibuList : ${ibuList}">
+                                                <a th:href="${ibuList.ibuPath}" class="popup-zoom" th:if="${ibuList.ibuType} == 1">
+                                                    <img th:src="${ibuList.ibuPath}" alt="Product Images" th:if="${ibuList.ibuType} == 1">
                                                 </a>
                                             </div>
-                                            <div class="thumbnail">
-                                                <a href="user/v1/assets/images/product/product-big-02.png" class="popup-zoom">
-                                                    <img src="user/v1/assets/images/product/product-big-02.png" alt="Product Images">
-                                                </a>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <a href="user/v1/assets/images/product/product-big-03.png" class="popup-zoom">
-                                                    <img src="user/v1/assets/images/product/product-big-03.png" alt="Product Images">
-                                                </a>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <a href="user/v1/assets/images/product/product-big-02.png" class="popup-zoom">
-                                                    <img src="user/v1/assets/images/product/product-big-02.png" alt="Product Images">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-quick-view position-view">
-                                            <a href="user/v1/assets/images/product/product-big-01.png" class="popup-zoom">
-                                                <i class="far fa-search-plus"></i>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- 보조이미지 -->
                                 <div class="col-lg-2 order-lg-1">
                                     <div class="product-small-thumb-3 small-thumb-wrapper">
-                                        <div class="small-thumb-img">
-                                            <img src="user/v1/assets/images/product/product-thumb/thumb-08.png" alt="thumb image">
-                                        </div>
-                                        <div class="small-thumb-img">
-                                            <img src="user/v1/assets/images/product/product-thumb/thumb-07.png" alt="thumb image">
-                                        </div>
-                                        <div class="small-thumb-img">
-                                            <img src="user/v1/assets/images/product/product-thumb/thumb-09.png" alt="thumb image">
-                                        </div>
-                                        <div class="small-thumb-img">
-                                            <img src="user/v1/assets/images/product/product-thumb/thumb-07.png" alt="thumb image">
+                                        <div class="small-thumb-img" th:each= "ibuList : ${ibuList}">
+                                            <img th:src="${ibuList.ibuPath}" alt="thumb image" th:if="${ibuList.ibuType} == 1">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +70,7 @@
 
                                     <div class="product-variations-wrapper">
 
-                                        <!-- Start Product Variation  -->
+                                        <!-- 색상선택  -->
                                         <div class="product-variation">
 										    <h6 class="title">색상:</h6>
 										    <select name="clCode" id="clCode" aria-controls="apiCallbacks" class="select2" th:if="${!#lists.isEmpty(colorList)}">
@@ -105,8 +78,7 @@
 										         onclick="clCheck"></option>
 										    </select>
 										</div>
-                                        <!-- End Product Variation  -->
-                                        <!-- Start Product Variation  -->
+                                        <!-- 사이즈 선택 -->
                                         <div class="product-variation">
 										    <h6 class="title">Size:</h6>
 										    <ul class="range-variant" th:if="${!#lists.isEmpty(sizeList)}" th:each="sizeList : ${sizeList}">
@@ -119,8 +91,6 @@
 										        </li>
 										    </ul>
 										</div>
-                                        <!-- End Product Variation  -->
-
                                     </div>
 
                                     <!-- Start Product Action Wrapper  -->
@@ -165,11 +135,9 @@
                                         	<h1>상품설명</h1>
                                 		</div>
                                 	</div>
-                                    <div class="col-12">
-                                    	<div class="d-flex justify-content-center">
-	                                        <a class="popup-zoom">
-	                                           <img src="user/v1/assets/images/product/product-big-01.png" alt="Product Images">
-	                                        </a>
+                                    <div class="d-flex justify-content-center" th:each= "ibuList : ${ibuList}">
+                                    	<div class="thumbnail">
+	                                       <img th:src="${ibuList.ibuPath}" alt="Product Images" th:if="${ibuList.ibuType} == 2" style="max-width: 780px;">
                                       	</div>
                                     </div>
                                     <!-- End .col-lg-6 -->

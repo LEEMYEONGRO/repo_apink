@@ -11,8 +11,10 @@ public interface ProductDao {
 	public List<ProductDto> selectCategoryList(ProductVo vo);
 //	마이페이지
 	public List<ProductDto> selectMyPage(ProductVo vo);
-	
+//	리뷰 리스트
 	public List<ProductDto> selectRvList(ProductDto dto);
+//	상품상세 이미지리스트
+	public List<ProductDto> selectIbuList(ProductDto dto);
 	
 	public ProductDto selectOne(ProductDto dto);
 

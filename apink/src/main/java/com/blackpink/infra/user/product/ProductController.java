@@ -122,6 +122,8 @@ public class ProductController {
 		
 		model.addAttribute("colorList", service.selectColorList(dto));
 		
+		model.addAttribute("ibuList", service.selectIbuList(dto));
+		
 		service.viewUpdate(dto);
 		
 		return "v1/infra/user/shopDetailedPage";
