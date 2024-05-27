@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
@@ -112,7 +113,9 @@ public class ProductController {
 	}
 //	상품 상세목록
 	@RequestMapping(value = "shopDetailedPage")
-	public String shopDetailedPage(ProductDto dto, Model model) {
+	public String shopDetailedPage(ProductDto dto,@ModelAttribute("vo") ProductVo vo, Model model, RedirectAttributes redirectAttributes) throws Exception {
+		
+		setSearch(vo);
 		
 		model.addAttribute("list", service.selectRvList(dto));
 		
@@ -125,6 +128,8 @@ public class ProductController {
 		model.addAttribute("ibuList", service.selectIbuList(dto));
 		
 		service.viewUpdate(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "v1/infra/user/shopDetailedPage";
 	}

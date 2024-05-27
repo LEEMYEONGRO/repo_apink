@@ -9,7 +9,7 @@
                                     <div class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
                                         <span class="filter-results"></span>
-                                        <!-- <select class="single-select">
+                                        <!-- 추후수정 <select class="single-select">
                                             <option>인기순</option>
                                             <option>최신순</option>
                                             <option>낮은 가격순</option>
@@ -37,16 +37,19 @@
 	                        <th:block th:each= "list : ${list}">
 	                        	 <div class="col-xl-4 col-sm-6">
 	                                <div class="axil-product product-style-one mb--30">
+	                                	<!-- 상품이미지 -->
 	                                	<div class="thumbnail">
-	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}">
-	                                            <img th:src="${list.ibuPath}">
+	                                        <a th:attr="onclick=|goForm('${list.pdSeq}')|">
+	                                            <img th:src="${list.ibuPath}" alt="Description of image">
 	                                        </a>
 	                                    </div>
 	                                    <div class="product-content">
 	                                        <div class="inner">
+	                                        	<!-- 상품명 -->
 	                                            <h5 class="title">
-	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"></a>
+	                                            	<a href="javascript:void(0);" th:attr="onclick=|goForm('${list.pdSeq}')|" th:text="${list.pdName}"></a>
 	                                            </h5>
+	                                            <!-- 상품가격 -->
 	                                            <div class="product-price-variant">
 	                                                <span class="price current-price" th:text="${#numbers.formatInteger(list.pdPrice,1,'COMMA')} + '원'"></span>
 	                                            </div>
@@ -78,6 +81,7 @@
 							</ul>
                            	<!-- 페이징종료 -->
                         </div>
+                    </div>
                     </div>
 	</body>
 </html>

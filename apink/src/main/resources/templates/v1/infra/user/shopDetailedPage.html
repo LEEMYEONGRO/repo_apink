@@ -4,11 +4,13 @@
 <head th:replace="~{v1/infra/blockDeclaration/user/head :: head}">
 </head>
 <body class="sticky-header">
-	<form name="formList" id="formList" method="post" autocomplete="off">
+	<form name="formList" id="formList" method="post" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" name="pdName" id="pdName" th:value="${item.pdName}">
 		<input type="hidden" name="pdPrice" id="pdPrice" th:value="${item.pdPrice}">
 		<input type="hidden" name="szCode" id="szCode">
-		<!-- <input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" id="pdSeq" name="pdSeq" th:value="${item.pdSeq}">
+		<input type="hidden" id="rvName" name="rvName">
+		<!-- <input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/> -->
 	<!-- 상단바 시작 -->
     <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
     <!-- 상단바 종료 -->
@@ -47,9 +49,11 @@
                                 <div class="inner">
                                     <h2 class="product-title" th:text=${item.pdName}></h2>
                                     <ul class="axil-breadcrumb">
-				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">패션의류</a></li>
+                                    			<li class="axil-breadcrumb-item"><a href="shop-sidebar.html">Home</a></li>
 				                                <li class="separator"></li>
-				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">맨투맨</a></li>
+				                                <li class="axil-breadcrumb-item"><a href="shop-sidebar.html">패션의류</a></li>
+				                                <!-- <li class="separator"></li>
+				                                수정필요 디테일화면에 어떤 카테고리인지 seq값과 code캐쉬불러오기 --><li class="axil-breadcrumb-item"></li>
 				                            </ul>
                                     <span class="price-amount" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'"></span>
                                     <div class="product-rating">
@@ -184,8 +188,6 @@
                                     </div>
                                     <!-- End .col -->
                                     <div class="col-lg-6 mb--40">
-                                    	<input type="hidden" id="pdSeq" name="pdSeq" th:value="${item.pdSeq}">
-                                    	<input type="hidden" id="rvName" name="rvName">
                                         <!-- Start Comment Respond  -->
                                         <div class="comment-respond pro-des-commend-respond mt--0">
                                             <h5 class="title mb--30">리뷰작성</h5>
@@ -233,6 +235,12 @@
     <!-- 하단 내용 -->
 
 
+	</form>
+	<form name="formVo" method="post">
+		<input type="hidden" id="category" neme="category" th:value="${vo.category}">
+		<input type="hidden" id="category" neme="category" th:value="${vo.gender}">
+		<input type="hidden" id="category" neme="category" th:value="${vo.color}">
+		<input type="hidden" id="category" neme="category" th:value="${vo.size}">
 	</form>
 	<!-- JS  -->
     <th:block th:replace="~{v1/infra/blockDeclaration/user/body :: script}"></th:block>

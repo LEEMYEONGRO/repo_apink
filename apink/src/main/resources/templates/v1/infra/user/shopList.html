@@ -10,8 +10,9 @@
 	</style>
 
 <body class="sticky-header">
-	<form name="formList" id="formList" method="post" autocomplete="off">
+	<form name="formList" id="formList" method="get" autocomplete="off">
 		<input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" name="pdSeq" id="pdSeq">
 	<!-- 상단바 시작 -->
     <div th:replace="~{v1/infra/blockDeclaration/user/body :: topbar}"></div>
     <!-- 상단바 종료 -->
@@ -176,7 +177,7 @@
 	                                <div class="axil-product product-style-one mb--30">
 	                                	<!-- 상품이미지 -->
 	                                	<div class="thumbnail">
-	                                        <a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}">
+	                                        <a th:attr="onclick=|goForm('${list.pdSeq}')|">
 	                                            <img th:src="${list.ibuPath}" alt="Description of image">
 	                                        </a>
 	                                    </div>
@@ -184,7 +185,7 @@
 	                                        <div class="inner">
 	                                        	<!-- 상품명 -->
 	                                            <h5 class="title">
-	                                            	<a th:href="@{/shopDetailedPage(pdSeq=${list.pdSeq})}" th:text="${list.pdName}"></a>
+	                                            	<a href="javascript:void(0);" th:attr="onclick=|goForm('${list.pdSeq}')|" th:text="${list.pdName}"></a>
 	                                            </h5>
 	                                            <!-- 상품가격 -->
 	                                            <div class="product-price-variant">
@@ -239,14 +240,15 @@
     
     <script type="text/javascript">
    		let goUrlXdmList = "/shopList"; /* ### */
-	    let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
+	    let goUrlXdmForm = "/shopDetailedPage"; /* ### */
 		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
 		let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView"; /* ### */
 	
-		let seq = document.querySelector("input[name=seq]"); /* ### */
+		let seq = document.querySelector("input[name=pdSeq]"); /* ### */
 		
 		let form = document.querySelector("form[name=formList]");
+		let formVo = document.querySelector("formVo[name=formList]");
 		
 		window.addEventListener('load', function() {
 		    
@@ -255,21 +257,15 @@
 		    form.action = goUrlXdmList;
 		    form.submit();
 		}
-	    /* goList = function(thisPage) {
-	    	document.querySelector("input[name=thisPage]").value = thisPage;
-	        $.ajax({
-	    		async: true
-	    		, cache: false
-	    		, type: "post"
-	    		, url: "/categoryselect"
-	    		, success: function(fragment) {
-	    			$("#listData").replaceWith(fragment);
-	    		}
-	    		, error: function(jqXHR, textStatus, errorThrown) {
-	    			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-	    		}
-	    	}); */
+		
+		goForm = function (keyValue) {
+		    seq.value = keyValue;
+		    form.action = goUrlXdmForm;
+		    form.submit();
+		}
 	});
+		
+		
 	function enterkey() {
 		if (window.event.keyCode == 13) {
 		    form.action = goUrlXdmList;

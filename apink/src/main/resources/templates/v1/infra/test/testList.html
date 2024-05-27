@@ -4,17 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
+    <style>
+        .slide-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .active-slide {
+            display: block;
+            opacity: 1;
+        }
+
+        .slide h4 {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <form name="formList" id="formList" method="post" autocomplete="off">
-    <div th:each="node : ${node.get('KeyStatisticList').get('row')}">
-    	<h4 th:text="${node.get('CLASS_NAME').asText()}"></h4>
-    	<h4 th:text="${node.get('KEYSTAT_NAME').asText()}"></h4>
-    	<h4 th:text="${node.get('DATA_VALUE').asText()} + ${node.get('UNIT_NAME').asText()}"></h4>
-    	<h4 th:text="${node.get('CYCLE').asText()}"></h4>
-	</div>
-    	
-
+        <div class="slide-container">
+            <div th:each="node, iterStat : ${node.get('KeyStatisticList').get('row')}" class="slide" th:classappend="${iterStat.index == 0} ? ' active-slide'">
+                <h4 th:text="${node.get('CLASS_NAME').asText()}"></h4>
+                <h4 th:text="${node.get('CYCLE').asText()}"></h4>
+                <h4 th:text="${node.get('KEYSTAT_NAME').asText()}"></h4>
+                <h4 th:text="${node.get('DATA_VALUE').asText()} + ' ' + ${node.get('UNIT_NAME').asText()}"></h4>
+            </div>
+        </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            function showSlide(slideIndex) {
+                slides.forEach((slide, index) => {
+                    slide.style.display = 'none';
+                    slide.style.opacity = '0';
+                    slide.classList.remove('active-slide');
+                });
+                slides[slideIndex].style.display = 'block';
+                setTimeout(() => {
+                    slides[slideIndex].style.opacity = '1';
+                    slides[slideIndex].classList.add('active-slide');
+                }, 20);  // Allow display:block to take effect before changing opacity
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            // Initialize the first slide
+            showSlide(currentSlide);
+
+            // Set an interval to change slides every 3 seconds
+            setInterval(nextSlide, 3000);
+        });
+    </script>
 </body>
 </html>
