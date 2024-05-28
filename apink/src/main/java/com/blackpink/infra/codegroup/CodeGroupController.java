@@ -30,8 +30,15 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "/codeGroupXdmList")
-
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+		
+		setSearch(vo);
+		
+		return "v1/infra/codeGroupXdm/codeGroupXdmList";
+	}
+	
+	@RequestMapping(value = "/codeGroupXdmAjaxLita")
+	public String codeGroupXdmAjaxLita(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		setSearch(vo); 
 		
@@ -41,7 +48,7 @@ public class CodeGroupController {
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
-		return "v1/infra/codeGroupXdm/codeGroupXdmList";
+		return "v1/infra/codeGroupXdm/codeGroupXdmAjaxLita";
 	}
 	
 	

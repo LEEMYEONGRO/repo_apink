@@ -34,16 +34,23 @@
         .slide h4 {
             margin: 10px 0;
         }
+
+        .slide-content {
+            display: block;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <form name="formList" id="formList" method="post" autocomplete="off">
         <div class="slide-container">
-            <div th:each="node, iterStat : ${node.get('KeyStatisticList').get('row')}" class="slide" th:classappend="${iterStat.index == 0} ? ' active-slide'">
-                <h4 th:text="${node.get('CLASS_NAME').asText()}"></h4>
-                <h4 th:text="${node.get('CYCLE').asText()}"></h4>
-                <h4 th:text="${node.get('KEYSTAT_NAME').asText()}"></h4>
-                <h4 th:text="${node.get('DATA_VALUE').asText()} + ' ' + ${node.get('UNIT_NAME').asText()}"></h4>
+            <div th:each="node, iterStat : ${node.get('KeyStatisticList').get('row')}" 
+                 class="slide" 
+                 th:classappend="${iterStat.index == 0} ? ' active-slide' : ''">
+                <h4 class="slide-content" th:text="${node.get('CLASS_NAME').asText()}"></h4>
+                <h4 class="slide-content" th:text="${node.get('CYCLE').asText()}"></h4>
+                <h4 class="slide-content" th:text="${node.get('KEYSTAT_NAME').asText()}"></h4>
+                <h4 class="slide-content" th:text="${node.get('DATA_VALUE').asText()} + ' ' + ${node.get('UNIT_NAME').asText()}"></h4>
             </div>
         </div>
     </form>
@@ -53,6 +60,7 @@
             let currentSlide = 0;
             const slides = document.querySelectorAll('.slide');
             const totalSlides = slides.length;
+            let slideInterval;
 
             function showSlide(slideIndex) {
                 slides.forEach((slide, index) => {
@@ -64,7 +72,7 @@
                 setTimeout(() => {
                     slides[slideIndex].style.opacity = '1';
                     slides[slideIndex].classList.add('active-slide');
-                }, 20);  // Allow display:block to take effect before changing opacity
+                }, 20);
             }
 
             function nextSlide() {
@@ -72,11 +80,20 @@
                 showSlide(currentSlide);
             }
 
-            // Initialize the first slide
-            showSlide(currentSlide);
+            function startSlideInterval() {
+                slideInterval = setInterval(nextSlide, 3000);
+            }
 
-            // Set an interval to change slides every 3 seconds
-            setInterval(nextSlide, 3000);
+            function stopSlideInterval() {
+                clearInterval(slideInterval);
+            }
+
+            showSlide(currentSlide);
+            startSlideInterval();
+
+            // 예를 들어 사용자가 슬라이드 위에 호버할 때 자동 슬라이드를 멈추도록 설정할 수 있습니다.
+            document.querySelector('.slide-container').addEventListener('mouseenter', stopSlideInterval);
+            document.querySelector('.slide-container').addEventListener('mouseleave', startSlideInterval);
         });
     </script>
 </body>

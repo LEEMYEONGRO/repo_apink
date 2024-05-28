@@ -90,42 +90,10 @@
 						<!-- Row start -->
 						<div class="row">
 							<div class="col-12">
-	
 								<div class="card">
 									<div class="card-body">
-										<div th:replace= "~{v1/infra/blockDeclaration/body :: pageCount}"></div>
-										<div class="table-responsive">
-											<table class="table m-0">
-												<thead>
-													<tr>
-														<th><input class="form-check-input" type="checkbox"
-															id="inlineCheckbox1" value="option1"></th>
-														<th>코드그룹번호</th>
-														<th>코드그룹이름</th>
-														<th>등록일</th>
-														<th>삭제여부</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:if="${!#lists.isEmpty(list)}"
-														th:each="list : ${list}">
-														<td><input class="form-check-input" type="checkbox"
-															id="inlineCheckbox1" value="option1"></td>
-														<td th:text="${list.cgSeq}"></td>
-														<td><a
-															th:href="@{/codeGroupXdmCorrection(cgSeq=${list.cgSeq},cgName=${list.cgName})}"
-															th:text="${list.cgName}"></a></td>
-														<th
-															th:text="${#dates.format(list.cgCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
-														<td th:if="${list.cgDeleteNy eq 0}">N</td>
-														<td th:unless="${list.cgDeleteNy eq 0}">Y</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="row mt-3">
-										<!-- 페이징 -->
-											<div th:replace= "~{v1/infra/blockDeclaration/body :: pageButton}"></div>
+									<!-- AjaxLita 호출 -->
+										<div id="lita"></div>
 										<div class="row mt-3">
 											<div class="col d-grid gap-2 d-md-flex justify-content-md">
 												<button type="button" class="btn btn-danger"
@@ -142,7 +110,6 @@
 											</div>
 										</div>
 										<div class="modals-placeholder">
-	
 											<!-- Modal Fade -->
 											<div class="modal fade" id="modalDark" tabindex="-1"
 												aria-labelledby="modalDarkLabel" aria-hidden="true">
@@ -175,14 +142,17 @@
 						</div>
 					</div>
 				</div>
+				</form>
 			</div>
-			</form>
+			
 			</div>
 			
 			<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 			
-		<script type="text/javascript">
+		<script th:inline="javascript">
 		let goUrlXdmList = "/codeGroupXdmList"; /* ### */
+		let goUrlXdmAjaxList = "/v1/infra/codeGroupXdm/codeXdmAjaxList";				/* ### */
+		let goUrlXdmAjaxLita = "/codeGroupXdmAjaxLita";				/* ### */
 		let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm"; /* ### */
 		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
@@ -191,19 +161,14 @@
 		let seq = document.querySelector("input[name=seq]"); /* ### */
 		
 		let form = document.querySelector("form[name=formList]");
-		
 				window.addEventListener('load', function() {
+					let a= [[${vo.thisPage}]];
+					setLita(a);
 					$("#shDateStart, #shDateEnd").datetimepicker({
 						timepicker : false,
 						format : 'Y-m-d'
 						
 					});
-		
-			goList = function (thisPage) {
-			    document.querySelector("input[name=thisPage]").value = thisPage;
-			    form.action = goUrlXdmList;
-			    form.submit();
-			}
 			
 				document.getElementById("btnSearch").onclick = function() {
 					form.action = goUrlXdmList;
@@ -223,7 +188,23 @@
 			    }
 			}
 			
-			
+			function setLita(thisPage) {
+				document.querySelector("input[name=thisPage]").value = thisPage;
+			    $.ajax({
+			        async: true
+			        ,cache: false
+			        ,type: "post"
+			        ,url: goUrlXdmAjaxLita
+			        ,data : $("#formList").serialize()
+			        ,success: function(response) {
+						$("#lita").empty();
+						$("#lita").append(response);
+			        }
+			        ,error : function(jqXHR, textStatus, errorThrown){
+			            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			        }
+			    });
+			}
 		</script>
 	
 		<script>

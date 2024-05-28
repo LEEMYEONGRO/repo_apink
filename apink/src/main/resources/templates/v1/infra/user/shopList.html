@@ -51,8 +51,7 @@
                                 <div class="shop-submenu">
                                     <ul>
                                         <li>
-                                        	<input class="form-check-input" type="checkbox" value="15" id="defaultCheck2" name="category" 
-                                        	th:field="*{vo.category}"  >
+                                        	<input class="form-check-input" type="checkbox" value="15" id="defaultCheck2" name="category" th:field="*{vo.category}">
         									<label class="form-check-label" for="defaultCheck2" th:text="${@codeService.selectOneCachedCode(15)}"></label>
         								</li>
                                         <li>
@@ -273,8 +272,7 @@
 	    }
 	}
 	/* 체크 배열 불러오기 */
-	document.getElementById("schbtn").onclick = function()
-	{
+	document.getElementById("schbtn").onclick = function(){
 		let category = [];
 		let gender = [];
 		let color = [];
@@ -297,10 +295,6 @@
 			size.push($(this).val());
 			
 		});
-		/* console.log(category);
-		console.log(gender);
-		console.log(color);
-		console.log(size); */
 		
 		list.push(category);
 		list.push(gender);
@@ -308,7 +302,6 @@
 		list.push(size);
 		
 		console.log(list);
-		/* ,data : {"category" : category , "gender" : gender , "color" : color , "size" : size} */
 		$.ajax({
 			async: true 
 			,cache: false
@@ -323,7 +316,6 @@
 			}
 		}); 
 	}
-	
 	</script>
 
 </body>
