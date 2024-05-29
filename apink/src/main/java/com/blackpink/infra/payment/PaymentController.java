@@ -1,5 +1,10 @@
 package com.blackpink.infra.payment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blackpink.infra.codegroup.CodeGroupDto;
 import com.blackpink.infra.user.product.ProductDto;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -51,6 +58,11 @@ public class PaymentController {
 //	    주소내역불러오기
 	    model.addAttribute("addressList", service.addressList(vo));
 	    model.addAttribute("paymentList", service.paymentList(vo));
+	    
+//	    api
+	    String apiUrl = "https://ecos.bok.or.kr/api/KeyStatisticList/sample/json/kr/2/5";
+	    JsonNode node = callApiAndGetResponse(apiUrl);
+	    model.addAttribute("node", node);
 	    return "v1/infra/user/payment";
 	}
 	
@@ -97,4 +109,30 @@ public class PaymentController {
 		}
 		return returnMap;
 	}
+	private JsonNode callApiAndGetResponse(String apiUrl) throws IOException {
+	    URL url = new URL(apiUrl);
+	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+	    httpURLConnection.setRequestMethod("GET");
+
+	    BufferedReader bufferedReader;
+	    if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+	        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+	    } else {
+	        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+	    }
+
+	    StringBuilder stringBuilder = new StringBuilder();
+	    String line;
+	    while ((line = bufferedReader.readLine()) != null) {
+	        System.out.println("line: " + line);
+	        stringBuilder.append(line);
+	    }
+
+	    bufferedReader.close();
+	    httpURLConnection.disconnect();
+
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    return objectMapper.readTree(stringBuilder.toString());
+	}
+	
 }

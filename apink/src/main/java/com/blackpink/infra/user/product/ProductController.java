@@ -1,5 +1,10 @@
 package com.blackpink.infra.user.product;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.blackpink.common.constants.Constants;
 import com.blackpink.common.util.UtilDateTime;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -31,6 +38,11 @@ public class ProductController {
 			model.addAttribute("list", service.selectCategoryList(vo));
 		}
 		
+//	    api
+	    String apiUrl = "https://ecos.bok.or.kr/api/KeyStatisticList/sample/json/kr/2/5";
+	    JsonNode node = callApiAndGetResponse(apiUrl);
+	    model.addAttribute("node", node);
+	    
 		return "v1/infra/user/shopList";
 	}
 	
@@ -44,7 +56,12 @@ public class ProductController {
 			model.addAttribute("list", service.selectCategoryList(vo));
 		}	
 		
-		return "v1/infra/user/shopListAjax";
+//	    api
+	    String apiUrl = "https://ecos.bok.or.kr/api/KeyStatisticList/sample/json/kr/2/5";
+	    JsonNode node = callApiAndGetResponse(apiUrl);
+	    model.addAttribute("node", node);
+		
+	    return "v1/infra/user/shopListAjax";
 	}
 //	index화면 상품리스트
 	@RequestMapping(value = "/indexUser")
@@ -56,6 +73,10 @@ public class ProductController {
 	        model.addAttribute("list", service.selectPdList(vo)); // pdView로 정렬된 상품 목록
 	        model.addAttribute("newProducts", service.selectPdListOrderBySeq(vo)); // pdSeq로 정렬된 상품 목록
 	    }
+//	    api
+	    String apiUrl = "https://ecos.bok.or.kr/api/KeyStatisticList/sample/json/kr/2/5";
+	    JsonNode node = callApiAndGetResponse(apiUrl);
+	    model.addAttribute("node", node);
 	    
 	    return "v1/infra/user/indexUser";
 	}
@@ -68,6 +89,7 @@ public class ProductController {
 		return "redirect:/shopDetailedPage";
 		
 	}
+	
 	@RequestMapping(value = "/productXdmList")
 	public String productXdmList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 		
@@ -78,10 +100,6 @@ public class ProductController {
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
-		
-//		System.out.println("vo.getShDateStart(): " + vo.getShDateStart());
-//		System.out.println("vo.getShDateEnd(): " + vo.getShDateEnd());
-//		System.out.println("vo.getRowNumToShow()"+vo.getRowNumToShow());
 
 		return "v1/infra/product/productXdmList";
 		
@@ -131,6 +149,11 @@ public class ProductController {
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
+//	    api
+	    String apiUrl = "https://ecos.bok.or.kr/api/KeyStatisticList/sample/json/kr/2/5";
+	    JsonNode node = callApiAndGetResponse(apiUrl);
+	    model.addAttribute("node", node);
+	    
 		return "v1/infra/user/shopDetailedPage";
 	}
 //		제품업데이트
@@ -192,5 +215,30 @@ public class ProductController {
 		    ? UtilDateTime.nowString()
 		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
 	}
-		
+	
+	private JsonNode callApiAndGetResponse(String apiUrl) throws IOException {
+	    URL url = new URL(apiUrl);
+	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+	    httpURLConnection.setRequestMethod("GET");
+
+	    BufferedReader bufferedReader;
+	    if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+	        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+	    } else {
+	        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+	    }
+
+	    StringBuilder stringBuilder = new StringBuilder();
+	    String line;
+	    while ((line = bufferedReader.readLine()) != null) {
+	        System.out.println("line: " + line);
+	        stringBuilder.append(line);
+	    }
+
+	    bufferedReader.close();
+	    httpURLConnection.disconnect();
+
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    return objectMapper.readTree(stringBuilder.toString());
+	}
 }

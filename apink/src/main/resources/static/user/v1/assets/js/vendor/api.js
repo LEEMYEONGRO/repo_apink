@@ -1,76 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <style>
-        .slide-container {
-            position: relative;
-            width: 80%;
-            max-width: 270px;
-            margin: auto;
-            overflow: hidden;
-            list-style: none;
-            padding: 0;
-        }
-
-        .slide {
-            display: none;
-            position: relative;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* 배경을 약간 투명하게 설정 */
-            border-radius: 8px; /* 모서리를 둥글게 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
-        }
-
-        .active-slide {
-            display: block;
-        }
-
-        .slide div {
-            display: none; /* 초기에는 보이지 않도록 설정 */
-            margin: 10px 0;
-            opacity: 0; /* 초기 불투명도를 0으로 설정 */
-            transition: opacity 1s; /* 불투명도 변화를 1초 동안 천천히 실행 */
-        }
-
-        .slide-content {
-            margin-bottom: 10px;
-            font-family: 'Arial', sans-serif; /* 기본 글꼴 설정 */
-            font-size: 14px; /* 글꼴 크기 설정 */
-            color: #333; /* 글꼴 색상 설정 */
-        }
-
-        .active-content {
-            display: block;
-            opacity: 1; /* 활성화된 콘텐츠는 불투명도를 1로 설정하여 보이도록 함 */
-        }
-    </style>
-</head>
-<body>
-    <form name="formList" id="formList" method="post" autocomplete="off">
-        <div class="slide-container">
-            <div th:each="node, iterStat : ${node.get('KeyStatisticList').get('row')}" 
-                 class="slide" 
-                 th:classappend="${iterStat.index == 0} ? ' active-slide' : ''">
-                <div class="slide-content" id="CYCLE" name="CYCLE" th:text="${node.get('CYCLE').asText()} + ' ' + ${node.get('CLASS_NAME').asText()} + ' 안내'"></div>
-                <div class="slide-content" id="KEYSTAT_NAME" name="KEYSTAT_NAME" th:text="${node.get('KEYSTAT_NAME').asText()}"></div>
-                <div class="slide-content" id="DATA_VALUE" name="DATA_VALUE" th:text="${node.get('DATA_VALUE').asText()} + ' ' + ${node.get('UNIT_NAME').asText()}"></div>
-            </div>
-        </div>
-    </form>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
             let currentSlide = 0;
             let currentContent = 0;
             const slides = document.querySelectorAll('.slide');
             const totalSlides = slides.length;
             const contentIntervalTime = 3000; // 각 콘텐츠 전환 시간 (3초)
-            const slideIntervalTime = 9000; // 각 슬라이드 전환 시간 (9초)
+            const slideIntervalTime = 12000; // 각 슬라이드 전환 시간 (9초)
             let slideInterval;
             let contentInterval;
 
@@ -160,7 +94,3 @@
             document.querySelector('.slide-container').addEventListener('mouseenter', stopSlideInterval);
             document.querySelector('.slide-container').addEventListener('mouseleave', startSlideInterval);
         });
-    </script>
-</body>
-</html>
-

@@ -46,14 +46,19 @@
                         </nav>
                         <!-- End Mainmanu Nav -->
                     </div>
+                    <div class="slide-container">
+			            <div th:each="node, iterStat : ${node.get('KeyStatisticList').get('row')}" 
+			                 class="slide" 
+			                 th:classappend="${iterStat.index == 0} ? ' active-slide' : ''">
+			                <div class="slide-content" id="CYCLE" name="CYCLE" th:text="${node.get('CYCLE').asText()} + ' ' + ${node.get('CLASS_NAME').asText()} + ' 안내'"></div>
+			                <div class="slide-content" id="KEYSTAT_NAME" name="KEYSTAT_NAME" th:text="${node.get('KEYSTAT_NAME').asText()}"></div>
+			                <div class="slide-content" id="DATA_VALUE" name="DATA_VALUE" th:text="${node.get('DATA_VALUE').asText()} + ' ' + ${node.get('UNIT_NAME').asText()}"></div>
+			            	<div class="slide-content">출처 : 한국은행 Open API</div>
+			            </div>
+			        </div>
                     <div class="header-action">
                         <ul class="action-list">
-                            <li class="axil-search d-xl-block d-none">
-                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="검색할 내용을 입력해주세요." autocomplete="off">
-                                <button type="submit" class="icon wooc-btn-search">
-                                    <i class="flaticon-magnifying-glass"></i>
-                                </button>
-                            </li>
+                            
                             <li class="axil-search d-xl-none d-block">
                                 <a href="javascript:void(0)" class="header-search-icon" title="Search">
                                     <i class="flaticon-magnifying-glass"></i>
@@ -326,6 +331,8 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 		    <!-- logout -->
 			<script src="user/v1/assets/js/vendor/common.js"></script>
+			<!-- api용 JS -->
+			<script src="user/v1/assets/js/vendor/api.js"></script>
 		</th:block>
 <!-- script 주소 종료 -->
 </body>
