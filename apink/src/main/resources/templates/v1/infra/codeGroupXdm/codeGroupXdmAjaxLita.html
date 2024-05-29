@@ -14,6 +14,7 @@
 								<th>코드그룹번호</th>
 								<th>코드그룹이름</th>
 								<th>등록일</th>
+								<th>수정일</th>
 								<th>삭제여부</th>
 							</tr>
 						</thead>
@@ -26,8 +27,8 @@
 								<td><a
 									th:href="@{/codeGroupXdmCorrection(cgSeq=${list.cgSeq},cgName=${list.cgName})}"
 									th:text="${list.cgName}"></a></td>
-								<th
-									th:text="${#dates.format(list.cgCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+								<th th:text="${#dates.format(list.cgCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
+								<th th:text="${#dates.format(list.cgModificationDate, 'yyyy/MM/dd HH:mm:ss')}"></th>
 								<td th:if="${list.cgDeleteNy eq 0}">N</td>
 								<td th:unless="${list.cgDeleteNy eq 0}">Y</td>
 							</tr>

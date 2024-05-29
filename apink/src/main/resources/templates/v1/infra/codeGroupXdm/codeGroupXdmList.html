@@ -102,6 +102,9 @@
 												</button>
 											</div>
 											<div class="col d-md-flex justify-content-md-end">
+												<button type="button" id="excelDownload" class="btn btn-success me-2">
+													<i class="bi bi-file-earmark-arrow-down-fill"></i>
+												</button>
 												<a th:href="@{/codeGroupXdmAddition}">
 													<button type="button" class="btn btn-info">
 														<i class="bi bi-plus-circle-fill"></i>
@@ -145,8 +148,6 @@
 				</form>
 			</div>
 			
-			</div>
-			
 			<th:block th:replace="~{v1/infra/blockDeclaration/body :: script}"></th:block>
 			
 		<script th:inline="javascript">
@@ -157,7 +158,8 @@
 		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele"; /* ### */
 		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele"; /* ### */
 		let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView"; /* ### */
-	
+		let goUrlXdmExcel = "/excelDownload"; /* ### */
+		
 		let seq = document.querySelector("input[name=seq]"); /* ### */
 		
 		let form = document.querySelector("form[name=formList]");
@@ -174,6 +176,15 @@
 					form.action = goUrlXdmList;
 					form.submit();
 				};
+				
+				document.getElementById("excelDownload").onclick = function() {
+					form.action = goUrlXdmExcel;
+					form.submit();
+				};
+				
+				document.getElementById("btnReset").onclick = function() {
+					location.href = goUrlXdmList;
+				}
 				
 				document.getElementById("btnReset").onclick = function() {
 					location.href = goUrlXdmList;
