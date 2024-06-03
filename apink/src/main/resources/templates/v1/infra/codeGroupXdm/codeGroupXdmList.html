@@ -5,7 +5,7 @@
 
 	<body>
 		<div class="page-wrapper">
-			<form name="formList" id="formList" method="post" autocomplete="off">
+			<form name="formList" id="formList" method="post" autocomplete="off" enctype="multipart/form-data">
 				<input type="hidden" name="thisPage" id="thisPage" th:value="${vo.thisPage}" default="1"/>
 				<!-- 네비게이션바 시작 -->
 				<th:block th:replace="~{v1/infra/blockDeclaration/body :: navigationBar}"></th:block>
@@ -102,6 +102,12 @@
 												</button>
 											</div>
 											<div class="col d-md-flex justify-content-md-end">
+												<div class="col-4 g-3 me-2">
+													<input type="file" class="form-control" multiple="multiple" id ="uploadFile" name="uploadFile" aria-label="file example">
+												</div>
+												<button type="submit" id="additional" class="btn btn-warning me-2">
+													<i class="bi bi-upload"></i>
+												</button>
 												<button type="button" id="excelDownload" class="btn btn-success me-2">
 													<i class="bi bi-file-earmark-arrow-down-fill"></i>
 												</button>
@@ -190,7 +196,6 @@
 					location.href = goUrlXdmList;
 				}
 				
-				
 			});
 			function enterkey() {
 				if (window.event.keyCode == 13) {
@@ -219,15 +224,10 @@
 		</script>
 	
 		<script>
-				/* document.getElementById("btnForm").onclick = function() {
-					goForm(0);
-				} 
-	
-				goForm = function(keyValue) {
-					seq.value = keyValue;
-					form.action = goUrlXdmForm;
-					form.submit();
-				} */
+		document.getElementById("additional").onclick = function() {
+			form.action = "/readExcel";
+			form.submit();
+		}
 		</script>
 			
 	</body>

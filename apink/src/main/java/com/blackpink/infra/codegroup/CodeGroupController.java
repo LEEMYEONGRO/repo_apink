@@ -1,20 +1,28 @@
 package com.blackpink.infra.codegroup;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.blackpink.common.constants.Constants;
@@ -61,7 +69,7 @@ public class CodeGroupController {
 		
 		return "v1/infra/codeGroupXdm/codeGroupXdmAjaxLita";
 	}
-	
+//	리스트 엑셀파일로 다운로드
 	@RequestMapping("excelDownload")
     public void excelDownload(CodeGroupVo vo, HttpServletResponse httpServletResponse) throws Exception {
 		
@@ -141,6 +149,27 @@ public class CodeGroupController {
 		}
     }
 	
+	@RequestMapping(value = "/readExcel")
+	public String readExcel(CodeGroupDto dto) throws IOException { 
+			
+		Workbook workbook = new HSSFWorkbook(dto.getUploadFile().getInputStream());
+		Sheet worksheet = workbook.getSheetAt(0);
+	    DataFormatter formatter = new DataFormatter();
+	    
+        for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
+            CodeGroupDto excel = new CodeGroupDto();
+            Row row = worksheet.getRow(i);
+            String userName = formatter.formatCellValue(row.getCell(1));
+            excel.setCgName(userName);
+            excel.setCgDeleteNy(0);
+            service.insert(excel);  // Use excel instead of dto
+        }
+        
+		return "redirect:/codeGroupXdmList"; 
+	}
+
+
+	
 	@RequestMapping(value = "/codeGroupXdmAddition")
 	public String codeGroupXdmAddition(CodeGroupDto dto, Model model ) {
 		
@@ -151,12 +180,6 @@ public class CodeGroupController {
 	
 	@RequestMapping("codeGroupXdmInsert")
 	public String codeGroupXdmInsert(CodeGroupDto dto) {
-		
-	System.out.println("dto.getUploadFiles()" + dto.getUploadFiles().length);
-			
-			for(MultipartFile a : dto.getUploadFiles()) {
-			    System.out.println(a.getOriginalFilename());
-			}
 		
 		service.insert(dto); 
 		

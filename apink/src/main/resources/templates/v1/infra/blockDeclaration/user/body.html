@@ -127,7 +127,7 @@
 <!-- 페이징종료 -->
 <!-- 하단내용 -->
 <div th:fragment="bottomContent"> 
-<div class="service-area">
+	<div class="service-area">
         <div class="container">
             <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
                 <div class="col">
@@ -193,17 +193,10 @@
 								</a>
 							</div>
 							<div class="inner">
-								<p>
-									685 Market Street <br> Las Vegas, LA 95820, <br>
-									United States.
+								<p>  
+									서울특별시 노원구 상계로 64 <br> 화랑빌딩 7F<br>
+									이젠아카데미컴퓨터학원 노원
 								</p>
-								<div class="social-share">
-									<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-										class="fab fa-instagram"></i></a> <a href="#"><i
-										class="fa-brands fa-x-twitter"></i></a> <a href="#"><i
-										class="fab fa-linkedin-in"></i></a> <a href="#"><i
-										class="fab fa-discord"></i></a>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -211,14 +204,12 @@
 					<!-- Start Single Widget  -->
 					<div class="col-md-3 col-sm-4">
 						<div class="axil-footer-widget">
-							<h5 class="widget-title">ABOUT</h5>
+							<h5 class="widget-title">회원</h5>
 							<div class="inner">
 								<ul>
-									<li><a href="about-us.html">About</a></li>
-									<li><a href="about-us.html">Who We Are</a></li>
-									<li><a href="blog.html">Latest Post</a></li>
-									<li><a href="shop-sidebar.html">New Arraival</a></li>
-									<li><a href="contact.html">Contact Us</a></li>
+									<li><a th:href="@{/loginUser}">로그인</a></li>
+									<li><a th:href="@{/joinMembership}">회원가입</a></li>
+									<li><a th:href="@{/myPage}">마이페이지</a></li>
 								</ul>
 							</div>
 						</div>
@@ -227,29 +218,12 @@
 					<!-- Start Single Widget  -->
 					<div class="col-md-3 col-sm-4">
 						<div class="axil-footer-widget">
-							<h5 class="widget-title">ACCOUNT</h5>
+							<h5 class="widget-title">페이지</h5>
 							<div class="inner">
 								<ul>
-									<li><a href="my-account.html">My Account</a></li>
-									<li><a href="sign-up.html">Login / Register</a></li>
-									<li><a href="cart.html">Cart</a></li>
-									<li><a href="wishlist.html">Wishlist</a></li>
-									<li><a href="shop.html">Shop</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- End Single Widget  -->
-					<!-- Start Single Widget  -->
-					<div class="col-md-3 col-sm-4">
-						<div class="axil-footer-widget">
-							<h5 class="widget-title">SUPPORT</h5>
-							<div class="inner">
-								<ul>
-									<li><a href="privacy-policy.html">Privacy Policy</a></li>
-									<li><a href="terms-of-service.html">Terms Of Use</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a th:href="@{/indexUser}">Home</a></li>
+									<li><a th:href="@{/shopList}">상품목록</a></li>
+									<li><a th:href="@{/shopDetailedPage?pdSeq=1}">상품상세</a></li>
 								</ul>
 							</div>
 						</div>
@@ -264,34 +238,10 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-xl-7 col-lg-12">
-						<div
-							class="copyright-left d-flex flex-wrap justify-content-xl-start justify-content-center">
+						<div class="copyright-left d-flex flex-wrap justify-content-xl-start justify-content-center">
 							<ul class="quick-link">
-								<li><a href="privacy-policy.html">Privacy Policy</a></li>
-								<li><a href="terms-of-service.html">Terms of Service</a></li>
-							</ul>
-							<ul class="quick-link">
-								<li>© 2023. All rights reserved by <a target="_blank"
-									href="https://axilthemes.com/">Axilthemes</a>.
+								<li>© 2024. All rights reserved by SHOPLOVE</a>.
 								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xl-5 col-lg-12">
-						<div
-							class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
-							<span class="card-text">Accept For</span>
-							<ul class="payment-icons-bottom quick-link">
-								<li><img src="user/v1/assets/images/icons/cart/cart-1.png"
-									alt="paypal cart"></li>
-								<li><img src="user/v1/assets/images/icons/cart/cart-2.png"
-									alt="paypal cart"></li>
-								<li><img src="user/v1/assets/images/icons/cart/cart-3.png"
-									alt="paypal cart"></li>
-								<li><img src="user/v1/assets/images/icons/cart/cart-6.png"
-									alt="paypal cart"></li>
-								<li><img src="user/v1/assets/images/icons/cart/cart-5.png"
-									alt="paypal cart"></li>
 							</ul>
 						</div>
 					</div>

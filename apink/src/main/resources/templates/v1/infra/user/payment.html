@@ -114,7 +114,7 @@
 	                                    </div>
                                     </div>
                                 </div>
-                                <button type="button" id="additional" class="axil-btn btn-bg-primary checkout-btn">결제하기</button>
+                                <button type="button" id="additional" name="additional" class="axil-btn btn-bg-primary checkout-btn">결제하기</button>
                             </div>
                         </div>
                     </div>
@@ -266,12 +266,6 @@
 	document.getElementById("additional").onclick = function () {
 		insertCall();
 	}
-		/* 
-		 document.getElementById("additional").onclick = function() {
-			validation();
-			validationUpdt();
-		}*/
-		 
 		 let form = document.querySelector("form[name=formName]")
 		 
 		 insertCall = function() {

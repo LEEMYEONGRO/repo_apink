@@ -6,7 +6,6 @@ import com.blackpink.common.constants.Constants;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 public class CheckLoginSessionInterceptor implements HandlerInterceptor {
 	
@@ -15,9 +14,19 @@ public class CheckLoginSessionInterceptor implements HandlerInterceptor {
 			throws Exception {
 		
 		if (request.getSession().getAttribute("sessMbSeqXdm") != null) {
-			// by pass
 		} else {
-			response.sendRedirect(Constants.URL_LOGINFORM);
+			
+			if (request.getSession().getAttribute("sessMbSeqUser") != null) {
+				
+			}else {
+				if (request.getRequestURI().contains("Xdm")) {
+					
+					response.sendRedirect(Constants.URL_LOGINADM);
+				} else {
+					
+					response.sendRedirect(Constants.URL_LOGINUSER);
+					}
+			}
 		}
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}

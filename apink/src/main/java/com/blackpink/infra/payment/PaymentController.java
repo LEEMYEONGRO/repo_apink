@@ -40,12 +40,6 @@ public class PaymentController {
 	    int pdpmQuantity = pddto.getPdpmQuantity();
 	    String clCode = pddto.getClCode();
 	    String szCode = pddto.getSzCode();
-//	    System.out.println(pdSeq + "-----------------------------");
-//	    System.out.println(pdName);
-//	    System.out.println(pdPrice);
-//	    System.out.println(pdpmQuantity);
-//	    System.out.println(clCode);
-//	    System.out.println(szCode);
 	    
 //	    받아온 데이터를 모델에 추가하여 결제 페이지로 전달
 	    model.addAttribute("pdSeq", pdSeq);

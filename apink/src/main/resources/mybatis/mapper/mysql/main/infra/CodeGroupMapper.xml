@@ -50,9 +50,11 @@
     	INSERT INTO codeGroup (
     		cgName
     		,cgDeleteNy
+    		,cgModificationDate
     	)VALUES(
     		#{cgName}
     		,#{cgDeleteNy}
+    		,now()
     	)
     </insert>
     

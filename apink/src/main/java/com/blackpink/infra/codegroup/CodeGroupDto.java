@@ -13,8 +13,6 @@ public class CodeGroupDto {
 	private Date cgModificationDate;
 	
 	private MultipartFile uploadFile;
-	private MultipartFile[] uploadFiles;
-	
 	
 	public String getCgSeq() {
 		return cgSeq;
@@ -51,12 +49,6 @@ public class CodeGroupDto {
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
-	}
-	public MultipartFile[] getUploadFiles() {
-		return uploadFiles;
-	}
-	public void setUploadFiles(MultipartFile[] uploadFiles) {
-		this.uploadFiles = uploadFiles;
 	}
 	
 	

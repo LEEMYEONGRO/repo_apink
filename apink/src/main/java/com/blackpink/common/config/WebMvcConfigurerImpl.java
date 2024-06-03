@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.blackpink.interceptor.CheckLoginSessionInterceptor;
 
-
+@Configuration
 public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 
 		@Override

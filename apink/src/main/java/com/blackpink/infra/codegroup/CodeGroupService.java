@@ -21,7 +21,10 @@ public class CodeGroupService {
 	
 	public int insert(CodeGroupDto dto) {
 		return dao.insert(dto);
-		
+	}
+	
+	public int insertExsel(CodeGroupDto dto) {
+		return dao.insertExsel(dto);
 	}
 	
 	public int update(CodeGroupDto dto) {
