@@ -26,6 +26,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 							"/portfolioIndex",
 							"/indexUser",
 							"/shopList",
+							"/shopListAjax",
 							"/shopDetailedPage",
 							"/joinMembership"
 //							"/v1/infra/member/signupXdmForm",
