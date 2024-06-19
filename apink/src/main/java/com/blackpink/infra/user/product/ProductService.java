@@ -106,8 +106,7 @@ public class ProductService {
 		return dao.viewUpdate(dto);
 	}
 	
-	public int updateIbu(ProductDto dto) throws Exception
-	{
+	public int updateIbu(ProductDto dto) throws Exception {
 		dao.update(dto);
 		for(MultipartFile multipartFile : dto.getUploadFiles()) {
 			
