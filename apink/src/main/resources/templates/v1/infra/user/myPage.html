@@ -186,7 +186,6 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">코드</th>
-                                                        <th scope="col">상품사진</th>
                                                         <th scope="col">상품명</th>
                                                         <th scope="col">주문날짜</th>
                                                         <th scope="col">배송상태</th>
@@ -196,9 +195,6 @@
                                                 <tbody>
                                                     <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
 														<td th:text="${list.pdpmSeq}"></td>
-														<td>
-															<img src="/assets/images/product/product-11.jpg">
-														</td>
 														<td th:text="${list.pdName}"></td>
 														<td th:text="${#dates.format(list.pdpmCreationDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 														<td th:if="${list.pdpmDeliveryStatus != null}" th:text="${@codeService.selectOneCachedCode(list.pdpmDeliveryStatus)}"></td>

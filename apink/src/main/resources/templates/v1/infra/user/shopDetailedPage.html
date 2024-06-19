@@ -58,14 +58,14 @@
                                     <span class="price-amount" th:text="${#numbers.formatInteger(item.pdPrice,1,'COMMA')} + '원'"></span>
                                     <div class="product-rating">
                                         <div class="star-rating">
+                                            <!-- <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i> -->
                                         </div>
                                         <div class="review-link">
-                                            <a href="#">(리뷰<span>2</span>건)</a>
+                                            <!-- <a href="#">(리뷰<span>2</span>건)</a> -->
                                         </div>
                                     </div>
                                     <br>
@@ -168,13 +168,13 @@
                                                                             <span data-text="Cameron Williamson" th:text="${list.rvName}" ></span>
                                                                         </span>
                                                                     </a>
-                                                                    <span class="commenter-rating ratiing-four-star">
+                                                                    <!-- <span class="commenter-rating ratiing-four-star">
                                                                         <a href="#"><i class="fas fa-star"></i></a>
                                                                         <a href="#"><i class="fas fa-star"></i></a>
                                                                         <a href="#"><i class="fas fa-star"></i></a>
                                                                         <a href="#"><i class="fas fa-star"></i></a>
                                                                         <a href="#"><i class="fas fa-star empty-rating"></i></a>
-                                                                    </span>
+                                                                    </span> -->
                                                                 </h6>
                                                             </div>
                                                         </div>
@@ -191,7 +191,7 @@
                                         <!-- Start Comment Respond  -->
                                         <div class="comment-respond pro-des-commend-respond mt--0">
                                             <h5 class="title mb--30">리뷰작성</h5>
-                                            <div class="rating-wrapper d-flex-center mb--40"> 별점 <span class="require">*</span>
+                                            <!-- <div class="rating-wrapper d-flex-center mb--40"> 별점 <span class="require">*</span>
                                                 <div class="reating-inner ml--20">
                                                     <a href="#"><i class="fa-star"></i></a>
                                                     <a href="#"><i class="fal fa-star"></i></a>
@@ -199,7 +199,7 @@
                                                     <a href="#"><i class="fal fa-star"></i></a>
                                                     <a href="#"><i class="fal fa-star"></i></a>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
@@ -216,7 +216,7 @@
                                         </div>
                                     </div>
                                     <!-- End .col -->
-                                </div>
+<!--                                 </div> -->
                             </div>
                         </div>
                     </div>
@@ -256,7 +256,6 @@
 				,data : {"rvContent" : $("#rvContent").val(), "pdSeq" : $("#pdSeq").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
-						 alert("있음")
 						 self.location.reload();
 					}else {
 						alert("로그인하고 달아주세요")
